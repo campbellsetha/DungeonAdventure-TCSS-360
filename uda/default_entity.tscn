@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://15n33ab0xtmm"]
+
+[ext_resource type="Script" uid="uid://j6rv3l3tjm34" path="res://DefaultEntityScripts/CharacterBody2d.cs" id="1_37j6c"]
+[ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_xefm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrsia"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r4bra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xefm6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Default Entity" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_37j6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_mrsia")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_r4bra")

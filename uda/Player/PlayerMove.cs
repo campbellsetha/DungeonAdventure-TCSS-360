@@ -3,24 +3,33 @@ using System;
 
 public partial class PlayerMove : CharacterBody2D
 {
-	private int speed = 50;
-	private Vector2 currentVelocity;
-	
+	[Export]
+	private int _speed = 400;
+	private Vector2 _currentVelocity;
+	private AnimatedSprite2D _animatedSprite2D;
+
+	public override void _Ready()
+	{
+		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
+		_animatedSprite2D.Play("default");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		handleInput();
+		_HandleInput();
 		
-		Velocity = currentVelocity;
+		Velocity = _currentVelocity;
 		MoveAndSlide();
 	}
 
-	private void handleInput()
+	private void _HandleInput()
 	{
-		currentVelocity = Input.GetVector(
+		_currentVelocity = Input.GetVector(
 			"moveLeft", "moveRight",
-			"moveUp", "moveUp");
-		currentVelocity *= speed;
+			"moveUp", "moveDown");
+		
+		_currentVelocity *= _speed;
 	}
+	
 }

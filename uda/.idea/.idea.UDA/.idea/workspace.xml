@@ -7,9 +7,9 @@
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../UMLforUDA.drawio" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DefaultEntityScripts/CharacterBody2d.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DefaultEntityScripts/CharacterBody2d.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/default_entity.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +33,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;projectTemplate&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newUpdates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -114,6 +114,9 @@
       <workItem from="1745810016105" duration="240000" />
       <workItem from="1745810304697" duration="574000" />
       <workItem from="1745810899195" duration="1148000" />
+      <workItem from="1745974963414" duration="253000" />
+      <workItem from="1745975400557" duration="2348000" />
+      <workItem from="1745979709321" duration="827000" />
     </task>
     <servers />
   </component>

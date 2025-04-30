@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkr61uw1omwrb"]
+
+[ext_resource type="Script" uid="uid://dfrfk03kkt0rf" path="res://DefaultEntityScripts/DefaultEntity.cs" id="1_q4t34"]
+
+[node name="Default Entity" type="Node2D"]
+script = ExtResource("1_q4t34")

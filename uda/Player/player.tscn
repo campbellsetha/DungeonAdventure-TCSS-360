@@ -106,12 +106,10 @@ size = Vector2(10, 22)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
-_speed = 200
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5o4e")
 animation = &"walkUp"
-frame_progress = 0.639519
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1

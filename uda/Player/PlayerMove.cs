@@ -3,8 +3,7 @@ using System;
 
 public partial class PlayerMove : CharacterBody2D
 {
-	[Export]
-	private int _speed = 200;
+	[Export] private int _speed = 200;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
 
@@ -29,6 +28,17 @@ public partial class PlayerMove : CharacterBody2D
 		Velocity = _currentVelocity;
 		//Trigger physics process and move the player
 		MoveAndSlide();
+		_HandleCollision();
+	}
+
+	private void _HandleCollision()
+	{
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			KinematicCollision2D collision = GetSlideCollision(i);
+			GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
+			//var collider = GetSlide
+		}
 	}
 
 	private void _HandleInput()
@@ -66,6 +76,11 @@ public partial class PlayerMove : CharacterBody2D
 			_animatedSprite2D.Play(theCurrentVector2.Y < 0 ? "walkUp" : "walkDown");
 		}
 
+	}
+
+	private void OnHurtBoxEntered()
+	{
+		
 	}
 	
 }

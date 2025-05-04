@@ -8,7 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerMove.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,23 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Executable.Player.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.13227513",
-    "git-widget-placeholder": "sqlTest",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newUpdates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory" show_console_on_std_err="false" show_console_on_std_out="false" port="6006">
       <option name="address" value="127.0.0.1" />
@@ -130,6 +132,9 @@
       <workItem from="1746054877197" duration="303000" />
       <workItem from="1746123845660" duration="418000" />
       <workItem from="1746308930839" duration="4600000" />
+      <workItem from="1746320311487" duration="5412000" />
+      <workItem from="1746329880269" duration="2278000" />
+      <workItem from="1746334814799" duration="631000" />
     </task>
     <servers />
   </component>

@@ -5,16 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Model/DungeonCharacter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Gremlin.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Hero.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Monster.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Ogre.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Priest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Skeleton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Thief.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model/Warrior.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/DungeonCharacter.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Gremlin.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Hero.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/HeroFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Monster.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Ogre.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Priest.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Skeleton.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Thief.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/Warrior.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Player/Hurtbox.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/SignalGuide/SignalTest.tscn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/SignalGuide/Sprite2d.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/SignalGuide/Sprite2d.cs.uid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DefaultEntityScripts/DefaultEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/Hurtbox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DefaultEntityScripts/DefaultEntity.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DefaultEntityScripts/default_entity.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/DungeonCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Priest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Warrior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,22 +48,23 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "cblackwe11"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360",
-    "accountId": "685e3531-ad00-4787-95ff-e2d99f21f5c4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360&quot;,
+    &quot;accountId&quot;: &quot;685e3531-ad00-4787-95ff-e2d99f21f5c4&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/88358b2f6ebe4d69193e741f9c91d4a0d244fc86b7801d28e78114727746895/AnimatedSprite2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ef7b819b226fab796d1dfe66d415dd7510bcac87675020ddb8f03a828e763/CanvasItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../HeroFactory.Tests/Model/HeroFactoryTest.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -61,17 +78,17 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
+    &quot;8387dd85-ec11-49c2-bb20-6c4655de8100.executor&quot;: &quot;Debug&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
     &quot;git-widget-placeholder&quot;: &quot;newUpdates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;SolutionBuilderGeneralOptionsPage&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -87,9 +104,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Godot_v4.4.1-stable_mono_linux_x86_64/Godot_v4.4.1-stable_mono_linux.x86_64" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -105,9 +122,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Godot_v4.4.1-stable_mono_linux_x86_64/Godot_v4.4.1-stable_mono_linux.x86_64" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -157,6 +174,13 @@
       <workItem from="1746329880269" duration="2278000" />
       <workItem from="1746334814799" duration="631000" />
       <workItem from="1746400443489" duration="24070000" />
+      <workItem from="1746476803303" duration="3703000" />
+      <workItem from="1746480640325" duration="834000" />
+      <workItem from="1746481495735" duration="6000" />
+      <workItem from="1746481518526" duration="45000" />
+      <workItem from="1746481582102" duration="574000" />
+      <workItem from="1746482370009" duration="7000" />
+      <workItem from="1746482422628" duration="15000" />
     </task>
     <servers />
   </component>

@@ -110,7 +110,6 @@ size = Vector2(8, 19)
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
-collision_mask = 13
 script = ExtResource("1_onrkg")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
@@ -134,5 +133,3 @@ collision_mask = 4
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4ntmi")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
-
-[connection signal="area_entered" from="Hurtbox" to="." method="OnHurtBoxEntered"]

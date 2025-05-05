@@ -1,3 +1,5 @@
+using System;
+
 namespace UDA.Model;
 
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
@@ -25,6 +27,12 @@ public class Warrior : Hero
             int damage = RandomNumberGenerator.Next(minDamage, maxDamage);
             theTarget.TakeDamage(in damage);
         }
+    }
+
+    //TODO: Customize ToString as needed for Warrior
+    public override String ToString()
+    {
+        return base.ToString();
     }
     
 }

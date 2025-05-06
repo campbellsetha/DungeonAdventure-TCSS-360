@@ -51,4 +51,10 @@ public abstract class DungeonCharacter(
         }
         
     }
+
+    public override String ToString()
+    {
+        return $"Name:{Name} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
+               $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance{HitChance}";
+    }
 }

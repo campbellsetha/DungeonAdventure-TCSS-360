@@ -58,16 +58,18 @@ tile_set = SubResource("TileSet_yf0ba")
 [node name="Player" parent="TileMapLayer" instance=ExtResource("1_62w18")]
 position = Vector2(-46, -11)
 
-[node name="Slime" parent="TileMapLayer" node_paths=PackedStringArray("_variableEndpoint") instance=ExtResource("4_3f78f")]
+[node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
 position = Vector2(85, -18)
-_variableEndpoint = NodePath("Marker2D1")
+_variableEndpoint = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-69, -39),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 
 [node name="Marker2D1" type="Marker2D" parent="TileMapLayer/Slime"]
 position = Vector2(-69, -39)
 
-[node name="Slime2" parent="TileMapLayer" node_paths=PackedStringArray("_variableEndpoint") instance=ExtResource("4_3f78f")]
+[node name="Slime2" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
 position = Vector2(-98, 18)
-_variableEndpoint = NodePath("Marker2D2")
+_variableEndpoint = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(60, 21),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+
 
 [node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
 position = Vector2(60, 21)

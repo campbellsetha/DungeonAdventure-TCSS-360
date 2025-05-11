@@ -13,6 +13,7 @@ public partial class PlayerMove : CharacterBody2D
 		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
+		AddToGroup("player");
 	}
 
 	public override void _Process(double delta)

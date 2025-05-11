@@ -28,12 +28,12 @@ public abstract class DungeonCharacter(
 
     public bool IsDead => HitPoints == 0;
     
-    public virtual void TakeDamage(ref readonly int theDamage)
+    public virtual void TakeDamage(int theDamage)
     {
         HitPoints -= theDamage;
     }
     
-    public void Attack(ref readonly DungeonCharacter theTarget)
+    public void Attack(DungeonCharacter theTarget)
     {
 
         if (IsDead || !(RandomNumberGenerator.NextDouble() > 1 - HitChance))
@@ -47,7 +47,7 @@ public abstract class DungeonCharacter(
         for (int i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
         {
             int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
-            TakeDamage(in damage);
+            TakeDamage(damage);
         }
         
     }
@@ -55,6 +55,6 @@ public abstract class DungeonCharacter(
     public override String ToString()
     {
         return $"Name:{Name} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
-               $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance{HitChance}";
+               $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance:{HitChance}";
     }
 }

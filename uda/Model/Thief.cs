@@ -21,13 +21,13 @@ public class Thief : Hero
         double failureChance = 0.2;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
         {
-            Attack(in theTarget);
+            Attack(theTarget);
             int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
-            theTarget.TakeDamage(in damage);
+            theTarget.TakeDamage(damage);
         }
         else if (RandomNumberGenerator.NextDouble() > 1 - failureChance)
         {
-            Attack(in theTarget);
+            Attack(theTarget);
         }
     }
 }

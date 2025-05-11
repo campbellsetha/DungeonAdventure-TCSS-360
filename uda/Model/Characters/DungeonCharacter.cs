@@ -9,7 +9,7 @@ public abstract class DungeonCharacter(
     ref readonly double theHitChance,
     ref readonly (int, int) theDamageRange)
 {
-    protected static readonly Random RandomNumberGenerator = new Random();
+    protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */

@@ -11,6 +11,7 @@ public partial class PlayerMove : CharacterBody2D
 	{
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
+		AddToGroup("player");
 	}
 
 	public override void _Process(double delta)

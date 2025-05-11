@@ -7,14 +7,14 @@ public abstract class Hero : DungeonCharacter
     // Should probably have a countdown timer for how often the special skill can be used 
     
     protected Hero(
-        ref readonly string theName, 
-        ref readonly int theHitPoints, 
-        ref readonly int theAttackSpeed,
-        ref readonly double theHitChance, 
-        ref readonly (int, int) theDamageRange, 
-        ref readonly double theBlockChance, 
-        ref readonly string theSkill) 
-        : base(in theName, in theHitPoints, in theAttackSpeed, in theHitChance, in theDamageRange)
+        string theName, 
+        int theHitPoints, 
+        int theAttackSpeed,
+        double theHitChance, 
+        (int, int) theDamageRange, 
+        double theBlockChance, 
+        string theSkill) 
+        : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
     {
         BlockChance = theBlockChance;
         Skill = theSkill;

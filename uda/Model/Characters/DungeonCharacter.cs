@@ -3,11 +3,11 @@ using System;
 namespace UDA.Model;
 
 public abstract class DungeonCharacter(
-    ref readonly string theName,
-    ref readonly int theHitPoints,
-    ref readonly int theAttackSpeed,
-    ref readonly double theHitChance,
-    ref readonly (int, int) theDamageRange)
+    string theName,
+    int theHitPoints,
+    int theAttackSpeed,
+    double theHitChance,
+    (int, int) theDamageRange)
 {
     protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     

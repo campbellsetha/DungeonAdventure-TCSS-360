@@ -14,8 +14,8 @@ public class Warrior : Hero
     private static readonly double MyBlockChance = 0.2;
     private static readonly string MySkill = "Crushing Blow";
     
-    public Warrior(string theName) : base(in theName, in MyHitPoints, in MyAttackSpeed, in MyHitChance,
-        in MyDamageRange, in MyBlockChance, in MySkill) { }
+    public Warrior(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
+        MyDamageRange, MyBlockChance, MySkill) { }
 
     public void CrushingBlow(ref readonly DungeonCharacter theTarget)
     {

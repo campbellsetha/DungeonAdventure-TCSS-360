@@ -9,6 +9,8 @@ public partial class PlayerMove : CharacterBody2D
 
 	public override void _Ready()
 	{
+		var thisHurtbox = GetNode<Area2D>("Hurtbox");
+		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
 		AddToGroup("player");
@@ -34,10 +36,11 @@ public partial class PlayerMove : CharacterBody2D
 
 	private void _HandleCollision()
 	{
+		//Currently prints out each execution of a collision.
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
 		{
-			KinematicCollision2D collision = GetSlideCollision(i);
-			GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
+			//KinematicCollision2D collision = GetSlideCollision(i);
+			//GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
 			//var collider = GetSlide
 		}
 	}
@@ -76,12 +79,11 @@ public partial class PlayerMove : CharacterBody2D
 			//Vertical
 			_animatedSprite2D.Play(theCurrentVector2.Y < 0 ? "walkUp" : "walkDown");
 		}
-
 	}
 
-	private void OnHurtBoxEntered()
+	private void OnHurtBoxEntered(Area2D theAreaThatEntered)
 	{
-		
+		GD.Print("OUT MY SPACE G!");
 	}
 	
 }

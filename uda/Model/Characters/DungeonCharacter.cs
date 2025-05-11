@@ -3,13 +3,13 @@ using System;
 namespace UDA.Model;
 
 public abstract class DungeonCharacter(
-    ref readonly string theName,
-    ref readonly int theHitPoints,
-    ref readonly int theAttackSpeed,
-    ref readonly double theHitChance,
-    ref readonly (int, int) theDamageRange)
+    string theName,
+    int theHitPoints,
+    int theAttackSpeed,
+    double theHitChance,
+    (int, int) theDamageRange)
 {
-    protected static readonly Random RandomNumberGenerator = new Random();
+    protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */
@@ -28,12 +28,12 @@ public abstract class DungeonCharacter(
 
     public bool IsDead => HitPoints == 0;
     
-    public virtual void TakeDamage(ref readonly int theDamage)
+    public virtual void TakeDamage(int theDamage)
     {
         HitPoints -= theDamage;
     }
     
-    public void Attack(ref readonly DungeonCharacter theTarget)
+    public void Attack(DungeonCharacter theTarget)
     {
 
         if (IsDead || !(RandomNumberGenerator.NextDouble() > 1 - HitChance))
@@ -47,8 +47,14 @@ public abstract class DungeonCharacter(
         for (int i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
         {
             int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
-            TakeDamage(in damage);
+            TakeDamage(damage);
         }
         
+    }
+
+    public override String ToString()
+    {
+        return $"Name:{Name} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
+               $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance:{HitChance}";
     }
 }

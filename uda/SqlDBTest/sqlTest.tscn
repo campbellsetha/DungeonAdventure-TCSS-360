@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://btkt15xivtfka"]
+
+[ext_resource type="Script" uid="uid://bk6b6vb233ytd" path="res://SqlDBTest/SQLTEST.cs" id="1_o21wd"]
+[ext_resource type="Script" uid="uid://c1ii7t2k3w42u" path="res://SqlDBTest/MonsterDBcreationTest.cs" id="2_wr5ae"]
+
+[node name="SqlTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o21wd")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_wr5ae")

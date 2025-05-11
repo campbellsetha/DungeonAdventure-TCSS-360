@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpccns7v1qvh7"]
+
+[ext_resource type="Texture2D" uid="uid://4op6kxrurkrb" path="res://icon.svg" id="2_8q1iq"]
+[ext_resource type="Script" uid="uid://bvjd5iwtxlsl4" path="res://UI/SignalGuide/Sprite2d.cs" id="3_etdhs"]
+
+[node name="SignalTest" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(431, 331)
+texture = ExtResource("2_8q1iq")
+script = ExtResource("3_etdhs")
+
+[node name="Timer" type="Timer" parent="Sprite2D"]
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 30.0
+offset_top = 35.0
+offset_right = 347.0
+offset_bottom = 220.0
+text = "Click me in and out of reality!"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Button" to="Sprite2D" method="OnButtonPressed"]

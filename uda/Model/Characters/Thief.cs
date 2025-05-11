@@ -12,8 +12,8 @@ public class Thief : Hero
     private static readonly double MyBlockChance = 0.4;
     private static readonly string MySkill = "Surprise Attack";
     
-    public Thief(string theName) : base(in theName, in MyHitPoints, in MyAttackSpeed, in MyHitChance,
-        in MyDamageRange, in MyBlockChance, in MySkill) { }
+    public Thief(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
+        MyDamageRange, MyBlockChance, MySkill) { }
 
     public void SurpriseAttack(ref readonly DungeonCharacter theTarget)
     {
@@ -21,13 +21,13 @@ public class Thief : Hero
         double failureChance = 0.2;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
         {
-            Attack(in theTarget);
+            Attack(theTarget);
             int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
-            theTarget.TakeDamage(in damage);
+            theTarget.TakeDamage(damage);
         }
         else if (RandomNumberGenerator.NextDouble() > 1 - failureChance)
         {
-            Attack(in theTarget);
+            Attack(theTarget);
         }
     }
 }

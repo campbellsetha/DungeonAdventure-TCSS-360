@@ -1,3 +1,5 @@
+using System;
+
 namespace UDA.Model;
 
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
@@ -12,10 +14,10 @@ public class Warrior : Hero
     private static readonly double MyBlockChance = 0.2;
     private static readonly string MySkill = "Crushing Blow";
     
-    public Warrior(string theName) : base(in theName, in MyHitPoints, in MyAttackSpeed, in MyHitChance,
-        in MyDamageRange, in MyBlockChance, in MySkill) { }
+    public Warrior(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
+        MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void CrushingBlow(ref readonly DungeonCharacter theTarget)
+    public void CrushingBlow(DungeonCharacter theTarget)
     {
         double successChance = 0.4;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
@@ -23,8 +25,14 @@ public class Warrior : Hero
             int minDamage = 75;
             int maxDamage = 175;
             int damage = RandomNumberGenerator.Next(minDamage, maxDamage);
-            theTarget.TakeDamage(in damage);
+            theTarget.TakeDamage(damage);
         }
+    }
+
+    //TODO: Customize ToString as needed for Warrior
+    public override String ToString()
+    {
+        return base.ToString();
     }
     
 }

@@ -5,10 +5,9 @@ namespace UDA.Model;
 public class HeroFactory
 {
     //TODO: Replace with an actual exception
-    private HeroFactory()
-    {
-        throw new Exception();
-    }
+    
+    // shouldn't be necessary since it's a private constructor, can't be initialized
+    private HeroFactory() : base() { }
 
     public static Warrior CreateWarrior(String theName)
     {

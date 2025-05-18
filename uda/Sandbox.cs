@@ -8,11 +8,12 @@ public class Sandbox
 {
     public static void Main()
     {
-        //Room room = new Room(RoomType.Normal, BorderType.TopLeft);
-        //Console.WriteLine(room.ToString());
+        Room room = new Room(3, 3);
+        Console.WriteLine(room.ToString());
+        room = new Room(0, 0);
+        Console.WriteLine(room.ToString());
 
-        Dungeon dungeon = new Dungeon();
-        Console.WriteLine(dungeon.ToString());
+        //Console.WriteLine(new Dungeon());
     }
     
 }

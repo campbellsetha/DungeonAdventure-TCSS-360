@@ -4,21 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/HeroFactory.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs.uid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/SignalTest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/SignalTest.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/SignalTest.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/control.tscn" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbTest.tscn" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -32,6 +49,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86db9cd834346aad02d74c1b66dd9c64d6ef3147435dd9c9c9477b48f7/Node2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/88358b2f6ebe4d69193e741f9c91d4a0d244fc86b7801d28e78114727746895/AnimatedSprite2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ef7b819b226fab796d1dfe66d415dd7510bcac87675020ddb8f03a828e763/CanvasItem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -47,12 +65,14 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;.NET Executable.Entrance.tscn.executor&quot;: &quot;Run&quot;,
     &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Executable.monster_creation_test.tscn.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.23633157&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -63,7 +83,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Executable.Player">
+  <component name="RunManager" selected=".NET Executable.Entrance.tscn">
     <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory" show_console_on_std_err="false" show_console_on_std_out="false" port="6006">
       <option name="address" value="127.0.0.1" />
       <option name="allowRunningInParallel" value="false" />
@@ -75,9 +95,27 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/OneDrive/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\pavel\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Entrance.tscn" type="RunExe" factoryName=".NET Executable" temporary="true">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda&quot; &quot;res://Rooms\Entrance.tscn&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -93,9 +131,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/OneDrive/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\pavel\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -110,6 +148,30 @@
         <option name="Build Solution" enabled="true" />
       </method>
     </configuration>
+    <configuration name="monster_creation_test.tscn" type="RunExe" factoryName=".NET Executable" temporary="true">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda&quot; &quot;res://SqlDBTest\monster_creation_test.tscn&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Executable.Entrance.tscn" />
+        <item itemvalue=".NET Executable.monster_creation_test.tscn" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -149,8 +211,35 @@
       <workItem from="1746670698469" duration="1427000" />
       <workItem from="1746688775707" duration="3000" />
       <workItem from="1746729844044" duration="848000" />
+      <workItem from="1747004523619" duration="3067000" />
+      <workItem from="1747160376211" duration="1916000" />
+      <workItem from="1747274360244" duration="4498000" />
+      <workItem from="1747508762803" duration="9559000" />
+      <workItem from="1747542394840" duration="917000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Enemies/Slime.cs</url>
+          <line>60</line>
+          <properties documentPath="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda\Enemies\Slime.cs" containingFunctionPresentation="Method '_UpdateVelocity'">
+            <startOffsets>
+              <option value="2282" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2358" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

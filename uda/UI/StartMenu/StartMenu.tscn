@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://8ofrtiga8mtq"]
+
+[ext_resource type="Script" uid="uid://cwffg60f2jg6t" path="res://UI/StartMenu/StartMenu.cs" id="1_1crbp"]
+[ext_resource type="Texture2D" uid="uid://0mb2jgk068vh" path="res://WhiteBlockAssets/Screenshot 2025-05-17 204753.png" id="1_lgosv"]
+[ext_resource type="Texture2D" uid="uid://01e6qs0jet1g" path="res://WhiteBlockAssets/TempLogo.png" id="2_1crbp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8uev0"]
+texture = ExtResource("1_lgosv")
+modulate_color = Color(0.683077, 0.683077, 0.683077, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgosv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgosv"]
+bg_color = Color(0.501406, 0.501407, 0.501406, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.0430392, 0.0430392, 0.0430392, 0.6)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdmot"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.0430392, 0.0430392, 0.0430392, 0.6)
+shadow_size = 5
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1crbp")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8uev0")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+texture_filter = 2
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 192.0
+offset_right = -192.0
+offset_bottom = 224.0
+grow_horizontal = 2
+tooltip_text = "This was a surprising amount of work!"
+texture = ExtResource("2_1crbp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.340278
+anchor_top = 0.555556
+anchor_right = 0.657118
+anchor_bottom = 0.833333
+offset_top = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+metadata/_edit_use_anchors_ = true
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lgosv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lgosv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdmot")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdmot")
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lgosv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lgosv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdmot")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdmot")
+text = "Load Game"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lgosv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lgosv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdmot")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdmot")
+text = "Options"

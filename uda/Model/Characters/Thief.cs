@@ -15,7 +15,7 @@ public class Thief : Hero
     public Thief(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
         MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void SurpriseAttack(ref readonly DungeonCharacter theTarget)
+    public override void PerformSkill(DungeonCharacter theTarget)
     {
         double successChance = 0.4;
         double failureChance = 0.2;

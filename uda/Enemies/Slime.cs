@@ -11,12 +11,13 @@ public partial class Slime : CharacterBody2D
     //Markers have to be assigned in the dev engine under the 'Slime' properties
     //TODO: See if this can be assigned directly to a monster class
     //Right now this needs to be configured at the scene level that contains the monster
-    [Export] private Marker2D _variableEndpoint;
+    //[Export] private Marker2D _variableEndpoint;
     private Vector2 _startPosition;
     private Vector2 _endPosition;
     private Vector2 _moveDistance;
     private AnimationPlayer _slimeSpritePlayer;
     private PlayerMove _thePlayer;
+    [Export]
     private int _detectionRadius;
     public override void _Ready()
     {
@@ -36,7 +37,8 @@ public partial class Slime : CharacterBody2D
         //_endPosition = _startPosition + _moveDistance;
         
         //Can instead have the slimes move towards a specified global position
-        _endPosition = _variableEndpoint.GlobalPosition;
+        _endPosition = GlobalPosition;
+        _detectionRadius = 50;
     }
 
     private void _ChangePosition()
@@ -48,10 +50,19 @@ public partial class Slime : CharacterBody2D
     private void _UpdateVelocity()
     {
         Vector2 moveDirection;
+        //we need to check that the player exists
+        if (_thePlayer == null)
+        {
+            moveDirection = _endPosition - Position;
+            if (moveDirection.Length() < _vectorLimit) 
+                _ChangePosition();
+        }
 
-        if (GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
+        else if (GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
         {
             //End position for moving down is greater y val than current
+            
+            
             moveDirection = _endPosition - Position;
             /*
             Checks if the current move vector is too small

@@ -57,4 +57,6 @@ public abstract class DungeonCharacter(
         return $"Name:{Name} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
                $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance:{HitChance}";
     }
+
+   
 }

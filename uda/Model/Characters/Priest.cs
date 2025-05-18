@@ -13,7 +13,7 @@ public class Priest : Hero
     public Priest(string theName) : base(theName, myHitPoints,MyAttackSpeed, MyHitChance,
         MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void Heal()
+    public override void PerformSkill(DungeonCharacter theCharacter)
     {
         myHitPoints += 20;
     }

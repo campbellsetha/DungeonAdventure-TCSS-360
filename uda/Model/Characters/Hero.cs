@@ -24,6 +24,10 @@ public abstract class Hero : DungeonCharacter
     
     public string Skill { get; init; }
 
+    public virtual void PerformSkill(DungeonCharacter theTarget)
+    {
+        
+    }
     public override void TakeDamage(int theDamage)
     {
         if (!(RandomNumberGenerator.NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;

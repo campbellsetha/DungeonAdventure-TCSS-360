@@ -2,11 +2,8 @@ using System;
 
 namespace UDA.Model;
 
-public class HeroFactory
+public abstract class HeroFactory
 {
-    //TODO: Replace with an actual exception
-    
-    // shouldn't be necessary since it's a private constructor, can't be initialized
     private HeroFactory() : base() { }
 
     public static Warrior CreateWarrior(String theName)
@@ -23,4 +20,5 @@ public class HeroFactory
     {
         return new Thief(theName);
     }
+    
 }

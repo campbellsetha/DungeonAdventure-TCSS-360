@@ -17,7 +17,7 @@ public class Warrior : Hero
     public Warrior(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
         MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void CrushingBlow(DungeonCharacter theTarget)
+    public override void PerformSkill(DungeonCharacter theTarget)
     {
         double successChance = 0.4;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
@@ -27,12 +27,6 @@ public class Warrior : Hero
             int damage = RandomNumberGenerator.Next(minDamage, maxDamage);
             theTarget.TakeDamage(damage);
         }
-    }
-
-    //TODO: Customize ToString as needed for Warrior
-    public override String ToString()
-    {
-        return base.ToString();
     }
     
 }

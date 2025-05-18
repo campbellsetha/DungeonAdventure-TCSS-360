@@ -16,10 +16,13 @@ public partial class Slime : CharacterBody2D
     private Vector2 _endPosition;
     private Vector2 _moveDistance;
     private AnimationPlayer _slimeSpritePlayer;
+    private PlayerMove _thePlayer;
+    private int _detectionRadius;
     public override void _Ready()
     {
         _slimeSpritePlayer = GetNode<AnimationPlayer>("SlimeAnimations");
         _slimeSpritePlayer.Play("Idle");
+        _thePlayer = GetTree().GetFirstNodeInGroup("player") as PlayerMove;
         //Play default animation
         //Should write a separate script for handling enemy animations
         
@@ -44,19 +47,30 @@ public partial class Slime : CharacterBody2D
 
     private void _UpdateVelocity()
     {
-        //End position for moving down is greater y val than current
-        var moveDirection = _endPosition - Position;
-        /*
-        Checks if the current move vector is too small
-        If it is we have reached close to the endpoint of our specified distance
-        If it is not we simply set the velocity of the object to a normalized vector scaled by its speed value
-        This prevents an infinite approach/bouncing issue
-        */
-        if (moveDirection.Length() < _vectorLimit)
+        Vector2 moveDirection;
+
+        if (GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
         {
-            _ChangePosition();
+            //End position for moving down is greater y val than current
+            moveDirection = _endPosition - Position;
+            /*
+            Checks if the current move vector is too small
+            If it is we have reached close to the endpoint of our specified distance
+            If it is not we simply set the velocity of the object to a normalized vector scaled by its speed value
+            This prevents an infinite approach/bouncing issue
+            */
+            if (moveDirection.Length() < _vectorLimit) 
+                _ChangePosition();
         }
-        Velocity = moveDirection.Normalized() * _speed;
+        else
+        {
+            moveDirection = _thePlayer.GlobalPosition - GlobalPosition;
+        }
+        
+        if (moveDirection.LengthSquared() > 0.001f) 
+            Velocity = moveDirection.Normalized() * _speed;
+        else 
+            Velocity = Vector2.Zero;
     }
 
     public override void _PhysicsProcess(double delta)

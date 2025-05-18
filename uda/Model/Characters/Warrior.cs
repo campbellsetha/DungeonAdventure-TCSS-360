@@ -17,7 +17,7 @@ public class Warrior : Hero
     public Warrior(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
         MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void CrushingBlow(ref readonly DungeonCharacter theTarget)
+    public void CrushingBlow(DungeonCharacter theTarget)
     {
         double successChance = 0.4;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
@@ -25,7 +25,7 @@ public class Warrior : Hero
             int minDamage = 75;
             int maxDamage = 175;
             int damage = RandomNumberGenerator.Next(minDamage, maxDamage);
-            theTarget.TakeDamage(in damage);
+            theTarget.TakeDamage(damage);
         }
     }
 

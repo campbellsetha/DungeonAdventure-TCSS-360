@@ -1,3 +1,5 @@
+using Godot;
+
 namespace UDA.Model;
 
 // Honestly, the child classes of Monster could probably be collapsed into this class. Unfortunately, 
@@ -46,7 +48,7 @@ public class Monster : DungeonCharacter
         }
     }
 
-    public override void TakeDamage(ref readonly int theDamage)
+    public override void TakeDamage(int theDamage)
     {
         if (HitPoints / (double) theDamage >= _myStunThreshold)
         {
@@ -55,6 +57,13 @@ public class Monster : DungeonCharacter
        
         HitPoints -= theDamage;
         Heal();
+    }
+
+    public override string ToString()
+    {
+        return base.ToString() 
+               + $" StunThreshold:{_myStunThreshold} HealChance:{HealChance} " +
+               $"HealRange:{HealRange} ";
     }
 
 }

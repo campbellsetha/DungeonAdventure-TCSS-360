@@ -39,7 +39,9 @@ public abstract class MonsterFactory
     {
         RandomNumberGenerator rng = new RandomNumberGenerator();
         int ranNum = rng.RandiRange(1, 3);
+        
         string query = $"SELECT * FROM Monster WHERE ID = {ranNum}";
+        ConnectDB(query);
         return new Monster(myName, myHitPoints, myAttackSpeed, myHitChance, myDamageRange, myHealChance, myHealRange, myStunThreshold);
     }
 
@@ -65,7 +67,7 @@ public abstract class MonsterFactory
                         myName = reader.GetString(1);
                         myHitPoints = reader.GetInt32(2);
                         myAttackSpeed = reader.GetInt32(3);
-                        myHitChance = reader.GetInt32(4);
+                        myHitChance = reader.GetDouble(4);
                         myDamageRange = (reader.GetInt32(5), reader.GetInt32(6));
                         myStunThreshold = reader.GetDouble(7);
                         myHealChance = reader.GetDouble(8);

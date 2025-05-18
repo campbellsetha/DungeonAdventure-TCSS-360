@@ -1,5 +1,6 @@
 namespace UDA.Model;
 
+//TODO: Make an attack method for the priest class
 public class Priest : Hero
 {
     private static int myHitPoints = 75;

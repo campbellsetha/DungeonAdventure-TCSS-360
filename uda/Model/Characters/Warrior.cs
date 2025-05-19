@@ -1,11 +1,11 @@
 using System;
-
+using Godot;
 namespace UDA.Model;
 
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
 // inherited attack method when a certain key is pressed
 
-public class Warrior : Hero
+public partial class Warrior : Hero
 {
     private static readonly int MyHitPoints = 125;
     private static readonly int MyAttackSpeed = 4;

@@ -51,4 +51,26 @@ public partial class PlayerClass : Node2D
 	}
 	
 	
+	//Hopefully this is in the right spot for proper serialization with a constructed dictionary
+	//Should allow us to modify class parameters and have them be restored on load.
+	//Might also allow for instantiating the player into scenes as needed instead of having to run through the scene tree.
+	public Godot.Collections.Dictionary<string, Variant> Save()
+	{
+		return new Godot.Collections.Dictionary<string, Variant>()
+		{
+			{"Name", MY_CLASS.EntityName },
+			{"MaxHitPoints", MY_CLASS.MaxHitPoints},
+			{"CurrentHP", MY_CLASS.HitPoints},
+			{"MinDamage", MY_CLASS.DamageRange.Min},
+			{"MaxDamage", MY_CLASS.DamageRange.Max},
+			{"AttackSpeed", MY_CLASS.AttackSpeed},
+			{"HitChance", MY_CLASS.HitChance},
+			{"Skill", MY_CLASS.Skill} ,
+			{"BlockChance", MY_CLASS.BlockChance}
+		};
+	}
+	
 }
+	
+	
+

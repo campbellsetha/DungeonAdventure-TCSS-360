@@ -5,25 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/game_manager.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/HeroFactory.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerClass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalTest.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalTest.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/control.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbTest.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +211,8 @@
       <workItem from="1747274360244" duration="4498000" />
       <workItem from="1747508762803" duration="9559000" />
       <workItem from="1747542394840" duration="917000" />
+      <workItem from="1747608625712" duration="12898000" />
+      <workItem from="1747623015189" duration="6000" />
     </task>
     <servers />
   </component>

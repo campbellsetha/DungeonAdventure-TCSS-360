@@ -17,6 +17,7 @@ public partial class StartMenu : Control
     private void OnNewGameButtonPressed()
     {
         GD.Print("Start Button works");
+        
     }
     
     private void OnLoadButtonPressed()

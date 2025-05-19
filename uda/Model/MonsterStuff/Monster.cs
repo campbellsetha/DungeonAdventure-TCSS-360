@@ -5,7 +5,7 @@ namespace UDA.Model;
 // Honestly, the child classes of Monster could probably be collapsed into this class. Unfortunately, 
 // C# does not allow enums to be constructed, which is how I would have handled it with Java. I need to look
 // into how to do it appropriately in C#.
-public class Monster : DungeonCharacter
+public partial class Monster : DungeonCharacter
 {
     private double _myStunThreshold;
     

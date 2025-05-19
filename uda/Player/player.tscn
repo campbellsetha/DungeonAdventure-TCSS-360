@@ -108,7 +108,7 @@ size = Vector2(10, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ntmi"]
 size = Vector2(8, 19)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Persistent"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_onrkg")

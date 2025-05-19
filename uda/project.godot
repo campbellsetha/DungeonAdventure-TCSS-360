@@ -23,6 +23,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="UDA"
 
+[global_group]
+
+Persistent="All nodes we want to save across the game state"
+
 [input]
 
 moveLeft={

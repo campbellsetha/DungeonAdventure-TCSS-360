@@ -1,7 +1,7 @@
 namespace UDA.Model;
+using Godot;
 
-
-public abstract class Hero : DungeonCharacter
+public abstract partial class Hero : DungeonCharacter
 {
 
     // Should probably have a countdown timer for how often the special skill can be used 
@@ -22,7 +22,7 @@ public abstract class Hero : DungeonCharacter
     
     public double BlockChance { get; }
     
-    public string Skill { get; init; }
+    public string Skill { get; }
 
     public virtual void PerformSkill(DungeonCharacter theTarget)
     {
@@ -32,5 +32,6 @@ public abstract class Hero : DungeonCharacter
     {
         if (!(RandomNumberGenerator.NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
     }
-    
+
+
 }

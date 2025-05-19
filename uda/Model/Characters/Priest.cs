@@ -1,7 +1,7 @@
 namespace UDA.Model;
-
+using Godot;
 //TODO: Make an attack method for the priest class
-public class Priest : Hero
+public partial class Priest : Hero
 {
     private static int myHitPoints = 75;
     private static readonly int MyAttackSpeed = 5;

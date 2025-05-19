@@ -4,7 +4,9 @@ namespace UDA.Model;
 
 public abstract class HeroFactory
 {
-    private HeroFactory() : base() { }
+    private HeroFactory()
+    {
+    }
 
     public static Warrior CreateWarrior(String theName)
     {

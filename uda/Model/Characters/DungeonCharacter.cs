@@ -1,20 +1,23 @@
 using System;
+using System.Text.Json;
+using Godot;
 
 namespace UDA.Model;
 
-public abstract class DungeonCharacter(
+
+public abstract partial class DungeonCharacter(
     string theName,
     int theHitPoints,
     int theAttackSpeed,
     double theHitChance,
-    (int, int) theDamageRange)
+    (int, int) theDamageRange) : Node
 {
     protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */
     
-    public string Name { get; } = theName;
+    public string EntityName { get; } = theName;
     
     public int MaxHitPoints { get; } = theHitPoints;
 
@@ -57,6 +60,7 @@ public abstract class DungeonCharacter(
         return $"Name:{Name} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
                $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance:{HitChance}";
     }
-
+    
+    
    
 }

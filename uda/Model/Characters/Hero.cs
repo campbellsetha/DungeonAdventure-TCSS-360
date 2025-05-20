@@ -1,7 +1,7 @@
 namespace UDA.Model;
 
 
-public abstract class Hero : DungeonCharacter
+public abstract partial class Hero : DungeonCharacter
 {
 
     // Should probably have a countdown timer for how often the special skill can be used 

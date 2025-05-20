@@ -1,20 +1,21 @@
 using System;
+using Godot;
 
 namespace UDA.Model;
 
-public abstract class DungeonCharacter(
+public abstract partial class DungeonCharacter(
     string theName,
     int theHitPoints,
     int theAttackSpeed,
     double theHitChance,
-    (int, int) theDamageRange)
+    (int, int) theDamageRange) : CharacterBody2D
 {
     protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */
     
-    public string Name { get; } = theName;
+    public string NewName { get; } = theName;
     
     public int MaxHitPoints { get; } = theHitPoints;
 

@@ -3,7 +3,7 @@ namespace UDA.Model;
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
 // inherited attack method when a certain key is pressed
 
-public class Thief : Hero
+public partial class Thief : Hero
 {
     private static readonly int MyHitPoints = 75;
     private static readonly int MyAttackSpeed = 6;

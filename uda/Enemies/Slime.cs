@@ -23,6 +23,7 @@ public partial class Slime : CharacterBody2D
         _slimeSpritePlayer = GetNode<AnimationPlayer>("SlimeAnimations");
         _slimeSpritePlayer.Play("Idle");
         _thePlayer = GetTree().GetFirstNodeInGroup("player") as PlayerMove;
+        
         //Play default animation
         //Should write a separate script for handling enemy animations
         

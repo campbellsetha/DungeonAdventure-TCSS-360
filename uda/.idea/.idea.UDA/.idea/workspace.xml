@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/game_manager.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerClass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
-    </list>
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

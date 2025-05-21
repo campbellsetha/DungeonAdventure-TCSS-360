@@ -5,14 +5,39 @@ public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
     private Node2D _playerInstance;
+
+    public override void _Process(double delta)
+    {
+        
+        //Test to take damage and check health
+        if (Input.IsActionJustPressed("space"))
+        {
+            //var temp = _playerInstance.GetNode<PlayerClass>("Player/PlayerClass");
+            //GD.Print(temp.MY_CLASS.HitPoints);
+        }
+
+        if (Input.IsActionJustPressed("save"))
+        {
+            OnSaveGame();
+            GD.Print("GameSaved");
+        }
+
+        if (Input.IsActionJustPressed("load"))
+        {
+            OnLoadGame();
+            GD.Print("GameLoaded");
+        }
+    }
+
     public override void _Ready()
     {
-        _playerInstance = GetNode<Node2D>("%Player");
+        //Keep this for player instance in main game
+        //_playerInstance = GetNode<Node2D>("%Player");
+        _playerInstance = GetNode<Node2D>("Player");
     }
 
     public void OnSaveGame()
     {
-        
         //Most of this is ripped right of off the docs, and will likely need to be tweaked
         //@See https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
         var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Write);
@@ -71,55 +96,62 @@ public partial class GameManager : Node
         }
 
         //Load the file line by line and process the dictionary
-        using var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Read);
-        
-        while (saveFile.GetPosition() < saveFile.GetLength())
-        {
-            var jsonString = saveFile.GetLine();
-            
-            //helper class to interact with json
-            var json = new Json();
-            var parseResult = json.Parse(jsonString);
+        using (var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Read)) {
 
-            // the return of .Ok signals that an error has occured
-            if (parseResult != Error.Ok)
+            while (saveFile.GetPosition() < saveFile.GetLength())
             {
-                GD.Print(
-                    $"JSON Parse Error:{json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
-            }
-            
-            //Get data for JSON object
-            //This pulls the next line in the json file and reads it as a 
-            //dictionary provided by Godot's API
-            var nodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
-            
-            //Create objects and it to the tree
-            //TODO: create a dictionary for the playerMove script on 2dBody node
-            var newObjectScene = GD.Load<PackedScene>(nodeData["FileName"].ToString());
-            var newObject = newObjectScene.Instantiate<Node>();
-            
-            //This really only works for root level nodes
-            //TODO: Figure out how to do this for specific nodes 
-            GetNode(nodeData["Parent"].ToString()).AddChild(newObject);
-            
-            //This sets the default position for the object
-            //TODO: Determine if this is based on the nodes last position
-            //Or if this needs to be saved and recalled as well
-            //I Believe the position will need to be manually configured.
-            //If a node does not have a position then setting this could break this method
-            newObject.Set(Node2D.PropertyName.Position, new Vector2((float)nodeData["PosX"],(float)nodeData["PosY"]));
+                var jsonString = saveFile.GetLine();
 
-            //sets the remaining variables
-            //Looks like it checks each value in the nodes json data for specific types, and if they do not exist it 
-            //sets them manually
-            //This might need to be set up specifically for each instance.
-            foreach (var (key, value) in nodeData)
-            {
-                if (key == "Filename" || key == "Parent" || key == "PosX" || key == "PosY")
+                //helper class to interact with json
+                var json = new Json();
+                var parseResult = json.Parse(jsonString);
+
+                // the return of .Ok signals that an error has occured
+                if (parseResult != Error.Ok)
                 {
-                    continue;
+                    GD.Print(
+                        $"JSON Parse Error:{json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
                 }
-                newObject.Set(key, value);
+
+                //Get data for JSON object
+                //This pulls the next line in the json file and reads it as a 
+                //dictionary provided by Godot's API
+                var nodeData =
+                    new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
+
+                //Create objects and it to the tree
+                //TODO: create a dictionary for the playerMove script on 2dBody node
+                string path = nodeData["FileName"].ToString();
+                
+                var newObjectScene = GD.Load<PackedScene>(nodeData["FileName"].ToString());
+                var newObject = newObjectScene.Instantiate<Node>();
+
+                //This really only works for root level nodes
+                //Note: If node already has a parent, this method will fail. Use RemoveChild(Node) first to remove node from its current parent. For example:
+                //TODO: Figure out how to do this for specific nodes 
+                GetNode(nodeData["Parent"].ToString()).AddChild(newObject);
+
+                //This sets the default position for the object
+                //TODO: Determine if this is based on the nodes last position
+                //Or if this needs to be saved and recalled as well
+                //I Believe the position will need to be manually configured.
+                //If a node does not have a position then setting this could break this method
+                //I WILL NEED TO SET ALL OF THESE WHEN LOADING IN AN OBJECT
+                newObject.Set(Node2D.PropertyName.Position,
+                    new Vector2((float)nodeData["PosX"], (float)nodeData["PosY"]));
+
+                //sets the remaining variables
+                //Looks like it checks each value in the nodes json data for specific types, and if they do not exist it 
+                //sets them manually
+                //This might need to be set up specifically for each instance.
+                foreach (var (key, value) in nodeData)
+                {
+                    if (key == "FileName" || key == "Parent" || key == "PosX" || key == "PosY")
+                    {
+                        continue;
+                    }
+                    newObject.Set(key, value);
+                }
             }
         }
     }

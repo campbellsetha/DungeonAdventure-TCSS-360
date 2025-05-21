@@ -2,10 +2,11 @@ using Godot;
 using System;
 using UDA.Model;
 
+[GlobalClass]
 public partial class PlayerClass : Node2D
 {
 	//I am going to attach a button on a control node in the startup that initializes this object
-	private Hero MY_CLASS { get; set; }
+	public Hero MY_CLASS { get; set; }
 	private string MY_NAME;
 
 	private PlayerClass()

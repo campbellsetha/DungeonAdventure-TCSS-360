@@ -7,7 +7,7 @@
 [node name="GameManager" type="Node"]
 script = ExtResource("1_jij60")
 
-[node name="WorldMap" type="Node2D" parent="." groups=["Persistent"]]
+[node name="WorldMap" type="Node2D" parent="."]
 
 [node name="StartMenu" parent="." instance=ExtResource("1_5dfvm")]
 

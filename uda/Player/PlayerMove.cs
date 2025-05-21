@@ -6,6 +6,7 @@ public partial class PlayerMove : CharacterBody2D
 	[Export] private int _speed = 200;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
+	
 
 	public override void _Ready()
 	{
@@ -84,6 +85,19 @@ public partial class PlayerMove : CharacterBody2D
 	private void OnHurtBoxEntered(Area2D theAreaThatEntered)
 	{
 		GD.Print("OUT MY SPACE G!");
+	}
+	
+	public Godot.Collections.Dictionary<string, Variant> Save()
+	{
+		return new Godot.Collections.Dictionary<string, Variant>()
+		{
+			{"FileName", SceneFilePath },
+			{"Parent", GetParent().GetPath() },
+			{"PosX", Position.X },
+			{"PosY", Position.Y},
+			{"AnimatedSprite", _animatedSprite2D},
+			{"CurrentVelocity", _currentVelocity}
+		};
 	}
 	
 }

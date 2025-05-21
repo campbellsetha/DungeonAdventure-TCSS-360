@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/libraries/GdSdk_Master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/LoadMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/LoadMenu.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/MainMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/MainMenu.cs.uid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/Retrobyte-4nMol.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/Retrobyte-4nMol.ttf.import" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/button_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/button_icon.png.import" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/control.tscn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/load_game_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/load_game_background.png.import" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dungeon_menu_bg_1150x650.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dungeon_menu_bg_1150x650.png.import" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ofbd839uzfc01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ofbd839uzfc01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,27 +73,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Entrance.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.monster_creation_test.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.08722741&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Entrance.tscn.executor": "Run",
+    ".NET Executable.Player.executor": "Run",
+    ".NET Executable.monster_creation_test.tscn.executor": "Run",
+    ".NET Executable.player_save_test.tscn.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.08722741",
+    "git-widget-placeholder": "Merging newUpdatesWithMain",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.player_save_test.tscn">
     <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory" show_console_on_std_err="false" show_console_on_std_out="false" port="6006">
       <option name="address" value="127.0.0.1" />

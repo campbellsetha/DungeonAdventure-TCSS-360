@@ -61,5 +61,11 @@ position = Vector2(-46, -11)
 [node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
 position = Vector2(85, -18)
 
+[node name="Marker2D1" type="Marker2D" parent="TileMapLayer/Slime"]
+position = Vector2(-69, -39)
+
 [node name="Slime2" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
 position = Vector2(-98, 18)
+
+[node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
+position = Vector2(60, 21)

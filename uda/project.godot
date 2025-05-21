@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="UDA"
-run/main_scene="uid://1msm3iduvvnh"
+run/main_scene="uid://dhknoiyya1vj3"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.630264, 0.554366, 0.834131, 1)
+boot_splash/image="uid://crwhartamq6ey"
 config/icon="res://icon.svg"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [dotnet]
 

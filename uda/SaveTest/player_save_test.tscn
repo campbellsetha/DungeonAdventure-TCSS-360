@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf133xh8ak6r6"]
+
+[ext_resource type="Script" uid="uid://4clln7ygc2jr" path="res://GameManager/GameManager.cs" id="1_7mt2y"]
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="2_t5o5c"]
+[ext_resource type="PackedScene" uid="uid://b1d5accw8h4jf" path="res://Rooms/Entrance.tscn" id="3_t5o5c"]
+
+[node name="PlayerSaveTest" type="Node2D"]
+script = ExtResource("1_7mt2y")
+
+[node name="Player" parent="." instance=ExtResource("2_t5o5c")]
+position = Vector2(208, 104)
+
+[node name="Entrance" parent="." instance=ExtResource("3_t5o5c")]

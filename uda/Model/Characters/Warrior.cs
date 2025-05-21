@@ -1,5 +1,5 @@
 using System;
-
+using Godot;
 namespace UDA.Model;
 
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
@@ -17,7 +17,7 @@ public partial class Warrior : Hero
     public Warrior(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
         MyDamageRange, MyBlockChance, MySkill) { }
 
-    public void CrushingBlow(DungeonCharacter theTarget)
+    public override void PerformSkill(DungeonCharacter theTarget)
     {
         double successChance = 0.4;
         if (RandomNumberGenerator.NextDouble() > 1 - successChance)
@@ -27,12 +27,6 @@ public partial class Warrior : Hero
             int damage = RandomNumberGenerator.Next(minDamage, maxDamage);
             theTarget.TakeDamage(damage);
         }
-    }
-
-    //TODO: Customize ToString as needed for Warrior
-    public override String ToString()
-    {
-        return base.ToString();
     }
     
 }

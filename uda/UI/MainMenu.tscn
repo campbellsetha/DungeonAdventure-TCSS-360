@@ -1,15 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhknoiyya1vj3"]
 
-[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://UI/MainMenu.cs" id="1_rtouq"]
-[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_filc1"]
-[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://UI/Retrobyte-4nMol.ttf" id="3_nh5hm"]
-[ext_resource type="Texture2D" uid="uid://cyi4nx4ljexu2" path="res://UI/load_game_background.png" id="4_c20no"]
-[ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://UI/LoadMenu.cs" id="5_1xo2p"]
+[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://UI/MainMenu/MainMenu.cs" id="1_y6s48"]
+[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_otjfi"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://UI/Retrobyte-4nMol.ttf" id="3_obtq6"]
+[ext_resource type="Texture2D" uid="uid://cyi4nx4ljexu2" path="res://UI/load_game_background.png" id="4_t4ff4"]
+[ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://UI/LoadMenu.cs" id="5_w5vcv"]
 
 [sub_resource type="Theme" id="Theme_i7cp2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_er0wr"]
-font = ExtResource("3_nh5hm")
+font = ExtResource("3_obtq6")
 font_size = 100
 font_color = Color(0.875066, 0.808137, 0.762237, 1)
 shadow_size = 31
@@ -24,7 +24,7 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rtouq")
+script = ExtResource("1_y6s48")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -32,7 +32,7 @@ offset_left = -1.0
 offset_top = 2.0
 offset_right = 1150.0
 offset_bottom = 652.0
-texture = ExtResource("2_filc1")
+texture = ExtResource("2_otjfi")
 stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -51,24 +51,24 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="NewGameB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "New Game"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="LoadGameB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "Load Game"
 
-[node name="Button4" type="Button" parent="VBoxContainer"]
+[node name="HelpB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "Help"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="ExitB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "Exit"
 
 [node name="Control" type="Control" parent="."]
@@ -92,9 +92,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(16.0299, 10.1867)
 theme = SubResource("Theme_i7cp2")
-texture = ExtResource("4_c20no")
+texture = ExtResource("4_t4ff4")
 expand_mode = 1
-script = ExtResource("5_1xo2p")
+script = ExtResource("5_w5vcv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect"]
 layout_mode = 0
@@ -107,12 +107,12 @@ alignment = 1
 
 [node name="Button" type="Button" parent="Control/TextureRect/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "Back"
 
 [node name="Button2" type="Button" parent="Control/TextureRect/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_nh5hm")
+theme_override_fonts/font = ExtResource("3_obtq6")
 text = "Load"
 
 [node name="Label" type="Label" parent="."]
@@ -126,7 +126,7 @@ label_settings = SubResource("LabelSettings_er0wr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="NewGame"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="LoadSavedGame"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="ExitGame"]
+[connection signal="pressed" from="VBoxContainer/NewGameB" to="." method="NewGame"]
+[connection signal="pressed" from="VBoxContainer/LoadGameB" to="." method="LoadSavedGame"]
+[connection signal="pressed" from="VBoxContainer/ExitB" to="." method="ExitGame"]
 [connection signal="pressed" from="Control/TextureRect/HBoxContainer/Button" to="." method="BackToMainMenu"]

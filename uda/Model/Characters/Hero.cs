@@ -33,5 +33,6 @@ public abstract partial class Hero : DungeonCharacter
         if (!(RandomNumberGenerator.NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
     }
 
+    //TODO: SERIALIZE THIS
 
 }

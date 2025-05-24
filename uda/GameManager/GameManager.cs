@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
+using UDA.Model;
 
 public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
-    private Node2D _playerInstance;
+    private Player _myPlayerInstance;
 
     public override void _Process(double delta)
     {
@@ -27,13 +29,26 @@ public partial class GameManager : Node
             OnLoadGame();
             GD.Print("GameLoaded");
         }
+        if (Input.IsActionJustPressed("QueryPlayerInfo"))
+        {
+            GD.Print(_myPlayerInstance.MyClass.ToString());
+        }
+        
     }
 
     public override void _Ready()
     {
-        //Keep this for player instance in main game
-        //_playerInstance = GetNode<Node2D>("%Player");
-        _playerInstance = GetNode<Node2D>("Player");
+        
+        //Grab the player node
+        _myPlayerInstance = GetNode<Player>("Player");
+        //Now we have to check if the player already has a class and name, this is important for loading from state
+        if (_myPlayerInstance.MyClass == null && _myPlayerInstance.MyName == null)
+        {
+            //We want to set its name first, because attempting to set it's class will cause issues otherwise
+            _myPlayerInstance.MyName = "Gribble jenkins";
+            //Now we are going to set its class to an appropiate choice
+            _myPlayerInstance.SetClass("Warrior");
+        }
     }
 
     public void OnSaveGame()
@@ -43,7 +58,7 @@ public partial class GameManager : Node
         var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Write);
         
         //TODO: Change this to manually perform the save on every object we want to save
-        var saveNodes = GetTree().GetNodesInGroup("Persistent");
+        var saveNodes = GetTree().GetNodesInGroup("Player");
         
         //Likely need to load the parent node first, might need to manually adjust this 
         //So that it loads the player, and then player class
@@ -88,7 +103,7 @@ public partial class GameManager : Node
 
         //Have to revert game state to avoid the cloning of objects
         //Currently this is done by 
-        var nodesToLoad = GetTree().GetNodesInGroup("Persistent");
+        var nodesToLoad = GetTree().GetNodesInGroup("Player");
         foreach (Node loadingNode in nodesToLoad)
         {
             loadingNode.QueueFree();

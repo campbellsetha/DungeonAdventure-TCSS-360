@@ -1,13 +1,23 @@
 using Godot;
 using System;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using UDA.Model;
 
-public partial class PlayerMove : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
 	[Export] private int _speed = 200;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
+	private string _myName;
 	
-
+	//Fun C# fact, these are called expression bodies
+	public string MyName 
+	{
+		get => _myName;
+		set => _myName = value;
+	}
+	public Hero MyClass;
+	
 	public override void _Ready()
 	{
 		var thisHurtbox = GetNode<Area2D>("Hurtbox");
@@ -20,22 +30,22 @@ public partial class PlayerMove : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		_ChangeAnimation(_currentVelocity);
+		ChangeAnimation(_currentVelocity);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
 		//Check player input
-		_HandleInput();
+		HandleInput();
 		//Update velocity
 		Velocity = _currentVelocity;
 		//Trigger physics process and move the player
 		MoveAndSlide();
-		_HandleCollision();
+		HandleCollision();
 	}
 
-	private void _HandleCollision()
+	private void HandleCollision()
 	{
 		//Currently prints out each execution of a collision.
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
@@ -46,7 +56,7 @@ public partial class PlayerMove : CharacterBody2D
 		}
 	}
 
-	private void _HandleInput()
+	private void HandleInput()
 	{
 		_currentVelocity = Input.GetVector(
 			"moveLeft", "moveRight",
@@ -61,7 +71,7 @@ public partial class PlayerMove : CharacterBody2D
 	/// This is called from _Process because running things in the physics process method can cause slowdown and
 	/// runtime issues.
 	/// </summary>
-	private void _ChangeAnimation(Vector2 theCurrentVector2)
+	private void ChangeAnimation(Vector2 theCurrentVector2)
 	{
 		//If the vector value is greater than zero we are moving
 		if (!(theCurrentVector2.Length() > 0))
@@ -81,10 +91,23 @@ public partial class PlayerMove : CharacterBody2D
 			_animatedSprite2D.Play(theCurrentVector2.Y < 0 ? "walkUp" : "walkDown");
 		}
 	}
-
-	private void OnHurtBoxEntered(Area2D theAreaThatEntered)
+	
+	public void SetClass(string theClassType)
 	{
-		GD.Print("OUT MY SPACE G!");
+		if (MyName == null)
+		{
+			throw new ArgumentNullException("The Name must not be null");
+		}
+		if (theClassType == null)
+		{
+			throw new ArgumentNullException("The class must not be null");
+		}
+		MyClass = HeroFactory.CreateHero(theClassType, MyName);
+	}
+
+	public virtual void OnHurtBoxEntered(Area2D theAreaThatEntered)
+	{
+		GD.Print("Ouch");
 	}
 	
 	public Godot.Collections.Dictionary<string, Variant> Save()
@@ -96,7 +119,9 @@ public partial class PlayerMove : CharacterBody2D
 			{"PosX", Position.X },
 			{"PosY", Position.Y},
 			{"AnimatedSprite", _animatedSprite2D},
-			{"CurrentVelocity", _currentVelocity}
+			{"CurrentVelocity", _currentVelocity},
+			{"PlayerName", MyName},
+			{"PlayerClass", MyClass}
 		};
 	}
 	

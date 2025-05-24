@@ -120,4 +120,4 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
-[node name="MonsterClass" type="Node2D" parent="."]
+[connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]

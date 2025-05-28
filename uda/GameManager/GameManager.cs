@@ -6,7 +6,7 @@ using UDA.Model;
 public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
-    private Player _myPlayerInstance;
+    private UDA.Player.Player _myPlayerInstance;
 
     public override void _Process(double delta)
     {
@@ -40,7 +40,7 @@ public partial class GameManager : Node
     {
         
         //Grab the player node
-        _myPlayerInstance = GetNode<Player>("Player");
+        _myPlayerInstance = GetNode<UDA.Player.Player>("Player");
         //Now we have to check if the player already has a class and name, this is important for loading from state
         if (_myPlayerInstance.MyClass == null && _myPlayerInstance.MyName == null)
         {

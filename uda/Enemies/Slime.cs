@@ -17,7 +17,7 @@ public partial class Slime : CharacterBody2D
     private Vector2 _endPosition;
     private Vector2 _moveDistance;
     private AnimationPlayer _slimeSpritePlayer;
-    private Player _thePlayer;
+    private UDA.Player.Player _thePlayer;
     private int _detectionRadius;
     public Monster MyMonsterClass;
     public override void _Ready()
@@ -56,7 +56,7 @@ public partial class Slime : CharacterBody2D
 
     private void _UpdateVelocity()
     {
-        _thePlayer = GetTree().GetFirstNodeInGroup("player") as Player;
+        _thePlayer = GetTree().GetFirstNodeInGroup("player") as UDA.Player.Player;
         Vector2 moveDirection;
         if (_thePlayer != null &&
             GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
@@ -95,7 +95,7 @@ public partial class Slime : CharacterBody2D
     }
 
     //This should emit a signal when a "Player" character body is entered
-    public void OnBodyEntered(Player theBody)
+    public void OnBodyEntered(UDA.Player.Player theBody)
     {
         theBody.MyClass.TakeDamage(MyMonsterClass.DamageRange.Max);
     }

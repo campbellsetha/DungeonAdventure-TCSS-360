@@ -1,33 +1,53 @@
-namespace UDA.Model;
 using Godot;
-// Just a reminder: need to add a listener that tells the model to call the special attack instead of the
-// inherited attack method when a certain key is pressed
 
-public partial class Thief : Hero
+namespace UDA.Model.Characters;
+
+public class Thief : Hero
 {
-    private static readonly int MyHitPoints = 75;
-    private static readonly int MyAttackSpeed = 6;
-    private static readonly double MyHitChance = 0.8;
-    private static readonly (int, int) MyDamageRange = (20, 40);
-    private static readonly double MyBlockChance = 0.4;
-    private static readonly string MySkill = "Surprise Attack";
-    
-    public Thief(string theName) : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance,
-        MyDamageRange, MyBlockChance, MySkill) { }
+	private static readonly int MyHitPoints = 75;
+	private static readonly int MyAttackSpeed = 6;
+	private static readonly double MyHitChance = 0.8;
+	private static readonly (int, int) MyDamageRange = (20, 40);
+	private static readonly double MyBlockChance = 0.4;
+	private const double SuccessChance = 0.4;
+	private const double FailureChance = 0.2;
+	private static readonly string MySkill = "Surprise Attack";
 
-    public override void PerformSkill(DungeonCharacter theTarget)
-    {
-        double successChance = 0.4;
-        double failureChance = 0.2;
-        if (RandomNumberGenerator.NextDouble() > 1 - successChance)
-        {
-            Attack(theTarget);
-            int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
-            theTarget.TakeDamage(damage);
-        }
-        else if (RandomNumberGenerator.NextDouble() > 1 - failureChance)
-        {
-            Attack(theTarget);
-        }
-    }
+	private const double SkillCooldown = 10.0; // Cooldown in seconds
+	private double _lastSkillTime = -SkillCooldown;
+
+	public Thief(string theName) 
+		: base(theName, MyHitPoints, MyAttackSpeed, MyHitChance, MyDamageRange, MyBlockChance, MySkill)
+	{ }
+
+	public override void PerformSkill(DungeonCharacter theTarget)
+	{
+		double currentTime = Time.GetTicksMsec() / 1000.0; // Get current time in seconds
+		if (currentTime - _lastSkillTime < SkillCooldown)
+		{
+			GD.Print($"{Skill} is on cooldown!");
+			return; // Skill is still on cooldown
+		}
+
+		_lastSkillTime = currentTime;
+
+		double roll = RandomNumberGenerator.NextDouble();
+		if (roll <= SuccessChance)
+		{
+			GD.Print($"{Skill} is successful!");
+			Attack(theTarget);
+			int damage = RandomNumberGenerator.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
+			theTarget.TakeDamage(damage);
+			theTarget.EmitSignal(nameof(DungeonCharacter.HealthChanged), theTarget.HitPoints, theTarget.MaxHitPoints);
+		}
+		else if (roll <= SuccessChance + FailureChance)
+		{
+			GD.Print($"{Skill} failed to deal extra damage!");
+			Attack(theTarget);
+		}
+		else
+		{
+			GD.Print($"{Skill} completely failed!");
+		}
+	}
 }

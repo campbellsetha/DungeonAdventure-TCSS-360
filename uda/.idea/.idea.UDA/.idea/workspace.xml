@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UDA.Model/Hero.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/libraries/GdSdk_Master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/libraries/GdSdk_Master.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Hurtbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/Hurtbox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,21 +268,13 @@
           </properties>
           <option name="timeStamp" value="5" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GameManager/GameManager.cs</url>
-          <line>96</line>
-          <properties documentPath="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda\GameManager\GameManager.cs" containingFunctionPresentation="Method 'OnLoadGame'">
-            <startOffsets>
-              <option value="3442" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3493" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#UDA.Model.DungeonCharacter" memberName="HitPoints" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

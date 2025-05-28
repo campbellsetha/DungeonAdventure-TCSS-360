@@ -2,7 +2,7 @@ using Godot;
 
 namespace UDA.Model.Characters;
 
-public class Thief : Hero
+public partial class Thief : Hero
 {
 	private static readonly int MyHitPoints = 75;
 	private static readonly int MyAttackSpeed = 6;
@@ -38,7 +38,7 @@ public class Thief : Hero
 			Attack(theTarget);
 			int damage = RandomNumberGenerator.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
 			theTarget.TakeDamage(damage);
-			theTarget.EmitSignal(nameof(DungeonCharacter.HealthChanged), theTarget.HitPoints, theTarget.MaxHitPoints);
+			theTarget.EmitSignal(nameof(HealthChangedEventHandler), theTarget.HitPoints, theTarget.MaxHitPoints);
 		}
 		else if (roll <= SuccessChance + FailureChance)
 		{

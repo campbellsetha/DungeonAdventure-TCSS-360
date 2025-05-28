@@ -4,14 +4,13 @@ using static System.Math;
 
 namespace UDA.Model.Characters;
 
-public abstract class Hero
+public abstract partial class Hero : DungeonCharacter
 {
 
 	// Should probably have a countdown timer for how often the special skill can be used 
 	
 	[Signal]
-	public delegate void HealthChanged(int theCurrentHealth, int theMaxHealth);
-
+	public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);
 	
 	protected Hero(
 		string theName, 
@@ -25,11 +24,8 @@ public abstract class Hero
 	{
 		BlockChance = theBlockChance;
 		Skill = theSkill;
-		MaxHitPoints = theHitPoints;
 	}
-
-	public int MaxHitPoints { get; set; }
-
+	
 	public double BlockChance { get; }
 	
 	public string Skill { get; }
@@ -38,7 +34,7 @@ public abstract class Hero
 	{
 		
 	}
-	public void TakeDamage(int theDamage)
+	public override void TakeDamage(int theDamage)
 	{
 		if (!(DungeonCharacter.RandomNumberGenerator.NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
 		{
@@ -72,9 +68,6 @@ public abstract class Hero
 			throw new NotImplementedException();
 		}
 	}
-
-	public int HitPoints { get; set; }
-
 
 	//TODO: SERIALIZE THIS
 

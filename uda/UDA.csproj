@@ -6,4 +6,8 @@
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="main.tscn" />
+    <Content Include="UI.tscn" />
+  </ItemGroup>
 </Project>

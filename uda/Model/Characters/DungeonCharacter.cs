@@ -10,7 +10,7 @@ public abstract partial class DungeonCharacter(
     double theHitChance,
     (int, int) theDamageRange) : CharacterBody2D
 {
-    protected static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
+    public static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */

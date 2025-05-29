@@ -1,5 +1,7 @@
-using Godot;
 using System;
+using Godot;
+
+namespace UDA.Player;
 
 public partial class Hurtbox : Area2D
 {

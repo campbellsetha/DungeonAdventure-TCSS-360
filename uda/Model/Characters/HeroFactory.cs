@@ -1,13 +1,13 @@
 using System;
 
-namespace UDA.Model;
+namespace UDA.Model.Characters;
 
 public abstract class HeroFactory
 {
     private HeroFactory()
     {
     }
-    public static Hero CreateHero(string theClassType, string theName)
+    public static Characters.Hero CreateHero(string theClassType, string theName)
     {
         //Do we input check here too? Maybe, its worth considering 
         return theClassType switch

@@ -5,27 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/game_manager.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rooms/Entrance.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms/Entrance.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/control.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,14 +65,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.08722741&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;possibleSkillsUpdateToMain&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.build.godotPlugin&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -105,9 +88,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/OneDrive/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\pavel\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -141,9 +124,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/OneDrive/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\pavel\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -255,13 +238,27 @@
       <workItem from="1747800819433" duration="1000" />
       <workItem from="1747800871906" duration="1226000" />
       <workItem from="1748046306371" duration="9908000" />
+      <workItem from="1748233835534" duration="5876000" />
+      <workItem from="1748399734111" duration="209000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -271,20 +268,16 @@
           </properties>
           <option name="timeStamp" value="5" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GameManager/GameManager.cs</url>
-          <line>96</line>
-          <properties documentPath="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda\GameManager\GameManager.cs" containingFunctionPresentation="Method 'OnLoadGame'">
-            <startOffsets>
-              <option value="3420" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3471" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#UDA.Model.DungeonCharacter" memberName="HitPoints" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

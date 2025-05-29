@@ -6,26 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Enemies/Slime.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/game_manager.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerClass.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerMove.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rooms/Entrance.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms/Entrance.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu/StartMenu.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/control.tscn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,6 +236,7 @@
       <workItem from="1747800819433" duration="1000" />
       <workItem from="1747800871906" duration="1226000" />
       <workItem from="1748046306371" duration="9908000" />
+      <workItem from="1748491992451" duration="577000" />
     </task>
     <servers />
   </component>
@@ -286,5 +268,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#UDA.Model.DungeonCharacter" memberName="HitPoints" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

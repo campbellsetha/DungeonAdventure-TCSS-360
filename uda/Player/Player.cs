@@ -110,7 +110,7 @@ public partial class Player : CharacterBody2D
 		GD.Print("Ouch");
 	}
 	
-	public Godot.Collections.Dictionary<string, Variant> Save()
+	private Godot.Collections.Dictionary<string, Variant> Save()
 	{
 		return new Godot.Collections.Dictionary<string, Variant>()
 		{

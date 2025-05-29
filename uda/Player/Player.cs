@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using UDA.Model;
+using UDA.Model.Characters;
 
 public partial class Player : CharacterBody2D
 {
@@ -9,6 +9,8 @@ public partial class Player : CharacterBody2D
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
 	private string _myName;
+
+	public PlayerClassInfo MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Resources/PlayerClass.tres");
 	
 	//Fun C# fact, these are called expression bodies
 	public string MyName 
@@ -20,6 +22,7 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready()
 	{
+		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, _myName);
 		var thisHurtbox = GetNode<Area2D>("Hurtbox");
 		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");

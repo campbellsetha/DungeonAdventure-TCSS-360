@@ -1,12 +1,14 @@
 using Godot;
 using System;
+using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using UDA.Model;
+using FileAccess = Godot.FileAccess;
 
 public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
-    private UDA.Player.Player _myPlayerInstance;
+    private Player _myPlayerInstance;
 
     public override void _Process(double delta)
     {
@@ -40,15 +42,9 @@ public partial class GameManager : Node
     {
         
         //Grab the player node
-        _myPlayerInstance = GetNode<UDA.Player.Player>("Player");
+        _myPlayerInstance = GetNode<Player>("Player");
         //Now we have to check if the player already has a class and name, this is important for loading from state
-        if (_myPlayerInstance.MyClass == null && _myPlayerInstance.MyName == null)
-        {
-            //We want to set its name first, because attempting to set it's class will cause issues otherwise
-            _myPlayerInstance.MyName = "Gribble jenkins";
-            //Now we are going to set its class to an appropiate choice
-            _myPlayerInstance.SetClass("Warrior");
-        }
+        
     }
 
     public void OnSaveGame()
@@ -59,6 +55,7 @@ public partial class GameManager : Node
         
         //TODO: Change this to manually perform the save on every object we want to save
         var saveNodes = GetTree().GetNodesInGroup("Player");
+        SaveResource();
         
         //Likely need to load the parent node first, might need to manually adjust this 
         //So that it loads the player, and then player class
@@ -100,6 +97,7 @@ public partial class GameManager : Node
             //In the interem we can just have this do nothing
             return;
         }
+        LoadResource();
 
         //Have to revert game state to avoid the cloning of objects
         //Currently this is done by 
@@ -169,5 +167,29 @@ public partial class GameManager : Node
                 }
             }
         }
+
+        //Update the reference so the tostring method still works. This does not need to be in the game
+        //But this is important when loading from an active state
+        _myPlayerInstance = GetNode<Player>("Player");
+    }
+
+    private void LoadResource()
+    {
+        //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine
+        string fileName = "res://Resources/PlayerClass.tres";
+        if (ResourceLoader.Exists(fileName))
+        {
+            ResourceLoader.Load<PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
+        }
+        else
+        {
+            throw new FileNotFoundException("The resource could not be found");
+        }
+    }
+
+    private void SaveResource()
+    {
+        string fileName = "res://Resources/PlayerClass.tres";
+        ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
     }
 }

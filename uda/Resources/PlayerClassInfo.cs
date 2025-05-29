@@ -4,8 +4,8 @@ using System;
 [GlobalClass, Tool]
 public partial class PlayerClassInfo : Resource
 {
-    [Export] public string MyPlayerName;
-    [Export] public string MyPlayerClass;
+    [Export] public string MyPlayerName { get; set; }
+    [Export] public string MyPlayerClass { get; set; }
 
     public PlayerClassInfo()
     {

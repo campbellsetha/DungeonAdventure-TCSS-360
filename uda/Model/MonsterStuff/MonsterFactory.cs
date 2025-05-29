@@ -49,6 +49,7 @@ public abstract class MonsterFactory
     {
         string connectionString = "Data Source=MonsterDatabase.db;";
             
+        //Is this thread safe to do?
         using (SQLiteConnection conn = new SQLiteConnection(connectionString))
         {
             //Open the connection

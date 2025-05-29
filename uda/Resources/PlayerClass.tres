@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerClassInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Resources/PlayerClassInfo.cs" id="1_j56wx"]
+
+[resource]
+script = ExtResource("1_j56wx")
+MyPlayerName = "Still Greeble Jenkins"
+MyPlayerClass = "Warrior"
+metadata/_custom_type_script = "uid://2hprjeci0s8a"

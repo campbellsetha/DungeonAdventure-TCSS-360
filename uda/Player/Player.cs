@@ -9,8 +9,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
 	private string _myName;
-
-	public PlayerClassInfo MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Resources/PlayerClass.tres");
+	public PlayerClassInfo MyClassInfo;
 	
 	//Fun C# fact, these are called expression bodies
 	public string MyName 
@@ -22,6 +21,7 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready()
 	{
+		MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Resources/PlayerClass.tres");
 		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, _myName);
 		var thisHurtbox = GetNode<Area2D>("Hurtbox");
 		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));

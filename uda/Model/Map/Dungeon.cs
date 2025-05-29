@@ -6,8 +6,8 @@ namespace UDA.Model.Map;
 
 public class Dungeon
 {
-    public const int Rows = 5;
-    public const int Cols = 5;
+    private const int Rows = 5;
+    private const int Cols = 5;
     private static readonly Random MyRand = RandomSingleton.GetInstance();
     private static readonly Room[,] MyMap = new Room[Rows, Cols];
     private readonly Dictionary<RoomType, (int, int)> _myPillars = new Dictionary<RoomType, (int, int)>();
@@ -29,7 +29,7 @@ public class Dungeon
         return (row, col);
     }
 
-    private void GeneratePillarRooms()
+    private void CreatePillarRooms()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -43,8 +43,73 @@ public class Dungeon
                 pillarType = (RoomType) MyRand.Next(3, 7);
             }
             _myPillars.Add(pillarType, (row, col));
-            MyMap[row, col] = new Room(row, col, pillarType);
+            MyMap[row, col] = CreateRoom(row, col, pillarType);
         }
+    }
+
+    // this method is probably too long and should be broken up but that's for future me
+    private Room CreateRoom(int theX, int theY, RoomType theRoomType = RoomType.Normal)
+    {
+        List<Direction> directions = [Direction.North, Direction.South, Direction.East, Direction.West];
+        Direction? dir = null;
+        
+        switch (theX)
+        {
+            case 0 when theRoomType is RoomType.Entrance or RoomType.Exit:
+                dir = Direction.North;
+                break;
+            case 0:
+                directions.Remove(Direction.North);
+                break;
+            case Rows - 1 when theRoomType is RoomType.Entrance or RoomType.Exit:
+                dir = Direction.South;
+                break;
+            case Rows - 1:
+                directions.Remove(Direction.South);
+                break;
+        }
+
+        switch (theY)
+        {
+            case 0 when (theRoomType is RoomType.Entrance or RoomType.Exit) && dir == null:
+                dir = Direction.West;
+                break;
+            case 0:
+                directions.Remove(Direction.West);
+                break;
+            case Cols - 1 when (theRoomType is RoomType.Entrance or RoomType.Exit) && dir == null:
+                dir = Direction.East;
+                break;
+            case Cols - 1:
+                directions.Remove(Direction.East);
+                break;
+        }
+
+        int numOfDoors = MyRand.Next(1, directions.Count + 1);
+        Room room;
+        dir ??= directions[MyRand.Next(directions.Count)];
+        directions.Remove(dir.GetValueOrDefault());
+        
+        switch (numOfDoors)
+        {
+            case 1:
+                room = RoomFactory.CreateRoomOneDoor(dir.GetValueOrDefault(), theRoomType);
+                break; 
+            case 2:
+                room = RoomFactory.CreateRoomTwoDoors((dir.GetValueOrDefault(), 
+                                    directions[MyRand.Next(directions.Count)]), theRoomType);
+                break;
+            case 3:
+                Direction dir1 = directions[MyRand.Next(directions.Count)];
+                directions.Remove(dir1);
+                Direction dir2 = directions[MyRand.Next(directions.Count)];
+                room = RoomFactory.CreateRoomThreeDoors((dir.GetValueOrDefault(), dir1, dir2), theRoomType);
+                break;
+            default:
+                room = RoomFactory.CreateRoomFourDoors(theRoomType);
+                break;
+        }
+        return room;
     }
     
     private void FillMap()
@@ -57,16 +122,17 @@ public class Dungeon
             exit = GenerateEntranceExitCoordinates();
         }
             
-        MyMap[entrance.Item1, entrance.Item2] = new Room(entrance.Item1, entrance.Item2, RoomType.Entrance);
-        MyMap[exit.Item1, exit.Item2] = new Room(exit.Item1, exit.Item2, RoomType.Exit);
+        MyMap[entrance.Item1, entrance.Item2] = 
+            CreateRoom(entrance.Item1, entrance.Item2, RoomType.Entrance);
+        MyMap[exit.Item1, exit.Item2] = CreateRoom(exit.Item1, exit.Item2, RoomType.Exit);
         
-        GeneratePillarRooms();
+        CreatePillarRooms();
         
         for (int i = 0; i < Rows; i++)
         {
             for (int j = 0; j < Cols; j++)
             {
-                if(MyMap[i, j] == null) MyMap[i, j] = new Room(i, j);
+                MyMap[i, j] ??= CreateRoom(i, j);
             }
         }
     }
@@ -82,18 +148,15 @@ public class Dungeon
            for (int j = 0; j < Cols; j++)
            {
                string[] arr = MyMap[i, j].GetDetails();
-               row1.Append(arr[0]);
-               row2.Append(arr[1]);
-               row3.Append(arr[2]);
+               row1.Append(arr[0]).Append("  ");
+               row2.Append(arr[1]).Append("  ");
+               row3.Append(arr[2]).Append("  ");
            }
            result.Append(row1.ToString()).Append('\n');
            result.Append(row2.ToString()).Append('\n');
-           result.Append(row3.ToString()).Append('\n');
+           result.Append(row3.ToString()).Append("\n\n");
            
        }
-
        return result.ToString();
-
     }
-    
 }

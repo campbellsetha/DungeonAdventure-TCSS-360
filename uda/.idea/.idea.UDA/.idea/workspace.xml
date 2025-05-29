@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+
+      <change afterPath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Room.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox.cs" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,17 +37,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/42/2387c203/Dictionary`2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f5/1720c94f/Array`1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76803a04e31b4fee99d90bcbfc5a6bdde8e930/62/feb5107b/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/71e53d5c695fc2a3dd2ad76288ebbac63ec575/GameManager_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86db9cd834346aad02d74c1b66dd9c64d6ef3147435dd9c9c9477b48f7/Node2D.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/88358b2f6ebe4d69193e741f9c91d4a0d244fc86b7801d28e78114727746895/AnimatedSprite2D.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e3c542efe8ea2c9c8670ffd2706052aec0fb3d6a604a4da5408162ee28e1f7/FileAccess.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ef7b819b226fab796d1dfe66d415dd7510bcac87675020ddb8f03a828e763/CanvasItem.cs" root0="FORCE_HIGHLIGHTING" />
+
+    <setting file="mock:///home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Model/Map/Dungeon.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Model/Map/Dungeon.cs" root0="SKIP_HIGHLIGHTING" />
+
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -55,28 +51,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Entrance.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.monster_creation_test.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.08722741&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;possibleSkillsUpdateToMain&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.build.godotPlugin&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.13227513",
+    "git-widget-placeholder": "newUpdates",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected=".NET Executable.player_save_test.tscn">
+}]]></component>
+  <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
+    <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+      <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UDA.csproj" />
+      <option name="PROJECT_TFM" value="net8.0" />
+      <option name="CLASS_NAME" value="UDA.Sandbox" />
+      <option name="METHOD_NAME" value="Main" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+
     <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory" show_console_on_std_err="false" show_console_on_std_out="false" port="6006">
       <option name="address" value="127.0.0.1" />
       <option name="allowRunningInParallel" value="false" />
@@ -179,9 +196,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue=".NET Executable.player_save_test.tscn" />
-        <item itemvalue=".NET Executable.Entrance.tscn" />
-        <item itemvalue=".NET Executable.monster_creation_test.tscn" />
+
+        <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -246,7 +262,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
+
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

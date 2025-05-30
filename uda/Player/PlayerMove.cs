@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using UDA.inventory;
 
 public partial class PlayerMove : CharacterBody2D
 {
 	[Export] private int _speed = 200;
+	[Export] private Inventory _playerInventory;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
 
@@ -13,6 +15,7 @@ public partial class PlayerMove : CharacterBody2D
 		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
+		_playerInventory = GetNode<Inventory>("player_inventory");
 		AddToGroup("player");
 	}
 

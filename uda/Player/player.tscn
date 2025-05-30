@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0sxi5dgonucy"]
+[gd_scene load_steps=17 format=3 uid="uid://c0sxi5dgonucy"]
 
 [ext_resource type="Script" uid="uid://c1706h2tvg3sc" path="res://Player/PlayerMove.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cpnxj0x20mrgp" path="res://WhiteBlockAssets/SpriteGuyTester.png" id="2_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="3_btcbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
 atlas = ExtResource("2_4ntmi")
@@ -133,3 +134,9 @@ collision_mask = 4
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4ntmi")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
+offset_left = -45.0
+offset_top = -79.0
+offset_right = 45.0
+offset_bottom = -13.0

@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rooms/room_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms/room_test.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +250,7 @@
       <workItem from="1748493825457" duration="35000" />
       <workItem from="1748494404825" duration="1893000" />
       <workItem from="1748543458718" duration="7750000" />
-      <workItem from="1748577301692" duration="351000" />
+      <workItem from="1748577301692" duration="2553000" />
     </task>
     <servers />
   </component>
@@ -293,7 +290,7 @@
               <option value="7629" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

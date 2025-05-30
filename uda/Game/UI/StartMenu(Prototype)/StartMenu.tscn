@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://8ofrtiga8mtq"]
 
-[ext_resource type="Script" uid="uid://cwffg60f2jg6t" path="res://UI/StartMenu(Prototype)/StartMenu.cs" id="1_1crbp"]
+[ext_resource type="Script" uid="uid://cwffg60f2jg6t" path="res://Game/UI/StartMenu(Prototype)/StartMenu.cs" id="1_1crbp"]
 [ext_resource type="Texture2D" uid="uid://0mb2jgk068vh" path="res://WhiteBlockAssets/Screenshot 2025-05-17 204753.png" id="1_lgosv"]
 [ext_resource type="Texture2D" uid="uid://01e6qs0jet1g" path="res://WhiteBlockAssets/TempLogo.png" id="2_1crbp"]
 

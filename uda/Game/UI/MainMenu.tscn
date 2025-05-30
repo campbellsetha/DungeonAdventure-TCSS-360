@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhknoiyya1vj3"]
 
-[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://UI/MainMenu/MainMenu.cs" id="1_y6s48"]
+[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://Game/UI/MainMenu/MainMenu.cs" id="1_y6s48"]
 [ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_otjfi"]
-[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://UI/Retrobyte-4nMol.ttf" id="3_obtq6"]
-[ext_resource type="Texture2D" uid="uid://cyi4nx4ljexu2" path="res://UI/load_game_background.png" id="4_t4ff4"]
-[ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://UI/LoadMenu.cs" id="5_w5vcv"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_obtq6"]
+[ext_resource type="Texture2D" uid="uid://cyi4nx4ljexu2" path="res://Game/UI/load_game_background.png" id="4_t4ff4"]
+[ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://Game/UI/LoadMenu.cs" id="5_w5vcv"]
 
 [sub_resource type="Theme" id="Theme_i7cp2"]
 

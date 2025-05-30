@@ -33,7 +33,7 @@ public abstract partial class DungeonCharacter(
         HitPoints -= theDamage;
     }
     
-    public void Attack(DungeonCharacter theTarget)
+    public void Attack(DungeonCharacter  theTarget)
     {
 
         Random rand = RandomSingleton.GetInstance();

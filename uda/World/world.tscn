@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://1msm3iduvvnh"]
+[gd_scene load_steps=9 format=4 uid="uid://1msm3iduvvnh"]
 
 [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_62w18"]
 [ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="5_yf0ba"]
 [ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="6_eidgh"]
 [ext_resource type="Texture2D" uid="uid://jitkjin172tp" path="res://Game/UI/Healthbar.png" id="7_oe8m4"]
+[ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Enemies/Slime.tscn" id="4_3f78f"]
+[ext_resource type="Resource" uid="uid://ix8obddw6isi" path="res://Inventory/player_inventory.tres" id="4_k8do8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
 texture = ExtResource("2_j8job")
@@ -60,14 +62,13 @@ tile_set = SubResource("TileSet_yf0ba")
 
 [node name="Player" parent="TileMapLayer" instance=ExtResource("1_62w18")]
 position = Vector2(-46, -11)
-
-[node name="Camera2D2" type="Camera2D" parent="TileMapLayer/Player"]
-zoom = Vector2(5, 5)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+_playerInventory = ExtResource("4_k8do8")
 
 [node name="UI" type="CanvasLayer" parent="TileMapLayer/Player/Camera2D2"]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 [node name="HealthBar" type="TextureProgressBar" parent="TileMapLayer/Player/Camera2D2/UI"]
 offset_left = -160.0
 offset_top = -74.0
@@ -77,15 +78,3 @@ value = 100.0
 texture_under = ExtResource("5_yf0ba")
 texture_over = ExtResource("6_eidgh")
 texture_progress = ExtResource("7_oe8m4")
-
-[node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
-position = Vector2(85, -18)
-
-[node name="Marker2D1" type="Marker2D" parent="TileMapLayer/Slime"]
-position = Vector2(-69, -39)
-
-[node name="Slime2" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
-position = Vector2(-98, 18)
-
-[node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
-position = Vector2(60, 21)

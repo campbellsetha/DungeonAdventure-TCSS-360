@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://beafy6rw1pp1d" path="res://Rooms/TwoDoorNorthWest.tscn" id="13_eortt"]
 [ext_resource type="PackedScene" uid="uid://bwpit6fqtpyie" path="res://Rooms/TwoDoorSouthEast.tscn" id="14_1f58i"]
 [ext_resource type="PackedScene" uid="uid://becmag0byvo0" path="res://Rooms/TwoDoorSouthWest.tscn" id="15_hvcf8"]
-[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="16_rp2ik"]
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="16_rp2ik"]
 
 [node name="RoomTest" type="Node2D"]
 

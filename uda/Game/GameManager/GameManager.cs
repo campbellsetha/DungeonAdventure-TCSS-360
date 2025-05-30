@@ -175,7 +175,7 @@ public partial class GameManager : Node
     private void LoadResource()
     {
         //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine
-        string fileName = "res://Resources/PlayerClass.tres";
+        string fileName = "res://Game/Resources/PlayerClass.tres";
         if (ResourceLoader.Exists(fileName))
         {
             ResourceLoader.Load<Resources.PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
@@ -188,7 +188,7 @@ public partial class GameManager : Node
 
     private void SaveResource()
     {
-        string fileName = "res://Resources/PlayerClass.tres";
+        string fileName = "res://Game/Resources/PlayerClass.tres";
         ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
     }
 }

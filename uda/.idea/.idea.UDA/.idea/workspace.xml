@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rooms/room_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms/room_test.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +37,6 @@
     &quot;accountId&quot;: &quot;685e3531-ad00-4787-95ff-e2d99f21f5c4&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Model/Map/Dungeon.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Model/Map/Dungeon.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -254,6 +253,7 @@
       <workItem from="1748493825457" duration="35000" />
       <workItem from="1748494404825" duration="1893000" />
       <workItem from="1748543458718" duration="7750000" />
+      <workItem from="1748577301692" duration="351000" />
     </task>
     <servers />
   </component>
@@ -282,6 +282,19 @@
           </properties>
           <option name="timeStamp" value="5" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Game/GameManager/GameManager.cs</url>
+          <line>191</line>
+          <properties documentPath="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda\Game\GameManager\GameManager.cs" containingFunctionPresentation="Method 'SaveResource'">
+            <startOffsets>
+              <option value="7569" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7629" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

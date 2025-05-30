@@ -69,10 +69,10 @@ public abstract partial class Hero : DungeonCharacter
 		}
 	}
 
-	//TODO: SERIALIZE THIS
-
 	public void Connect(string theHealthchanged, Callable theCallable)
 	{
 		throw new NotImplementedException();
 	}
+	
+	//TODO: SERIALIZE THIS
 }

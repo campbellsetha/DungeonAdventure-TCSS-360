@@ -22,7 +22,7 @@ public partial class Player : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		MyClassInfo = ResourceLoader.Load<Resources.PlayerClassInfo>("res://Resources/PlayerClass.tres");
+		MyClassInfo = ResourceLoader.Load<Resources.PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
 		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, _myName);
 		var thisHurtbox = GetNode<Area2D>("Hurtbox");
 		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));

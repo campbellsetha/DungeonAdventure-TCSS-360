@@ -36,7 +36,7 @@ public abstract partial class Hero : DungeonCharacter
 	}
 	public override void TakeDamage(int theDamage)
 	{
-		if (!(DungeonCharacter.RandomNumberGenerator.NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
+		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
 		{
 			HitPoints -= theDamage;
 

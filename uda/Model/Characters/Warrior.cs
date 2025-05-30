@@ -1,9 +1,11 @@
+using System;
+
 namespace UDA.Model.Characters;
 
 // Just a reminder: need to add a listener that tells the model to call the special attack instead of the
 // inherited attack method when a certain key is pressed
 
-public partial class Warrior : Characters.Hero
+public partial class Warrior : Hero
 {
 	private static readonly int MyHitPoints = 125;
 	private static readonly int MyAttackSpeed = 4;
@@ -17,12 +19,13 @@ public partial class Warrior : Characters.Hero
 
 	public override void PerformSkill(DungeonCharacter theTarget)
 	{
+		Random rand = RandomSingleton.GetInstance();
 		double successChance = 0.4;
-		if (DungeonCharacter.RandomNumberGenerator.NextDouble() > 1 - successChance)
+		if (rand.NextDouble() > 1 - successChance)
 		{
 			int minDamage = 75;
 			int maxDamage = 175;
-			int damage = DungeonCharacter.RandomNumberGenerator.Next(minDamage, maxDamage);
+			int damage = rand.Next(minDamage, maxDamage);
 			theTarget.TakeDamage(damage);
 		}
 	}

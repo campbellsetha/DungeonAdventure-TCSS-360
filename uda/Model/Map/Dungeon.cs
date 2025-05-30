@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UDA.Model.Map;
 
-public class Dungeon
+public sealed class Dungeon
 {
     private const int Rows = 5;
     private const int Cols = 5;
@@ -47,9 +47,8 @@ public class Dungeon
         }
     }
 
-    // this method is probably too long and should be broken up but that's for future me
-    //That means never lol
-    private Room CreateRoom(int theX, int theY, RoomType theRoomType = RoomType.Normal)
+    // Ask if this method should be broken up
+    private Room CreateRoom(in int theX, in int theY, in RoomType theRoomType = RoomType.Normal)
     {
         List<Direction> directions = [Direction.North, Direction.South, Direction.East, Direction.West];
         Direction? dir = null;
@@ -122,13 +121,14 @@ public class Dungeon
         {
             exit = GenerateEntranceExitCoordinates();
         }
-            
         MyMap[entrance.Item1, entrance.Item2] = 
             CreateRoom(entrance.Item1, entrance.Item2, RoomType.Entrance);
         MyMap[exit.Item1, exit.Item2] = CreateRoom(exit.Item1, exit.Item2, RoomType.Exit);
         
+        // Fill Dungeon with pillar rooms
         CreatePillarRooms();
         
+        // Fill the rest of the Dungeon with random rooms
         for (int i = 0; i < Rows; i++)
         {
             for (int j = 0; j < Cols; j++)

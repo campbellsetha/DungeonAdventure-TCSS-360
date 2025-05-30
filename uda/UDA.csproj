@@ -7,7 +7,7 @@
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="main.tscn" />
-    <Content Include="UI.tscn" />
+    <Content Include="Game\main.tscn" />
+    <Content Include="Game\UI.tscn" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace UDA.Model;
+namespace UDA.Model.Characters;
 
 public abstract partial class DungeonCharacter(
     string theName,
@@ -10,7 +10,6 @@ public abstract partial class DungeonCharacter(
     double theHitChance,
     (int, int) theDamageRange) : CharacterBody2D
 {
-    public static readonly Random RandomNumberGenerator = RandomSingleton.GetInstance();
     
     /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
      to enforce immutability. */
@@ -19,7 +18,7 @@ public abstract partial class DungeonCharacter(
     
     public int MaxHitPoints { get; } = theHitPoints;
 
-    public int HitPoints { get; set; } = theHitPoints;
+    public int HitPoints { get; protected set; } = theHitPoints;
 
     public (int Min, int Max) DamageRange { get; } = theDamageRange;
 
@@ -37,7 +36,8 @@ public abstract partial class DungeonCharacter(
     public void Attack(DungeonCharacter theTarget)
     {
 
-        if (IsDead || !(RandomNumberGenerator.NextDouble() > 1 - HitChance))
+        Random rand = RandomSingleton.GetInstance();
+        if (IsDead || !(rand.NextDouble() > 1 - HitChance))
         {
             Console.WriteLine("Character cannot attack!");
             return;
@@ -47,7 +47,7 @@ public abstract partial class DungeonCharacter(
         
         for (int i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
         {
-            int damage = RandomNumberGenerator.Next(DamageRange.Min, DamageRange.Max + 1);
+            int damage = rand.Next(DamageRange.Min, DamageRange.Max + 1);
             TakeDamage(damage);
         }
         

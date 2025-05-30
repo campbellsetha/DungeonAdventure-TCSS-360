@@ -13,7 +13,7 @@ public partial class Priest : Characters.Hero
 	public Priest(string theName) : base(theName, myHitPoints,MyAttackSpeed, MyHitChance,
 		MyDamageRange, MyBlockChance, MySkill) { }
 
-	public override void PerformSkill(DungeonCharacter theCharacter)
+	public override void PerformSkill(Characters.DungeonCharacter theCharacter)
 	{
 		myHitPoints += 20;
 	}

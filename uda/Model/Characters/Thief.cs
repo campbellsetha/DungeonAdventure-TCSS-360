@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace UDA.Model.Characters;
@@ -31,12 +32,13 @@ public partial class Thief : Hero
 
 		_lastSkillTime = currentTime;
 
-		double roll = RandomNumberGenerator.NextDouble();
+		Random rand = RandomSingleton.GetInstance();
+		double roll = rand.NextDouble();
 		if (roll <= SuccessChance)
 		{
 			GD.Print($"{Skill} is successful!");
 			Attack(theTarget);
-			int damage = RandomNumberGenerator.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
+			int damage = rand.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
 			theTarget.TakeDamage(damage);
 			theTarget.EmitSignal(nameof(HealthChangedEventHandler), theTarget.HitPoints, theTarget.MaxHitPoints);
 		}

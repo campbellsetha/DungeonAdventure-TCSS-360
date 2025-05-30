@@ -4,13 +4,11 @@ using static UDA.Model.Map.Direction;
 using static UDA.Model.Map.RoomType;
 
 namespace UDA.Model.Map;
-
-// need to encapsulate this class so new instances are only accessible by RoomFactory methods
 public class Room
 {
     private const double MyChance = 0.1;
     private RoomType MyRoomType { get; init; }
-    private bool ContainsTrap { get; init; }
+    private  bool ContainsTrap { get; init; }
     private bool ContainsHealingPotion { get; init; }
     private bool ContainsVisionPotion { get; init; }
     
@@ -23,7 +21,7 @@ public class Room
                         { East, null }
                     };
     
-    public Room(RoomType theRoomType = Normal, params Direction[] theDoors)
+    public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
         MyRoomType = theRoomType;
         

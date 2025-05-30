@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0sxi5dgonucy"]
+[gd_scene load_steps=18 format=3 uid="uid://c0sxi5dgonucy"]
 
 [ext_resource type="Script" uid="uid://c1706h2tvg3sc" path="res://Player/Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cpnxj0x20mrgp" path="res://WhiteBlockAssets/SpriteGuyTester.png" id="2_4ntmi"]
@@ -101,11 +101,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(10, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+radius = 8.88889
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ntmi"]
-size = Vector2(8, 19)
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
+
+[sub_resource type="Gradient" id="Gradient_4ntmi"]
+offsets = PackedFloat32Array(0, 0.907895)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_btcbx"]
+gradient = SubResource("Gradient_4ntmi")
+fill = 1
+fill_from = Vector2(0.490741, 0.509259)
+fill_to = Vector2(0.949074, 0.115741)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -118,13 +127,17 @@ animation = &"walkUp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
-shape = SubResource("RectangleShape2D_onrkg")
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_4ntmi")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["PlayerHurtBox"]]
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_4ntmi")
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_btcbx")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_btcbx")

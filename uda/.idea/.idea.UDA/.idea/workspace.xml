@@ -4,83 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Created a RoomFactory that provides methods for generating rooms with one, two, three, or four doors (still need to encapsulate the Room class so its constructor can't be called directly). The Dungeon class is generating a proper map now.">
-      <change afterPath="$PROJECT_DIR$/Game/Enemies/MonsterControls.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/MonsterClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterClass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/MonsterClass.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterClass.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/MonsterCreationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterCreationTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/MonsterCreationTest.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterCreationTest.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Slime.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Slime.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enemies/Slime.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Slime.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/GameManager.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/game_manager.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Room.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/Monster.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/MonsterStuff/MonsterFactory.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Hurtbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Hurtbox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Hurtbox.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Hurtbox.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/Player.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/PlayerClassInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/PlayerClassInfo.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Sandbox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Sandbox.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/MonsterDBcreationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/MonsterDBcreationTest.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/SQLTEST.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/SQLTEST.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/SQLTEST.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/SQLTEST.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/TestingDBS.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/TestingDBS.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/dbTest.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/dbTest.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/monster_creation_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/monster_creation_test.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SqlDBTest/sqlTest.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/sqlTest.tscn" afterDir="false" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Healthbar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Healthbar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Healthbar.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Healthbar.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/LoadMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/LoadMenu.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/LoadMenu.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu/MainMenu.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Overlay Healthbar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Overlay Healthbar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Overlay Healthbar.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Overlay Healthbar.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Overlay.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Overlay.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Retrobyte-4nMol.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Retrobyte-4nMol.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Retrobyte-4nMol.ttf.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/Retrobyte-4nMol.ttf.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalGuide/SignalTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalGuide/SignalTest.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalGuide/SignalTest.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalGuide/Sprite2d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SignalGuide/Sprite2d.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu(Prototype)/StartMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu(Prototype)/StartMenu.cs.uid" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs.uid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/StartMenu(Prototype)/StartMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/button_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/button_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/button_icon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/button_icon.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/load_game_background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/load_game_background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/load_game_background.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/load_game_background.png.import" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/main.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,11 +20,6 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="newUpdates" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -131,7 +55,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#14 on newUpdatesWithMain&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -142,7 +66,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="GdScript Start and Debug.Player GDScript">
+  <component name="RunManager" selected=".NET Executable.player_save_test.tscn">
     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -175,9 +99,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Godot_v4.4.1-stable_mono_linux_x86_64/Godot_v4.4.1-stable_mono_linux.x86_64" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -211,9 +135,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Godot_v4.4.1-stable_mono_linux_x86_64/Godot_v4.4.1-stable_mono_linux.x86_64" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -329,11 +253,7 @@
       <workItem from="1748493574655" duration="143000" />
       <workItem from="1748493825457" duration="35000" />
       <workItem from="1748494404825" duration="1893000" />
-      <workItem from="1748553009110" duration="3143000" />
-      <workItem from="1748556338154" duration="648000" />
-      <workItem from="1748557131493" duration="226000" />
-      <workItem from="1748557371692" duration="56000" />
-      <workItem from="1748569694133" duration="7160000" />
+      <workItem from="1748543458718" duration="7750000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,7 @@ namespace UDA.Model;
 public partial class Monster : DungeonCharacter
 {
     private double _myStunThreshold;
-    private PlayerMove _thePlayer;
+    private Player.Player _thePlayer;
     private double _detectionRadius;
     [Export] private int _speed = 20;
     [Export] private double _vectorLimit = 0.5;
@@ -76,7 +76,7 @@ public partial class Monster : DungeonCharacter
 
     public override void _Ready()
     {
-        _thePlayer = GetTree().GetFirstNodeInGroup("player") as PlayerMove;
+        _thePlayer = GetTree().GetFirstNodeInGroup("player") as Player.Player;
         
         //Play default animation
         //Should write a separate script for handling enemy animations

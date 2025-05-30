@@ -119,3 +119,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Net;
+using UDA.Model;
 
 public partial class Slime : CharacterBody2D
 {
@@ -16,13 +17,15 @@ public partial class Slime : CharacterBody2D
     private Vector2 _endPosition;
     private Vector2 _moveDistance;
     private AnimationPlayer _slimeSpritePlayer;
-    private PlayerMove _thePlayer;
+    private UDA.Player.Player _thePlayer;
     private int _detectionRadius;
+    public Monster MyMonsterClass;
     public override void _Ready()
     {
+        MyMonsterClass = MonsterFactory.CreateGremlin();
         _slimeSpritePlayer = GetNode<AnimationPlayer>("SlimeAnimations");
         _slimeSpritePlayer.Play("Idle");
-        _thePlayer = GetTree().GetFirstNodeInGroup("player") as PlayerMove;
+       
         
         //Play default animation
         //Should write a separate script for handling enemy animations
@@ -35,9 +38,14 @@ public partial class Slime : CharacterBody2D
         //_moveDistance = new Vector2(0, 3 * 16);
         //Make the final position a vector that distance 3 (tiles) away
         //_endPosition = _startPosition + _moveDistance;
+        if (_variableEndpoint != null)
+        {
+            _endPosition = _variableEndpoint.GlobalPosition;
+        }
+        
         
         //Can instead have the slimes move towards a specified global position
-        _endPosition = _variableEndpoint.GlobalPosition;
+        //_endPosition = _variableEndpoint.GlobalPosition;
     }
 
     private void _ChangePosition()
@@ -48,9 +56,10 @@ public partial class Slime : CharacterBody2D
 
     private void _UpdateVelocity()
     {
+        _thePlayer = GetTree().GetFirstNodeInGroup("player") as UDA.Player.Player;
         Vector2 moveDirection;
-
-        if (GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
+        if (_thePlayer != null &&
+            GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
         {
             //End position for moving down is greater y val than current
             moveDirection = _endPosition - Position;
@@ -83,5 +92,11 @@ public partial class Slime : CharacterBody2D
     public override void _Process(double delta)
     {
         //_slimeSprite.Play("default");
+    }
+
+    //This should emit a signal when a "Player" character body is entered
+    public void OnBodyEntered(UDA.Player.Player theBody)
+    {
+        theBody.MyClass.TakeDamage(MyMonsterClass.DamageRange.Max);
     }
 }

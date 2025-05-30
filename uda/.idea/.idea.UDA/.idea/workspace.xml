@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.Model/Hero.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,6 +253,7 @@
       <workItem from="1748493574655" duration="143000" />
       <workItem from="1748493825457" duration="35000" />
       <workItem from="1748494404825" duration="1893000" />
+      <workItem from="1748543458718" duration="7750000" />
     </task>
     <servers />
   </component>

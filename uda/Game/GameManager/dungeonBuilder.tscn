@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsol51ifob8jy"]
+
+[ext_resource type="Script" uid="uid://5aag1gci500y" path="res://Game/GameManager/DungeonBuilder.cs" id="1_vxoxu"]
+
+[node name="DungeonBuilder" type="Node2D"]
+script = ExtResource("1_vxoxu")

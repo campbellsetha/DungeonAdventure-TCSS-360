@@ -6,50 +6,29 @@ namespace UDA.Game.Enemies;
 
 public partial class Slime : CharacterBody2D
 {
-    [Export] private int _speed = 20;
+    //If the speed gets raised too high it breaks the changePosition function.
+    //It affects the vector math making the vector limit unreachable
+    //If you want to increase the speed, increase the vector limit
+    [Export] private int _speed = 50;
     [Export] private double _vectorLimit = 0.5;
-    //You can place markers on these "Slimes" in the node tree
-    //these allow us to update end positions which allows for unique movements
-    //Markers have to be assigned in the dev engine under the 'Slime' properties
-    //TODO: See if this can be assigned directly to a monster class
-    //Right now this needs to be configured at the scene level that contains the monster
-    [Export] private Marker2D _variableEndpoint;
+    
     private Vector2 _startPosition;
     private Vector2 _endPosition;
-    private Vector2 _moveDistance;
     private AnimationPlayer _slimeSpritePlayer;
-    private global::UDA.Game.Player.Player _thePlayer;
-    private int _detectionRadius;
+    private bool _playerDetected;
     public Monster MyMonsterClass;
+    
     public override void _Ready()
     {
         MyMonsterClass = MonsterFactory.CreateGremlin();
         _slimeSpritePlayer = GetNode<AnimationPlayer>("SlimeAnimations");
         _slimeSpritePlayer.Play("Idle");
-       
         
-        //Play default animation
-        //Should write a separate script for handling enemy animations
-        
-        //Set the start position equal to its current placement
         _startPosition = Position;
-        
-        //This can be used to manually alter the position of a monster as needed. 
-        //Make the move distance a vector of y distance 3 tiles
-        //_moveDistance = new Vector2(0, 3 * 16);
-        //Make the final position a vector that distance 3 (tiles) away
-        //_endPosition = _startPosition + _moveDistance;
-        if (_variableEndpoint != null)
-        {
-            _endPosition = _variableEndpoint.GlobalPosition;
-        }
-        
-        
-        //Can instead have the slimes move towards a specified global position
-        //_endPosition = _variableEndpoint.GlobalPosition;
+        _endPosition = _startPosition + new Vector2(0, 3 * 16);
     }
 
-    private void _ChangePosition()
+    private void ChangePosition()
     {
         //tuple swapping the two values
         (_endPosition, _startPosition) = (_startPosition, _endPosition);
@@ -57,48 +36,45 @@ public partial class Slime : CharacterBody2D
 
     private void _UpdateVelocity()
     {
-        _thePlayer = GetTree().GetFirstNodeInGroup("player") as global::UDA.Game.Player.Player;
-        Vector2 moveDirection;
-        if (_thePlayer != null &&
-            GlobalPosition.DistanceTo(_thePlayer.GlobalPosition) > _detectionRadius)
+        //This checks the final point against the current one 
+        var moveDirection = (_endPosition - Position);
+        if (moveDirection.Length() < _vectorLimit)
         {
-            //End position for moving down is greater y val than current
-            moveDirection = _endPosition - Position;
-            /*
-        Checks if the current move vector is too small
-        If it is we have reached close to the endpoint of our specified distance
-        If it is not we simply set the velocity of the object to a normalized vector scaled by its speed value
-        This prevents an infinite approach/bouncing issue
-        */
-            if (moveDirection.Length() < _vectorLimit) 
-                _ChangePosition();
+            ChangePosition();
         }
-        else
-        {
-            // TODO: add reference to this field
-            moveDirection = _thePlayer.GlobalPosition - GlobalPosition;
-        }
-        
-        if (moveDirection.LengthSquared() > 0.001f) 
-            Velocity = moveDirection.Normalized() * _speed;
-        else 
-            Velocity = Vector2.Zero;
+
+        Velocity = moveDirection.Normalized() * _speed;
     }
 
     public override void _PhysicsProcess(double theDelta)
     {
         _UpdateVelocity();
         MoveAndSlide();
+        
+        //Handy for testing fps drops 
+        //GD.Print(Engine.GetFramesPerSecond());
     }
-
-    public override void _Process(double theDelta)
-    {
-        //_slimeSprite.Play("default");
-    }
+    
 
     //This should emit a signal when a "Player" character body is entered
-    public void OnBodyEntered(global::UDA.Game.Player.Player theBody)
+    //This is masked to only detect the players hurtbox so this will only get called
+    //When the player enters, as no other physics body is on the same mask
+    public void OnBodyEntered(Player.Player theBody)
     {
-        theBody.MyClass.TakeDamage(MyMonsterClass.DamageRange.Max);
+        if (theBody.IsInGroup("Player"))
+        {
+            theBody.MyClass.TakeDamage(MyMonsterClass.DamageRange.Max);
+        }
+    }
+
+    //Placed the hurtbox on a different level to avoid multiple calls with the players 2dPhysicsBody
+    public void OnPlayerDetection(Player.Player theBody)
+    {
+        //We are checking if the hurtbox exists in the player node group, its easy to find like this
+        if (theBody.IsInGroup("Player"))
+        {
+            _endPosition = theBody.GlobalPosition;
+            //GD.Print("I FOUND EM BOSS!");
+        }
     }
 }

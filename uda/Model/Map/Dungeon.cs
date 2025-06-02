@@ -1,21 +1,37 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static UDA.Model.Map.RoomType;
+using static UDA.Model.Map.Direction;
+using static UDA.Model.Map.BoundaryType;
 
 namespace UDA.Model.Map;
 
 public sealed class Dungeon
 {
-    private const int Rows = 5;
-    private const int Cols = 5;
+    public static readonly Dungeon MyInstance;
+    private const int Rows = 10;
+    private const int Cols = 10;
     private static readonly Random MyRand = RandomSingleton.GetInstance();
-    private static readonly Room[,] MyMap = new Room[Rows, Cols];
-    private readonly Dictionary<RoomType, (int, int)> _myPillars = new Dictionary<RoomType, (int, int)>();
+    private readonly Room[,] _myMap = new Room[Rows, Cols];
+    private (int, int) _myEntrance;
+    private (int, int) _myExit;
+    private readonly Dictionary<RoomType, (int, int)> _myPillars = new ();
     
 
-    public Dungeon()
+    private Dungeon()
     {
         FillMap();
+    }
+
+    static Dungeon()
+    {
+        MyInstance = new Dungeon();
+        while (!MyInstance.IsTraversable())
+        {
+            MyInstance = new Dungeon();
+        }
+        
     }
 
     private (int, int) GenerateEntranceExitCoordinates()
@@ -24,7 +40,7 @@ public sealed class Dungeon
         int col;
         if (row != 0)
         {
-            col = (MyRand.Next(0, 2) == 0) ? 0 : 4;
+            col = (MyRand.Next(0, 2) == 0) ? 0 : Cols - 1;
         } else col = MyRand.Next(0, Cols);
         return (row, col);
     }
@@ -36,74 +52,57 @@ public sealed class Dungeon
             int row = MyRand.Next(0, Rows);
             int col = MyRand.Next(0, Cols);
             RoomType pillarType = (RoomType) MyRand.Next(3, 7);
-            while (MyMap[row, col] != null || _myPillars.ContainsKey(pillarType))
+            while (_myMap[row, col] != null || _myPillars.ContainsKey(pillarType))
             {
                 row = MyRand.Next(0, Rows);
                 col = MyRand.Next(0, Cols);
                 pillarType = (RoomType) MyRand.Next(3, 7);
             }
             _myPillars.Add(pillarType, (row, col));
-            MyMap[row, col] = CreateRoom(row, col, pillarType);
+            _myMap[row, col] = CreateRoom(row, col, pillarType);
         }
     }
 
-    // Ask if this method should be broken up
-    private Room CreateRoom(in int theX, in int theY, in RoomType theRoomType = RoomType.Normal)
+    private List<Direction> GetValidDirections(in int theX, in int theY)
     {
-        List<Direction> directions = [Direction.North, Direction.South, Direction.East, Direction.West];
-        Direction? dir = null;
-        
-        switch (theX)
-        {
-            case 0 when theRoomType is RoomType.Entrance or RoomType.Exit:
-                dir = Direction.North;
-                break;
-            case 0:
-                directions.Remove(Direction.North);
-                break;
-            case Rows - 1 when theRoomType is RoomType.Entrance or RoomType.Exit:
-                dir = Direction.South;
-                break;
-            case Rows - 1:
-                directions.Remove(Direction.South);
-                break;
-        }
-
-        switch (theY)
-        {
-            case 0 when (theRoomType is RoomType.Entrance or RoomType.Exit) && dir == null:
-                dir = Direction.West;
-                break;
-            case 0:
-                directions.Remove(Direction.West);
-                break;
-            case Cols - 1 when (theRoomType is RoomType.Entrance or RoomType.Exit) && dir == null:
-                dir = Direction.East;
-                break;
-            case Cols - 1:
-                directions.Remove(Direction.East);
-                break;
-        }
-
-        int numOfDoors = MyRand.Next(1, directions.Count + 1);
+        List<Direction> directions = new List<Direction>();
+        if (theX != 0) directions.Add(North);
+        if (theX != Rows - 1) directions.Add(South);
+        if (theY != 0) directions.Add(West);
+        if (theY != Cols - 1) directions.Add(East);
+        return directions;
+    }
+    
+    private Room CreateRoom(in int theX, in int theY, in RoomType theRoomType = Normal)
+    {
+        Direction? dir = (theX, theY, theRoomType is Entrance or Exit) switch
+                        {
+                            (0, _, true) => North,
+                            (Rows - 1, _, true) => South,
+                            (_, 0, true) => West,
+                            (_, Cols - 1, true) => East,
+                            (_, _, _) => null
+                        };
+        List<Direction> directions = GetValidDirections(theX, theY);
+        int numOfDoors = 
+            theRoomType is Entrance or Exit ? MyRand.Next(2, directions.Count + 1) : MyRand.Next(1, directions.Count + 1);
         Room room;
         dir ??= directions[MyRand.Next(directions.Count)];
         directions.Remove(dir.GetValueOrDefault());
-        
         switch (numOfDoors)
         {
             case 1:
                 room = RoomFactory.CreateRoomOneDoor(dir.GetValueOrDefault(), theRoomType);
                 break; 
             case 2:
-                room = RoomFactory.CreateRoomTwoDoors((dir.GetValueOrDefault(), 
-                                    directions[MyRand.Next(directions.Count)]), theRoomType);
+                Direction temp = directions[MyRand.Next(directions.Count)];
+                room = RoomFactory.CreateRoomTwoDoors((dir.GetValueOrDefault(), temp), theRoomType);
                 break;
             case 3:
-                Direction dir1 = directions[MyRand.Next(directions.Count)];
-                directions.Remove(dir1);
-                Direction dir2 = directions[MyRand.Next(directions.Count)];
-                room = RoomFactory.CreateRoomThreeDoors((dir.GetValueOrDefault(), dir1, dir2), theRoomType);
+                Direction temp1 = directions[MyRand.Next(directions.Count)];
+                directions.Remove(temp1);
+                Direction temp2 = directions[MyRand.Next(directions.Count)];
+                room = RoomFactory.CreateRoomThreeDoors((dir.GetValueOrDefault(), temp1, temp2), theRoomType);
                 break;
             default:
                 room = RoomFactory.CreateRoomFourDoors(theRoomType);
@@ -115,15 +114,15 @@ public sealed class Dungeon
     private void FillMap()
     {
         // Generate entrance and exit rooms
-        (int, int) entrance = GenerateEntranceExitCoordinates();
-        (int, int) exit = GenerateEntranceExitCoordinates();
-        while (exit == entrance)
+        _myEntrance = GenerateEntranceExitCoordinates();
+        _myExit = GenerateEntranceExitCoordinates();
+        while (_myExit == _myEntrance)
         {
-            exit = GenerateEntranceExitCoordinates();
+            _myExit = GenerateEntranceExitCoordinates();
         }
-        MyMap[entrance.Item1, entrance.Item2] = 
-            CreateRoom(entrance.Item1, entrance.Item2, RoomType.Entrance);
-        MyMap[exit.Item1, exit.Item2] = CreateRoom(exit.Item1, exit.Item2, RoomType.Exit);
+        _myMap[_myEntrance.Item1, _myEntrance.Item2] = 
+            CreateRoom(_myEntrance.Item1, _myEntrance.Item2, Entrance);
+        _myMap[_myExit.Item1, _myExit.Item2] = CreateRoom(_myExit.Item1, _myExit.Item2, Exit);
         
         // Fill Dungeon with pillar rooms
         CreatePillarRooms();
@@ -133,10 +132,74 @@ public sealed class Dungeon
         {
             for (int j = 0; j < Cols; j++)
             {
-                MyMap[i, j] ??= CreateRoom(i, j);
+                _myMap[i, j] ??= CreateRoom(i, j);
             }
         }
+        FillMapHelper();
     }
+
+    private Room OppositeRoom(Direction theDir, int theX, int theY)
+    {
+        return theDir switch
+        {
+            North => _myMap[theX - 1, theY],
+            South => _myMap[theX + 1, theY],
+            West => _myMap[theX, theY - 1],
+            East => _myMap[theX, theY + 1],
+            _ => throw new Exception("Unknown direction")
+        };
+    }
+    
+    private void FillMapHelper()
+    {
+        for (int i = 0; i < Rows - 1; i++)
+        {
+            for (int j = 0; j < Cols - 1; j++)
+            {
+                int numOfDoors = 0;
+                Direction dir = 0;
+                // probably should move this to its own method in the Room class
+                foreach (KeyValuePair<Direction, BoundaryType?> kvp in _myMap[i, j].MyBoundaries)
+                {
+                    if (kvp.Value == Door)
+                    {
+                        numOfDoors++;
+                        dir = kvp.Key;
+                    }
+                }
+
+                if (numOfDoors == 1 && OppositeRoom(dir, i, j).MyBoundaries[Opposite(dir)] !=
+                    _myMap[i, j].MyBoundaries[dir])
+                    OppositeRoom(dir, i, j).MyBoundaries[Opposite(dir)] = _myMap[i, j].MyBoundaries[dir];
+                else
+                {
+                    foreach (Direction key in new[] { South, East })
+                    {
+                        (int x1, int y1) = (i, j);
+                        int x2 = key == South ? i + 1 : i;
+                        int y2 = key == East ? j + 1 : j;
+                        Direction opposite = key == South ? North : West;
+
+                        var b1 = _myMap[x1, y1].MyBoundaries[key];
+                        var b2 = _myMap[x2, y2].MyBoundaries[opposite];
+
+                        if (b1 != b2)
+                        {
+                            switch (MyRand.Next(0, 2))
+                            {
+                                case 0:
+                                    _myMap[x1, y1].MyBoundaries[key] = b2;
+                                    break;
+                                case 1:
+                                    _myMap[x2, y2].MyBoundaries[opposite] = b1;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
     
     public override string ToString()
     {
@@ -148,7 +211,7 @@ public sealed class Dungeon
            StringBuilder row3 = new StringBuilder();
            for (int j = 0; j < Cols; j++)
            {
-               string[] arr = MyMap[i, j].GetDetails();
+               string[] arr = _myMap[i, j].GetDetails();
                row1.Append(arr[0]).Append("  ");
                row2.Append(arr[1]).Append("  ");
                row3.Append(arr[2]).Append("  ");
@@ -159,5 +222,72 @@ public sealed class Dungeon
            
        }
        return result.ToString();
+    }
+    
+    private bool IsReachable((int, int) theCoordinates)
+    {
+        bool result = false;
+        bool[,] visited = new bool[Rows, Cols];
+        Stack<(int, int)> stack = new Stack<(int, int)>();
+        stack.Push(_myEntrance);
+        visited[_myEntrance.Item1, _myEntrance.Item2] = true;
+        while (stack.Count != 0)
+        {
+            (int currentX, int currentY) = stack.Pop();
+
+            if ((currentX, currentY) == theCoordinates) result = true;
+
+            foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+            {
+                int newX = currentX, newY = currentY;
+
+                switch (dir)
+                {
+                    case North:
+                        newX = currentX - 1;
+                        break;
+                    case South:
+                        newX = currentX + 1;
+                        break;
+                    case East:
+                        newY = currentY + 1;
+                        break;
+                    case West:
+                        newY = currentY - 1;
+                        break;
+                }
+
+                if (newX is >= 0 and < Rows && newY is >= 0 and < Cols &&
+                    !visited[newX, newY] &&
+                    _myMap[currentX, currentY].MyBoundaries[dir] == Door &&
+                    _myMap[newX, newY].MyBoundaries[Opposite(dir)] == Door)
+                {
+                    visited[newX, newY] = true;
+                    stack.Push((newX, newY));
+                }
+            }
+        }
+        return result;
+    }
+    
+    private static Direction Opposite(Direction theDir)
+    {
+        return theDir switch
+        {
+            North => South,
+            South => North,
+            East => West,
+            West => East,
+            _ => throw new ArgumentException("Invalid direction"),
+        };
+    }
+    
+    private bool IsTraversable()
+    {
+        return IsReachable(_myExit) 
+               && IsReachable(_myPillars[PillarA]) 
+               && IsReachable(_myPillars[PillarE]) 
+               && IsReachable(_myPillars[PillarI])
+               && IsReachable(_myPillars[PillarP]);
     }
 }

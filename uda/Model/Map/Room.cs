@@ -11,9 +11,9 @@ public class Room
     private  bool ContainsTrap { get; init; }
     private bool ContainsHealingPotion { get; init; }
     private bool ContainsVisionPotion { get; init; }
-    
-    private readonly Dictionary<Direction, BoundaryType?> _myBoundaries = 
-                    new Dictionary<Direction, BoundaryType?> 
+    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; set => _myBoundaries = value; }
+    private Dictionary<Direction, BoundaryType?> _myBoundaries = 
+                    new () 
                     {
                         { North, null },
                         { South, null },
@@ -47,6 +47,7 @@ public class Room
             ContainsHealingPotion = false;
             ContainsVisionPotion = false;
         }
+        MyBoundaries = _myBoundaries;
     }
     
     private bool ContainsMultipleItems()
@@ -91,11 +92,6 @@ public class Room
             result.Append(t).Append('\n');
         }
         return result.ToString();
-    }
-    
-    private enum BoundaryType
-    {
-        Door, Wall
     }
 
 }

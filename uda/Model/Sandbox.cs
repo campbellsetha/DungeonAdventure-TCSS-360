@@ -23,8 +23,9 @@ public class Sandbox
         //Console.WriteLine(room.ToString());
 
         //Console.WriteLine(new Dungeon());
-        Dungeon test = new Dungeon();
-        //Console.WriteLine(test.ToString());
+        //Dungeon test = new Dungeon();
+        Console.WriteLine(Dungeon.MyInstance.ToString());
+        //Console.WriteLine(test.IsTraversable());
         //new Dungeon();
     }
     

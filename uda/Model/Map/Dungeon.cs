@@ -168,9 +168,9 @@ public sealed class Dungeon
                     }
                 }
 
-                if (numOfDoors == 1 && OppositeRoom(dir, i, j).MyBoundaries[Opposite(dir)] !=
+                if (numOfDoors == 1 && OppositeRoom(dir, i, j).MyBoundaries[OppositeDirection(dir)] !=
                     _myMap[i, j].MyBoundaries[dir])
-                    OppositeRoom(dir, i, j).MyBoundaries[Opposite(dir)] = _myMap[i, j].MyBoundaries[dir];
+                    OppositeRoom(dir, i, j).MyBoundaries[OppositeDirection(dir)] = _myMap[i, j].MyBoundaries[dir];
                 else
                 {
                     foreach (Direction key in new[] { South, East })
@@ -260,7 +260,7 @@ public sealed class Dungeon
                 if (newX is >= 0 and < Rows && newY is >= 0 and < Cols &&
                     !visited[newX, newY] &&
                     _myMap[currentX, currentY].MyBoundaries[dir] == Door &&
-                    _myMap[newX, newY].MyBoundaries[Opposite(dir)] == Door)
+                    _myMap[newX, newY].MyBoundaries[OppositeDirection(dir)] == Door)
                 {
                     visited[newX, newY] = true;
                     stack.Push((newX, newY));
@@ -270,7 +270,7 @@ public sealed class Dungeon
         return result;
     }
     
-    private static Direction Opposite(Direction theDir)
+    private static Direction OppositeDirection(Direction theDir)
     {
         return theDir switch
         {

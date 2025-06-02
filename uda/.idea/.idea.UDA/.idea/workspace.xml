@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Model/Map/BoundaryType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inventory/InventorySlotUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/InventorySlotUi.cs" afterDir="false" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="woohoo Dungeon is being generated properly and it can be navigated">
       <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Room.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Sandbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Sandbox.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,6 +183,15 @@
       <workItem from="1747681223201" duration="11607000" />
       <workItem from="1748363499846" duration="11237000" />
     </task>
+    <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
+      <option name="closed" value="true" />
+      <created>1748845353790</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748845353790</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +209,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="woohoo Dungeon is being generated properly and it can be navigated" />
+    <option name="LAST_COMMIT_MESSAGE" value="woohoo Dungeon is being generated properly and it can be navigated" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

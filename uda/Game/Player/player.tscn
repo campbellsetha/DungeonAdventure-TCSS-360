@@ -144,6 +144,7 @@ debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 texture = SubResource("GradientTexture2D_btcbx")
 
 [node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
+visible = false
 offset_left = -45.0
 offset_top = -79.0
 offset_right = 45.0

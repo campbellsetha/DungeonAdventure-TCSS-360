@@ -27,7 +27,7 @@ public partial class DungeonBuilder : Node2D
 	public override void _Ready()
 	{
 		//TODO: Place the map into a constant, then we can just reload the DungeonMap
-		//GD.Print(Dungeon.MyInstance.ToString());
+		GD.Print(Dungeon.MyInstance.ToString());
 		//DetermineRoom("****A|***");
 		BuildDungeon();
 	}
@@ -42,7 +42,8 @@ public partial class DungeonBuilder : Node2D
 			{
 				string currentRoom = string.Join("",Dungeon.MyInstance._myMap[i, j].GetDetails());
 				PackedScene sceneToLoad = DetermineRoom(currentRoom);
-				LoadRoom(sceneToLoad,i,j);
+				//Not sure why these coords need to get flipped, but they do
+				LoadRoom(sceneToLoad,j,i);
 				//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());
 				//GD.Print("My builder Output = " + currentRoom);
 			}
@@ -67,9 +68,11 @@ public partial class DungeonBuilder : Node2D
 		string modifiedRoom = theRoom.Remove(MyRoomCenter,1);
 		//Padding the string with a "*" to match the dictionary
 		modifiedRoom = modifiedRoom.Insert(4, "*");
+
+		RoomTypeCollection.RoomType theRoomType = MyRoomStringToTypeDict[modifiedRoom];
 		
 		//Getting the enum for the appropriate type that is mapped to the packed scenes
-		UDA.Game.Resources.RoomTypeCollection.RoomType theRoomType = MyRoomStringToTypeDict[modifiedRoom];
+		
 		
 		//Getting the packed scene from the dictionary based on the room type
 		PackedScene theRoomScene = MyRoomTypeDict[theRoomType];

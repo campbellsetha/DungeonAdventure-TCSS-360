@@ -9,6 +9,7 @@ public partial class RoomConverter : Resource
     // Possible room types with doors at specific locations
     public Dictionary<string, RoomTypeCollection.RoomType> baseRooms = new ()
     {
+        { "*********", RoomTypeCollection.RoomType.NoDoor},
         { "*****|***", RoomTypeCollection.RoomType.OneDoorEast },
         { "*_*******", RoomTypeCollection.RoomType.OneDoorNorth },
         { "***|*****", RoomTypeCollection.RoomType.OneDoorWest },

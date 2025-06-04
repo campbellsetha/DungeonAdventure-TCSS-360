@@ -140,6 +140,7 @@ public sealed class Dungeon
 
     private Room OppositeRoom(Direction theDir, int theX, int theY)
     {
+        //These can throw OOB exceptions
         return theDir switch
         {
             North => _myMap[theX - 1, theY],

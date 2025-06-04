@@ -1,11 +1,13 @@
 using Godot;
 using Godot.Collections;
+namespace UDA.Game.Resources;
 [GlobalClass]
 public partial class RoomTypeCollection: Resource
 {
 	[Export]
 	public Dictionary<RoomType, PackedScene> RoomDictionary { get; set; } = new()
 	{
+		{ RoomType.NoDoor, ResourceLoader.Load<PackedScene>("res://Rooms/NoDoor.tscn") },
 		{ RoomType.OneDoorEast, ResourceLoader.Load<PackedScene>("res://Rooms/OneDoorEast.tscn")},
 		{ RoomType.OneDoorNorth, ResourceLoader.Load<PackedScene>("res://Rooms/OneDoorNorth.tscn")},
 		{ RoomType.OneDoorSouth, ResourceLoader.Load<PackedScene>("res://Rooms/OneDoorSouth.tscn")},
@@ -25,6 +27,7 @@ public partial class RoomTypeCollection: Resource
 
 	public enum RoomType
 	{
+		NoDoor,
 		OneDoorEast,
 		OneDoorNorth,
 		OneDoorWest,

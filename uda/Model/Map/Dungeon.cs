@@ -13,10 +13,10 @@ public sealed class Dungeon
     private const int Rows = 10;
     private const int Cols = 10;
     private static readonly Random MyRand = RandomSingleton.GetInstance();
-    private readonly Room[,] _myMap = new Room[Rows, Cols];
+    public readonly Room[,] _myMap = new Room[Rows, Cols];
     private (int, int) _myEntrance;
     private (int, int) _myExit;
-    private readonly Dictionary<RoomType, (int, int)> _myPillars = new ();
+    private readonly Dictionary<RoomType, (int, int)> _myPillars = new();
     
 
     private Dungeon()

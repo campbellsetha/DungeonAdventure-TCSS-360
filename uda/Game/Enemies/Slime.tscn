@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://mfu6yiksjv4c"]
+[gd_scene load_steps=9 format=3 uid="uid://mfu6yiksjv4c"]
 
 [ext_resource type="Texture2D" uid="uid://co1qxbagxgvyp" path="res://WhiteBlockAssets/SlimeGuy-Sheet.png" id="1_d12es"]
-[ext_resource type="Script" uid="uid://cn8opf5yluif5" path="res://Enemies/Slime.cs" id="1_y5nn5"]
+[ext_resource type="Script" uid="uid://cn8opf5yluif5" path="res://Game/Enemies/Slime.cs" id="1_y5nn5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eeskg"]
 
@@ -94,6 +94,8 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm7yu"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 4
@@ -117,7 +119,17 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_v3ont")
+
 [connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]

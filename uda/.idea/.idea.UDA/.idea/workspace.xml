@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.">
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="created project for unit testing">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,13 +40,12 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
-    "accountId": "f5a1692e-637d-44a9-905b-3b0930087b9c"
+    "accountId": "685e3531-ad00-4787-95ff-e2d99f21f5c4"
   }
 }]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/42/2387c203/Dictionary`2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Model/Map/Dungeon.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -62,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "XThreadsFramesViewSplitterKey": "0.13227513",
-    "git-widget-placeholder": "#14 on newUpdatesWithMain",
+    "git-widget-placeholder": "newUpdatesWithMain",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,6 +77,15 @@
   }
 }]]></component>
   <component name="RunManager" selected=".NET Executable.dungeonBuilder.tscn">
+    <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -208,6 +220,7 @@
       <workItem from="1747681223201" duration="11607000" />
       <workItem from="1748363499846" duration="11237000" />
       <workItem from="1748988189302" duration="14119000" />
+      <workItem from="1749080184596" duration="751000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />

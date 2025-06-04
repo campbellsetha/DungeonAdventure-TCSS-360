@@ -1,39 +1,20 @@
-using System.Collections.Generic;
 using System.Text;
 using static UDA.Model.Map.Direction;
 using static UDA.Model.Map.RoomType;
 
 namespace UDA.Model.Map;
+
 public class Room
 {
     private const double MyChance = 0.1;
-    private RoomType MyRoomType { get; init; }
-    private  bool ContainsTrap { get; init; }
-    private bool ContainsHealingPotion { get; init; }
-    private bool ContainsVisionPotion { get; init; }
-    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; set => _myBoundaries = value; }
-    private Dictionary<Direction, BoundaryType?> _myBoundaries = 
-                    new () 
-                    {
-                        { North, null },
-                        { South, null },
-                        { West, null },
-                        { East, null }
-                    };
-    
+
     public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
         MyRoomType = theRoomType;
-        
-        foreach (Direction dir in theDoors)
-        {
-            _myBoundaries[dir] = BoundaryType.Door;
-        }
 
-        foreach (Direction dir in _myBoundaries.Keys)
-        {
-            _myBoundaries[dir] ??= BoundaryType.Wall;
-        }
+        foreach (var dir in theDoors) MyBoundaries[dir] = BoundaryType.Door;
+
+        foreach (var dir in MyBoundaries.Keys) MyBoundaries[dir] ??= BoundaryType.Wall;
 
         if (theRoomType != Entrance && theRoomType != Exit)
         {
@@ -47,18 +28,33 @@ public class Room
             ContainsHealingPotion = false;
             ContainsVisionPotion = false;
         }
-        MyBoundaries = _myBoundaries;
-    }
-    
-    private bool ContainsMultipleItems()
-    {
-        return ContainsHealingPotion && (ContainsVisionPotion || ContainsTrap) 
-               || ContainsVisionPotion && (ContainsHealingPotion || ContainsTrap) 
-               || ContainsTrap && (ContainsVisionPotion || ContainsHealingPotion);
+
+        MyBoundaries = MyBoundaries;
     }
 
-    private char GetLabel() => 
-        MyRoomType switch
+    private RoomType MyRoomType { get; }
+    private bool ContainsTrap { get; }
+    private bool ContainsHealingPotion { get; }
+    private bool ContainsVisionPotion { get; }
+
+    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get; set; } = new()
+    {
+        { North, null },
+        { South, null },
+        { West, null },
+        { East, null }
+    };
+
+    private bool ContainsMultipleItems()
+    {
+        return (ContainsHealingPotion && (ContainsVisionPotion || ContainsTrap))
+               || (ContainsVisionPotion && (ContainsHealingPotion || ContainsTrap))
+               || (ContainsTrap && (ContainsVisionPotion || ContainsHealingPotion));
+    }
+
+    private char GetLabel()
+    {
+        return MyRoomType switch
         {
             Entrance => 'i',
             Exit => 'O',
@@ -72,26 +68,23 @@ public class Room
             Normal when ContainsTrap => 'X',
             _ => ' '
         };
+    }
 
     public string[] GetDetails()
     {
-        string[] result = new string[3];
-        result[0] = _myBoundaries.GetValueOrDefault(North).Equals(BoundaryType.Door) ? "*_*" : "***";
-        result[1] = (_myBoundaries.GetValueOrDefault(West).Equals(BoundaryType.Door) ? "|" : "*") + GetLabel() + 
-                    (_myBoundaries.GetValueOrDefault(East).Equals(BoundaryType.Door) ? "|" : "*");
-        result[2] = _myBoundaries.GetValueOrDefault(South).Equals(BoundaryType.Door) ? "*_*" : "***";
+        var result = new string[3];
+        result[0] = MyBoundaries.GetValueOrDefault(North).Equals(BoundaryType.Door) ? "*_*" : "***";
+        result[1] = (MyBoundaries.GetValueOrDefault(West).Equals(BoundaryType.Door) ? "|" : "*") + GetLabel() +
+                    (MyBoundaries.GetValueOrDefault(East).Equals(BoundaryType.Door) ? "|" : "*");
+        result[2] = MyBoundaries.GetValueOrDefault(South).Equals(BoundaryType.Door) ? "*_*" : "***";
         return result;
     }
-    
+
     public override string ToString()
     {
-        StringBuilder result = new StringBuilder();
-        string[] arr = GetDetails();
-        foreach (var t in arr)
-        {
-            result.Append(t).Append('\n');
-        }
+        var result = new StringBuilder();
+        var arr = GetDetails();
+        foreach (var t in arr) result.Append(t).Append('\n');
         return result.ToString();
     }
-
 }

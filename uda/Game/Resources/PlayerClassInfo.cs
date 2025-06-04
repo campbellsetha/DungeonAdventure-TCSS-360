@@ -2,12 +2,10 @@ using Godot;
 
 namespace UDA.Game.Resources;
 
-[GlobalClass, Tool]
+[GlobalClass]
+[Tool]
 public partial class PlayerClassInfo : Resource
 {
-    [Export] public string MyPlayerName { get; set; }
-    [Export] public string MyPlayerClass { get; set; }
-
     public PlayerClassInfo()
     {
         MyPlayerName = "Greeble Jenkins";
@@ -19,4 +17,7 @@ public partial class PlayerClassInfo : Resource
         MyPlayerName = thePlayerName;
         MyPlayerClass = thePlayerClass;
     }
+
+    [Export] public string MyPlayerName { get; set; }
+    [Export] public string MyPlayerClass { get; set; }
 }

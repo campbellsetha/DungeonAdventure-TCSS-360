@@ -1,20 +1,20 @@
-namespace UDA.Model;
-using Godot;
-//TODO: Make an attack method for the priest class
-public partial class Priest : Characters.Hero
-{
-	private static int myHitPoints = 75;
-	private static readonly int MyAttackSpeed = 5;
-	private static readonly double MyHitChance = 0.7;
-	private static readonly (int, int) MyDamageRange = (25, 45);
-	private static readonly double MyBlockChance = 0.3;
-	private static readonly string MySkill = "Heal";
-	
-	public Priest(string theName) : base(theName, myHitPoints,MyAttackSpeed, MyHitChance,
-		MyDamageRange, MyBlockChance, MySkill) { }
+using UDA.Model.Characters;
 
-	public override void PerformSkill(Characters.DungeonCharacter theCharacter)
-	{
-		myHitPoints += 20;
-	}
+namespace UDA.Model;
+
+//TODO: Make an attack method for the priest class
+public /*partial*/ class Priest(string theName) : Hero(theName, myHitPoints, MyAttackSpeed, MyHitChance,
+    MyDamageRange, MyBlockChance, MySkill)
+{
+    private static int myHitPoints = 75;
+    private static readonly int MyAttackSpeed = 5;
+    private static readonly double MyHitChance = 0.7;
+    private static readonly (int, int) MyDamageRange = (25, 45);
+    private static readonly double MyBlockChance = 0.3;
+    private static readonly string MySkill = "Heal";
+
+    public override void PerformSkill(DungeonCharacter theCharacter)
+    {
+        myHitPoints += 20;
+    }
 }

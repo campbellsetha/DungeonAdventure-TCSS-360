@@ -1,78 +1,79 @@
-using System;
-using Godot;
+//using Godot;
 using static System.Math;
 
 namespace UDA.Model.Characters;
 
-public abstract partial class Hero : DungeonCharacter
+public abstract /*partial*/ class Hero : DungeonCharacter
 {
+    // Should probably have a countdown timer for how often the special skill can be used 
 
-	// Should probably have a countdown timer for how often the special skill can be used 
-	
-	[Signal]
-	public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);
-	
-	protected Hero(
-		string theName, 
-		int theHitPoints, 
-		int theAttackSpeed,
-		double theHitChance, 
-		(int, int) theDamageRange, 
-		double theBlockChance, 
-		string theSkill) 
-		: base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
-	{
-		BlockChance = theBlockChance;
-		Skill = theSkill;
-	}
-	
-	public double BlockChance { get; }
-	
-	public string Skill { get; }
+    /*[Signal]
+    public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);*/
 
-	public virtual void PerformSkill(DungeonCharacter theTarget)
-	{
-		
-	}
-	public override void TakeDamage(int theDamage)
-	{
-		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
-		{
-			HitPoints -= theDamage;
+    protected Hero(
+        string theName,
+        int theHitPoints,
+        int theAttackSpeed,
+        double theHitChance,
+        (int, int) theDamageRange,
+        double theBlockChance,
+        string theSkill)
+        : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
+    {
+        BlockChance = theBlockChance;
+        Skill = theSkill;
+    }
 
-			// Clamp health to avoid it going below 0
-			HitPoints = Max((int)HitPoints, 0);
+    public double BlockChance { get; }
 
-			// Emit the signal
-			EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
+    public string Skill { get; }
 
-			void EmitSignal(string theHealthChangedName, int theHitPoints, int theMaxHitPoints)
-			{
-				throw new NotImplementedException();
-			}
-		}
-	}
-	
-	public void Heal(int theHealAmount)
-	{
-		HitPoints += theHealAmount;
+    public virtual void PerformSkill(DungeonCharacter theTarget)
+    {
+    }
 
-		// Clamp health to avoid it exceeding MaxHitPoints
-		HitPoints = Min((int)HitPoints, (int)MaxHitPoints);
+    public override void TakeDamage(int theDamage)
+    {
+        if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
+        {
+            HitPoints -= theDamage;
 
-		// Emit the signal
-		EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
+            // Clamp health to avoid it going below 0
+            HitPoints = Max(HitPoints, 0);
 
-		void EmitSignal(string theHealthChangedName, object theHitPoints, int theMaxHitPoints)
-		{
-			throw new NotImplementedException();
-		}
-	}
+            // Emit the signal
+            //EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
 
-	public void Connect(string theHealthchanged, Callable theCallable)
-	{
-		throw new NotImplementedException();
-	}
-	
-	//TODO: SERIALIZE THIS
+            /*void EmitSignal(string theHealthChangedName, int theHitPoints, int theMaxHitPoints)
+            {
+                throw new NotImplementedException();
+            }*/
+        }
+    }
+
+    public void Heal(int theHealAmount)
+    {
+        HitPoints += theHealAmount;
+
+        // Clamp health to avoid it exceeding MaxHitPoints
+        HitPoints = Min(HitPoints, MaxHitPoints);
+
+        // Emit the signal
+        // code needs to be moved elsewhere
+        /*EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
+
+        void EmitSignal(string theHealthChangedName, object theHitPoints, int theMaxHitPoints)
+        {
+            throw new NotImplementedException();
+        }*/
+        
+        
+    }
+
+    /*public void Connect(string theHealthchanged, Callable theCallable)
+    {
+        throw new NotImplementedException();
+    }*/
+
+    //TODO: SERIALIZE THIS
 }

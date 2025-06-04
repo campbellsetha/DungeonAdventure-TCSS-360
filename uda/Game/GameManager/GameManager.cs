@@ -1,5 +1,6 @@
-using System.IO;
 using Godot;
+using Godot.Collections;
+using UDA.Game.Resources;
 using FileAccess = Godot.FileAccess;
 
 namespace UDA.Game.GameManager;
@@ -7,11 +8,10 @@ namespace UDA.Game.GameManager;
 public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
-    private UDA.Game.Player.Player _myPlayerInstance;
+    private Player.Player _myPlayerInstance;
 
     public override void _Process(double theDelta)
     {
-        
         //Test to take damage and check health
         if (Input.IsActionJustPressed("space"))
         {
@@ -30,20 +30,15 @@ public partial class GameManager : Node
             OnLoadGame();
             GD.Print("GameLoaded");
         }
-        if (Input.IsActionJustPressed("QueryPlayerInfo"))
-        {
-            GD.Print(_myPlayerInstance.MyClass.ToString());
-        }
-        
+
+        if (Input.IsActionJustPressed("QueryPlayerInfo")) GD.Print(_myPlayerInstance.MyClass.ToString());
     }
 
     public override void _Ready()
     {
-        
         //Grab the player node
-        _myPlayerInstance = GetNode<UDA.Game.Player.Player>("Player");
+        _myPlayerInstance = GetNode<Player.Player>("Player");
         //Now we have to check if the player already has a class and name, this is important for loading from state
-        
     }
 
     public void OnSaveGame()
@@ -51,15 +46,15 @@ public partial class GameManager : Node
         //Most of this is ripped right of off the docs, and will likely need to be tweaked
         //@See https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
         var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Write);
-        
+
         //TODO: Change this to manually perform the save on every object we want to save
         var saveNodes = GetTree().GetNodesInGroup("Player");
         SaveResource();
-        
+
         //Likely need to load the parent node first, might need to manually adjust this 
         //So that it loads the player, and then player class
         //World, and then room -> etc.
-        foreach (Node saveNode in saveNodes)
+        foreach (var saveNode in saveNodes)
         {
             if (string.IsNullOrEmpty(saveNode.SceneFilePath))
             {
@@ -91,25 +86,19 @@ public partial class GameManager : Node
     public void OnLoadGame()
     {
         if (!FileAccess.FileExists("user://saveGame.save"))
-        {
             //TODO: Maybe throw up a splash screen for lack of a save file?
             //In the interem we can just have this do nothing
             return;
-        }
         LoadResource();
 
         //Have to revert game state to avoid the cloning of objects
         //Currently this is done by 
         var nodesToLoad = GetTree().GetNodesInGroup("Player");
-        foreach (Node loadingNode in nodesToLoad)
-        {
-            loadingNode.QueueFree();
-            
-        }
+        foreach (var loadingNode in nodesToLoad) loadingNode.QueueFree();
 
         //Load the file line by line and process the dictionary
-        using (var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Read)) {
-
+        using (var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Read))
+        {
             while (saveFile.GetPosition() < saveFile.GetLength())
             {
                 var jsonString = saveFile.GetLine();
@@ -120,21 +109,19 @@ public partial class GameManager : Node
 
                 // the return of .Ok signals that an error has occured
                 if (parseResult != Error.Ok)
-                {
                     GD.Print(
                         $"JSON Parse Error:{json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
-                }
 
                 //Get data for JSON object
                 //This pulls the next line in the json file and reads it as a 
                 //dictionary provided by Godot's API
                 var nodeData =
-                    new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
+                    new Godot.Collections.Dictionary<string, Variant>((Dictionary)json.Data);
 
                 //Create objects and it to the tree
                 //TODO: create a dictionary for the playerMove script on 2dBody node
-                string path = nodeData["FileName"].ToString();
-                
+                var path = nodeData["FileName"].ToString();
+
                 var newObjectScene = GD.Load<PackedScene>(nodeData["FileName"].ToString());
                 var newObject = newObjectScene.Instantiate<Node>();
 
@@ -158,10 +145,7 @@ public partial class GameManager : Node
                 //This might need to be set up specifically for each instance.
                 foreach (var (key, value) in nodeData)
                 {
-                    if (key == "FileName" || key == "Parent" || key == "PosX" || key == "PosY")
-                    {
-                        continue;
-                    }
+                    if (key == "FileName" || key == "Parent" || key == "PosX" || key == "PosY") continue;
                     newObject.Set(key, value);
                 }
             }
@@ -169,26 +153,22 @@ public partial class GameManager : Node
 
         //Update the reference so the tostring method still works. This does not need to be in the game
         //But this is important when loading from an active state
-        _myPlayerInstance = GetNode<UDA.Game.Player.Player>("Player");
+        _myPlayerInstance = GetNode<Player.Player>("Player");
     }
 
     private void LoadResource()
     {
         //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine
-        string fileName = "res://Game/Resources/PlayerClass.tres";
+        var fileName = "res://Game/Resources/PlayerClass.tres";
         if (ResourceLoader.Exists(fileName))
-        {
-            ResourceLoader.Load<Resources.PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
-        }
+            ResourceLoader.Load<PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
         else
-        {
             throw new FileNotFoundException("The resource could not be found");
-        }
     }
 
     private void SaveResource()
     {
-        string fileName = "res://Game/Resources/PlayerClass.tres";
+        var fileName = "res://Game/Resources/PlayerClass.tres";
         ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
     }
 }

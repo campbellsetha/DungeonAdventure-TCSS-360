@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class StartMenu : Control
 {
@@ -17,14 +16,13 @@ public partial class StartMenu : Control
     private void OnNewGameButtonPressed()
     {
         GD.Print("Start Button works");
-        
     }
-    
+
     private void OnLoadButtonPressed()
     {
         GD.Print("Load Button works");
     }
-    
+
     //Probably just want to put options into an option pane
     //Maybe even just replace this with an info tab about us and the game
     private void OnOptionButtonPressed()

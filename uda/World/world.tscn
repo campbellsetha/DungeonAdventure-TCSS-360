@@ -1,14 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://1msm3iduvvnh"]
+[gd_scene load_steps=11 format=4 uid="uid://1msm3iduvvnh"]
 
 [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_62w18"]
 [ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
 [ext_resource type="Texture2D" uid="uid://w88benjaoca0" path="res://WhiteBlockAssets/Ground tiles (64 x 64).png" id="3_3f78f"]
-[ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Game/Enemies/Slime.tscn" id="4_3f78f"]
+[ext_resource type="Resource" uid="uid://ix8obddw6isi" path="res://Inventory/player_inventory.tres" id="4_k8do8"]
 [ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="5_yf0ba"]
 [ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="6_eidgh"]
 [ext_resource type="Texture2D" uid="uid://jitkjin172tp" path="res://Game/UI/Healthbar.png" id="7_oe8m4"]
-[ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Enemies/Slime.tscn" id="4_3f78f"]
-[ext_resource type="Resource" uid="uid://ix8obddw6isi" path="res://Inventory/player_inventory.tres" id="4_k8do8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
 texture = ExtResource("2_j8job")
@@ -64,12 +62,13 @@ tile_set = SubResource("TileSet_yf0ba")
 position = Vector2(-46, -11)
 _playerInventory = ExtResource("4_k8do8")
 
-[node name="UI" type="CanvasLayer" parent="TileMapLayer/Player/Camera2D2"]
+[node name="TileMapLayer_Player_Camera2D2#UI" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-[node name="HealthBar" type="TextureProgressBar" parent="TileMapLayer/Player/Camera2D2/UI"]
+
+[node name="TileMapLayer_Player_Camera2D2_UI#HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -160.0
 offset_top = -74.0
 offset_right = -120.0

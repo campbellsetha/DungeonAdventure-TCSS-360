@@ -5,7 +5,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="woohoo Dungeon is being generated properly and it can be navigated">
+      <change afterPath="$PROJECT_DIR$/Tests/MonsterTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/48b3ea58-1b89-4835-8ca5-15a4a51a980c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/48b3ea58-1b89-4835-8ca5-15a4a51a980c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterClass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterControls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterCreationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterCreationTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/Slime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Slime.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/Hurtbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Hurtbox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/SqlDBTest/SQLTEST.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/SQLTEST.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/InventorySlotUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/InventorySlotUi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/InventoryUi.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/InventoryUi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/Inventory_item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/Inventory_item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/BoundaryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/BoundaryType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Direction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Direction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Room.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/RandomSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RandomSingleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Sandbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Sandbox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonsterDatabase.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/RegisteredTypeAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/RegisteredTypeAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Settings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/plugin.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/plugin.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identifier.MonsterDatabase" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identifier.sqlite" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,15 +98,29 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360&quot;,
-    &quot;accountId&quot;: &quot;685e3531-ad00-4787-95ff-e2d99f21f5c4&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
+    "accountId": "685e3531-ad00-4787-95ff-e2d99f21f5c4"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Game/SqlDBTest/MonsterDBcreationTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Game/Player/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Game/SqlDBTest/SQLTEST.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Hero.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/HeroFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Priest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Thief.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Characters/Warrior.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/RandomSingleton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Model/Sandbox.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -48,25 +131,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Executable.Player.executor": "Run",
-    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.13227513",
-    "git-widget-placeholder": "#14 on newUpdatesWithMain",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#14 on newUpdatesWithMain&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using MonoCustomResourceRegistry;
 
 namespace UDA.inventory;
@@ -7,9 +6,9 @@ namespace UDA.inventory;
 [RegisteredType(nameof(Inventory), "", nameof(Resource))]
 public partial class Inventory : Resource
 {
-    [Export] private Inventory_item[] _items = new Inventory_item[12];
     private int _inventoryCount;
-    
+    [Export] private Inventory_item[] _items = new Inventory_item[12];
+
     public void add_To_Inventory(Inventory_item theItem)
     {
         if (!item_In_Inventory(theItem))
@@ -26,12 +25,9 @@ public partial class Inventory : Resource
     private bool item_In_Inventory(Inventory_item theItem)
     {
         for (var i = 0; i < _items.Length - 1; i++)
-        {
             if (_items[i] == theItem)
-            {
                 return true;
-            }
-        }
+
         return false;
     }
 
@@ -40,12 +36,10 @@ public partial class Inventory : Resource
         var i = 0;
         while (i < _items.Length)
         {
-            if (_items[i] == theItem) 
-            {
-                return i;
-            }
+            if (_items[i] == theItem) return i;
             i++;
         }
+
         return -1;
     }
 

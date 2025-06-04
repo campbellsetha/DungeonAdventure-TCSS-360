@@ -1,0 +1,151 @@
+[gd_scene load_steps=19 format=3 uid="uid://c0sxi5dgonucy"]
+
+[ext_resource type="Script" uid="uid://c1706h2tvg3sc" path="res://Game/Player/Player.cs" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://cpnxj0x20mrgp" path="res://WhiteBlockAssets/SpriteGuyTester.png" id="2_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="3_btcbx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 28, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(80, 28, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhl08"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(96, 28, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(80, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od3ui"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(96, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(48, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3vf3"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(32, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apopc"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(48, 28, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5htga"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(32, 28, 16, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5o4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwnis")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k53q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhl08")
+}],
+"loop": true,
+"name": &"walkDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od3ui")
+}],
+"loop": true,
+"name": &"walkLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00tjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3vf3")
+}],
+"loop": true,
+"name": &"walkRight",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apopc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5htga")
+}],
+"loop": true,
+"name": &"walkUp",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+radius = 8.88889
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
+
+[sub_resource type="Gradient" id="Gradient_4ntmi"]
+offsets = PackedFloat32Array(0, 0.907895)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_btcbx"]
+gradient = SubResource("Gradient_4ntmi")
+fill = 1
+fill_from = Vector2(0.490741, 0.509259)
+fill_to = Vector2(0.949074, 0.115741)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
+collision_layer = 2
+script = ExtResource("1_onrkg")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p5o4e")
+animation = &"walkUp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_4ntmi")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["PlayerHurtBox"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_btcbx")
+debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_btcbx")
+
+[node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
+visible = false
+offset_left = -45.0
+offset_top = -79.0
+offset_right = 45.0
+offset_bottom = -13.0

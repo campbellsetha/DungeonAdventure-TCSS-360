@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://m64wnj78ayqe"]
+
+[ext_resource type="Script" uid="uid://vr34v47hc10e" path="res://Enemies/MonsterCreationTest.cs" id="1_25fgv"]
+
+[node name="Monster Creation Test" type="Node2D"]
+
+[node name="SlimeSpawn" type="Node2D" parent="."]
+position = Vector2(553, 319)
+script = ExtResource("1_25fgv")

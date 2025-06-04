@@ -1,0 +1,74 @@
+[gd_scene load_steps=17 format=3 uid="uid://doiofcm057mcq"]
+
+[ext_resource type="PackedScene" uid="uid://cmt7b3mxhgh4v" path="res://Rooms/FourDoor.tscn" id="1_jjpqk"]
+[ext_resource type="PackedScene" uid="uid://dea30h5yakntw" path="res://Rooms/OneDoorEast.tscn" id="2_kr3ep"]
+[ext_resource type="PackedScene" uid="uid://cvuq2xl6mbqej" path="res://Rooms/OneDoorNorth.tscn" id="3_wsd82"]
+[ext_resource type="PackedScene" uid="uid://dleqp033puypm" path="res://Rooms/OneDoorSouth.tscn" id="4_7lxkw"]
+[ext_resource type="PackedScene" uid="uid://c68opj08l3030" path="res://Rooms/OneDoorWest.tscn" id="5_agwxw"]
+[ext_resource type="PackedScene" uid="uid://cwjd0rrrentpt" path="res://Rooms/ThreeDoorNorthEastWest.tscn" id="6_one7s"]
+[ext_resource type="PackedScene" uid="uid://bj00dxd0ixflo" path="res://Rooms/ThreeDoorNorthSouthEast.tscn" id="7_7ul48"]
+[ext_resource type="PackedScene" uid="uid://b63nphja3kd06" path="res://Rooms/ThreeDoorNorthSouthWest.tscn" id="8_l6ygh"]
+[ext_resource type="PackedScene" uid="uid://06vla4rok5pc" path="res://Rooms/ThreeDoorSouthEastWest.tscn" id="9_47j53"]
+[ext_resource type="PackedScene" uid="uid://bjbm01b0dub2h" path="res://Rooms/TwoDoorEastWest.tscn" id="10_hgh8m"]
+[ext_resource type="PackedScene" uid="uid://c05cbhgpjofl5" path="res://Rooms/TwoDoorNorthEast.tscn" id="11_x5pn3"]
+[ext_resource type="PackedScene" uid="uid://clobxf4gfh4c4" path="res://Rooms/TwoDoorNorthSouth.tscn" id="12_u6fhn"]
+[ext_resource type="PackedScene" uid="uid://beafy6rw1pp1d" path="res://Rooms/TwoDoorNorthWest.tscn" id="13_eortt"]
+[ext_resource type="PackedScene" uid="uid://bwpit6fqtpyie" path="res://Rooms/TwoDoorSouthEast.tscn" id="14_1f58i"]
+[ext_resource type="PackedScene" uid="uid://becmag0byvo0" path="res://Rooms/TwoDoorSouthWest.tscn" id="15_hvcf8"]
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="16_rp2ik"]
+
+[node name="RoomTest" type="Node2D"]
+
+[node name="RoomTemplate" parent="." instance=ExtResource("1_jjpqk")]
+
+[node name="RoomTemplate2" parent="." instance=ExtResource("2_kr3ep")]
+position = Vector2(256, 0)
+
+[node name="RoomTemplate3" parent="." instance=ExtResource("3_wsd82")]
+position = Vector2(512, 0)
+
+[node name="RoomTemplate4" parent="." instance=ExtResource("4_7lxkw")]
+position = Vector2(768, 0)
+
+[node name="RoomTemplate5" parent="." instance=ExtResource("5_agwxw")]
+position = Vector2(1024, 0)
+
+[node name="RoomTemplate6" parent="." instance=ExtResource("6_one7s")]
+position = Vector2(0, 232)
+
+[node name="RoomTemplate7" parent="." instance=ExtResource("7_7ul48")]
+position = Vector2(256, 232)
+
+[node name="RoomTemplate8" parent="." instance=ExtResource("8_l6ygh")]
+position = Vector2(512, 232)
+
+[node name="RoomTemplate9" parent="." instance=ExtResource("9_47j53")]
+position = Vector2(768, 232)
+
+[node name="RoomTemplate10" parent="." instance=ExtResource("10_hgh8m")]
+position = Vector2(0, 456)
+
+[node name="RoomTemplate11" parent="." instance=ExtResource("11_x5pn3")]
+position = Vector2(256, 456)
+
+[node name="RoomTemplate12" parent="." instance=ExtResource("12_u6fhn")]
+position = Vector2(512, 456)
+
+[node name="RoomTemplate13" parent="." instance=ExtResource("13_eortt")]
+position = Vector2(768, 456)
+
+[node name="RoomTemplate14" parent="." instance=ExtResource("14_1f58i")]
+position = Vector2(1024, 456)
+
+[node name="RoomTemplate15" parent="." instance=ExtResource("15_hvcf8")]
+position = Vector2(1280, 456)
+
+[node name="Player" parent="." instance=ExtResource("16_rp2ik")]
+position = Vector2(80, -32)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.4, 1.4)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.1
+drag_vertical_offset = 0.1

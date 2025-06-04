@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://1msm3iduvvnh"]
+[gd_scene load_steps=10 format=4 uid="uid://1msm3iduvvnh"]
 
-[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="1_62w18"]
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_62w18"]
 [ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
 [ext_resource type="Texture2D" uid="uid://w88benjaoca0" path="res://WhiteBlockAssets/Ground tiles (64 x 64).png" id="3_3f78f"]
-[ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Enemies/Slime.tscn" id="4_3f78f"]
+[ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="5_yf0ba"]
+[ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="6_eidgh"]
+[ext_resource type="Texture2D" uid="uid://jitkjin172tp" path="res://Game/UI/Healthbar.png" id="7_oe8m4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
 texture = ExtResource("2_j8job")
@@ -37,7 +39,6 @@ texture = ExtResource("3_3f78f")
 0:3/0 = 0
 1:3/0 = 0
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
-1:3/0/physics_layer_0/polygon_0/one_way = true
 1:3/0/physics_layer_0/polygon_0/one_way_margin = 2.0
 2:3/0 = 0
 3:3/0 = 0
@@ -59,18 +60,18 @@ tile_set = SubResource("TileSet_yf0ba")
 [node name="Player" parent="TileMapLayer" instance=ExtResource("1_62w18")]
 position = Vector2(-46, -11)
 
-[node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
-position = Vector2(85, -18)
-_variableEndpoint = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-69, -39),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
+[node name="TileMapLayer_Player_Camera2D2#UI" type="CanvasLayer" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Marker2D1" type="Marker2D" parent="TileMapLayer/Slime"]
-position = Vector2(-69, -39)
-
-[node name="Slime2" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
-position = Vector2(-98, 18)
-_variableEndpoint = Object(Marker2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(60, 21),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"gizmo_extents":10.0,"script":null)
-
-
-[node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
-position = Vector2(60, 21)
+[node name="TileMapLayer_Player_Camera2D2_UI#HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -160.0
+offset_top = -74.0
+offset_right = -120.0
+offset_bottom = -34.0
+value = 100.0
+texture_under = ExtResource("5_yf0ba")
+texture_over = ExtResource("6_eidgh")
+texture_progress = ExtResource("7_oe8m4")

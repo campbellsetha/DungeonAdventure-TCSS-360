@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://do3tir4m8dtko"]
+
+[ext_resource type="PackedScene" uid="uid://8ofrtiga8mtq" path="res://Game/UI/StartMenu(Prototype)/StartMenu.tscn" id="1_5dfvm"]
+[ext_resource type="Script" uid="uid://4clln7ygc2jr" path="res://Game/GameManager/GameManager.cs" id="1_jij60"]
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="3_jij60"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_jij60")
+
+[node name="WorldMap" type="Node2D" parent="."]
+
+[node name="StartMenu" parent="." instance=ExtResource("1_5dfvm")]
+
+[node name="Player" parent="." instance=ExtResource("3_jij60")]
+unique_name_in_owner = true
+position = Vector2(568, 377)

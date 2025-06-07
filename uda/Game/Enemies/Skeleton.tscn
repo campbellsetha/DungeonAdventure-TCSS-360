@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://buvu7kodegel2"]
+
+[ext_resource type="Script" uid="uid://dwl50sap53yn8" path="res://Game/Enemies/Skeleton.cs" id="1_0hrti"]
+[ext_resource type="Texture2D" uid="uid://ct43p5hb2vvqt" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skull/v2/skull_v2_1.png" id="2_y3hbo"]
+[ext_resource type="Texture2D" uid="uid://b5yo3i8rbp27a" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skull/v2/skull_v2_2.png" id="3_ylkm3"]
+[ext_resource type="Texture2D" uid="uid://df1diyacgymhh" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skull/v2/skull_v2_3.png" id="4_tb8cu"]
+[ext_resource type="Texture2D" uid="uid://dedkobxrstay3" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skull/v2/skull_v2_4.png" id="5_7n5fr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eeskg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bvd0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y3hbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ylkm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tb8cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7n5fr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wm7yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
+
+[node name="MonsterBase" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 4
+script = ExtResource("1_0hrti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CircleShape2D_eeskg")
+
+[node name="MonsterSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bvd0o")
+frame = 3
+frame_progress = 0.715477
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+scale = Vector2(0.9, 0.9)
+shape = SubResource("CircleShape2D_wm7yu")
+debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_v3ont")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]

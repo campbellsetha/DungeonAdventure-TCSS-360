@@ -7,5 +7,3 @@
 script = ExtResource("1_vxoxu")
 
 [node name="Player" parent="." instance=ExtResource("2_mya23")]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]

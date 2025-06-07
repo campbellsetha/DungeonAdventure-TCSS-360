@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Inventory_item" load_steps=3 format=3 uid="uid://dwyqh03telpsf"]
+
+[ext_resource type="Texture2D" uid="uid://qodlddqkk33j" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png" id="1_aymot"]
+[ext_resource type="Script" uid="uid://dmjg8u12gx8lu" path="res://Inventory/Inventory_item.cs" id="1_ceurb"]
+
+[resource]
+script = ExtResource("1_ceurb")
+_name = "TestItem"
+_texture = ExtResource("1_aymot")
+metadata/_custom_type_script = "uid://dmjg8u12gx8lu"

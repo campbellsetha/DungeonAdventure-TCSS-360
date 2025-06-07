@@ -1,34 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj": {}
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj": {
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj",
+        "projectUniqueName": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj",
-        "packagesPath": "/home/christina/.nuget/packages/",
-        "outputPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/",
+        "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\sword\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/christina/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sword\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj": {
-                "projectPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj"
+              "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
+                "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj"
               }
             }
           }
@@ -43,7 +42,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -82,27 +81,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj": {
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj",
+        "projectUniqueName": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj",
         "projectName": "UDA",
-        "projectPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj",
-        "packagesPath": "/home/christina/.nuget/packages/",
-        "outputPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/.godot/mono/temp/obj/",
+        "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj",
+        "packagesPath": "C:\\Users\\sword\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/christina/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sword\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,7 +119,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -159,12 +157,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2,6 +2,7 @@ using Godot;
 
 namespace UDA.inventory;
 
+[GlobalClass, Tool]
 public partial class Inventory_item : Resource
 {
     [Export] private string _name = "";

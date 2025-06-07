@@ -7,7 +7,7 @@ public partial class RoomConverter : Resource
 {
     [Export]
     // Possible room types with doors at specific locations
-    public Dictionary<string, RoomTypeCollection.RoomType> baseRooms = new ()
+    public Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> baseRooms = new ()
     {
         { "*********", RoomTypeCollection.RoomType.NoDoor},
         { "*****|***", RoomTypeCollection.RoomType.OneDoorEast },

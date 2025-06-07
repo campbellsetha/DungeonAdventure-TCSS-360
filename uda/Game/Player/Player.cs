@@ -6,25 +6,30 @@ namespace UDA.Game.Player;
 
 public partial class Player : CharacterBody2D
 {
-    private AnimatedSprite2D _animatedSprite2D;
-    private Vector2 _currentVelocity;
-    [Export] private int _speed = 200;
-    public Hero MyClass;
-    public PlayerClassInfo MyClassInfo;
-
-    //Fun C# fact, these are called expression bodies
-    public string MyName { get; set; }
-
-    public override void _Ready()
-    {
-        MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
-        MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyName);
-        var thisHurtbox = GetNode<Area2D>("Hurtbox");
-        thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
-        _animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
-        _animatedSprite2D.Play("default");
-        AddToGroup("player");
-    }
+	[Export] private int _speed = 200;
+	private Vector2 _currentVelocity;
+	private AnimatedSprite2D _animatedSprite2D;
+	private string _myName;
+	public PlayerClassInfo MyClassInfo;
+	
+	//Fun C# fact, these are called expression bodies
+	public string MyName 
+	{
+		get => _myName;
+		set => _myName = value;
+	}
+	public Hero MyClass;
+	
+	public override void _Ready()
+	{
+		MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
+		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, _myName);
+		var thisHurtbox = GetNode<Area2D>("Hurtbox");
+		thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
+		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
+		_animatedSprite2D.Play("default");
+		AddToGroup("player");
+	}
 
     public override void _Process(double theDelta)
     {

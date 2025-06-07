@@ -5,7 +5,7 @@ namespace UDA.Game.Resources;
 public partial class RoomTypeCollection: Resource
 {
 	[Export]
-	public Dictionary<RoomType, PackedScene> RoomDictionary { get; set; } = new()
+	public Godot.Collections.Dictionary<RoomType, PackedScene> RoomDictionary { get; set; } = new()
 	{
 		{ RoomType.NoDoor, ResourceLoader.Load<PackedScene>("res://Rooms/NoDoor.tscn") },
 		{ RoomType.OneDoorEast, ResourceLoader.Load<PackedScene>("res://Rooms/OneDoorEast.tscn")},

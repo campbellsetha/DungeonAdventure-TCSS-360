@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://mfu6yiksjv4c"]
+
+[ext_resource type="Script" uid="uid://cn8opf5yluif5" path="res://Game/Enemies/MonsterBase.cs" id="1_y5nn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eeskg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bvd0o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wm7yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
+
+[node name="MonsterBase" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 4
+script = ExtResource("1_y5nn5")
+Speed = null
+VectorLimit = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_eeskg")
+
+[node name="MonsterSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bvd0o")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("CircleShape2D_wm7yu")
+debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_v3ont")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]

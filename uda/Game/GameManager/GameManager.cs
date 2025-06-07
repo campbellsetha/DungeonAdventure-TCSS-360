@@ -78,6 +78,7 @@ public partial class GameManager : Node
             // Store the save dictionary as a new line in the save file.
             saveFile.StoreLine(jsonString);
         }
+        saveFile.Close();
     }
 
     //Because some of the objects are children of other persistent objects
@@ -149,7 +150,9 @@ public partial class GameManager : Node
                     newObject.Set(key, value);
                 }
             }
+            saveFile.Close();
         }
+        
 
         //Update the reference so the tostring method still works. This does not need to be in the game
         //But this is important when loading from an active state

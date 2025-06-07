@@ -7,7 +7,7 @@ namespace UDA.Game.GameManager;
 
 public partial class DungeonBuilder : Node2D
 {
-	private static readonly UDA.Game.Resources.RoomTypeCollection MyRoomTypes = new ();
+	private static readonly RoomTypeCollection MyRoomTypes = new ();
 	private static readonly RoomConverter MyRoomConverter = new ();
 	private static readonly Godot.Collections.Dictionary<UDA.Game.Resources.RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
 	private static readonly Godot.Collections.Dictionary<string, UDA.Game.Resources.RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
@@ -32,7 +32,7 @@ public partial class DungeonBuilder : Node2D
 		BuildDungeon();
 	}
 
-	//This would read through the values in the 2d array representing the dunegon
+	//This would read through the values in the 2d array representing the dungeon
 	//and instantiate the add the corresponding room in the engine(game)
 	public void BuildDungeon()
 	{

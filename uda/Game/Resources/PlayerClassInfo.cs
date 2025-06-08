@@ -21,4 +21,5 @@ public partial class PlayerClassInfo : Resource
 
     [Export] public string MyPlayerName { get; set; }
     [Export] public string MyPlayerClass { get; set; }
+    [Export] public int MyPlayerHp { get; set; }
 }

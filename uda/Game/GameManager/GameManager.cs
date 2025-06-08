@@ -31,7 +31,8 @@ public partial class GameManager : Node
             GD.Print("GameLoaded");
         }
 
-        if (Input.IsActionJustPressed("QueryPlayerInfo")) GD.Print(_myPlayerInstance.MyClass.ToString());
+        if (Input.IsActionJustPressed("QueryPlayerInfo")) 
+            GD.Print(_myPlayerInstance.MyClass.ToString());
     }
 
     public override void _Ready()
@@ -46,14 +47,13 @@ public partial class GameManager : Node
         //Most of this is ripped right of off the docs, and will likely need to be tweaked
         //@See https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
         var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Write);
-
-        //TODO: Change this to manually perform the save on every object we want to save
+        
         var saveNodes = GetTree().GetNodesInGroup("Player");
         SaveResource();
 
-        //Likely need to load the parent node first, might need to manually adjust this 
-        //So that it loads the player, and then player class
-        //World, and then room -> etc.
+        //Only needs to load the player node currently.
+        //Will need to save and serialize the map. Can place the string details from each room into a resource that
+        //Holds a 2d array representing the map.
         foreach (var saveNode in saveNodes)
         {
             if (string.IsNullOrEmpty(saveNode.SceneFilePath))
@@ -152,11 +152,9 @@ public partial class GameManager : Node
             }
             saveFile.Close();
         }
-        
-
-        //Update the reference so the tostring method still works. This does not need to be in the game
-        //But this is important when loading from an active state
-        _myPlayerInstance = GetNode<Player.Player>("Player");
+        //Simple work around to setting the players hp.
+        //Had to open up the visibility of the hitpoint setter for this, cant take damage as there is a change to block
+        _myPlayerInstance.MyClass.HitPoints = _myPlayerInstance.MyClassInfo.MyPlayerHp;
     }
 
     private void LoadResource()
@@ -164,7 +162,9 @@ public partial class GameManager : Node
         //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine
         var fileName = "res://Game/Resources/PlayerClass.tres";
         if (ResourceLoader.Exists(fileName))
+        {
             ResourceLoader.Load<PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
+        }
         else
             throw new FileNotFoundException("The resource could not be found");
     }
@@ -172,6 +172,8 @@ public partial class GameManager : Node
     private void SaveResource()
     {
         var fileName = "res://Game/Resources/PlayerClass.tres";
+        //Update the class resource to match the current players hp at save
+        _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.HitPoints;
         ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
     }
 }

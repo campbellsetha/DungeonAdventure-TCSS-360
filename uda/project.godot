@@ -23,6 +23,10 @@ boot_splash/bg_color=Color(0.630264, 0.554366, 0.834131, 1)
 boot_splash/image="uid://crwhartamq6ey"
 config/icon="res://icon.svg"
 
+[autoload]
+
+EventBus="*res://Game/Resources/EventBus.cs"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -34,6 +38,11 @@ project/assembly_name="UDA"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg")
+
+[global_group]
+
+Player=""
+Monster=""
 
 [input]
 

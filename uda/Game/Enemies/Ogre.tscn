@@ -48,7 +48,7 @@ sprite_frames = SubResource("SpriteFrames_bvd0o")
 frame = 2
 frame_progress = 0.704603
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 4
 collision_mask = 2
 
@@ -58,13 +58,13 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_v3ont")
 
 [connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
-[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="OnPlayerDetection"]

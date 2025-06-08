@@ -32,7 +32,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
 
-[node name="Gremlin" type="CharacterBody2D"]
+[node name="Gremlin" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_48s0p")
@@ -55,13 +55,13 @@ visible = false
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_v3ont")
 
 [connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
-[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="OnPlayerDetection"]

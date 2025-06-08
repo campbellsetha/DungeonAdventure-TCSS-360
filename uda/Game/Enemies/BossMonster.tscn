@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://toy3qaqd3rev"]
+
+[ext_resource type="Script" uid="uid://bgmppib87xajp" path="res://Game/Enemies/BossMonster.cs" id="1_i6ow5"]
+[ext_resource type="Texture2D" uid="uid://bv411jtqmi1sh" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest3/v1/priest3_v1_1.png" id="2_i6ow5"]
+[ext_resource type="Texture2D" uid="uid://cintfjr7i6e4h" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest3/v1/priest3_v1_2.png" id="3_mudfh"]
+[ext_resource type="Texture2D" uid="uid://dka2gr2gdg7jw" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest3/v1/priest3_v1_3.png" id="4_eqe7l"]
+[ext_resource type="Texture2D" uid="uid://cpork6s4a4dqw" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest3/v1/priest3_v1_4.png" id="5_q8ffx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eeskg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bvd0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i6ow5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mudfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eqe7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q8ffx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wm7yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
+
+[node name="BossMonster" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 4
+script = ExtResource("1_i6ow5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_eeskg")
+
+[node name="MonsterSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bvd0o")
+frame = 3
+frame_progress = 0.878819
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
+scale = Vector2(1.8, 1.8)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_wm7yu")
+debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_v3ont")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerDetection"]

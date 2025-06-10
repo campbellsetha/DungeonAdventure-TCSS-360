@@ -64,7 +64,7 @@ public partial class DungeonBuilder : Node2D
 		if (itemSpawnRoot == null)
 			return;
 		
-		var spawnMarkers = new Godot.Collections.Array<Node>(itemSpawnRoot.GetChildren());
+		var spawnMarkers = new Array<Node>(itemSpawnRoot.GetChildren());
 		spawnMarkers.Shuffle();
 			
 		var ListOfRoomItems = ItemFactory.GetItemsFromRoom(roomModel);
@@ -104,8 +104,8 @@ public partial class DungeonBuilder : Node2D
 		return theRoomScene;
 		
 		//TEST PRINT FOR STRING
-		GD.Print(modifiedRoom);
-		GD.Print(theRoomType);
+		//GD.Print(modifiedRoom);
+		//GD.Print(theRoomType);
 
 	}
 }

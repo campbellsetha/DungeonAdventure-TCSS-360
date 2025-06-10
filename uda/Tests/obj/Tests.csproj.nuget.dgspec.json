@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj": {}
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj": {
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj",
+        "projectUniqueName": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj",
-        "packagesPath": "/Users/sethcampbell/.nuget/packages/",
-        "outputPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/obj/",
+        "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\sword\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/sethcampbell/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sword\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj": {
-                "projectPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj"
+              "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
+                "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj"
               }
             }
           }
@@ -81,21 +81,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj": {
+    "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj",
+        "projectUniqueName": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj",
         "projectName": "UDA",
-        "projectPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj",
-        "packagesPath": "/Users/sethcampbell/.nuget/packages/",
-        "outputPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/.godot/mono/temp/obj/",
+        "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj",
+        "packagesPath": "C:\\Users\\sword\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/sethcampbell/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\sword\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -157,12 +157,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

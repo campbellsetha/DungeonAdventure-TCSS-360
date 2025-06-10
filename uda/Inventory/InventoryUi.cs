@@ -1,14 +1,6 @@
 using Godot;
-<<<<<<< Updated upstream
-
-public partial class InventoryUi : Control
-{
-    private bool is_closed;
-=======
-using System;
-using System.ComponentModel;
 using UDA.inventory;
-using Range = System.Range;
+
 
 
 public partial class InventoryUi : Control
@@ -24,7 +16,7 @@ public partial class InventoryUi : Control
 	{
 		_inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
 		_generalSlots = GetNode<GridContainer>("NinePatchRect/GridContainer_General");
-		_idolSlots = GetNode<GridContainer>("NinePatchRect/GridContainer_Idol");
+		_idolSlots = GetNode<GridContainer>("NinePatchRect/GridContainer_Idols");
 			
 		close();
 		Refresh();
@@ -52,14 +44,7 @@ public partial class InventoryUi : Control
 			_idolSlots.AddChild(slot);
 		}
 	}
->>>>>>> Stashed changes
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        close();
-    }
-
+	
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {

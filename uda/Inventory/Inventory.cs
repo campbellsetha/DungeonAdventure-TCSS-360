@@ -1,8 +1,5 @@
 using Godot;
-<<<<<<< Updated upstream
-=======
 using System.Collections.Generic;
->>>>>>> Stashed changes
 using MonoCustomResourceRegistry;
 
 namespace UDA.inventory;
@@ -10,17 +7,12 @@ namespace UDA.inventory;
 [RegisteredType(nameof(Inventory), "", nameof(Resource))]
 public partial class Inventory : Resource
 {
-<<<<<<< Updated upstream
     private int _inventoryCount;
     [Export] private Inventory_item[] _items = new Inventory_item[12];
-
-    public void add_To_Inventory(Inventory_item theItem)
-=======
     private List<InventoryItem> _generalItems = new();
     private List<InventoryItem> _keyItems = new();
     
     public void AddToInventory(InventoryItem theItem)
->>>>>>> Stashed changes
     {
         var exists = _generalItems.Find(x => x.Id == theItem.Id);
         //the name of the pillars must contain a number to position them in the key item array.
@@ -39,8 +31,7 @@ public partial class Inventory : Resource
             exists.IncreaseItemCount();
         }
     }
-
-<<<<<<< Updated upstream
+    
     private bool item_In_Inventory(Inventory_item theItem)
     {
         for (var i = 0; i < _items.Length - 1; i++)
@@ -66,8 +57,8 @@ public partial class Inventory : Resource
     {
         return true;
     }
-}
-=======
+
+
     private bool IsItemValid(InventoryItem theItem)
     {
         return true;
@@ -83,4 +74,4 @@ public partial class Inventory : Resource
         return _generalItems;
     }
 }
->>>>>>> Stashed changes
+

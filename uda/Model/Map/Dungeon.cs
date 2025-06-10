@@ -151,6 +151,7 @@ public sealed class Dungeon
         {
             North => _myMap[theX - 1, theY],
             South => _myMap[theX + 1, theY],
+            //This can throw an OOB sometimes
             West => _myMap[theX, theY - 1],
             East => _myMap[theX, theY + 1],
             _ => throw new Exception("Unknown direction")

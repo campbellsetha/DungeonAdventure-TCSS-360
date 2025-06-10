@@ -16,4 +16,9 @@ public partial class EventBus : Node
 	{
 		EmitSignalDealDamage(theDamage);
 	}
+
+	public void DealDamageToEnemy(int theDamage)
+	{
+		EmitSignalDealDamage(theDamage);
+	}
 }

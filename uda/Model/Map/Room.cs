@@ -7,24 +7,20 @@ namespace UDA.Model.Map;
 public class Room
 {
     private const double MyChance = 0.1;
-<<<<<<< Updated upstream
+    //internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; }
+    public RoomType MyRoomType { get; }
+    public bool ContainsTrap { get; }
+    public bool ContainsHealingPotion { get; }
+    public bool ContainsVisionPotion { get; }
 
-=======
-    public RoomType MyRoomType { get; init; }
-    private bool ContainsTrap { get; init; }
-    public bool ContainsHealingPotion { get; init; }
-    public bool ContainsVisionPotion { get; init; }
-    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; set => _myBoundaries = value; }
-    private Dictionary<Direction, BoundaryType?> _myBoundaries = 
-                    new () 
-                    {
-                        { North, null },
-                        { South, null },
-                        { West, null },
-                        { East, null }
-                    };
+    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get; set; } = new()
+    {
+        { North, null },
+        { South, null },
+        { West, null },
+        { East, null }
+    };
     
->>>>>>> Stashed changes
     public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
         MyRoomType = theRoomType;
@@ -48,20 +44,7 @@ public class Room
 
         MyBoundaries = MyBoundaries;
     }
-
-    private RoomType MyRoomType { get; }
-    private bool ContainsTrap { get; }
-    private bool ContainsHealingPotion { get; }
-    private bool ContainsVisionPotion { get; }
-
-    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get; set; } = new()
-    {
-        { North, null },
-        { South, null },
-        { West, null },
-        { East, null }
-    };
-
+    
     private bool ContainsMultipleItems()
     {
         return (ContainsHealingPotion && (ContainsVisionPotion || ContainsTrap))

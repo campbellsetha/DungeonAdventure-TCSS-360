@@ -1,30 +1,49 @@
 using Godot;
+using UDA.Game.Enemies;
 using UDA.Game.Resources;
 using UDA.Model.Characters;
+<<<<<<< Updated upstream
+using UDA.Model.Characters.Monster;
+=======
+using UDA.inventory;
+>>>>>>> Stashed changes
 
 namespace UDA.Game.Player;
 
 public partial class Player : CharacterBody2D
 {
-    private AnimatedSprite2D _animatedSprite2D;
-    private Vector2 _currentVelocity;
-    [Export] private int _speed = 200;
-    public Hero MyClass;
+    [Export] private Area2D MonsterArea;
+	[Export] private int _speed = 200;
+	private Vector2 _currentVelocity;
+	private AnimatedSprite2D _animatedSprite2D;
+<<<<<<< Updated upstream
     public PlayerClassInfo MyClassInfo;
-
-    //Fun C# fact, these are called expression bodies
-    public string MyName { get; set; }
-
-    public override void _Ready()
+=======
+	private string _myName;
+	public Resources.PlayerClassInfo MyClassInfo;
+	public Inventory Inventory { get; private set; }
+	
+	//Fun C# fact, these are called expression bodies
+	public string MyName 
+	{
+		get => _myName;
+		set => _myName = value;
+	}
+>>>>>>> Stashed changes
+	public Hero MyClass;
+    
+	public override void _Ready()
     {
-        MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
-        MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyName);
-        var thisHurtbox = GetNode<Area2D>("Hurtbox");
-        thisHurtbox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnHurtBoxEntered));
-        _animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
-        _animatedSprite2D.Play("default");
-        AddToGroup("player");
-    }
+		MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
+		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);
+        
+        //Connecting to the event bus, we connect to the specific signal not the method in the bus
+        EventBus.getInstance().Connect(nameof(EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
+        
+		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
+		_animatedSprite2D.Play("default");
+		//AddToGroup("player");
+	}
 
     public override void _Process(double theDelta)
     {
@@ -79,6 +98,7 @@ public partial class Player : CharacterBody2D
             return;
         }
 
+<<<<<<< Updated upstream
         //Horizontal movement versus vertical movement
         if (Math.Abs(theCurrentVector2.X) > Math.Abs(theCurrentVector2.Y))
             //Horizontal,
@@ -87,17 +107,12 @@ public partial class Player : CharacterBody2D
             //Vertical
             _animatedSprite2D.Play(theCurrentVector2.Y < 0 ? "walkUp" : "walkDown");
     }
-
-    public void SetClass(string theClassType)
+    
+    //Can add a check to see if what entered was the global class monster
+    private void OnHurtBoxEntered(int theDamageAmount)
     {
-        if (MyName == null) throw new ArgumentNullException("The name must not be null");
-        if (theClassType == null) throw new ArgumentNullException("The class must not be null");
-        MyClass = HeroFactory.CreateHero(theClassType, MyName);
-    }
-
-    public virtual void OnHurtBoxEntered(Area2D theAreaThatEntered)
-    {
-        GD.Print("Ouch");
+        //Testing to see that the appropiate damge is being delivered
+        GD.Print("Ouch" + theDamageAmount);
     }
 
     private Godot.Collections.Dictionary<string, Variant> Save()
@@ -110,8 +125,29 @@ public partial class Player : CharacterBody2D
             {"PosY", Position.Y},
             {"AnimatedSprite", _animatedSprite2D},
             {"CurrentVelocity", _currentVelocity},
-            {"PlayerName", MyName},
-            //{"PlayerClass", MyClass}
+            {"PlayerName", MyClassInfo.MyPlayerName},
+            //{"PlayerHealth", MyClass.HitPoints}
         };
     }
+=======
+	public virtual void OnHurtBoxEntered(Area2D theAreaThatEntered)
+	{
+		GD.Print("Ouch");
+	}
+	
+	private Godot.Collections.Dictionary<string, Variant> Save()
+	{
+		return new Godot.Collections.Dictionary<string, Variant>()
+		{
+			{"FileName", SceneFilePath },
+			{"Parent", GetParent().GetPath() },
+			{"PosX", Position.X },
+			{"PosY", Position.Y},
+			{"AnimatedSprite", _animatedSprite2D},
+			{"CurrentVelocity", _currentVelocity},
+			{"PlayerName", MyName},
+			{"PlayerClass", MyClass}
+		};
+	}
+>>>>>>> Stashed changes
 }

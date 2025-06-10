@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references">
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="created project for unit testing">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomTypeCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +37,12 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,
-    &quot;accountId&quot;: &quot;685e3531-ad00-4787-95ff-e2d99f21f5c4&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
+    "accountId": "685e3531-ad00-4787-95ff-e2d99f21f5c4"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,26 +56,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.dungeonBuilder.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13227513&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    ".NET Executable.dungeonBuilder.tscn.executor": "Run",
+    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.13227513",
+    "git-widget-placeholder": "newUpdatesWithMain",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.dungeonBuilder.tscn">
     <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
       <option name="allowRunningInParallel" value="false" />
@@ -216,9 +220,7 @@
       <workItem from="1747681223201" duration="11607000" />
       <workItem from="1748363499846" duration="11237000" />
       <workItem from="1748988189302" duration="14119000" />
-      <workItem from="1749080184596" duration="2263000" />
-      <workItem from="1749152134776" duration="3055000" />
-      <workItem from="1749335995169" duration="129000" />
+      <workItem from="1749080184596" duration="751000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />
@@ -236,15 +238,7 @@
       <option name="project" value="LOCAL" />
       <updated>1749007236659</updated>
     </task>
-    <task id="LOCAL-00003" summary="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references">
-      <option name="closed" value="true" />
-      <created>1749081021305</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1749081021306</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,8 +260,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="woohoo Dungeon is being generated properly and it can be navigated" />
     <MESSAGE value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
-    <MESSAGE value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

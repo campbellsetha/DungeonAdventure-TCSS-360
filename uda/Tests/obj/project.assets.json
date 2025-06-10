@@ -2108,33 +2108,32 @@
     ]
   },
   "packageFolders": {
-    "/home/christina/.nuget/packages/": {}
+    "/Users/sethcampbell/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj",
+      "projectUniqueName": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/Tests.csproj",
-      "packagesPath": "/home/christina/.nuget/packages/",
-      "outputPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/",
+      "projectPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/Tests.csproj",
+      "packagesPath": "/Users/sethcampbell/.nuget/packages/",
+      "outputPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/christina/.nuget/NuGet/NuGet.Config"
+        "/Users/sethcampbell/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj": {
-              "projectPath": "/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/UDA.csproj"
+            "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj": {
+              "projectPath": "/Volumes/Macintosh Extended NVME/Github/DungeonAdventure-TCSS-360/Untitled/uda/UDA.csproj"
             }
           }
         }
@@ -2149,7 +2148,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -2188,7 +2187,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

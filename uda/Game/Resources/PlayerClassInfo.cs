@@ -6,6 +6,7 @@ namespace UDA.Game.Resources;
 [Tool]
 public partial class PlayerClassInfo : Resource
 {
+    //Putting in default values as the constructor for Hero can fail without these
     public PlayerClassInfo()
     {
         MyPlayerName = "Greeble Jenkins";
@@ -20,4 +21,5 @@ public partial class PlayerClassInfo : Resource
 
     [Export] public string MyPlayerName { get; set; }
     [Export] public string MyPlayerClass { get; set; }
+    [Export] public int MyPlayerHp { get; set; }
 }

@@ -7,7 +7,24 @@ namespace UDA.Model.Map;
 public class Room
 {
     private const double MyChance = 0.1;
+<<<<<<< Updated upstream
 
+=======
+    public RoomType MyRoomType { get; init; }
+    private bool ContainsTrap { get; init; }
+    public bool ContainsHealingPotion { get; init; }
+    public bool ContainsVisionPotion { get; init; }
+    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; set => _myBoundaries = value; }
+    private Dictionary<Direction, BoundaryType?> _myBoundaries = 
+                    new () 
+                    {
+                        { North, null },
+                        { South, null },
+                        { West, null },
+                        { East, null }
+                    };
+    
+>>>>>>> Stashed changes
     public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
         MyRoomType = theRoomType;

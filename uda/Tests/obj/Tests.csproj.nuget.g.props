@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-        <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
-        <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
-        <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-        <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/christina/.nuget/packages/</NuGetPackageRoot>
-        <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/christina/.nuget/packages/</NuGetPackageFolders>
-        <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-        <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.13.2</NuGetToolVersion>
-    </PropertyGroup>
-    <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-        <SourceRoot Include="/home/christina/.nuget/packages/"/>
-    </ItemGroup>
-    <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-        <Import Project="$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props" Condition="Exists('$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props')"/>
-        <Import Project="$(NuGetPackageRoot)nunit3testadapter/4.6.0/build/netcoreapp3.1/NUnit3TestAdapter.props" Condition="Exists('$(NuGetPackageRoot)nunit3testadapter/4.6.0/build/netcoreapp3.1/NUnit3TestAdapter.props')"/>
-        <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost/17.12.0/build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost/17.12.0/build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props')"/>
-        <Import Project="$(NuGetPackageRoot)microsoft.codecoverage/17.12.0/build/netstandard2.0/Microsoft.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage/17.12.0/build/netstandard2.0/Microsoft.CodeCoverage.props')"/>
-        <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk/17.12.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk/17.12.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.props')"/>
-    </ImportGroup>
-    <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-        <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">/home/christina/.nuget/packages/entityframework/6.4.4</PkgEntityFramework>
-        <PkgSystem_Data_SQLite_EF6 Condition=" '$(PkgSystem_Data_SQLite_EF6)' == '' ">/home/christina/.nuget/packages/system.data.sqlite.ef6/1.0.119</PkgSystem_Data_SQLite_EF6>
-        <PkgNUnit_Analyzers Condition=" '$(PkgNUnit_Analyzers)' == '' ">/home/christina/.nuget/packages/nunit.analyzers/4.4.0</PkgNUnit_Analyzers>
-    </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/sethcampbell/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/sethcampbell/.nuget/packages/</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.13.2</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="/Users/sethcampbell/.nuget/packages/" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props" Condition="Exists('$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props')" />
+    <Import Project="$(NuGetPackageRoot)nunit3testadapter/4.6.0/build/netcoreapp3.1/NUnit3TestAdapter.props" Condition="Exists('$(NuGetPackageRoot)nunit3testadapter/4.6.0/build/netcoreapp3.1/NUnit3TestAdapter.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost/17.12.0/build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost/17.12.0/build/netcoreapp3.1/Microsoft.TestPlatform.TestHost.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage/17.12.0/build/netstandard2.0/Microsoft.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage/17.12.0/build/netstandard2.0/Microsoft.CodeCoverage.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk/17.12.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk/17.12.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">/Users/sethcampbell/.nuget/packages/entityframework/6.4.4</PkgEntityFramework>
+    <PkgSystem_Data_SQLite_EF6 Condition=" '$(PkgSystem_Data_SQLite_EF6)' == '' ">/Users/sethcampbell/.nuget/packages/system.data.sqlite.ef6/1.0.119</PkgSystem_Data_SQLite_EF6>
+    <PkgNUnit_Analyzers Condition=" '$(PkgNUnit_Analyzers)' == '' ">/Users/sethcampbell/.nuget/packages/nunit.analyzers/4.4.0</PkgNUnit_Analyzers>
+  </PropertyGroup>
 </Project>

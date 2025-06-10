@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=4 uid="uid://ctaemafo8rex0"]
+
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="1_62w18"]
+[ext_resource type="Script" uid="uid://4clln7ygc2jr" path="res://GameManager/GameManager.cs" id="1_bkhv4"]
+[ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
+[ext_resource type="Texture2D" uid="uid://w88benjaoca0" path="res://WhiteBlockAssets/Ground tiles (64 x 64).png" id="3_3f78f"]
+[ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Enemies/Slime.tscn" id="4_3f78f"]
+[ext_resource type="Script" uid="uid://bto6xp87u80ri" path="res://World/PauseMenu.cs" id="6_eidgh"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://UI/Retrobyte-4nMol.ttf" id="6_yf0ba"]
+[ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="8_eidgh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
+texture = ExtResource("2_j8job")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
+texture = ExtResource("3_3f78f")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+1:3/0/physics_layer_0/polygon_0/one_way_margin = 2.0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yf0ba"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_k8do8")
+sources/1 = SubResource("TileSetAtlasSource_bkhv4")
+
+[node name="World" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_bkhv4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+process_mode = 1
+z_index = -1
+tile_map_data = PackedByteArray("AAD5//z/AQACAAIAAAD6//3/AQACAAIAAAD7//3/AQACAAIAAAD8//7/AQACAAIAAAD9//7/AQACAAIAAAD+////AQACAAIAAAD/////AQACAAIAAAAAAAAAAQACAAIAAAABAAAAAQACAAIAAAACAAEAAQACAAIAAAADAAEAAQACAAIAAAAEAAIAAQACAAIAAAAFAAIAAQACAAIAAAAGAAMAAQACAAIAAAAFAAMAAQACAAIAAAAEAAMAAQACAAIAAAADAAMAAQACAAIAAAACAAMAAQACAAIAAAABAAMAAQACAAIAAAAAAAMAAQACAAIAAAD//wMAAQACAAIAAAD+/wMAAQACAAIAAAD9/wMAAQACAAIAAAD8/wMAAQACAAIAAAD7/wMAAQACAAIAAAD6/wMAAQACAAIAAAD5/wMAAQACAAIAAAD5/wIAAQACAAIAAAD5/wEAAQACAAIAAAD5/wAAAQACAAIAAAD5////AQACAAIAAAD5//7/AQACAAIAAAD5//3/AQACAAIAAAD6//z/AQACAAIAAAD7//z/AQACAAIAAAD8//z/AQACAAIAAAD9//z/AQACAAIAAAD+//z/AQACAAIAAAD///z/AQACAAIAAAAAAPz/AQACAAIAAAABAPz/AQACAAIAAAACAPz/AQACAAIAAAADAPz/AQACAAIAAAAEAPz/AQACAAIAAAAFAPz/AQACAAIAAAAGAPz/AQACAAIAAAAGAP3/AQACAAIAAAAGAP7/AQACAAIAAAAGAP//AQACAAIAAAAGAAAAAQACAAIAAAAGAAEAAQACAAIAAAAGAAIAAQACAAIAAAD3//r/AQACAAIAAAD3//v/AQACAAIAAAD3//z/AQACAAIAAAD3//3/AQACAAIAAAD3//7/AQACAAIAAAD3////AQACAAIAAAD3/wAAAQACAAIAAAD3/wEAAQACAAIAAAD3/wIAAQACAAIAAAD3/wMAAQACAAIAAAD3/wQAAQACAAIAAAD4//r/AQACAAIAAAD4//v/AQACAAIAAAD4//z/AQACAAIAAAD4//3/AQACAAIAAAD4//7/AQACAAIAAAD4////AQACAAIAAAD4/wAAAQACAAIAAAD4/wEAAQACAAIAAAD4/wIAAQACAAIAAAD4/wMAAQACAAIAAAD4/wQAAQACAAIAAAD5//r/AQACAAIAAAD5//v/AQACAAIAAAD5/wQAAQACAAIAAAD6//r/AQACAAIAAAD6//v/AQACAAIAAAD6//7/AQACAAIAAAD6////AQACAAIAAAD6/wAAAQACAAIAAAD6/wEAAQACAAIAAAD6/wIAAQACAAIAAAD6/wQAAQACAAIAAAD7//r/AQACAAIAAAD7//v/AQACAAIAAAD7//7/AQACAAIAAAD7////AQACAAIAAAD7/wAAAQACAAIAAAD7/wEAAQACAAIAAAD7/wIAAQACAAIAAAD7/wQAAQACAAIAAAD8//r/AQACAAIAAAD8//v/AQACAAIAAAD8//3/AQACAAIAAAD8////AQACAAIAAAD8/wAAAQACAAIAAAD8/wEAAQACAAIAAAD8/wIAAQACAAIAAAD8/wQAAQACAAIAAAD9//r/AQACAAIAAAD9//v/AQACAAIAAAD9//3/AQACAAIAAAD9////AQACAAIAAAD9/wAAAQACAAIAAAD9/wEAAQACAAIAAAD9/wIAAQACAAIAAAD9/wQAAQACAAIAAAD+//r/AQACAAIAAAD+//v/AQACAAIAAAD+//3/AQACAAIAAAD+//7/AQACAAIAAAD+/wAAAQACAAIAAAD+/wEAAQACAAIAAAD+/wIAAQACAAIAAAD+/wQAAQACAAIAAAD///r/AQACAAIAAAD///v/AQACAAIAAAD///3/AQACAAIAAAD///7/AQACAAIAAAD//wAAAQACAAIAAAD//wEAAQACAAIAAAD//wIAAQACAAIAAAD//wQAAQACAAIAAAAAAPr/AQACAAIAAAAAAPv/AQACAAIAAAAAAP3/AQACAAIAAAAAAP7/AQACAAIAAAAAAP//AQACAAIAAAAAAAEAAQACAAIAAAAAAAIAAQACAAIAAAAAAAQAAQACAAIAAAABAPr/AQACAAIAAAABAPv/AQACAAIAAAABAP3/AQACAAIAAAABAP7/AQACAAIAAAABAP//AQACAAIAAAABAAEAAQACAAIAAAABAAIAAQACAAIAAAABAAQAAQACAAIAAAACAPr/AQACAAIAAAACAPv/AQACAAIAAAACAP3/AQACAAIAAAACAP7/AQACAAIAAAACAP//AQACAAIAAAACAAAAAQACAAIAAAACAAIAAQACAAIAAAACAAQAAQACAAIAAAADAPr/AQACAAIAAAADAPv/AQACAAIAAAADAP3/AQACAAIAAAADAP7/AQACAAIAAAADAP//AQACAAIAAAADAAAAAQACAAIAAAADAAIAAQACAAIAAAADAAQAAQACAAIAAAAEAPr/AQACAAIAAAAEAPv/AQACAAIAAAAEAP3/AQACAAIAAAAEAP7/AQACAAIAAAAEAP//AQACAAIAAAAEAAAAAQACAAIAAAAEAAEAAQACAAIAAAAEAAQAAQACAAIAAAAFAPr/AQACAAIAAAAFAPv/AQACAAIAAAAFAP3/AQACAAIAAAAFAP7/AQACAAIAAAAFAP//AQACAAIAAAAFAAAAAQACAAIAAAAFAAEAAQACAAIAAAAFAAQAAQACAAIAAAAGAPr/AQACAAIAAAAGAPv/AQACAAIAAAAGAAQAAQACAAIAAAAHAPr/AQACAAIAAAAHAPv/AQACAAIAAAAHAPz/AQACAAIAAAAHAP3/AQACAAIAAAAHAP7/AQACAAIAAAAHAP//AQACAAIAAAAHAAAAAQACAAIAAAAHAAEAAQACAAIAAAAHAAIAAQACAAIAAAAHAAMAAQACAAIAAAAHAAQAAQACAAIAAAD2//n/AQABAAMAAAD2//r/AQABAAMAAAD2//v/AQABAAMAAAD2//z/AQABAAMAAAD2//3/AQABAAMAAAD2//7/AQABAAMAAAD2////AQABAAMAAAD2/wAAAQABAAMAAAD2/wEAAQABAAMAAAD2/wIAAQABAAMAAAD2/wMAAQABAAMAAAD2/wQAAQABAAMAAAD3//n/AQABAAMAAAD4//n/AQABAAMAAAD5//n/AQABAAMAAAD6//n/AQABAAMAAAD7//n/AQABAAMAAAD8//n/AQABAAMAAAD9//n/AQABAAMAAAD+//n/AQABAAMAAAD///n/AQABAAMAAAAAAPn/AQABAAMAAAABAPn/AQABAAMAAAACAPn/AQABAAMAAAADAPn/AQABAAMAAAAEAPn/AQABAAMAAAAFAPn/AQABAAMAAAAGAPn/AQABAAMAAAAHAPn/AQABAAMAAAAIAPn/AQABAAMAAAAIAPr/AQABAAMAAAAIAPv/AQABAAMAAAAIAPz/AQABAAMAAAAIAP3/AQABAAMAAAAIAP7/AQABAAMAAAAIAP//AQABAAMAAAAIAAAAAQABAAMAAAAIAAEAAQABAAMAAAAIAAIAAQABAAMAAAAIAAMAAQABAAMAAAAIAAQAAQABAAMAAAAIAAUAAQABAAMAAAAAAAUAAQABAAMAAAABAAUAAQABAAMAAAACAAUAAQABAAMAAAADAAUAAQABAAMAAAAEAAUAAQABAAMAAAAFAAUAAQABAAMAAAAGAAUAAQABAAMAAAAHAAUAAQABAAMAAAD2/wUAAQABAAMAAAD3/wUAAQABAAMAAAD4/wUAAQABAAMAAAD5/wUAAQABAAMAAAD6/wUAAQABAAMAAAD7/wUAAQABAAMAAAD8/wUAAQABAAMAAAD9/wUAAQABAAMAAAD+/wUAAQABAAMAAAA=")
+tile_set = SubResource("TileSet_yf0ba")
+
+[node name="Player" parent="TileMapLayer" instance=ExtResource("1_62w18")]
+position = Vector2(-46, -11)
+
+[node name="Camera2D" type="Camera2D" parent="TileMapLayer/Player"]
+
+[node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
+position = Vector2(85, -18)
+
+[node name="Marker2D1" type="Marker2D" parent="TileMapLayer/Slime"]
+position = Vector2(-69, -39)
+
+[node name="Slime2" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
+position = Vector2(-98, 18)
+
+[node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
+position = Vector2(60, 21)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_eidgh")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -131.0
+offset_right = -1.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.8631, 6.53039)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.34638
+offset_top = 2.60321
+offset_right = 23.3464
+offset_bottom = 36.6032
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.515182, 0.460676)
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_yf0ba")
+text = "Resume"
+
+[node name="SaveButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_yf0ba")
+text = "Save"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_yf0ba")
+text = "Exit"
+
+[node name="Inventory_UI" parent="CanvasLayer" instance=ExtResource("8_eidgh")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -122.0
+offset_right = 4.0
+offset_bottom = -56.0
+scale = Vector2(3.51414, 3.48134)
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/ResumeButton" to="CanvasLayer/PauseMenu" method="ResumeGame"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/ExitButton" to="CanvasLayer/PauseMenu" method="ExitGame"]

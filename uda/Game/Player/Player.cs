@@ -2,7 +2,11 @@ using Godot;
 using UDA.Game.Enemies;
 using UDA.Game.Resources;
 using UDA.Model.Characters;
+<<<<<<< Updated upstream
 using UDA.Model.Characters.Monster;
+=======
+using UDA.inventory;
+>>>>>>> Stashed changes
 
 namespace UDA.Game.Player;
 
@@ -12,7 +16,20 @@ public partial class Player : CharacterBody2D
 	[Export] private int _speed = 200;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
+<<<<<<< Updated upstream
     public PlayerClassInfo MyClassInfo;
+=======
+	private string _myName;
+	public Resources.PlayerClassInfo MyClassInfo;
+	public Inventory Inventory { get; private set; }
+	
+	//Fun C# fact, these are called expression bodies
+	public string MyName 
+	{
+		get => _myName;
+		set => _myName = value;
+	}
+>>>>>>> Stashed changes
 	public Hero MyClass;
     
 	public override void _Ready()
@@ -81,6 +98,7 @@ public partial class Player : CharacterBody2D
             return;
         }
 
+<<<<<<< Updated upstream
         //Horizontal movement versus vertical movement
         if (Math.Abs(theCurrentVector2.X) > Math.Abs(theCurrentVector2.Y))
             //Horizontal,
@@ -111,4 +129,25 @@ public partial class Player : CharacterBody2D
             //{"PlayerHealth", MyClass.HitPoints}
         };
     }
+=======
+	public virtual void OnHurtBoxEntered(Area2D theAreaThatEntered)
+	{
+		GD.Print("Ouch");
+	}
+	
+	private Godot.Collections.Dictionary<string, Variant> Save()
+	{
+		return new Godot.Collections.Dictionary<string, Variant>()
+		{
+			{"FileName", SceneFilePath },
+			{"Parent", GetParent().GetPath() },
+			{"PosX", Position.X },
+			{"PosY", Position.Y},
+			{"AnimatedSprite", _animatedSprite2D},
+			{"CurrentVelocity", _currentVelocity},
+			{"PlayerName", MyName},
+			{"PlayerClass", MyClass}
+		};
+	}
+>>>>>>> Stashed changes
 }

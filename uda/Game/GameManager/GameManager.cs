@@ -1,7 +1,12 @@
 using Godot;
+<<<<<<< Updated upstream
 using Godot.Collections;
 using UDA.Game.Resources;
+=======
+using UDA.Model.Items;
+>>>>>>> Stashed changes
 using FileAccess = Godot.FileAccess;
+using UDA.World;
 
 namespace UDA.Game.GameManager;
 
@@ -9,6 +14,8 @@ public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
     private Player.Player _myPlayerInstance;
+
+    private PauseMenu _pauseMenu;
 
     public override void _Process(double theDelta)
     {
@@ -33,6 +40,15 @@ public partial class GameManager : Node
 
         if (Input.IsActionJustPressed("QueryPlayerInfo")) 
             GD.Print(_myPlayerInstance.MyClass.ToString());
+<<<<<<< Updated upstream
+=======
+        }
+
+        if (Input.IsActionJustPressed("pauseGame"))
+        {
+            GetTree().Paused = !GetTree().Paused;
+        }
+>>>>>>> Stashed changes
     }
 
     public override void _Ready()
@@ -40,6 +56,15 @@ public partial class GameManager : Node
         //Grab the player node
         _myPlayerInstance = GetNode<Player.Player>("Player");
         //Now we have to check if the player already has a class and name, this is important for loading from state
+<<<<<<< Updated upstream
+=======
+        ItemFactory.RegisterItem("heal_potion", "HealPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png");
+        ItemFactory.RegisterItem("vision_potion", "VisionPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_2_1.png");
+        ItemFactory.RegisterItem("abstraction_pillar", "AbstractionPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_1.png");
+        ItemFactory.RegisterItem("encapsulation_pillar", "EncapsulationPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png");
+        ItemFactory.RegisterItem("inheritance_pillar", "InheritancePillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png");
+        ItemFactory.RegisterItem("polymorphism_pillar", "PolymorphismPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/candlestick_1_1.png");
+>>>>>>> Stashed changes
     }
 
     public void OnSaveGame()
@@ -175,5 +200,10 @@ public partial class GameManager : Node
         //Update the class resource to match the current players hp at save
         _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.HitPoints;
         ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
+    }
+    
+    private void OnPauseToggled(bool thePausedState)
+    {
+        _pauseMenu.Visible = thePausedState;
     }
 }

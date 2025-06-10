@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cce5phy36lbob"
-path="res://.godot/imported/inventory-background.png-3c89e6037dba2e520c5700fe3cac9b63.ctex"
+uid="uid://bck8h0knqn0v3"
+path="res://.godot/imported/heal_potion.png-4468d813982b5d0e240d725fd95edd8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/inventory-background.png"
-dest_files=["res://.godot/imported/inventory-background.png-3c89e6037dba2e520c5700fe3cac9b63.ctex"]
+source_file="res://Model/Items/Assets/heal_potion.png"
+dest_files=["res://.godot/imported/heal_potion.png-4468d813982b5d0e240d725fd95edd8a.ctex"]
 
 [params]
 

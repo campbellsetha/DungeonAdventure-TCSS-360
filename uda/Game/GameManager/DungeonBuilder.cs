@@ -8,8 +8,8 @@ public partial class DungeonBuilder : Node2D
 {
 	private static readonly RoomTypeCollection MyRoomTypes = new ();
 	private static readonly RoomConverter MyRoomConverter = new ();
-	private static readonly Godot.Collections.Dictionary<UDA.Game.Resources.RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
-	private static readonly Godot.Collections.Dictionary<string, UDA.Game.Resources.RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
+	private static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
+	private static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
 	
 	
 	// Characters that can appear in the middle

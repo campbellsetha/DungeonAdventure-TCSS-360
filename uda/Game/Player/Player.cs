@@ -23,6 +23,8 @@ public partial class Player : CharacterBody2D
     public PlayerClassInfo MyClassInfo;
 	private string _myName;
 	public Inventory Inventory { get; private set; }
+    private TextureProgressBar _healthBar;
+
 	
 	//Fun C# fact, these are called expression bodies
 	public string MyName 

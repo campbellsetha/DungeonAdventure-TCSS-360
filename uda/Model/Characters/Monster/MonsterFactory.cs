@@ -75,5 +75,7 @@ public abstract class MonsterFactory
             _myHealChance = reader.GetDouble(8);
             _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));
         }
+        reader.Close();
+        conn.Close();
     }
 }

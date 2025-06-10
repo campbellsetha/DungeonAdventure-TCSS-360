@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://o88fwu1iluvn"]
+
+[ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="1_ceqaf"]
+[ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="2_57dvl"]
+
+[node name="Hp Bar" type="TextureProgressBar"]
+offset_left = -32.0
+offset_top = -35.0
+offset_right = 32.0
+offset_bottom = -3.0
+value = 100.0
+texture_under = ExtResource("1_ceqaf")
+texture_over = ExtResource("2_57dvl")

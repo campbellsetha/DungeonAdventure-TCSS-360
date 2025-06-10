@@ -1,4 +1,6 @@
 //using Godot;
+
+using Godot;
 using static System.Math;
 
 namespace UDA.Model.Characters;
@@ -38,7 +40,7 @@ public abstract /*partial*/ class Hero : DungeonCharacter
 		{
 			HitPoints -= theDamage;
 			
-			GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
+			//GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
 			// Clamp health to avoid it going below 0
 			HitPoints = Max((int)HitPoints, 0);
 

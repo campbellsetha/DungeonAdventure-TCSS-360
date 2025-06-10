@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using UDA.Game.Resources;
+using UDA.inventory;
 using UDA.Model.Items;
 using UDA.Model.Map;
 
@@ -22,13 +23,30 @@ public partial class DungeonBuilder : Node2D
 	private const int MyRoomHeight = 174;
 	private int _myDungeonLength = 10;
 	private int _myDungeonWidth = 10;
+
 	
+	public override void _Process(double delta)
+	{
+		if (Input.IsActionJustPressed("QueryPlayerInfo"))
+		{
+			GD.Print(GetNode<Player.Player>("Player").GlobalPosition);
+		}
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	// do not want this, only want to run if new game is called which should build the map.
 	public override void _Ready()
 	{
 		//TODO: Place the map into a constant, then we can just reload the DungeonMap
 		GD.Print(Dungeon.MyInstance.ToString());
+		
+		//These have to go in the Highest level container or they do not work
+		ItemFactory.RegisterItem("heal_potion", "HealPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png");
+		ItemFactory.RegisterItem("vision_potion", "VisionPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_2_1.png");
+		ItemFactory.RegisterItem("abstraction_pillar", "AbstractionPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_1.png");
+		ItemFactory.RegisterItem("encapsulation_pillar", "EncapsulationPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png");
+		ItemFactory.RegisterItem("inheritance_pillar", "InheritancePillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png");
+		ItemFactory.RegisterItem("polymorphism_pillar", "PolymorphismPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/candlestick_1_1.png");
 		//DetermineRoom("****A|***");
 		BuildDungeon();
 	}
@@ -43,7 +61,6 @@ public partial class DungeonBuilder : Node2D
 			{
 				string currentRoom = string.Join("",Dungeon.MyInstance._myMap[i, j].GetDetails());
 				PackedScene sceneToLoad = DetermineRoom(currentRoom);
-				//Not sure why these coords need to get flipped, but they do
 				LoadRoom(sceneToLoad,j,i);
 				//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());
 				//GD.Print("My builder Output = " + currentRoom);
@@ -53,10 +70,12 @@ public partial class DungeonBuilder : Node2D
 
 	private void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)
 	{
-		var roomModel = Dungeon.MyInstance._myMap[theXCord, theYCord];
+		//Had to flip the Y and X coords, it was building the right rooms but grabbing the wrong details
+		var roomModel = Dungeon.MyInstance._myMap[theYCord, theXCord];
 		var instancedRoom = theRoomToLoad.Instantiate();
 		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,
 			new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));
+		//Moving this down so that items spawn in the appropriate position
 		AddChild(instancedRoom);
 
 		var itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>("ItemSpawnPoints");
@@ -72,15 +91,16 @@ public partial class DungeonBuilder : Node2D
 		for (int i = 0; i < ListOfRoomItems.Count && i < spawnMarkers.Count; i++)
 		{
 			var itemData = ListOfRoomItems[i];
-			var spawnPoint = spawnMarkers[i] as Marker2D;
+			var spawnPoint = (Marker2D)spawnMarkers[i];
 			var itemScene = GD.Load<PackedScene>("res://Model/Items/Resources/" + itemData.Id.ToLower() + ".tscn");
 			var itemNodeBase = itemScene.Instantiate();
-			var itemNode = itemNodeBase as ItemToPickup;
+			var itemNode = (ItemToPickup)itemNodeBase;
 			
 			itemNode.ItemData = itemData;
-			itemNode.Position = spawnPoint.GlobalPosition;
+			itemNode.GlobalPosition = spawnPoint.Position;
 			instancedRoom.AddChild(itemNode);
 		}
+		//AddChild(instancedRoom);
 	}
 
 	private PackedScene DetermineRoom(string theRoom)

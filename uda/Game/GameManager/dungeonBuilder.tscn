@@ -10,6 +10,7 @@ script = ExtResource("1_vxoxu")
 [node name="Player" parent="." instance=ExtResource("2_mya23")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 clip_children = 2
 color = Color(0, 0, 0, 1)
 

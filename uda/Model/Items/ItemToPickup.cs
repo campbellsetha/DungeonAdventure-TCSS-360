@@ -4,6 +4,7 @@ using UDA.inventory;
 
 namespace UDA.Model.Items;
 
+[GlobalClass]
 public partial class ItemToPickup : Area2D
 {
 	[Export] public InventoryItem ItemData;

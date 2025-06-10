@@ -22,6 +22,7 @@ public partial class Player : CharacterBody2D
     private string _myLastDirection = "Down";
     public PlayerClassInfo MyClassInfo;
 	private string _myName;
+    public Hero MyClass;
 	public Inventory Inventory { get; private set; }
     private TextureProgressBar _healthBar;
 
@@ -32,8 +33,6 @@ public partial class Player : CharacterBody2D
 		get => _myName;
 		set => _myName = value;
 	}
-
-	public Hero MyClass;
     
 	public override void _Ready()
     {
@@ -50,9 +49,13 @@ public partial class Player : CharacterBody2D
         _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
         _myWeapon.Visible = false;
         _healthBar = GetNode<TextureProgressBar>("Hp Bar");
+        //Setting the maximum value of the healthBar to the current classes max hit points
+        //This makes updating it only take the current hp of the players class
+       _healthBar.MaxValue = MyClass.MaxHitPoints;
+       _healthBar.Value = MyClass.HitPoints;
 
-        //_myWeaponHitBox.SetCollisionMask(0);
-        //_myWeaponHitBox.set
+       //_myWeaponHitBox.SetCollisionMask(0);
+       //_myWeaponHitBox.set
     }
 
     public override void _Process(double theDelta)
@@ -161,10 +164,19 @@ public partial class Player : CharacterBody2D
     //Can add a check to see if what entered was the global class monster
     private void OnHurtBoxEntered(int theDamageAmount)
     {
+        //Take damage
+        MyClass.TakeDamage(theDamageAmount);
         
         if (_healthBar != null)
         {
-            _healthBar.Value = Mathf.Max(_healthBar.Value - theDamageAmount, 0);
+            _healthBar.Value = MyClass.HitPoints;
+        }
+
+        if (MyClass.HitPoints == 0)
+        {
+            //Simulates death, still need to create a game over screen
+            QueueFree();
+            GD.Print("Im dead, maybe add queue free to delete me from the scene");
         }
 
         //Testing to see that the appropriate damage is being delivered

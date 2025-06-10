@@ -28,18 +28,19 @@ public abstract /*partial*/ class Hero : DungeonCharacter
 
     public string Skill { get; }
 
-    public virtual void PerformSkill(DungeonCharacter theTarget)
-    {
-    }
-
-    public override void TakeDamage(int theDamage)
-    {
-        if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
-        {
-            HitPoints -= theDamage;
-
-            // Clamp health to avoid it going below 0
-            HitPoints = Max(HitPoints, 0);
+	public virtual void PerformSkill(DungeonCharacter theTarget)
+	{
+		
+	}
+	public override void TakeDamage(int theDamage)
+	{
+		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
+		{
+			HitPoints -= theDamage;
+			
+			GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
+			// Clamp health to avoid it going below 0
+			HitPoints = Max((int)HitPoints, 0);
 
             // Emit the signal
             //EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);

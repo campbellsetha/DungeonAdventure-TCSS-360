@@ -16,7 +16,7 @@ public abstract partial class DungeonCharacter(
 
     public int MaxHitPoints { get; } = theHitPoints;
 
-    public int HitPoints { get; protected set; } = theHitPoints;
+    public int HitPoints { get; set; } = theHitPoints;
 
     public (int Min, int Max) DamageRange { get; } = theDamageRange;
 

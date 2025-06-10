@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 using MonoCustomResourceRegistry;
 
 namespace UDA.inventory;
@@ -8,20 +9,29 @@ public partial class Inventory : Resource
 {
     private int _inventoryCount;
     [Export] private Inventory_item[] _items = new Inventory_item[12];
-
-    public void add_To_Inventory(Inventory_item theItem)
+    private List<InventoryItem> _generalItems = new();
+    private List<InventoryItem> _keyItems = new();
+    
+    public void AddToInventory(InventoryItem theItem)
     {
-        if (!item_In_Inventory(theItem))
+        var exists = _generalItems.Find(x => x.Id == theItem.Id);
+        //the name of the pillars must contain a number to position them in the key item array.
+        if (theItem.GetName().ToLower().Contains("pillar"))
         {
-            _items[_inventoryCount] = theItem;
-            _inventoryCount++;
+            _keyItems.Add(theItem);
+            return;
+        }
+        
+        if (exists == null)
+        {
+            _generalItems.Add(theItem);
         }
         else
         {
-            _items[location_of_Item(theItem)].add_Amount_Of_Item(1);
+            exists.IncreaseItemCount();
         }
     }
-
+    
     private bool item_In_Inventory(Inventory_item theItem)
     {
         for (var i = 0; i < _items.Length - 1; i++)
@@ -47,4 +57,21 @@ public partial class Inventory : Resource
     {
         return true;
     }
+
+
+    private bool IsItemValid(InventoryItem theItem)
+    {
+        return true;
+    }
+
+    public List<InventoryItem> GetKeyItems()
+    {
+        return _keyItems;
+    }
+
+    public List<InventoryItem> GetGeneralItems()
+    {
+        return _generalItems;
+    }
 }
+

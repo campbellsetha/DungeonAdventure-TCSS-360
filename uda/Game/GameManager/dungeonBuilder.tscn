@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsol51ifob8jy"]
+[gd_scene load_steps=4 format=3 uid="uid://bsol51ifob8jy"]
 
 [ext_resource type="Script" uid="uid://5aag1gci500y" path="res://Game/GameManager/DungeonBuilder.cs" id="1_vxoxu"]
 [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="2_mya23"]
+[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="3_06u46"]
 
 [node name="DungeonBuilder" type="Node2D"]
 script = ExtResource("1_vxoxu")
 
 [node name="Player" parent="." instance=ExtResource("2_mya23")]
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+clip_children = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasModulate"]
+offset_left = -624.0
+offset_top = -576.0
+offset_right = 4797.0
+offset_bottom = 2496.0
+texture = ExtResource("3_06u46")

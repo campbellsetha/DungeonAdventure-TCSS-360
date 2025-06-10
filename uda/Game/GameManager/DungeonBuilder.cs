@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using UDA.Game.Resources;
+using UDA.Model.Items;
 using UDA.Model.Map;
 
 namespace UDA.Game.GameManager;
@@ -8,8 +10,8 @@ public partial class DungeonBuilder : Node2D
 {
 	private static readonly RoomTypeCollection MyRoomTypes = new ();
 	private static readonly RoomConverter MyRoomConverter = new ();
-	private static readonly Godot.Collections.Dictionary<UDA.Game.Resources.RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
-	private static readonly Godot.Collections.Dictionary<string, UDA.Game.Resources.RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
+	private static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
+	private static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
 	
 	
 	// Characters that can appear in the middle
@@ -51,10 +53,34 @@ public partial class DungeonBuilder : Node2D
 
 	private void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)
 	{
+		var roomModel = Dungeon.MyInstance._myMap[theXCord, theYCord];
 		var instancedRoom = theRoomToLoad.Instantiate();
 		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,
 			new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));
 		AddChild(instancedRoom);
+
+		var itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>("ItemSpawnPoints");
+		
+		if (itemSpawnRoot == null)
+			return;
+		
+		var spawnMarkers = new Array<Node>(itemSpawnRoot.GetChildren());
+		spawnMarkers.Shuffle();
+			
+		var ListOfRoomItems = ItemFactory.GetItemsFromRoom(roomModel);
+
+		for (int i = 0; i < ListOfRoomItems.Count && i < spawnMarkers.Count; i++)
+		{
+			var itemData = ListOfRoomItems[i];
+			var spawnPoint = spawnMarkers[i] as Marker2D;
+			var itemScene = GD.Load<PackedScene>("res://Model/Items/Resources/" + itemData.Id.ToLower() + ".tscn");
+			var itemNodeBase = itemScene.Instantiate();
+			var itemNode = itemNodeBase as ItemToPickup;
+			
+			itemNode.ItemData = itemData;
+			itemNode.Position = spawnPoint.GlobalPosition;
+			instancedRoom.AddChild(itemNode);
+		}
 	}
 
 	private PackedScene DetermineRoom(string theRoom)
@@ -75,14 +101,11 @@ public partial class DungeonBuilder : Node2D
 		
 		//Getting the packed scene from the dictionary based on the room type
 		PackedScene theRoomScene = MyRoomTypeDict[theRoomType];
+		return theRoomScene;
 		
 		//TEST PRINT FOR STRING
-		GD.Print(modifiedRoom);
-		GD.Print(theRoomType);
-		
-		return theRoomScene;
+		//GD.Print(modifiedRoom);
+		//GD.Print(theRoomType);
 
 	}
-	
-
 }

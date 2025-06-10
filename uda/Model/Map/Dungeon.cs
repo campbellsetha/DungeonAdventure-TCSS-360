@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UDA.inventory;
+using UDA.Model.Items;
 using static UDA.Model.Map.RoomType;
 using static UDA.Model.Map.Direction;
 using static UDA.Model.Map.BoundaryType;
@@ -89,6 +91,7 @@ public sealed class Dungeon
         Room room;
         dir ??= directions[MyRand.Next(directions.Count)];
         directions.Remove(dir.GetValueOrDefault());
+        
         switch (numOfDoors)
         {
             case 1:
@@ -108,6 +111,9 @@ public sealed class Dungeon
                 room = RoomFactory.CreateRoomFourDoors(theRoomType);
                 break;
         }
+
+        List<InventoryItem> ItemsToPlaceInRoom = ItemFactory.GetItemsFromRoom(room);
+        
         return room;
     }
     
@@ -145,6 +151,7 @@ public sealed class Dungeon
         {
             North => _myMap[theX - 1, theY],
             South => _myMap[theX + 1, theY],
+            //This can throw an OOB sometimes
             West => _myMap[theX, theY - 1],
             East => _myMap[theX, theY + 1],
             _ => throw new Exception("Unknown direction")

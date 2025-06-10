@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4abtsfnyu3cu"]
 
 [ext_resource type="Script" uid="uid://dqdhpwehy28qk" path="res://Inventory/InventoryUi.cs" id="1_se627"]
-[ext_resource type="Texture2D" uid="uid://cce5phy36lbob" path="res://Inventory/inventory-background.png" id="2_o6avf"]
+[ext_resource type="Texture2D" uid="uid://bga3ygubic75e" path="res://Inventory/inventory-background-1.png" id="2_n0pvb"]
 [ext_resource type="PackedScene" uid="uid://dxckwr4hwljtl" path="res://Inventory/inventory_slot_ui.tscn" id="3_6gduq"]
 [ext_resource type="PackedScene" uid="uid://dn7qbiun8digp" path="res://Inventory/idol_slot_ui.tscn" id="3_n0pvb"]
 
@@ -15,13 +15,15 @@ offset_right = -1062.0
 offset_bottom = -582.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.107, 1.2)
 script = ExtResource("1_se627")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 97.0
-offset_bottom = 104.0
-texture = ExtResource("2_o6avf")
+offset_right = 121.0
+offset_bottom = 108.0
+scale = Vector2(0.673774, 0.607663)
+texture = ExtResource("2_n0pvb")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -32,27 +34,30 @@ layout_direction = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 12.0
-offset_top = 5.0
-offset_right = -8.0
-offset_bottom = 37.0
+offset_left = 10.3892
+offset_top = 6.58259
+offset_right = -50.6108
+offset_bottom = 22.5826
 grow_horizontal = 2
 scale = Vector2(0.918147, 1.04374)
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 3
+theme_override_constants/h_separation = 0
 columns = 4
 
 [node name="idol_slot_UI" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI2" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI3" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI4" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="GridContainer_General" type="GridContainer" parent="NinePatchRect"]
@@ -61,12 +66,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -59.0
-offset_right = -17.0
-offset_bottom = -3.0
+offset_left = 13.3576
+offset_top = -80.024
+offset_right = -31.6424
+offset_bottom = -24.024
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.17949, 1.24129)
 columns = 4
 
 [node name="inventory_slot_UI" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]

@@ -189,3 +189,14 @@ texture = SubResource("GradientTexture2D_w2yii")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.212305, 0.212305, 0.212305, 1)
+
+[node name="ItemSpawnPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ItemSpawnPoints"]
+position = Vector2(49, 83)
+
+[node name="Marker2D2" type="Marker2D" parent="ItemSpawnPoints"]
+position = Vector2(170, 127)
+
+[node name="Marker2D3" type="Marker2D" parent="ItemSpawnPoints"]
+position = Vector2(170, 44)

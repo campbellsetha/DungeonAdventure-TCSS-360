@@ -157,6 +157,12 @@ public partial class Player : CharacterBody2D
     //Can add a check to see if what entered was the global class monster
     private void OnHurtBoxEntered(int theDamageAmount)
     {
+        
+        if (_healthBar != null)
+        {
+            _healthBar.Value = Mathf.Max(_healthBar.Value - theDamageAmount, 0);
+        }
+
         //Testing to see that the appropriate damage is being delivered
         GD.Print("Ouch" + theDamageAmount);
     }

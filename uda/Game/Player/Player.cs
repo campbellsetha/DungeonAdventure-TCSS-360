@@ -47,6 +47,8 @@ public partial class Player : CharacterBody2D
         _myWeapon = GetNode<Node2D>("Weapon");
         _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
         _myWeapon.Visible = false;
+        _healthBar = GetNode<TextureProgressBar>("Hp Bar");
+
         //_myWeaponHitBox.SetCollisionMask(0);
         //_myWeaponHitBox.set
     }

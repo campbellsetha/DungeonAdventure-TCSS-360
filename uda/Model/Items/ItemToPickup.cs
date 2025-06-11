@@ -24,12 +24,8 @@ public partial class ItemToPickup : Area2D
 		GD.Print("Found an item");
 		if (!theBody.IsInGroup("Monster") && ItemData != null)
 		{
-			//TODO: Emit signal with the item data to the players inventory
-			//Remove this node from the scene after pickup with QueueFree
 			EventBus.getInstance().AddItemToInventory(ItemData);
-			
-			
-			//player.Inventory.AddToInventory(ItemData);
+			QueueFree();
 		}
 	}
 }

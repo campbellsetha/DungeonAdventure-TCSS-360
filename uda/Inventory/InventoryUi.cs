@@ -39,7 +39,7 @@ public partial class InventoryUi : Control
 		var keyItems = _inventory.GetKeyItems();
 		
 		//Loop through each general inventory position
-		for (int i = 0; i < generalSlots.Count && items.Count >= 0; i++)
+		for (int i = 0; i < items.Count ; i++)
 		{
 			//Check if it is an inventory slot
 			//This is mostly so we can call the update method on it
@@ -52,7 +52,7 @@ public partial class InventoryUi : Control
 		}
 		
 		//Repeat for keySlots, or idols
-		for (int i = 0; i < keySlots.Count && keyItems.Count >= 0; i++)
+		for (int i = 0; i < keyItems.Count ; i++)
 		{
 			if (keySlots[i] is InventorySlotUi keySlot)
 			{

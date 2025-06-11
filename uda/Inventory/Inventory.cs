@@ -16,7 +16,7 @@ public partial class Inventory : Resource
     {
         var exists = _generalItems.Find(x => x.Id == theItem.Id);
         //the name of the pillars must contain a number to position them in the key item array.
-        if (theItem.GetName().ToLower().Contains("pillar"))
+        if (theItem.Name.Contains("pillar"))
         {
             _keyItems.Add(theItem);
             return;

@@ -102,7 +102,7 @@ public partial class Plugin : EditorPlugin
         customTypes.Add($"{Settings.ClassPrefix}{type.Name}");
         GD.Print($"Registered custom type: {type.Name} -> {path}");
     }
-
+    
     private static string? FindClassPath(Type type)
     {
         switch (Settings.SearchType)

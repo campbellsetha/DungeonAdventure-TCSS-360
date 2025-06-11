@@ -217,8 +217,6 @@ public partial class Player : CharacterBody2D
             
     }
     
-    
-    //Can add a check to see if what entered was the global class monster
     private void OnDamageTaken(int theDamageAmount)
     {
         //Take damage
@@ -233,11 +231,11 @@ public partial class Player : CharacterBody2D
         {
             //Simulates death, still need to create a game over screen
             QueueFree();
-            GD.Print("Im dead, maybe add queue free to delete me from the scene");
+            //GD.Print("Im dead, maybe add queue free to delete me from the scene");
         }
 
         //Testing to see that the appropriate damage is being delivered
-        GD.Print("Ouch" + theDamageAmount);
+        //GD.Print("Ouch" + theDamageAmount);
     }
 
     private Godot.Collections.Dictionary<string, Variant> Save()

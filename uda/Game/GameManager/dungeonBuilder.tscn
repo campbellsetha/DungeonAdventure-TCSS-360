@@ -16,6 +16,7 @@ transform = Transform2D(1.13558, 0, 0, 1.20259, 0, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 clip_children = 2
 color = Color(0, 0, 0, 1)
 

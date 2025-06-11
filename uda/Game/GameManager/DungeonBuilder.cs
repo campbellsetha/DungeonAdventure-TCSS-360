@@ -13,11 +13,14 @@ public partial class DungeonBuilder : Node2D
 	private static readonly RoomConverter MyRoomConverter = new ();
 	private static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
 	private static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
+	private static PackedScene TheTrapScene = GD.Load<PackedScene>("res://Game/Items/ItemProtos/Trap.tscn");
 	
 	
 	// Characters that can appear in the middle
-	private static char[] _middleCharacters = ['A', 'E', 'I', 'O', 'P', 'i', 'H', 'V', 'M'];
+	private static char[] _middleCharacters = ['A', 'E', 'I', 'O', 'P', 'i', 'H', 'V', 'M', 'X'];
+	private char MyRoomItem;
 
+	private const char TrapCharacter = 'X';
 	private const int MyRoomCenter = 4;
 	private const int MyRoomSideWidth = 224;
 	private const int MyRoomHeight = 174;
@@ -73,11 +76,22 @@ public partial class DungeonBuilder : Node2D
 	{
 		//Had to flip the Y and X coords, it was building the right rooms but grabbing the wrong details
 		var roomModel = Dungeon.MyInstance._myMap[theYCord, theXCord];
+		
 		var instancedRoom = theRoomToLoad.Instantiate();
 		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,
 			new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));
-		//Moving this down so that items spawn in the appropriate position
 		AddChild(instancedRoom);
+		
+		if (MyRoomItem == TrapCharacter)
+		{
+			PackedScene theTrap = TheTrapScene;
+			var trapInstance = theTrap.Instantiate();
+			trapInstance.Set(Node2D.PropertyName.GlobalPosition,
+				new Vector2((float)theXCord * MyRoomSideWidth + MyRoomSideWidth/2,(float)theYCord * MyRoomHeight + MyRoomHeight/2));
+			AddChild(trapInstance);
+			
+		}
+		
 
 		var itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>("ItemSpawnPoints");
 		
@@ -108,7 +122,8 @@ public partial class DungeonBuilder : Node2D
 	{
 		//TODO: Build A helper method to place objects/enemies/the player at the entrance
 		//This should give us the character that contains what the item is
-		char roomItem = theRoom[MyRoomCenter];
+		MyRoomItem = theRoom[MyRoomCenter];
+		
 		
 		//Pulling the character from the string to determine the room type
 		string modifiedRoom = theRoom.Remove(MyRoomCenter,1);

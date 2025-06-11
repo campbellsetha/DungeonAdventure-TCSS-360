@@ -22,7 +22,6 @@ public partial class MonsterBase : CharacterBody2D
     private bool _playerDetected;
     private Area2D myHitBox;
     public Monster _myMonsterClass;
-    public int ID;
     
     protected virtual void SetUp()
     {

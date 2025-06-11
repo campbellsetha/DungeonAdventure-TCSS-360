@@ -519,7 +519,7 @@ fill_to = Vector2(0.949074, 0.115741)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 17
+collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_onrkg")
 
@@ -541,7 +541,7 @@ shape = SubResource("CapsuleShape2D_4ddeg")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["PlayerHurtBox"]]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(0.5, 0.5)

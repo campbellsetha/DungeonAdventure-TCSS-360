@@ -11,7 +11,7 @@
 [node name="MonsterBase" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 8
-collision_mask = 131
+collision_mask = 130
 script = ExtResource("1_y5nn5")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["MonsterHitBox"]]

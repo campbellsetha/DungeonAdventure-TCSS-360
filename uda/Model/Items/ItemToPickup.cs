@@ -1,6 +1,5 @@
 using Godot;
 using UDA.Game.GameManager;
-using UDA.Game.Player;
 using UDA.inventory;
 
 namespace UDA.Model.Items;

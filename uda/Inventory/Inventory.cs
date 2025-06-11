@@ -1,10 +1,11 @@
 using Godot;
 using System.Collections.Generic;
 using MonoCustomResourceRegistry;
+using UDA.Game.GameManager;
 
 namespace UDA.inventory;
 
-[RegisteredType(nameof(Inventory), "", nameof(Resource))]
+[GlobalClass]
 public partial class Inventory : Resource
 {
     private int _inventoryCount;
@@ -31,6 +32,21 @@ public partial class Inventory : Resource
             exists.IncreaseItemCount();
         }
     }
+
+    public void UsePotion(InventoryItem theItem)
+    {
+        var thePotion = _generalItems.Find(itemsInInventory => itemsInInventory.Id == theItem.Id);
+        if (thePotion == null || thePotion.ItemCount == 0)
+        {
+            GD.Print("You dont have any!");
+        }
+        else
+        {
+            thePotion.DecreaseItemCount();
+        }
+    }
+
+    
     
     private bool item_In_Inventory(InventoryItem theItem)
     {

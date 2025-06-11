@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsol51ifob8jy"]
+[gd_scene load_steps=5 format=3 uid="uid://bsol51ifob8jy"]
 
 [ext_resource type="Script" uid="uid://5aag1gci500y" path="res://Game/GameManager/DungeonBuilder.cs" id="1_vxoxu"]
 [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="2_mya23"]
 [ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="3_06u46"]
+[ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="4_ule8w"]
 
 [node name="DungeonBuilder" type="Node2D"]
 script = ExtResource("1_vxoxu")
 
 [node name="Player" parent="." instance=ExtResource("2_mya23")]
 
+[node name="Inventory_UI" parent="Player" instance=ExtResource("4_ule8w")]
+scale = Vector2(1.13558, 1.20259)
+transform = Transform2D(1.13558, 0, 0, 1.20259, 0, 0)
+metadata/_edit_use_anchors_ = true
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 clip_children = 2
 color = Color(0, 0, 0, 1)
 

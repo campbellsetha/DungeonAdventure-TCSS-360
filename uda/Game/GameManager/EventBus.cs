@@ -19,8 +19,23 @@ public partial class EventBus : Node
 
 	[Signal]
 	public delegate void ItemAddedEventHandler(InventoryItem theItem);
+	
+	[Signal]
+	public delegate void UseHealthPotionEventHandler(InventoryItem theItem);
+
+	[Signal]
+	public delegate void UseVisionPotionEventHandler(InventoryItem theItem);
 
 	//Keeping this as a separate signal to prevent issues with asynchronous signalling
+
+	public void UseVisionPot(InventoryItem theItem)
+	{
+		EmitSignalUseVisionPotion(theItem);
+	}
+	public void UseHealthPot(InventoryItem theItem)
+	{
+		EmitSignalUseHealthPotion(theItem);
+	}
 	public void ItemAddedToInventory(InventoryItem theItem)
 	{
 		EmitSignalItemAdded(theItem);

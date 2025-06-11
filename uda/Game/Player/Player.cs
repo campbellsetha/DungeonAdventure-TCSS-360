@@ -1,3 +1,4 @@
+using System.Drawing;
 using Godot;
 using UDA.Game.Enemies;
 using UDA.Game.GameManager;
@@ -7,6 +8,7 @@ using UDA.Model.Characters;
 using UDA.Model.Characters.Monster;
 
 using UDA.inventory;
+using Timer = System.Threading.Timer;
 
 
 namespace UDA.Game.Player;
@@ -20,12 +22,14 @@ public partial class Player : CharacterBody2D
     private AnimationPlayer _animationPlayer;
     private Node2D _myWeapon;
     private Area2D _myWeaponHitBox;
+    private PointLight2D _myLight;
     private string _myLastDirection = "Down";
     public PlayerClassInfo MyClassInfo;
 	private string _myName;
     public Hero MyClass;
 	public Inventory Inventory { get; private set; }
     private TextureProgressBar _healthBar;
+    
 
 	
 	//Fun C# fact, these are called expression bodies
@@ -46,8 +50,10 @@ public partial class Player : CharacterBody2D
         Inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
         
         //Connecting to the event bus, we connect to the specific signal not the method in the bus
-        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
-        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
+        EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
+        EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
+        EventBus.getInstance().Connect(nameof(EventBus.UseHealthPotion), new Callable(this, nameof(UseHealthPotion)));
+        EventBus.getInstance().Connect(nameof(EventBus.UseVisionPotion), new Callable(this, nameof(UseVisionPotion)));
         
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
@@ -55,11 +61,13 @@ public partial class Player : CharacterBody2D
         _myWeapon = GetNode<Node2D>("Weapon");
         _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
         _myWeapon.Visible = false;
-        _healthBar = GetNode<TextureProgressBar>("Hp Bar");
+        _myLight = GetNode<PointLight2D>("MyLight");
+        _healthBar = GetNode<TextureProgressBar>("CanvasLayer/BarLayout/Hp Bar");
         //Setting the maximum value of the healthBar to the current classes max hit points
         //This makes updating it only take the current hp of the players class
         _healthBar.MaxValue = MyClass.MaxHitPoints;
         _healthBar.Value = MyClass.HitPoints;
+        _healthBar.Visible = true;
     }
 
     public override void _Process(double theDelta)
@@ -125,7 +133,28 @@ public partial class Player : CharacterBody2D
         Inventory.AddToInventory(theItem);
         EventBus.getInstance().ItemAddedToInventory(theItem);
     }
-    
+
+    private void UseHealthPotion(InventoryItem theHealthPotion)
+    {
+        //We want to modify the inventory before we attempt to modify the player
+        Inventory.UsePotion(theHealthPotion);
+        MyClass.Heal(50);
+    }
+
+    private void UseVisionPotion(InventoryItem theVisionPotion)
+    {
+        Inventory.UsePotion(theVisionPotion);
+        _myLight.TextureScale = 10;
+        //Temporary timer to manage the duration of the vision potion
+        var timer = GetTree().CreateTimer(30);
+        timer.Timeout += ResetLight;
+    }
+
+    private void ResetLight()
+    {
+        _myLight.TextureScale = (float)4.6;
+        GD.Print("The light was successfully reset");
+    }
 
     /// <summary>
     ///     Should run at every processing step.

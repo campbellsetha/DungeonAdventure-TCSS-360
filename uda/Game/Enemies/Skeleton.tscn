@@ -49,7 +49,7 @@ frame_progress = 0.715477
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 130
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false

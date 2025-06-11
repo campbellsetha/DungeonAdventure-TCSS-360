@@ -1,5 +1,7 @@
 using Godot;
+using UDA.Game.Resources;
 using UDA.Model;
+using UDA.Model.Characters;
 using UDA.Model.Characters.Monster;
 using Monster = UDA.Model.Characters.Monster.Monster;
 
@@ -18,12 +20,15 @@ public partial class MonsterBase : CharacterBody2D
     protected Vector2 EndPosition { get; set;}
     protected AnimatedSprite2D MonsterSpritePlayer;
     private bool _playerDetected;
+    private Area2D myHitBox;
     public Monster _myMonsterClass;
+    public int ID;
     
     protected virtual void SetUp()
     {
         MonsterSpritePlayer = GetNode<AnimatedSprite2D>("MonsterSprite");
         MonsterSpritePlayer.Play("default");
+        myHitBox = GetNode<Area2D>("Hitbox");
         StartPosition = Position;
         EndPosition = StartPosition + new Vector2(0, 3 * 16);
     }
@@ -58,7 +63,7 @@ public partial class MonsterBase : CharacterBody2D
     
     //It is really not a great idea to pass an instance of the player to the enemy.
     //This only works because enemies only search for the player, otherwise this would need to be more general
-    public void OnBodyEntered(Player.Player theBody)
+    public void OnBodyEntered(CharacterBody2D theBody)
     {
         if (theBody.IsInGroup("Player"))
         {
@@ -68,7 +73,20 @@ public partial class MonsterBase : CharacterBody2D
             //Calling the event bus to emit the signal for damage with the damage value passed in
             GameManager.EventBus.getInstance().DealDamageToPlayer(damage);
         }
+        
     }
+
+    public void TakeDamage(int theDamage)
+    {
+        _myMonsterClass.TakeDamage(theDamage);
+        if (_myMonsterClass.HitPoints <= 0)
+        {
+            //GD.Print("Im hella dead nooooo");
+            QueueFree();
+        }
+    }
+
+    
 
     //Placed the hurtbox on a different level to avoid multiple calls with the players 2dPhysicsBody
     public void OnPlayerDetection(Player.Player theBody)

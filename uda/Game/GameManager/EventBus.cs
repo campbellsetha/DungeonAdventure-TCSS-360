@@ -15,6 +15,9 @@ public partial class EventBus : Node
 	public delegate void DealDamageEventHandler(int theDamage);
 
 	[Signal]
+	public delegate void PlayerDealsDamageEventHandler(int theDamage);
+
+	[Signal]
 	public delegate void AddItemEventHandler(InventoryItem theItem);
 
 	[Signal]
@@ -25,6 +28,9 @@ public partial class EventBus : Node
 
 	[Signal]
 	public delegate void UseVisionPotionEventHandler(InventoryItem theItem);
+
+	[Signal]
+	public delegate void EnemyHitEventHandler();
 
 	//Keeping this as a separate signal to prevent issues with asynchronous signalling
 
@@ -52,6 +58,6 @@ public partial class EventBus : Node
 
 	public void DealDamageToEnemy(int theDamage)
 	{
-		EmitSignalDealDamage(theDamage);
+		EmitSignalPlayerDealsDamage(theDamage);
 	}
 }

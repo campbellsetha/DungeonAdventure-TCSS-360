@@ -51,7 +51,7 @@ frame_progress = 0.878819
 [node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
 scale = Vector2(1.8, 1.8)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 130
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_wm7yu")

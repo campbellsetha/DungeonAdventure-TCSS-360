@@ -7,7 +7,7 @@
 
 [node name="abstraction_pillar" type="Area2D"]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 32
 script = ExtResource("1_gpnty")
 ItemData = ExtResource("2_gpnty")
 

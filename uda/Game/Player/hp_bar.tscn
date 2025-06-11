@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="2_57dvl"]
 
 [node name="Hp Bar" type="TextureProgressBar"]
+light_mask = 4
+visibility_layer = 4
 offset_left = -32.0
 offset_top = -35.0
 offset_right = 32.0

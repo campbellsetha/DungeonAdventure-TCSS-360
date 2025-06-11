@@ -6,19 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://dn7qbiun8digp" path="res://Inventory/idol_slot_ui.tscn" id="3_n0pvb"]
 
 [node name="Inventory_UI" type="Control"]
+light_mask = 8
+visibility_layer = 8
 custom_minimum_size = Vector2(90, 66)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1062.0
-offset_bottom = -582.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.107, 1.2)
 script = ExtResource("1_se627")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visibility_layer = 8
+z_index = 1
 layout_mode = 0
 offset_right = 121.0
 offset_bottom = 108.0
@@ -30,6 +32,7 @@ patch_margin_right = 6
 patch_margin_bottom = 6
 
 [node name="GridContainer_Idols" type="GridContainer" parent="NinePatchRect"]
+z_index = 2
 layout_direction = 2
 layout_mode = 1
 anchors_preset = 10
@@ -45,22 +48,27 @@ theme_override_constants/h_separation = 0
 columns = 4
 
 [node name="idol_slot_UI" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+z_index = 3
 custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI2" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+z_index = 3
 custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI3" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+z_index = 3
 custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="idol_slot_UI4" parent="NinePatchRect/GridContainer_Idols" instance=ExtResource("3_n0pvb")]
+z_index = 3
 custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 
 [node name="GridContainer_General" type="GridContainer" parent="NinePatchRect"]
+z_index = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -76,37 +84,49 @@ scale = Vector2(1.17949, 1.24129)
 columns = 4
 
 [node name="inventory_slot_UI" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI2" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI3" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI4" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI5" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI6" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI7" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI8" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI9" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI10" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI11" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2
 
 [node name="inventory_slot_UI12" parent="NinePatchRect/GridContainer_General" instance=ExtResource("3_6gduq")]
+z_index = 3
 layout_mode = 2

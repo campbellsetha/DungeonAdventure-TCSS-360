@@ -504,8 +504,9 @@ _data = {
 &"RESET": SubResource("Animation_4ddeg")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
-radius = 8.88889
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_db2hk"]
+radius = 6.095
+height = 38.9
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
 
@@ -526,6 +527,12 @@ collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_onrkg")
 
+[node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
+offset_left = -45.0
+offset_top = -52.0
+offset_right = 45.0
+offset_bottom = 14.0
+
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5o4e")
 frame = 10
@@ -537,9 +544,10 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(0.7, 0.7)
-shape = SubResource("CircleShape2D_4ntmi")
+shape = SubResource("CapsuleShape2D_db2hk")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["PlayerHurtBox"]]
 collision_layer = 2
@@ -557,13 +565,6 @@ energy = 0.7
 texture = SubResource("GradientTexture2D_btcbx")
 texture_scale = 4.6
 
-[node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
-visible = false
-offset_left = -45.0
-offset_top = -79.0
-offset_right = 45.0
-offset_bottom = -13.0
-
 [node name="TestingCamera" type="Camera2D" parent="."]
 visible = false
 zoom = Vector2(2, 2)
@@ -577,4 +578,5 @@ position = Vector2(10, 0)
 rotation = 1.5708
 
 [node name="Hp Bar" parent="." instance=ExtResource("9_4ddeg")]
+visibility_layer = 2
 texture_progress = ExtResource("10_db2hk")

@@ -1,6 +1,6 @@
 using Godot;
 using UDA.inventory;
-
+using Range = System.Range;
 
 
 public partial class InventoryUi : Control
@@ -10,6 +10,7 @@ public partial class InventoryUi : Control
 	private Inventory _inventory;
 	private GridContainer _generalSlots;
 	private GridContainer _idolSlots;
+	private const int IdolSlots = 3;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -17,31 +18,46 @@ public partial class InventoryUi : Control
 		_inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
 		_generalSlots = GetNode<GridContainer>("NinePatchRect/GridContainer_General");
 		_idolSlots = GetNode<GridContainer>("NinePatchRect/GridContainer_Idols");
+		
+		UDA.Game.GameManager.EventBus.getInstance().Connect(nameof(UDA.Game.GameManager.EventBus.ItemAdded), new Callable(this, nameof(ItemAdded)));
 			
 		close();
+		//Refresh();
+	}
+	
+	private void ItemAdded(InventoryItem theItem)
+	{
 		Refresh();
 	}
 
 	private void Refresh()
 	{
-		foreach (Node node in _generalSlots.GetChildren())
-			node.QueueFree();
+		//For the general slots
+		var generalSlots = _generalSlots.GetChildren();
+		var keySlots = _idolSlots.GetChildren();
+		var items = _inventory.GetGeneralItems();
+		var keyItems = _inventory.GetKeyItems();
 		
-		foreach (Node node in _idolSlots.GetChildren())
-			node.QueueFree();
-
-		foreach (var item in _inventory.GetGeneralItems())
+		//Loop through each general inventory position
+		for (int i = 0; i < generalSlots.Count && items.Count >= 0; i++)
 		{
-			var slot = _itemDisplayScene.Instantiate<InventorySlotUi>();
-			slot.Update(item);
-			_generalSlots.AddChild(slot);
+			//Check if it is an inventory slot
+			//This is mostly so we can call the update method on it
+			if (generalSlots[i] is InventorySlotUi slot)
+			{
+				//Use the InventorySlotUI Update method to display the texture
+				//Of the corresponding inventory item
+				slot.Update(items[i]);
+			}
 		}
-
-		foreach (var item in _inventory.GetKeyItems())
+		
+		//Repeat for keySlots, or idols
+		for (int i = 0; i < keySlots.Count && keyItems.Count >= 0; i++)
 		{
-			var slot = _itemDisplayScene.Instantiate<InventorySlotUi>();
-			slot.Update(item);
-			_idolSlots.AddChild(slot);
+			if (keySlots[i] is InventorySlotUi keySlot)
+			{
+				keySlot.Update(keyItems[i]);
+			}
 		}
 	}
 	
@@ -52,9 +68,15 @@ public partial class InventoryUi : Control
         {
             GD.Print("t was just pressed\n");
             if (!is_closed)
-                close();
+            {
+	            close();
+	            //Refresh();
+            }
             else
-                open();
+            {
+	            open();
+            }
+                
         }
     }
 

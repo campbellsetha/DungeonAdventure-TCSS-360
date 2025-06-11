@@ -46,7 +46,7 @@ sprite_frames = SubResource("SpriteFrames_rfymo")
 frame = 3
 frame_progress = 0.0961509
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 4
 collision_mask = 2
 

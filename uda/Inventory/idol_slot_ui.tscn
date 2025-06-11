@@ -1,12 +1,25 @@
-[gd_scene format=3 uid="uid://dn7qbiun8digp"]
+[gd_scene load_steps=2 format=3 uid="uid://dn7qbiun8digp"]
+
+[ext_resource type="Script" uid="uid://c8egc8ifkqkp5" path="res://Inventory/InventorySlotUi.cs" id="1_fx04v"]
 
 [node name="idol_slot_UI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(16, 16)
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_fx04v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 centered = false
 
 [node name="idol_display" type="Sprite2D" parent="."]
+
+[node name="ItemCountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 11.0
+offset_bottom = 50.0
+scale = Vector2(0.2, 0.2)
+text = "0"
+vertical_alignment = 2

@@ -1,5 +1,7 @@
 using Godot;
-using System;
+using UDA.inventory;
+
+namespace UDA.Game.GameManager;
 
 public partial class EventBus : Node
 {
@@ -11,6 +13,22 @@ public partial class EventBus : Node
 	// Called when the node enters the scene tree for the first time.
 	[Signal]
 	public delegate void DealDamageEventHandler(int theDamage);
+
+	[Signal]
+	public delegate void AddItemEventHandler(InventoryItem theItem);
+
+	[Signal]
+	public delegate void ItemAddedEventHandler(InventoryItem theItem);
+
+	//Keeping this as a separate signal to prevent issues with asynchronous signalling
+	public void ItemAddedToInventory(InventoryItem theItem)
+	{
+		EmitSignalItemAdded(theItem);
+	}
+	public void AddItemToInventory(InventoryItem theItem) 
+	{
+		EmitSignalAddItem(theItem);
+	}
 
 	public void DealDamageToPlayer(int theDamage)
 	{

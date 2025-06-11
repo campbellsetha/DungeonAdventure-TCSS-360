@@ -10,6 +10,7 @@ public partial class InventorySlotUi : Panel
 	{
 		_itemDisplayTexture = GetNode<Sprite2D>("Sprite2D");
 		_itemCountLabel = GetNode<Label>("ItemCountLabel");
+		_itemDisplayTexture.Visible = true;
 	}
 	
 	public void Update(InventoryItem theItem)

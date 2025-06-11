@@ -30,6 +30,7 @@ public partial class DungeonBuilder : Node2D
 		if (Input.IsActionJustPressed("QueryPlayerInfo"))
 		{
 			GD.Print(GetNode<Player.Player>("Player").GlobalPosition);
+			//GD.Print(GetNode<Player.Player>("Player").Inventory.ToString());
 		}
 	}
 

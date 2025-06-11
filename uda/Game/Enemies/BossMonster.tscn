@@ -32,7 +32,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
 
-[node name="BossMonster" type="CharacterBody2D"]
+[node name="BossMonster" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_i6ow5")
@@ -57,7 +57,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 0
 collision_mask = 2
 

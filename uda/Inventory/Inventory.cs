@@ -8,7 +8,7 @@ namespace UDA.inventory;
 public partial class Inventory : Resource
 {
     private int _inventoryCount;
-    [Export] private Inventory_item[] _items = new Inventory_item[12];
+    [Export] private InventoryItem[] _items = new InventoryItem[12];
     private List<InventoryItem> _generalItems = new();
     private List<InventoryItem> _keyItems = new();
     
@@ -32,7 +32,7 @@ public partial class Inventory : Resource
         }
     }
     
-    private bool item_In_Inventory(Inventory_item theItem)
+    private bool item_In_Inventory(InventoryItem theItem)
     {
         for (var i = 0; i < _items.Length - 1; i++)
             if (_items[i] == theItem)
@@ -41,7 +41,7 @@ public partial class Inventory : Resource
         return false;
     }
 
-    private int location_of_Item(Inventory_item theItem)
+    private int location_of_Item(InventoryItem theItem)
     {
         var i = 0;
         while (i < _items.Length)
@@ -53,7 +53,7 @@ public partial class Inventory : Resource
         return -1;
     }
 
-    private bool is_Item_Valid(Inventory_item theItem)
+    private bool is_Item_Valid(InventoryItem theItem)
     {
         return true;
     }

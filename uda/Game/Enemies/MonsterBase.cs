@@ -55,9 +55,9 @@ public partial class MonsterBase : CharacterBody2D
         //GD.Print(Engine.GetFramesPerSecond());
     }
     
-
-    //Moving this functionality into the player script
     
+    //It is really not a great idea to pass an instance of the player to the enemy.
+    //This only works because enemies only search for the player, otherwise this would need to be more general
     public void OnBodyEntered(Player.Player theBody)
     {
         if (theBody.IsInGroup("Player"))
@@ -66,7 +66,7 @@ public partial class MonsterBase : CharacterBody2D
             int damage = rand.Next(_myMonsterClass.DamageRange.Min, _myMonsterClass.DamageRange.Max);
             
             //Calling the event bus to emit the signal for damage with the damage value passed in
-            EventBus.getInstance().DealDamageToPlayer(damage);
+            GameManager.EventBus.getInstance().DealDamageToPlayer(damage);
         }
     }
 

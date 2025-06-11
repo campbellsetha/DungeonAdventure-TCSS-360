@@ -10,7 +10,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
 
-[node name="MonsterBase" type="CharacterBody2D"]
+[node name="MonsterBase" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_y5nn5")

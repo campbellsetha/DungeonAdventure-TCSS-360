@@ -1,5 +1,6 @@
 using Godot;
 using UDA.Game.Enemies;
+using UDA.Game.GameManager;
 using UDA.Game.Resources;
 using UDA.Model.Characters;
 
@@ -12,7 +13,7 @@ namespace UDA.Game.Player;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] private Area2D MonsterArea;
+    //[Export] private Area2D MonsterArea;
 	[Export] private int _speed = 200;
 	private Vector2 _currentVelocity;
 	private AnimatedSprite2D _animatedSprite2D;
@@ -39,8 +40,14 @@ public partial class Player : CharacterBody2D
 		MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
 		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);
         
+        //Okay, so we need to load the inventory resource within the player scene.
+        //This can be saved manually in the game manager resource saver method
+        //This should probably be placed in the "user://" path instead, as it will contain instanced player data 
+        Inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
+        
         //Connecting to the event bus, we connect to the specific signal not the method in the bus
-        EventBus.getInstance().Connect(nameof(EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
+        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
+        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
         
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
@@ -51,11 +58,8 @@ public partial class Player : CharacterBody2D
         _healthBar = GetNode<TextureProgressBar>("Hp Bar");
         //Setting the maximum value of the healthBar to the current classes max hit points
         //This makes updating it only take the current hp of the players class
-       _healthBar.MaxValue = MyClass.MaxHitPoints;
-       _healthBar.Value = MyClass.HitPoints;
-
-       //_myWeaponHitBox.SetCollisionMask(0);
-       //_myWeaponHitBox.set
+        _healthBar.MaxValue = MyClass.MaxHitPoints;
+        _healthBar.Value = MyClass.HitPoints;
     }
 
     public override void _Process(double theDelta)
@@ -114,6 +118,12 @@ public partial class Player : CharacterBody2D
          */
         await ToSignal(GetTree().CreateTimer(0.3, false), SceneTreeTimer.SignalName.Timeout);
         _myWeapon.Visible = false;
+    }
+
+    private void ItemAdded(InventoryItem theItem)
+    {
+        Inventory.AddToInventory(theItem);
+        EventBus.getInstance().ItemAddedToInventory(theItem);
     }
     
 

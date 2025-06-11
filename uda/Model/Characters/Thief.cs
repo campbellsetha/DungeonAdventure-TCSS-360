@@ -7,14 +7,14 @@ public /*partial*/ class Thief : Hero
     private const double SuccessChance = 0.4;
     private const double FailureChance = 0.2;
 
-    private const double SkillCooldown = 10.0; // Cooldown in seconds
+    //private const double SkillCooldown = 10.0; // Cooldown in seconds
     private static readonly int MyHitPoints = 75;
     private static readonly int MyAttackSpeed = 6;
     private static readonly double MyHitChance = 0.8;
     private static readonly (int, int) MyDamageRange = (20, 40);
     private static readonly double MyBlockChance = 0.4;
     private static readonly string MySkill = "Surprise Attack";
-    private double _lastSkillTime = -SkillCooldown;
+    //private double _lastSkillTime = -SkillCooldown;
 
     public Thief(string theName)
         : base(theName, MyHitPoints, MyAttackSpeed, MyHitChance, MyDamageRange, MyBlockChance, MySkill)

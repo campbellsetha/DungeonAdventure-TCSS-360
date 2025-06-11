@@ -11,6 +11,7 @@ using FileAccess = Godot.FileAccess;
 namespace UDA.addons.MonoCustomResourceRegistry;
 #if TOOLS
 [Tool]
+#nullable enable
 public partial class Plugin : EditorPlugin
 {
     // We're not going to hijack the Mono Build button since it actually takes time to build
@@ -26,7 +27,7 @@ public partial class Plugin : EditorPlugin
         refreshButton.Text = "CCR";
 
         AddControlToContainer(CustomControlContainer.Toolbar, refreshButton);
-        refreshButton.Icon = GetEditorInterface().GetBaseControl().GetThemeIcon("Reload", "EditorIcons");
+        refreshButton.Icon = EditorInterface.Singleton.GetBaseControl().GetThemeIcon("Reload", "EditorIcons");
         refreshButton.Pressed += OnRefreshPressed;
 
         Settings.Init();
@@ -59,7 +60,7 @@ public partial class Plugin : EditorPlugin
             else
                 AddRegisteredType(type, nameof(Node));
     }
-
+    
     private void AddRegisteredType(Type type, string defaultBaseTypeName)
     {
         var attribute = Attribute.GetCustomAttribute(type, typeof(RegisteredTypeAttribute)) as RegisteredTypeAttribute;
@@ -81,7 +82,7 @@ public partial class Plugin : EditorPlugin
                 if (rawIcon != null)
                 {
                     var image = rawIcon.GetImage();
-                    var length = (int)Mathf.Round(16 * GetEditorInterface().GetEditorScale());
+                    var length = (int)Mathf.Round(16 * EditorInterface.Singleton.GetEditorScale());
                     image.Resize(length, length);
                     icon = ImageTexture.CreateFromImage(image);
                 }

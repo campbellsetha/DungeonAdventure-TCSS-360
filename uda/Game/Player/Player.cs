@@ -92,7 +92,7 @@ public partial class Player : CharacterBody2D
         }
     }
 
-    private void HandleInput()
+    private async void HandleInput()
     {
         _currentVelocity = Input.GetVector(
             "moveLeft", "moveRight",
@@ -101,7 +101,7 @@ public partial class Player : CharacterBody2D
         
         //Weapon animations
         //This probably needs to change, but it works for now and we are going to go with that
-        if (Input.IsActionJustPressed("Attack")) Attack();
+        if (Input.IsActionJustPressed("Attack")) await Attack();
     }
     
     private async Task Attack()

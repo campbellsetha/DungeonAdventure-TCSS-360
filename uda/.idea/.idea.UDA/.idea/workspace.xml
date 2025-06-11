@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="cleared up compiler warnings">
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="hopefully got rid of the duplicate assembly attributes error">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/BossMonster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/BossMonster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/World/world.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +80,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "settings.editor.selected.configurable": "preferences.build.godotPlugin",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -259,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749613151617</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="hopefully got rid of the duplicate assembly attributes error">
+      <option name="closed" value="true" />
+      <created>1749613966719</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749613966719</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +304,8 @@
     <MESSAGE value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
     <MESSAGE value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
     <MESSAGE value="cleared up compiler warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleared up compiler warnings" />
+    <MESSAGE value="hopefully got rid of the duplicate assembly attributes error" />
+    <option name="LAST_COMMIT_MESSAGE" value="hopefully got rid of the duplicate assembly attributes error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -314,5 +336,9 @@
         <PinnedItemInfo parentTag="Type#UDA.Model.DungeonCharacter" memberName="HitPoints" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

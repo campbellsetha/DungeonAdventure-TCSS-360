@@ -259,3 +259,4 @@ C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/re
 /home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.pdb
 /home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache
 /home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/ref/Tests.dll
+/home/christina/RiderProjects/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache

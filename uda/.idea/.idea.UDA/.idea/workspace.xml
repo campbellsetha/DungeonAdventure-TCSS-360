@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references">
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="cleared up compiler warnings">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +69,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Executable.dungeonBuilder.tscn">
+  <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
     <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -184,8 +166,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
+        <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
       </list>
     </recent_temporary>
@@ -259,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749081021306</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="cleared up compiler warnings">
+      <option name="closed" value="true" />
+      <created>1749612824006</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749612824007</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +272,8 @@
     <MESSAGE value="woohoo Dungeon is being generated properly and it can be navigated" />
     <MESSAGE value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
     <MESSAGE value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
+    <MESSAGE value="cleared up compiler warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleared up compiler warnings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

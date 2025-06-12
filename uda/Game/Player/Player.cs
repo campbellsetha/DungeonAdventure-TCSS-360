@@ -137,7 +137,15 @@ public partial class Player : CharacterBody2D
     
     private async Task PerformSkill()
     {
-        
+        if (Input.IsActionJustPressed("Skill"))
+        {
+            _myWeapon.Visible = false;
+            _myWeaponHitBoxShape.Disabled = true;
+        }
+        else
+        {
+            GD.Print("Can't do that just yet");
+        }
     }
     
     private void EnemyHit(Area2D theMonster)

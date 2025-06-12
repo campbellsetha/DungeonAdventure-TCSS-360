@@ -66,7 +66,7 @@ public partial class DungeonBuilder : Node2D
 		{
 			for (int j = 0; j < _myDungeonWidth; j++)
 			{
-				string currentRoom = string.Join("",Dungeon.MyInstance._myMap[i, j].GetDetails());
+				string currentRoom = string.Join("",Dungeon.MyInstance.MyMap[i, j].GetDetails());
 				PackedScene sceneToLoad = DetermineRoom(currentRoom);
 				LoadRoom(sceneToLoad,j,i);
 				//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());
@@ -81,8 +81,7 @@ public partial class DungeonBuilder : Node2D
 		Vector2 roomsPosition = new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight);
 		Vector2 roomsCenter = new Vector2((float)theXCord * MyRoomSideWidth + MyRoomSideWidth/2,(float)theYCord * MyRoomHeight + MyRoomHeight/2);
 		//Had to flip the Y and X coords, it was building the right rooms but grabbing the wrong details
-		var roomModel = Dungeon.MyInstance._myMap[theYCord, theXCord];
-		
+		var roomModel = Dungeon.MyInstance.MyMap[theYCord, theXCord];
 		var instancedRoom = theRoomToLoad.Instantiate();
 		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,roomsPosition);
 		AddChild(instancedRoom);

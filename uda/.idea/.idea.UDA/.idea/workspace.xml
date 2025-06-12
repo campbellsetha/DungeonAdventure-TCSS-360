@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Pushing all files to see if it will break anything" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too.">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,8 +78,8 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.11111111",
-    "git-widget-placeholder": "FinalGamePushTest",
+    "XThreadsFramesViewSplitterKey": "0.13227513",
+    "git-widget-placeholder": "modifyDungeon",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -197,6 +200,8 @@
         <item itemvalue=".NET Executable.player_save_test.tscn" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
+        <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
+        <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -296,6 +301,24 @@
       <option name="project" value="LOCAL" />
       <updated>1749613966719</updated>
     </task>
+    <task id="LOCAL-00007" summary="cleared up compiler warnings">
+      <option name="closed" value="true" />
+      <created>1749663897654</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1749663897655</updated>
+    </task>
+    <task id="LOCAL-00008" summary="issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too.">
+      <option name="closed" value="true" />
+      <created>1749705938168</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1749705938168</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+
     <task id="LOCAL-00007" summary="Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works.">
       <option name="closed" value="true" />
       <created>1749665339618</created>
@@ -345,6 +368,7 @@
       <updated>1749702875954</updated>
     </task>
     <option name="localTasksCounter" value="13" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,14 +391,18 @@
     <MESSAGE value="woohoo Dungeon is being generated properly and it can be navigated" />
     <MESSAGE value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
     <MESSAGE value="deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references" />
-    <MESSAGE value="cleared up compiler warnings" />
     <MESSAGE value="hopefully got rid of the duplicate assembly attributes error" />
+    <MESSAGE value="cleared up compiler warnings" />
+    <MESSAGE value="issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too." />
+    <option name="LAST_COMMIT_MESSAGE" value="issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too." />
+
     <MESSAGE value="Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works." />
     <MESSAGE value="You can now attack and kill enemies. It's not fun, but it works." />
     <MESSAGE value="Traps work and generate in the dungeon at the correct position." />
     <MESSAGE value="Games Playable" />
     <MESSAGE value="Pushing all files to see if it will break anything" />
     <option name="LAST_COMMIT_MESSAGE" value="Pushing all files to see if it will break anything" />
+
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

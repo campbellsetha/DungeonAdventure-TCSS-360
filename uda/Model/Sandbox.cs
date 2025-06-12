@@ -1,5 +1,6 @@
 using UDA.Model.Characters;
 using UDA.Model.Characters.Monster;
+using UDA.Model.Map;
 
 namespace UDA;
 
@@ -23,15 +24,14 @@ public class Sandbox
         //Dungeon test = new Dungeon();
         //Console.WriteLine(Dungeon.MyInstance.ToString());
         //Console.WriteLine(test.IsTraversable());
-        //new Dungeon();
+        Console.WriteLine(Dungeon.MyInstance);
         //var randomMonster = MonsterFactory.CreateRandoMonster();
         //Console.WriteLine(randomMonster.ToString());
         //Console.WriteLine("Do ten damage to it" + "\n");
         //randomMonster.TakeDamage(10);
         //Console.WriteLine(randomMonster.HitPoints);
-        //Console.WriteLine("yo");
-        DungeonCharacter monst = new Monster("monster", 20, 25, 0.1, (2, 10), 0.1, (0, 10), 0.1);
-        Console.WriteLine(monst);
+        //DungeonCharacter monst = new Monster("monster", 20, 25, 0.1, (2, 10), 0.1, (0, 10), 0.1);
+        //Console.WriteLine(monst);
         //DungeonCharacter hero = new Priest("priest");
     }
 }

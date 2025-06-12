@@ -183,10 +183,14 @@ public partial class GameManager : Node
 
     private void SaveResource()
     {
-        var fileName = "res://Game/Resources/PlayerClass.tres";
+        var saveFile = "res://Game/Resources/PlayerClass.tres";
+        var inventoryFile = "res://Game/Player/player_inventory.tres";
         //Update the class resource to match the current players hp at save
         _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.HitPoints;
-        ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);
+        ResourceSaver.Save(_myPlayerInstance.MyClassInfo, saveFile);
+        
+        //TODO: Test that this works at all
+        ResourceSaver.Save(_myPlayerInstance.Inventory, inventoryFile);
     }
     
     private void OnPauseToggled(bool thePausedState)

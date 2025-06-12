@@ -5,21 +5,21 @@
 [node name="idol_slot_UI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(16, 16)
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 55.0
+offset_bottom = 51.0
 script = ExtResource("1_fx04v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.188, 3.188)
 centered = false
 
 [node name="idol_display" type="Sprite2D" parent="."]
 
 [node name="ItemCountLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 27.0
-offset_right = 11.0
-offset_bottom = 50.0
-scale = Vector2(0.2, 0.2)
+offset_left = 5.0
+offset_top = 31.0
+offset_right = 15.0
+offset_bottom = 54.0
+scale = Vector2(0.8, 0.8)
 text = "0"
 vertical_alignment = 2

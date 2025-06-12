@@ -15,12 +15,42 @@ public partial class EventBus : Node
 	public delegate void DealDamageEventHandler(int theDamage);
 
 	[Signal]
+	public delegate void PlayerDealsDamageEventHandler(int theDamage);
+
+	[Signal]
 	public delegate void AddItemEventHandler(InventoryItem theItem);
 
 	[Signal]
 	public delegate void ItemAddedEventHandler(InventoryItem theItem);
+	
+	[Signal]
+	public delegate void UseHealthPotionEventHandler(InventoryItem theItem);
+
+	[Signal]
+	public delegate void UseVisionPotionEventHandler(InventoryItem theItem);
+
+	[Signal]
+	public delegate void EnemyHitEventHandler();
+
+	[Signal]
+	public delegate void SetPlayerPositionEventHandler(Vector2 theVector2);
+
+	[Signal]
+	public delegate void PillarsCollectedEventHandler();
 
 	//Keeping this as a separate signal to prevent issues with asynchronous signalling
+	public void HoldingAllPillers()
+	{
+		EmitSignalPillarsCollected();
+	}
+	public void UseVisionPot(InventoryItem theItem)
+	{
+		EmitSignalUseVisionPotion(theItem);
+	}
+	public void UseHealthPot(InventoryItem theItem)
+	{
+		EmitSignalUseHealthPotion(theItem);
+	}
 	public void ItemAddedToInventory(InventoryItem theItem)
 	{
 		EmitSignalItemAdded(theItem);
@@ -37,6 +67,11 @@ public partial class EventBus : Node
 
 	public void DealDamageToEnemy(int theDamage)
 	{
-		EmitSignalDealDamage(theDamage);
+		EmitSignalPlayerDealsDamage(theDamage);
+	}
+
+	public void SetPosition(Vector2 theVector2)
+	{
+		EmitSignalSetPlayerPosition(theVector2);
 	}
 }

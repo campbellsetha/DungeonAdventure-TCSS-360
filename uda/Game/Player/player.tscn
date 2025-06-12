@@ -1,15 +1,13 @@
-[gd_scene load_steps=66 format=3 uid="uid://c0sxi5dgonucy"]
+[gd_scene load_steps=64 format=3 uid="uid://c0sxi5dgonucy"]
 
 [ext_resource type="Script" uid="uid://c1706h2tvg3sc" path="res://Game/Player/Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://csf461dk3fm20" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Front Idle Animation 2.0.piskel.0.png" id="2_p2hw7"]
-[ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="3_btcbx"]
 [ext_resource type="Texture2D" uid="uid://ce22aixrlaj0k" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero South Walking Animation.png" id="3_ch4ko"]
 [ext_resource type="Texture2D" uid="uid://xupr73rr5f6o" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side animation 2.0.png" id="4_vh1aq"]
 [ext_resource type="Texture2D" uid="uid://dcfdhk3845asv" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero North Walking Animation.png" id="5_4ddeg"]
 [ext_resource type="Texture2D" uid="uid://bg210scfkjw84" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side(right) animation 2.0.png" id="5_ch4ko"]
 [ext_resource type="PackedScene" uid="uid://c8ymlk3e7xidn" path="res://Game/Player/Sword.tscn" id="8_vh1aq"]
 [ext_resource type="PackedScene" uid="uid://o88fwu1iluvn" path="res://Game/Player/hp_bar.tscn" id="9_4ddeg"]
-[ext_resource type="Texture2D" uid="uid://jitkjin172tp" path="res://Game/UI/Healthbar.png" id="10_db2hk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_db2hk"]
 atlas = ExtResource("2_p2hw7")
@@ -504,9 +502,7 @@ _data = {
 &"RESET": SubResource("Animation_4ddeg")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_db2hk"]
-radius = 6.095
-height = 38.9
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ddeg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
 
@@ -522,16 +518,11 @@ fill_to = Vector2(0.949074, 0.115741)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
+scale = Vector2(0.8, 0.8)
 collision_layer = 2
-collision_mask = 16
+collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_onrkg")
-
-[node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
-offset_left = -45.0
-offset_top = -52.0
-offset_right = 45.0
-offset_bottom = 14.0
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5o4e")
@@ -544,21 +535,21 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 texture_filter = 1
-scale = Vector2(0.7, 0.7)
-shape = SubResource("CapsuleShape2D_db2hk")
+position = Vector2(0, 5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_4ddeg")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["PlayerHurtBox"]]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 32
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_btcbx")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="MyLight" type="PointLight2D" parent="."]
 position = Vector2(-2.8, 0)
 scale = Vector2(0.671196, 0.663043)
 energy = 0.7
@@ -570,13 +561,32 @@ visible = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[node name="Weapon" type="Node2D" parent="."]
+[node name="Weapon" type="Node2D" parent="." groups=["Weapon"]]
 rotation = 0.383972
 
 [node name="Sword" parent="Weapon" instance=ExtResource("8_vh1aq")]
 position = Vector2(10, 0)
 rotation = 1.5708
+scale = Vector2(1.69297, 1.71504)
 
-[node name="Hp Bar" parent="." instance=ExtResource("9_4ddeg")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor_description = "This prevents the health bar from being affected by the lighting system."
+
+[node name="BarLayout" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 72.0
+grow_vertical = 0
+
+[node name="Hp Bar" parent="CanvasLayer/BarLayout" instance=ExtResource("9_4ddeg")]
 visibility_layer = 2
-texture_progress = ExtResource("10_db2hk")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.111111
+anchor_top = -2.4
+anchor_right = -0.111111
+anchor_bottom = -2.4
+metadata/_edit_use_anchors_ = true

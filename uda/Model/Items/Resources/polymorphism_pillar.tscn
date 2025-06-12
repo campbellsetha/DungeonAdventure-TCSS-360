@@ -7,7 +7,7 @@
 
 [node name="polymorphism_pillar" type="Area2D"]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 32
 script = ExtResource("1_pxklx")
 ItemData = ExtResource("2_pxklx")
 

@@ -1,0 +1,72 @@
+<changelist name="Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]" date="1749664084577" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/11/2025 10:45 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/UDA.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.pdb" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/Tests.pdb" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/Tests.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests1.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.dll" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/Tests.dll" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/Tests.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.genruntimeconfig.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/refint/Tests.dll" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/refint/Tests.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests2.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs.uid" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/UDA.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests.csproj.CoreCompileInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/ref/Tests.dll" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/ref/Tests.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/Tests3.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_45_AM_[Changes]/project.nuget.cache" />
+  </binary>
+</changelist>

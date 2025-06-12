@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqga1get4jyfb"]
+[gd_scene load_steps=10 format=3 uid="uid://b8yb7mvi63nfq"]
 
 [ext_resource type="Script" uid="uid://6dkr5fwyb112" path="res://Game/Enemies/Gremlin.cs" id="1_48s0p"]
 [ext_resource type="Texture2D" uid="uid://coh1l4wtuuli3" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_1.png" id="2_88fw3"]
@@ -8,7 +8,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eeskg"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rfymo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bvd0o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -32,19 +32,20 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ont"]
 
-[node name="Gremlin" type="CharacterBody2D" groups=["Monster"]]
+[node name="MonsterBase" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 4
+collision_mask = 129
 script = ExtResource("1_48s0p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+scale = Vector2(0.8, 0.8)
 shape = SubResource("CircleShape2D_eeskg")
 
 [node name="MonsterSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_rfymo")
-frame = 3
-frame_progress = 0.0961509
+sprite_frames = SubResource("SpriteFrames_bvd0o")
+frame_progress = 0.715477
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Monster"]]
 collision_layer = 4
@@ -52,6 +53,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CircleShape2D_wm7yu")
 debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
 

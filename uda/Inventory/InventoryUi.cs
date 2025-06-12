@@ -6,11 +6,10 @@ using Range = System.Range;
 public partial class InventoryUi : Control
 {
 	bool is_closed = false;
-	[Export] private PackedScene _itemDisplayScene;
+	//[Export] private PackedScene _itemDisplayScene;
 	private Inventory _inventory;
 	private GridContainer _generalSlots;
 	private GridContainer _idolSlots;
-	private const int IdolSlots = 3;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -70,7 +69,6 @@ public partial class InventoryUi : Control
             if (!is_closed)
             {
 	            close();
-	            //Refresh();
             }
             else
             {

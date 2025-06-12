@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2r36xdcq5vyp"]
+
+[ext_resource type="Script" uid="uid://i1ght7uunauo" path="res://Game/Resources/ExitPortal.cs" id="1_7urtq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlo6g"]
+radius = 16.0
+
+[sub_resource type="Gradient" id="Gradient_vlo6g"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7urtq"]
+gradient = SubResource("Gradient_vlo6g")
+fill = 1
+fill_from = Vector2(0.504274, 0.512821)
+fill_to = Vector2(0.726496, 0.32906)
+
+[node name="ExitPortal" type="Area2D"]
+collision_layer = 16
+collision_mask = 34
+script = ExtResource("1_7urtq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vlo6g")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.0943138, 0.457414, 0.7239, 1)
+energy = 30.0
+shadow_color = Color(0.163698, 0.249082, 0.207422, 0)
+texture = SubResource("GradientTexture2D_7urtq")

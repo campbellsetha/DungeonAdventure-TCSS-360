@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using UDA.Game.Resources;
 using UDA.inventory;
+using UDA.Model;
 using UDA.Model.Items;
 using UDA.Model.Map;
 
@@ -13,11 +14,18 @@ public partial class DungeonBuilder : Node2D
 	private static readonly RoomConverter MyRoomConverter = new ();
 	private static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;
 	private static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;
+	private static PackedScene TheTrapScene = GD.Load<PackedScene>("res://Game/Items/ItemProtos/Trap.tscn");
+	private static PackedScene TheExitPortal = GD.Load<PackedScene>("res://Game/Resources/ExitPortal.tscn");
+	private static MonsterDictionary _myMonsterDictionary = GD.Load<MonsterDictionary>("res://Game/Resources/MonsterDictionary.tres");
 	
 	
 	// Characters that can appear in the middle
-	private static char[] _middleCharacters = ['A', 'E', 'I', 'O', 'P', 'i', 'H', 'V', 'M'];
+	private static char[] _pillarCharacters = ['A', 'E', 'P', 'I'];
+	private char MyRoomItem;
+	private char MyEntrance = 'i';
+	private char MyExit = 'O';
 
+	private const char TrapCharacter = 'X';
 	private const int MyRoomCenter = 4;
 	private const int MyRoomSideWidth = 224;
 	private const int MyRoomHeight = 174;
@@ -38,9 +46,6 @@ public partial class DungeonBuilder : Node2D
 	// do not want this, only want to run if new game is called which should build the map.
 	public override void _Ready()
 	{
-		//TODO: Place the map into a constant, then we can just reload the DungeonMap
-		GD.Print(Dungeon.MyInstance.ToString());
-		
 		//These have to go in the Highest level container or they do not work
 		ItemFactory.RegisterItem("heal_potion", "HealPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png");
 		ItemFactory.RegisterItem("vision_potion", "VisionPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_2_1.png");
@@ -48,8 +53,9 @@ public partial class DungeonBuilder : Node2D
 		ItemFactory.RegisterItem("encapsulation_pillar", "EncapsulationPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png");
 		ItemFactory.RegisterItem("inheritance_pillar", "InheritancePillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png");
 		ItemFactory.RegisterItem("polymorphism_pillar", "PolymorphismPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/candlestick_1_1.png");
-		//DetermineRoom("****A|***");
 		BuildDungeon();
+		//TODO: Place the map into a constant, then we can just reload the DungeonMap
+		GD.Print(Dungeon.MyInstance.ToString());
 	}
 
 	//This would read through the values in the 2d array representing the dungeon
@@ -71,13 +77,56 @@ public partial class DungeonBuilder : Node2D
 
 	private void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)
 	{
+		Random rand = RandomSingleton.GetInstance();
+		Vector2 roomsPosition = new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight);
+		Vector2 roomsCenter = new Vector2((float)theXCord * MyRoomSideWidth + MyRoomSideWidth/2,(float)theYCord * MyRoomHeight + MyRoomHeight/2);
 		//Had to flip the Y and X coords, it was building the right rooms but grabbing the wrong details
 		var roomModel = Dungeon.MyInstance.MyMap[theYCord, theXCord];
 		var instancedRoom = theRoomToLoad.Instantiate();
-		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,
-			new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));
-		//Moving this down so that items spawn in the appropriate position
+		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,roomsPosition);
 		AddChild(instancedRoom);
+		
+		
+
+		PackedScene bossMonster = _myMonsterDictionary.RoomDictionary["Boss"];
+		if (MyRoomItem == MyEntrance)
+		{
+			EventBus.getInstance().SetPosition(roomsCenter);
+		}
+		else
+		{
+			if (MyRoomItem == MyExit)
+			{
+				LoadRoomObjects(roomsCenter, TheExitPortal);
+				LoadRoomObjects(roomsCenter, bossMonster);
+			}
+			else if (MyRoomItem == TrapCharacter)
+			{
+				LoadRoomObjects(roomsCenter, TheTrapScene);
+			}
+			else if (_pillarCharacters.Contains(MyRoomItem))
+			{
+				//Bosses get placed into pillar rooms
+				LoadRoomObjects(roomsCenter, bossMonster);
+			}
+			//We want to spawn enemies everywhere but the entrance
+			else if (rand.Next(2) == 1)
+			{
+				//Randomly selecting from the dictionary of monster scenes.
+				var keys = _myMonsterDictionary.RoomDictionary.Keys.ToList();
+				//Fourth entry is the boss, this prevents it from spawning
+				int keyPosition = rand.Next(keys.Count);
+				string randomKey = keys[keyPosition];
+				while (randomKey == "Boss")
+				{
+					keyPosition = rand.Next(keys.Count);
+					randomKey = keys[keyPosition];
+				}
+				PackedScene monster = _myMonsterDictionary.RoomDictionary[randomKey];
+				LoadRoomObjects(roomsCenter, monster);
+			}
+		}
+
 
 		var itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>("ItemSpawnPoints");
 		
@@ -104,11 +153,21 @@ public partial class DungeonBuilder : Node2D
 		//AddChild(instancedRoom);
 	}
 
+	private void LoadRoomObjects(Vector2 theObjectPosition, PackedScene theObjectToPlace)
+	{
+		PackedScene theSceneToPlace = theObjectToPlace;
+		var sceneInstance = theSceneToPlace.Instantiate();
+		sceneInstance.Set(Node2D.PropertyName.GlobalPosition, theObjectPosition);
+		AddChild(sceneInstance);
+	}
+
 	private PackedScene DetermineRoom(string theRoom)
 	{
 		//TODO: Build A helper method to place objects/enemies/the player at the entrance
 		//This should give us the character that contains what the item is
-		char roomItem = theRoom[MyRoomCenter];
+		MyRoomItem = theRoom[MyRoomCenter];
+		
+		
 		
 		//Pulling the character from the string to determine the room type
 		string modifiedRoom = theRoom.Remove(MyRoomCenter,1);

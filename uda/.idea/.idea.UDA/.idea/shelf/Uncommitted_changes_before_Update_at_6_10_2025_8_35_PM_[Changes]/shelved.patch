@@ -1,0 +1,18 @@
+Index: Game/GameManager/EventBus.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing UDA.inventory;\n\nnamespace UDA.Game.GameManager;\n\npublic partial class EventBus : Node\n{\n\tprivate static EventBus Instance;\n\tpublic static EventBus getInstance()\n\t{\n\t\treturn Instance ??= new EventBus();\n\t}\n\t// Called when the node enters the scene tree for the first time.\n\t[Signal]\n\tpublic delegate void DealDamageEventHandler(int theDamage);\n\n\t[Signal]\n\tpublic delegate void AddItemEventHandler(InventoryItem theItem);\n\n\t[Signal]\n\tpublic delegate void ItemAddedEventHandler(InventoryItem theItem);\n\n\t//Keeping this as a separate signal to prevent issues with asynchronous signalling\n\tpublic void ItemAddedToInventory(InventoryItem theItem)\n\t{\n\t\tEmitSignalItemAdded(theItem);\n\t}\n\tpublic void AddItemToInventory(InventoryItem theItem) \n\t{\n\t\tEmitSignalAddItem(theItem);\n\t}\n\n\tpublic void DealDamageToPlayer(int theDamage)\n\t{\n\t\tEmitSignalDealDamage(theDamage);\n\t}\n\n\tpublic void DealDamageToEnemy(int theDamage)\n\t{\n\t\tEmitSignalDealDamage(theDamage);\n\t}\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/EventBus.cs b/Game/GameManager/EventBus.cs
+--- a/Game/GameManager/EventBus.cs	(revision c967aa55e1bca1d3b770e536884cb41a57d0bb60)
++++ b/Game/GameManager/EventBus.cs	(date 1749610945466)
+@@ -10,7 +10,6 @@
+ 	{
+ 		return Instance ??= new EventBus();
+ 	}
+-	// Called when the node enters the scene tree for the first time.
+ 	[Signal]
+ 	public delegate void DealDamageEventHandler(int theDamage);
+ 

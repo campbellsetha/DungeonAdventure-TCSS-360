@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://o88fwu1iluvn"]
+[gd_scene load_steps=4 format=3 uid="uid://o88fwu1iluvn"]
 
 [ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="1_ceqaf"]
 [ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="2_57dvl"]
+[ext_resource type="Texture2D" uid="uid://jitkjin172tp" path="res://Game/UI/Healthbar.png" id="3_ijic3"]
 
 [node name="Hp Bar" type="TextureProgressBar"]
 light_mask = 4
 visibility_layer = 4
-offset_left = -32.0
-offset_top = -35.0
-offset_right = 32.0
-offset_bottom = -3.0
+offset_right = 64.0
+offset_bottom = 32.0
+scale = Vector2(6.65806, 7.20517)
 value = 100.0
 texture_under = ExtResource("1_ceqaf")
 texture_over = ExtResource("2_57dvl")
+texture_progress = ExtResource("3_ijic3")

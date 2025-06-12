@@ -2,7 +2,8 @@ using Godot;
 using MonoCustomResourceRegistry;
 namespace UDA.inventory;
 
-[RegisteredType(nameof(InventoryItem), "", nameof(Resource))]
+//[RegisteredType(nameof(InventoryItem), "", nameof(Resource))]
+[GlobalClass]
 public partial class InventoryItem : Resource
 {
     [Export] public string Name { get; set; }
@@ -11,7 +12,7 @@ public partial class InventoryItem : Resource
 
     [Export] public Texture2D Texture { get; set; }
 
-    public int ItemCount { get; private set; } = 1;
+    public int ItemCount { get; set; } = 1;
     
     public InventoryItem() {}
     public void Initialize(string theId, string theName, Texture2D theTexture)
@@ -22,4 +23,6 @@ public partial class InventoryItem : Resource
     }
 
     public void IncreaseItemCount() => ItemCount++;
+
+    public void DecreaseItemCount() => ItemCount--;
 }

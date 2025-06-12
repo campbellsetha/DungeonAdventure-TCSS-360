@@ -1,3 +1,4 @@
+using System.Drawing;
 using Godot;
 using UDA.Game.Enemies;
 using UDA.Game.GameManager;
@@ -7,6 +8,8 @@ using UDA.Model.Characters;
 using UDA.Model.Characters.Monster;
 
 using UDA.inventory;
+using UDA.Model;
+using Timer = System.Threading.Timer;
 
 
 namespace UDA.Game.Player;
@@ -20,12 +23,15 @@ public partial class Player : CharacterBody2D
     private AnimationPlayer _animationPlayer;
     private Node2D _myWeapon;
     private Area2D _myWeaponHitBox;
+    private CollisionShape2D _myWeaponHitBoxShape;
+    private PointLight2D _myLight;
     private string _myLastDirection = "Down";
     public PlayerClassInfo MyClassInfo;
 	private string _myName;
     public Hero MyClass;
 	public Inventory Inventory { get; private set; }
     private TextureProgressBar _healthBar;
+    
 
 	
 	//Fun C# fact, these are called expression bodies
@@ -46,20 +52,29 @@ public partial class Player : CharacterBody2D
         Inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
         
         //Connecting to the event bus, we connect to the specific signal not the method in the bus
-        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));
-        GameManager.EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
+        EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnDamageTaken)));
+        EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
+        EventBus.getInstance().Connect(nameof(EventBus.UseHealthPotion), new Callable(this, nameof(UseHealthPotion)));
+        EventBus.getInstance().Connect(nameof(EventBus.UseVisionPotion), new Callable(this, nameof(UseVisionPotion)));
+        EventBus.getInstance().Connect(nameof(EventBus.SetPlayerPosition), new Callable(this, nameof(SetStartingPosition)));
+        
         
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
         _animationPlayer = GetNode<AnimationPlayer>("WeaponAnimation");
         _myWeapon = GetNode<Node2D>("Weapon");
         _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
+        _myWeaponHitBox.Connect(Area2D.SignalName.AreaEntered, new Callable(this, nameof(EnemyHit)));
+        _myWeaponHitBoxShape = _myWeaponHitBox.GetNode<CollisionShape2D>("CollisionShape2D");
+        _myWeaponHitBoxShape.Disabled = true;
         _myWeapon.Visible = false;
-        _healthBar = GetNode<TextureProgressBar>("Hp Bar");
+        _myLight = GetNode<PointLight2D>("MyLight");
+        _healthBar = GetNode<TextureProgressBar>("CanvasLayer/BarLayout/Hp Bar");
         //Setting the maximum value of the healthBar to the current classes max hit points
         //This makes updating it only take the current hp of the players class
         _healthBar.MaxValue = MyClass.MaxHitPoints;
         _healthBar.Value = MyClass.HitPoints;
+        _healthBar.Visible = true;
     }
 
     public override void _Process(double theDelta)
@@ -107,9 +122,8 @@ public partial class Player : CharacterBody2D
     private async Task Attack()
     {
         _myWeapon.Visible = true;
-        _myWeaponHitBox.SetCollisionMask(3);
+        _myWeaponHitBoxShape.Disabled = false;
         _animationPlayer.Play("Attack" + _myLastDirection);
-        
         /*
          * While this does work, it comes with some graphical issues. If an attack animation is triggered again,
          * the current animation will end and make the weapon visible again.
@@ -118,14 +132,59 @@ public partial class Player : CharacterBody2D
          */
         await ToSignal(GetTree().CreateTimer(0.3, false), SceneTreeTimer.SignalName.Timeout);
         _myWeapon.Visible = false;
+        _myWeaponHitBoxShape.Disabled = true;
+    }
+    
+    private void EnemyHit(Area2D theMonster)
+    {
+        if (theMonster.IsInGroup("Monster"))
+        {
+            Random rand = RandomSingleton.GetInstance();
+            int damage = rand.Next(MyClass.DamageRange.Min, MyClass.DamageRange.Max);
+            MonsterBase theMonsterInstance = theMonster.GetParent<MonsterBase>();
+            theMonsterInstance.TakeDamage(damage);
+            //EventBus.getInstance().DealDamageToEnemy(damage);
+        }
     }
 
     private void ItemAdded(InventoryItem theItem)
     {
         Inventory.AddToInventory(theItem);
         EventBus.getInstance().ItemAddedToInventory(theItem);
+        if (Inventory.GetKeyItems().Count == 4)
+        {
+            EventBus.getInstance().HoldingAllPillers();
+            //Maybe add a little popup that the dungeon can be left now?
+        }
     }
-    
+
+    private void UseHealthPotion(InventoryItem theHealthPotion)
+    {
+        //We want to modify the inventory before we attempt to modify the player
+        Inventory.UsePotion(theHealthPotion);
+        MyClass.Heal(50);
+        _healthBar.Value = MyClass.HitPoints;
+    }
+
+    private void UseVisionPotion(InventoryItem theVisionPotion)
+    {
+        Inventory.UsePotion(theVisionPotion);
+        _myLight.TextureScale = 10;
+        //Temporary timer to manage the duration of the vision potion
+        var timer = GetTree().CreateTimer(30);
+        timer.Timeout += ResetLight;
+    }
+
+    private void ResetLight()
+    {
+        _myLight.TextureScale = (float)4.6;
+        GD.Print("The light was successfully reset");
+    }
+
+    private void SetStartingPosition(Vector2 thePosition)
+    {
+        GlobalPosition = thePosition;
+    }
 
     /// <summary>
     ///     Should run at every processing step.
@@ -170,9 +229,7 @@ public partial class Player : CharacterBody2D
             
     }
     
-    
-    //Can add a check to see if what entered was the global class monster
-    private void OnHurtBoxEntered(int theDamageAmount)
+    private void OnDamageTaken(int theDamageAmount)
     {
         //Take damage
         MyClass.TakeDamage(theDamageAmount);
@@ -186,11 +243,8 @@ public partial class Player : CharacterBody2D
         {
             //Simulates death, still need to create a game over screen
             QueueFree();
-            GD.Print("Im dead, maybe add queue free to delete me from the scene");
+            
         }
-
-        //Testing to see that the appropriate damage is being delivered
-        GD.Print("Ouch" + theDamageAmount);
     }
 
     private Godot.Collections.Dictionary<string, Variant> Save()

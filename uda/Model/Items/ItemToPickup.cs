@@ -20,7 +20,7 @@ public partial class ItemToPickup : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	private void OnBodyEntered(Area2D theBody)
 	{
-		GD.Print("Found an item");
+		//GD.Print("Found an item");
 		if (!theBody.IsInGroup("Monster") && ItemData != null)
 		{
 			EventBus.getInstance().AddItemToInventory(ItemData);

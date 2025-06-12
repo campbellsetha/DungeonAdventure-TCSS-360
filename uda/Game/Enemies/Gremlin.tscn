@@ -35,7 +35,7 @@ animations = [{
 [node name="MonsterBase" type="CharacterBody2D" groups=["Monster"]]
 z_index = 1
 collision_layer = 4
-collision_mask = 128
+collision_mask = 129
 script = ExtResource("1_48s0p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

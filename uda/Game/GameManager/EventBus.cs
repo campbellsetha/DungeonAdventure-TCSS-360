@@ -32,8 +32,17 @@ public partial class EventBus : Node
 	[Signal]
 	public delegate void EnemyHitEventHandler();
 
-	//Keeping this as a separate signal to prevent issues with asynchronous signalling
+	[Signal]
+	public delegate void SetPlayerPositionEventHandler(Vector2 theVector2);
 
+	[Signal]
+	public delegate void PillarsCollectedEventHandler();
+
+	//Keeping this as a separate signal to prevent issues with asynchronous signalling
+	public void HoldingAllPillers()
+	{
+		EmitSignalPillarsCollected();
+	}
 	public void UseVisionPot(InventoryItem theItem)
 	{
 		EmitSignalUseVisionPotion(theItem);
@@ -59,5 +68,10 @@ public partial class EventBus : Node
 	public void DealDamageToEnemy(int theDamage)
 	{
 		EmitSignalPlayerDealsDamage(theDamage);
+	}
+
+	public void SetPosition(Vector2 theVector2)
+	{
+		EmitSignalSetPlayerPosition(theVector2);
 	}
 }

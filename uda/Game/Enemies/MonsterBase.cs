@@ -25,11 +25,12 @@ public partial class MonsterBase : CharacterBody2D
     
     protected virtual void SetUp()
     {
+        Random rand = RandomSingleton.GetInstance();
         MonsterSpritePlayer = GetNode<AnimatedSprite2D>("MonsterSprite");
         MonsterSpritePlayer.Play("default");
         myHitBox = GetNode<Area2D>("Hitbox");
         StartPosition = Position;
-        EndPosition = StartPosition + new Vector2(0, 3 * 16);
+        EndPosition = StartPosition + new Vector2(rand.Next(-49,49), rand.Next(-49,49));
     }
 
     private void ChangePosition()

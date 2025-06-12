@@ -56,6 +56,7 @@ public partial class Player : CharacterBody2D
         EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
         EventBus.getInstance().Connect(nameof(EventBus.UseHealthPotion), new Callable(this, nameof(UseHealthPotion)));
         EventBus.getInstance().Connect(nameof(EventBus.UseVisionPotion), new Callable(this, nameof(UseVisionPotion)));
+        EventBus.getInstance().Connect(nameof(EventBus.SetPlayerPosition), new Callable(this, nameof(SetStartingPosition)));
         
         
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
@@ -150,6 +151,11 @@ public partial class Player : CharacterBody2D
     {
         Inventory.AddToInventory(theItem);
         EventBus.getInstance().ItemAddedToInventory(theItem);
+        if (Inventory.GetKeyItems().Count == 4)
+        {
+            EventBus.getInstance().HoldingAllPillers();
+            //Maybe add a little popup that the dungeon can be left now?
+        }
     }
 
     private void UseHealthPotion(InventoryItem theHealthPotion)
@@ -157,6 +163,7 @@ public partial class Player : CharacterBody2D
         //We want to modify the inventory before we attempt to modify the player
         Inventory.UsePotion(theHealthPotion);
         MyClass.Heal(50);
+        _healthBar.Value = MyClass.HitPoints;
     }
 
     private void UseVisionPotion(InventoryItem theVisionPotion)
@@ -172,6 +179,11 @@ public partial class Player : CharacterBody2D
     {
         _myLight.TextureScale = (float)4.6;
         GD.Print("The light was successfully reset");
+    }
+
+    private void SetStartingPosition(Vector2 thePosition)
+    {
+        GlobalPosition = thePosition;
     }
 
     /// <summary>
@@ -231,11 +243,8 @@ public partial class Player : CharacterBody2D
         {
             //Simulates death, still need to create a game over screen
             QueueFree();
-            //GD.Print("Im dead, maybe add queue free to delete me from the scene");
+            
         }
-
-        //Testing to see that the appropriate damage is being delivered
-        //GD.Print("Ouch" + theDamageAmount);
     }
 
     private Godot.Collections.Dictionary<string, Variant> Save()

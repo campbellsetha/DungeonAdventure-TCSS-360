@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MonsterDictionary" load_steps=6 format=3 uid="uid://c8mj4w4tul263"]
+
+[ext_resource type="PackedScene" uid="uid://b8yb7mvi63nfq" path="res://Game/Enemies/Gremlin.tscn" id="1_1e4dm"]
+[ext_resource type="PackedScene" uid="uid://cqsvyjh3l8o6s" path="res://Game/Enemies/Ogre.tscn" id="2_birn7"]
+[ext_resource type="PackedScene" uid="uid://buvu7kodegel2" path="res://Game/Enemies/Skeleton.tscn" id="3_j70wd"]
+[ext_resource type="PackedScene" uid="uid://toy3qaqd3rev" path="res://Game/Enemies/BossMonster.tscn" id="4_wrina"]
+[ext_resource type="Script" uid="uid://clnejtgp8e6kt" path="res://Game/Resources/MonsterDictionary.cs" id="5_gycg5"]
+
+[resource]
+script = ExtResource("5_gycg5")
+RoomDictionary = Dictionary[String, PackedScene]({
+"Boss": ExtResource("4_wrina"),
+"Gremlin": ExtResource("1_1e4dm"),
+"Ogre": ExtResource("2_birn7"),
+"Skeleton": ExtResource("3_j70wd")
+})
+metadata/_custom_type_script = "uid://clnejtgp8e6kt"

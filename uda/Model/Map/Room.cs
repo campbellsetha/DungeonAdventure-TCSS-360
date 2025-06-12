@@ -70,6 +70,20 @@ public class Room
         };
     }
 
+    internal int GetNumberOfDoors()
+    {
+        int numOfDoors = 0;
+        foreach (KeyValuePair<Direction, BoundaryType?> kvp in MyBoundaries)
+        {
+            if (kvp.Value == BoundaryType.Door)
+            {
+                numOfDoors++;
+            }
+        }
+
+        return numOfDoors;
+    }
+
     public string[] GetDetails()
     {
         var result = new string[3];

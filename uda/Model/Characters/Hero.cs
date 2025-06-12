@@ -11,6 +11,20 @@ public abstract /*partial*/ class Hero : DungeonCharacter
 
     /*[Signal]
     public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);*/
+    
+    private double _lastSkillTime = -5.0; // initialize so he can use skill immediately
+    private readonly double _skillCooldown = 5.0; // seconds
+
+    public bool CanPerformSkill()
+    {
+        var timer = Time.GetTicksMsec() / 1000.0;
+        return timer - _lastSkillTime >= _skillCooldown;
+    }
+
+    public void ResetSkillCooldown()
+    {
+        _lastSkillTime = Time.GetTicksMsec() / 5000.0;
+    }
 
     protected Hero(
         string theName,

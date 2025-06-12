@@ -1,0 +1,54 @@
+<changelist name="Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1" date="1749614197979" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/10/2025 8:54 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/UDA.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.pdb" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.dll" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.genruntimeconfig.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/UDA.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/Tests.csproj.CoreCompileInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_54_PM_[Changes]1/project.nuget.cache" />
+  </binary>
+</changelist>

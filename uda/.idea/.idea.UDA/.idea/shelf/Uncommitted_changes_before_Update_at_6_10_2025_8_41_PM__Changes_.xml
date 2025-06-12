@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]" date="1749613314110" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/10/2025 8:41 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/UDA.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/Tests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/Tests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="AFTER_PATH" value="Tests/bin/Debug/net9.0/UDA.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/UDA.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_10_2025_8_41_PM_[Changes]/project.nuget.cache" />
+  </binary>
+</changelist>

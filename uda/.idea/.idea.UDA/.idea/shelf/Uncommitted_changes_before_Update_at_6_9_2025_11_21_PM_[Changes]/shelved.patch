@@ -1,0 +1,361 @@
+Index: Game/GameManager/DungeonBuilder.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing Godot.Collections;\nusing UDA.Game.Resources;\nusing UDA.Model.Items;\nusing UDA.Model.Map;\n\nnamespace UDA.Game.GameManager;\n\npublic partial class DungeonBuilder : Node2D\n{\n\tprivate static readonly RoomTypeCollection MyRoomTypes = new ();\n\tprivate static readonly RoomConverter MyRoomConverter = new ();\n\tprivate static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;\n\tprivate static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;\n\t\n\t\n\t// Characters that can appear in the middle\n\tprivate static char[] _middleCharacters = ['A', 'E', 'I', 'O', 'P', 'i', 'H', 'V', 'M'];\n\n\tprivate const int MyRoomCenter = 4;\n\tprivate const int MyRoomSideWidth = 224;\n\tprivate const int MyRoomHeight = 174;\n\tprivate int _myDungeonLength = 10;\n\tprivate int _myDungeonWidth = 10;\n\t\n\t// Called when the node enters the scene tree for the first time.\n\t// do not want this, only want to run if new game is called which should build the map.\n\tpublic override void _Ready()\n\t{\n\t\t//TODO: Place the map into a constant, then we can just reload the DungeonMap\n\t\tGD.Print(Dungeon.MyInstance.ToString());\n\t\t//DetermineRoom(\"****A|***\");\n\t\tBuildDungeon();\n\t}\n\n\t//This would read through the values in the 2d array representing the dungeon\n\t//and instantiate the add the corresponding room in the engine(game)\n\tpublic void BuildDungeon()\n\t{\n\t\tfor (int i = 0; i < _myDungeonLength; i++)\n\t\t{\n\t\t\tfor (int j = 0; j < _myDungeonWidth; j++)\n\t\t\t{\n\t\t\t\tstring currentRoom = string.Join(\"\",Dungeon.MyInstance._myMap[i, j].GetDetails());\n\t\t\t\tPackedScene sceneToLoad = DetermineRoom(currentRoom);\n\t\t\t\t//Not sure why these coords need to get flipped, but they do\n\t\t\t\tLoadRoom(sceneToLoad,j,i);\n\t\t\t\t//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());\n\t\t\t\t//GD.Print(\"My builder Output = \" + currentRoom);\n\t\t\t}\n\t\t}\n\t}\n\n\tprivate void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)\n\t{\n\t\tvar roomModel = Dungeon.MyInstance._myMap[theXCord, theYCord];\n\t\tvar instancedRoom = theRoomToLoad.Instantiate();\n\t\tinstancedRoom.Set(Node2D.PropertyName.GlobalPosition,\n\t\t\tnew Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));\n\t\tAddChild(instancedRoom);\n\n\t\tvar itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>(\"ItemSpawnPoints\");\n\t\t\n\t\tif (itemSpawnRoot == null)\n\t\t\treturn;\n\t\t\n\t\tvar spawnMarkers = new Array<Node>(itemSpawnRoot.GetChildren());\n\t\tspawnMarkers.Shuffle();\n\t\t\t\n\t\tvar ListOfRoomItems = ItemFactory.GetItemsFromRoom(roomModel);\n\n\t\tfor (int i = 0; i < ListOfRoomItems.Count && i < spawnMarkers.Count; i++)\n\t\t{\n\t\t\tvar itemData = ListOfRoomItems[i];\n\t\t\tvar spawnPoint = spawnMarkers[i] as Marker2D;\n\t\t\tvar itemScene = GD.Load<PackedScene>(\"res://Model/Items/Resources/\" + itemData.Id.ToLower() + \".tscn\");\n\t\t\tvar itemNodeBase = itemScene.Instantiate();\n\t\t\tvar itemNode = itemNodeBase as ItemToPickup;\n\t\t\t\n\t\t\titemNode.ItemData = itemData;\n\t\t\titemNode.Position = spawnPoint.GlobalPosition;\n\t\t\tinstancedRoom.AddChild(itemNode);\n\t\t}\n\t}\n\n\tprivate PackedScene DetermineRoom(string theRoom)\n\t{\n\t\t//TODO: Build A helper method to place objects/enemies/the player at the entrance\n\t\t//This should give us the character that contains what the item is\n\t\tchar roomItem = theRoom[MyRoomCenter];\n\t\t\n\t\t//Pulling the character from the string to determine the room type\n\t\tstring modifiedRoom = theRoom.Remove(MyRoomCenter,1);\n\t\t//Padding the string with a \"*\" to match the dictionary\n\t\tmodifiedRoom = modifiedRoom.Insert(4, \"*\");\n\n\t\tRoomTypeCollection.RoomType theRoomType = MyRoomStringToTypeDict[modifiedRoom];\n\t\t\n\t\t//Getting the enum for the appropriate type that is mapped to the packed scenes\n\t\t\n\t\t\n\t\t//Getting the packed scene from the dictionary based on the room type\n\t\tPackedScene theRoomScene = MyRoomTypeDict[theRoomType];\n\t\treturn theRoomScene;\n\t\t\n\t\t//TEST PRINT FOR STRING\n\t\t//GD.Print(modifiedRoom);\n\t\t//GD.Print(theRoomType);\n\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/DungeonBuilder.cs b/Game/GameManager/DungeonBuilder.cs
+--- a/Game/GameManager/DungeonBuilder.cs	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Game/GameManager/DungeonBuilder.cs	(date 1749536316386)
+@@ -1,6 +1,7 @@
+ using Godot;
+ using Godot.Collections;
+ using UDA.Game.Resources;
++using UDA.inventory;
+ using UDA.Model.Items;
+ using UDA.Model.Map;
+ 
+@@ -22,13 +23,31 @@
+ 	private const int MyRoomHeight = 174;
+ 	private int _myDungeonLength = 10;
+ 	private int _myDungeonWidth = 10;
++
+ 	
++	//TODO: Remove this after figuring out why items are not spawning in the correct positions
++	public override void _Process(double delta)
++	{
++		if (Input.IsActionJustPressed("QueryPlayerInfo"))
++		{
++			GD.Print(GetNode<Player.Player>("Player").GlobalPosition);
++		}
++	}
++
+ 	// Called when the node enters the scene tree for the first time.
+ 	// do not want this, only want to run if new game is called which should build the map.
+ 	public override void _Ready()
+ 	{
+ 		//TODO: Place the map into a constant, then we can just reload the DungeonMap
+ 		GD.Print(Dungeon.MyInstance.ToString());
++		
++		//These have to go in the Highest level container or they do not work
++		ItemFactory.RegisterItem("heal_potion", "HealPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png");
++		ItemFactory.RegisterItem("vision_potion", "VisionPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_2_1.png");
++		ItemFactory.RegisterItem("abstraction_pillar", "AbstractionPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_1.png");
++		ItemFactory.RegisterItem("encapsulation_pillar", "EncapsulationPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png");
++		ItemFactory.RegisterItem("inheritance_pillar", "InheritancePillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png");
++		ItemFactory.RegisterItem("polymorphism_pillar", "PolymorphismPillar","res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/candlestick_1_1.png");
+ 		//DetermineRoom("****A|***");
+ 		BuildDungeon();
+ 	}
+@@ -43,7 +62,6 @@
+ 			{
+ 				string currentRoom = string.Join("",Dungeon.MyInstance._myMap[i, j].GetDetails());
+ 				PackedScene sceneToLoad = DetermineRoom(currentRoom);
+-				//Not sure why these coords need to get flipped, but they do
+ 				LoadRoom(sceneToLoad,j,i);
+ 				//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());
+ 				//GD.Print("My builder Output = " + currentRoom);
+@@ -53,10 +71,12 @@
+ 
+ 	private void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)
+ 	{
+-		var roomModel = Dungeon.MyInstance._myMap[theXCord, theYCord];
++		//Had to flip the Y and X coords
++		var roomModel = Dungeon.MyInstance._myMap[theYCord, theXCord];
+ 		var instancedRoom = theRoomToLoad.Instantiate();
+ 		instancedRoom.Set(Node2D.PropertyName.GlobalPosition,
+ 			new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight));
++		//Moving this down so that items spawn in the appropriate position
+ 		AddChild(instancedRoom);
+ 
+ 		var itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>("ItemSpawnPoints");
+@@ -72,15 +92,16 @@
+ 		for (int i = 0; i < ListOfRoomItems.Count && i < spawnMarkers.Count; i++)
+ 		{
+ 			var itemData = ListOfRoomItems[i];
+-			var spawnPoint = spawnMarkers[i] as Marker2D;
++			var spawnPoint = (Marker2D)spawnMarkers[i];
+ 			var itemScene = GD.Load<PackedScene>("res://Model/Items/Resources/" + itemData.Id.ToLower() + ".tscn");
+ 			var itemNodeBase = itemScene.Instantiate();
+-			var itemNode = itemNodeBase as ItemToPickup;
++			var itemNode = (ItemToPickup)itemNodeBase;
+ 			
+ 			itemNode.ItemData = itemData;
+-			itemNode.Position = spawnPoint.GlobalPosition;
++			itemNode.GlobalPosition = spawnPoint.Position;
+ 			instancedRoom.AddChild(itemNode);
+ 		}
++		//AddChild(instancedRoom);
+ 	}
+ 
+ 	private PackedScene DetermineRoom(string theRoom)
+Index: Model/Characters/Hero.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//using Godot;\nusing static System.Math;\n\nnamespace UDA.Model.Characters;\n\npublic abstract /*partial*/ class Hero : DungeonCharacter\n{\n    // Should probably have a countdown timer for how often the special skill can be used \n\n    /*[Signal]\n    public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);*/\n\n    protected Hero(\n        string theName,\n        int theHitPoints,\n        int theAttackSpeed,\n        double theHitChance,\n        (int, int) theDamageRange,\n        double theBlockChance,\n        string theSkill)\n        : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)\n    {\n        BlockChance = theBlockChance;\n        Skill = theSkill;\n    }\n\n    public double BlockChance { get; }\n\n    public string Skill { get; }\n\n\tpublic virtual void PerformSkill(DungeonCharacter theTarget)\n\t{\n\t\t\n\t}\n\tpublic override void TakeDamage(int theDamage)\n\t{\n\t\tif (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;\n\t\t{\n\t\t\tHitPoints -= theDamage;\n\t\t\t\n\t\t\tGetNode<TextureProgressBar>(\"Hp Bar\").Value = (float)HitPoints / MaxHitPoints * 100;\n\t\t\t// Clamp health to avoid it going below 0\n\t\t\tHitPoints = Max((int)HitPoints, 0);\n\n            // Emit the signal\n            //EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);\n\n            /*void EmitSignal(string theHealthChangedName, int theHitPoints, int theMaxHitPoints)\n            {\n                throw new NotImplementedException();\n            }*/\n        }\n    }\n\n    public void Heal(int theHealAmount)\n    {\n        HitPoints += theHealAmount;\n\n        // Clamp health to avoid it exceeding MaxHitPoints\n        HitPoints = Min(HitPoints, MaxHitPoints);\n\n        // Emit the signal\n        // code needs to be moved elsewhere\n        /*EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);\n\n        void EmitSignal(string theHealthChangedName, object theHitPoints, int theMaxHitPoints)\n        {\n            throw new NotImplementedException();\n        }*/\n        \n        \n    }\n\n    /*public void Connect(string theHealthchanged, Callable theCallable)\n    {\n        throw new NotImplementedException();\n    }*/\n\n    //TODO: SERIALIZE THIS\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Characters/Hero.cs b/Model/Characters/Hero.cs
+--- a/Model/Characters/Hero.cs	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Model/Characters/Hero.cs	(date 1749523228328)
+@@ -1,4 +1,6 @@
+ //using Godot;
++
++using Godot;
+ using static System.Math;
+ 
+ namespace UDA.Model.Characters;
+@@ -38,7 +40,7 @@
+ 		{
+ 			HitPoints -= theDamage;
+ 			
+-			GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
++			//GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
+ 			// Clamp health to avoid it going below 0
+ 			HitPoints = Max((int)HitPoints, 0);
+ 
+Index: Game/GameManager/dungeonBuilder.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=4 format=3 uid=\"uid://bsol51ifob8jy\"]\n\n[ext_resource type=\"Script\" uid=\"uid://5aag1gci500y\" path=\"res://Game/GameManager/DungeonBuilder.cs\" id=\"1_vxoxu\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c0sxi5dgonucy\" path=\"res://Game/Player/player.tscn\" id=\"2_mya23\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://x1ohmojyrpy\" path=\"res://dungeon_menu_bg_1150x650.png\" id=\"3_06u46\"]\n\n[node name=\"DungeonBuilder\" type=\"Node2D\"]\nscript = ExtResource(\"1_vxoxu\")\n\n[node name=\"Player\" parent=\".\" instance=ExtResource(\"2_mya23\")]\n\n[node name=\"CanvasModulate\" type=\"CanvasModulate\" parent=\".\"]\nclip_children = 2\ncolor = Color(0, 0, 0, 1)\n\n[node name=\"TextureRect\" type=\"TextureRect\" parent=\"CanvasModulate\"]\noffset_left = -624.0\noffset_top = -576.0\noffset_right = 4797.0\noffset_bottom = 2496.0\ntexture = ExtResource(\"3_06u46\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/dungeonBuilder.tscn b/Game/GameManager/dungeonBuilder.tscn
+--- a/Game/GameManager/dungeonBuilder.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Game/GameManager/dungeonBuilder.tscn	(date 1749529186047)
+@@ -10,6 +10,7 @@
+ [node name="Player" parent="." instance=ExtResource("2_mya23")]
+ 
+ [node name="CanvasModulate" type="CanvasModulate" parent="."]
++visible = false
+ clip_children = 2
+ color = Color(0, 0, 0, 1)
+ 
+Index: Model/Items/Resources/heal_potion.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=4 format=3 uid=\"uid://dje3ck0p0abmv\"]\n\n[ext_resource type=\"Script\" uid=\"uid://dii5sylwock4a\" path=\"res://Model/Items/ItemToPickup.cs\" id=\"1_oc280\"]\n[ext_resource type=\"Resource\" uid=\"uid://bgqgnkfmvr5kx\" path=\"res://Model/Items/Resources/InventoryItem.tres\" id=\"2_fjfsr\"]\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_fjfsr\"]\n\n[node name=\"heal_potion\" type=\"Area2D\"]\nscript = ExtResource(\"1_oc280\")\nItemData = ExtResource(\"2_fjfsr\")\n\n[node name=\"Sprite2D\" type=\"Sprite2D\" parent=\".\"]\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\".\"]\nlight_mask = 3\nvisibility_layer = 3\nshape = SubResource(\"CircleShape2D_fjfsr\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Items/Resources/heal_potion.tscn b/Model/Items/Resources/heal_potion.tscn
+--- a/Model/Items/Resources/heal_potion.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Model/Items/Resources/heal_potion.tscn	(date 1749523231290)
+@@ -6,6 +6,8 @@
+ [sub_resource type="CircleShape2D" id="CircleShape2D_fjfsr"]
+ 
+ [node name="heal_potion" type="Area2D"]
++collision_layer = 16
++collision_mask = 0
+ script = ExtResource("1_oc280")
+ ItemData = ExtResource("2_fjfsr")
+ 
+Index: Tests/obj/Debug/net9.0/Tests.sourcelink.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"documents\":{\"C:\\\\Users\\\\sword\\\\Documents\\\\DungeonAdventure-TCSS-360\\\\*\":\"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/d068aabece8402355962cb8f8e690dcdae1ea946/*\"}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Tests/obj/Debug/net9.0/Tests.sourcelink.json b/Tests/obj/Debug/net9.0/Tests.sourcelink.json
+--- a/Tests/obj/Debug/net9.0/Tests.sourcelink.json	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Tests/obj/Debug/net9.0/Tests.sourcelink.json	(date 1749524486781)
+@@ -1,1 +1,1 @@
+-{"documents":{"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\*":"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/d068aabece8402355962cb8f8e690dcdae1ea946/*"}}
+\ No newline at end of file
++{"documents":{"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\*":"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/3e5e5293acd6f4d0e42cbdd9bca347e461341600/*"}}
+\ No newline at end of file
+Index: World/world.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=10 format=4 uid=\"uid://1msm3iduvvnh\"]\n\n[ext_resource type=\"PackedScene\" uid=\"uid://c0sxi5dgonucy\" path=\"res://Game/Player/player.tscn\" id=\"1_62w18\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://b7fneqow47t6q\" path=\"res://WhiteBlockAssets/WhiteBox.png\" id=\"2_j8job\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://w88benjaoca0\" path=\"res://WhiteBlockAssets/Ground tiles (64 x 64).png\" id=\"3_3f78f\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://dq5wog5mqfyfc\" path=\"res://2D Pixel Dungeon Asset Pack/Overlay Healthbar.png\" id=\"4_bkhv4\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://itttx4feu6x6\" path=\"res://2D Pixel Dungeon Asset Pack/Overlay.png\" id=\"5_yf0ba\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://ci8rnspeiy5ts\" path=\"res://2D Pixel Dungeon Asset Pack/Underlay Healthbar.png\" id=\"6_eidgh\"]\n\n[sub_resource type=\"TileSetAtlasSource\" id=\"TileSetAtlasSource_k8do8\"]\ntexture = ExtResource(\"2_j8job\")\n0:0/0 = 0\n1:0/0 = 0\n0:1/0 = 0\n1:1/0 = 0\n\n[sub_resource type=\"TileSetAtlasSource\" id=\"TileSetAtlasSource_bkhv4\"]\ntexture = ExtResource(\"3_3f78f\")\n0:0/0 = 0\n1:0/0 = 0\n2:0/0 = 0\n3:0/0 = 0\n5:0/0 = 0\n6:0/0 = 0\n0:1/0 = 0\n1:1/0 = 0\n2:1/0 = 0\n3:1/0 = 0\n4:1/0 = 0\n5:1/0 = 0\n6:1/0 = 0\n7:1/0 = 0\n0:2/0 = 0\n1:2/0 = 0\n2:2/0 = 0\n3:2/0 = 0\n4:2/0 = 0\n5:2/0 = 0\n0:3/0 = 0\n1:3/0 = 0\n1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)\n1:3/0/physics_layer_0/polygon_0/one_way_margin = 2.0\n2:3/0 = 0\n3:3/0 = 0\n4:3/0 = 0\n5:3/0 = 0\n\n[sub_resource type=\"TileSet\" id=\"TileSet_yf0ba\"]\nphysics_layer_0/collision_layer = 1\nsources/0 = SubResource(\"TileSetAtlasSource_k8do8\")\nsources/1 = SubResource(\"TileSetAtlasSource_bkhv4\")\n\n[node name=\"World\" type=\"Node2D\"]\nposition = Vector2(562, 329)\n\n[node name=\"TileMapLayer\" type=\"TileMapLayer\" parent=\".\"]\nz_index = -1\ntile_map_data = PackedByteArray(\"AAD5//z/AQACAAIAAAD6//3/AQACAAIAAAD7//3/AQACAAIAAAD8//7/AQACAAIAAAD9//7/AQACAAIAAAD+////AQACAAIAAAD/////AQACAAIAAAAAAAAAAQACAAIAAAABAAAAAQACAAIAAAACAAEAAQACAAIAAAADAAEAAQACAAIAAAAEAAIAAQACAAIAAAAFAAIAAQACAAIAAAAGAAMAAQACAAIAAAAFAAMAAQACAAIAAAAEAAMAAQACAAIAAAADAAMAAQACAAIAAAACAAMAAQACAAIAAAABAAMAAQACAAIAAAAAAAMAAQACAAIAAAD//wMAAQACAAIAAAD+/wMAAQACAAIAAAD9/wMAAQACAAIAAAD8/wMAAQACAAIAAAD7/wMAAQACAAIAAAD6/wMAAQACAAIAAAD5/wMAAQACAAIAAAD5/wIAAQACAAIAAAD5/wEAAQACAAIAAAD5/wAAAQACAAIAAAD5////AQACAAIAAAD5//7/AQACAAIAAAD5//3/AQACAAIAAAD6//z/AQACAAIAAAD7//z/AQACAAIAAAD8//z/AQACAAIAAAD9//z/AQACAAIAAAD+//z/AQACAAIAAAD///z/AQACAAIAAAAAAPz/AQACAAIAAAABAPz/AQACAAIAAAACAPz/AQACAAIAAAADAPz/AQACAAIAAAAEAPz/AQACAAIAAAAFAPz/AQACAAIAAAAGAPz/AQACAAIAAAAGAP3/AQACAAIAAAAGAP7/AQACAAIAAAAGAP//AQACAAIAAAAGAAAAAQACAAIAAAAGAAEAAQACAAIAAAAGAAIAAQACAAIAAAD3//r/AQACAAIAAAD3//v/AQACAAIAAAD3//z/AQACAAIAAAD3//3/AQACAAIAAAD3//7/AQACAAIAAAD3////AQACAAIAAAD3/wAAAQACAAIAAAD3/wEAAQACAAIAAAD3/wIAAQACAAIAAAD3/wMAAQACAAIAAAD3/wQAAQACAAIAAAD4//r/AQACAAIAAAD4//v/AQACAAIAAAD4//z/AQACAAIAAAD4//3/AQACAAIAAAD4//7/AQACAAIAAAD4////AQACAAIAAAD4/wAAAQACAAIAAAD4/wEAAQACAAIAAAD4/wIAAQACAAIAAAD4/wMAAQACAAIAAAD4/wQAAQACAAIAAAD5//r/AQACAAIAAAD5//v/AQACAAIAAAD5/wQAAQACAAIAAAD6//r/AQACAAIAAAD6//v/AQACAAIAAAD6//7/AQACAAIAAAD6////AQACAAIAAAD6/wAAAQACAAIAAAD6/wEAAQACAAIAAAD6/wIAAQACAAIAAAD6/wQAAQACAAIAAAD7//r/AQACAAIAAAD7//v/AQACAAIAAAD7//7/AQACAAIAAAD7////AQACAAIAAAD7/wAAAQACAAIAAAD7/wEAAQACAAIAAAD7/wIAAQACAAIAAAD7/wQAAQACAAIAAAD8//r/AQACAAIAAAD8//v/AQACAAIAAAD8//3/AQACAAIAAAD8////AQACAAIAAAD8/wAAAQACAAIAAAD8/wEAAQACAAIAAAD8/wIAAQACAAIAAAD8/wQAAQACAAIAAAD9//r/AQACAAIAAAD9//v/AQACAAIAAAD9//3/AQACAAIAAAD9////AQACAAIAAAD9/wAAAQACAAIAAAD9/wEAAQACAAIAAAD9/wIAAQACAAIAAAD9/wQAAQACAAIAAAD+//r/AQACAAIAAAD+//v/AQACAAIAAAD+//3/AQACAAIAAAD+//7/AQACAAIAAAD+/wAAAQACAAIAAAD+/wEAAQACAAIAAAD+/wIAAQACAAIAAAD+/wQAAQACAAIAAAD///r/AQACAAIAAAD///v/AQACAAIAAAD///3/AQACAAIAAAD///7/AQACAAIAAAD//wAAAQACAAIAAAD//wEAAQACAAIAAAD//wIAAQACAAIAAAD//wQAAQACAAIAAAAAAPr/AQACAAIAAAAAAPv/AQACAAIAAAAAAP3/AQACAAIAAAAAAP7/AQACAAIAAAAAAP//AQACAAIAAAAAAAEAAQACAAIAAAAAAAIAAQACAAIAAAAAAAQAAQACAAIAAAABAPr/AQACAAIAAAABAPv/AQACAAIAAAABAP3/AQACAAIAAAABAP7/AQACAAIAAAABAP//AQACAAIAAAABAAEAAQACAAIAAAABAAIAAQACAAIAAAABAAQAAQACAAIAAAACAPr/AQACAAIAAAACAPv/AQACAAIAAAACAP3/AQACAAIAAAACAP7/AQACAAIAAAACAP//AQACAAIAAAACAAAAAQACAAIAAAACAAIAAQACAAIAAAACAAQAAQACAAIAAAADAPr/AQACAAIAAAADAPv/AQACAAIAAAADAP3/AQACAAIAAAADAP7/AQACAAIAAAADAP//AQACAAIAAAADAAAAAQACAAIAAAADAAIAAQACAAIAAAADAAQAAQACAAIAAAAEAPr/AQACAAIAAAAEAPv/AQACAAIAAAAEAP3/AQACAAIAAAAEAP7/AQACAAIAAAAEAP//AQACAAIAAAAEAAAAAQACAAIAAAAEAAEAAQACAAIAAAAEAAQAAQACAAIAAAAFAPr/AQACAAIAAAAFAPv/AQACAAIAAAAFAP3/AQACAAIAAAAFAP7/AQACAAIAAAAFAP//AQACAAIAAAAFAAAAAQACAAIAAAAFAAEAAQACAAIAAAAFAAQAAQACAAIAAAAGAPr/AQACAAIAAAAGAPv/AQACAAIAAAAGAAQAAQACAAIAAAAHAPr/AQACAAIAAAAHAPv/AQACAAIAAAAHAPz/AQACAAIAAAAHAP3/AQACAAIAAAAHAP7/AQACAAIAAAAHAP//AQACAAIAAAAHAAAAAQACAAIAAAAHAAEAAQACAAIAAAAHAAIAAQACAAIAAAAHAAMAAQACAAIAAAAHAAQAAQACAAIAAAD2//n/AQABAAMAAAD2//r/AQABAAMAAAD2//v/AQABAAMAAAD2//z/AQABAAMAAAD2//3/AQABAAMAAAD2//7/AQABAAMAAAD2////AQABAAMAAAD2/wAAAQABAAMAAAD2/wEAAQABAAMAAAD2/wIAAQABAAMAAAD2/wMAAQABAAMAAAD2/wQAAQABAAMAAAD3//n/AQABAAMAAAD4//n/AQABAAMAAAD5//n/AQABAAMAAAD6//n/AQABAAMAAAD7//n/AQABAAMAAAD8//n/AQABAAMAAAD9//n/AQABAAMAAAD+//n/AQABAAMAAAD///n/AQABAAMAAAAAAPn/AQABAAMAAAABAPn/AQABAAMAAAACAPn/AQABAAMAAAADAPn/AQABAAMAAAAEAPn/AQABAAMAAAAFAPn/AQABAAMAAAAGAPn/AQABAAMAAAAHAPn/AQABAAMAAAAIAPn/AQABAAMAAAAIAPr/AQABAAMAAAAIAPv/AQABAAMAAAAIAPz/AQABAAMAAAAIAP3/AQABAAMAAAAIAP7/AQABAAMAAAAIAP//AQABAAMAAAAIAAAAAQABAAMAAAAIAAEAAQABAAMAAAAIAAIAAQABAAMAAAAIAAMAAQABAAMAAAAIAAQAAQABAAMAAAAIAAUAAQABAAMAAAAAAAUAAQABAAMAAAABAAUAAQABAAMAAAACAAUAAQABAAMAAAADAAUAAQABAAMAAAAEAAUAAQABAAMAAAAFAAUAAQABAAMAAAAGAAUAAQABAAMAAAAHAAUAAQABAAMAAAD2/wUAAQABAAMAAAD3/wUAAQABAAMAAAD4/wUAAQABAAMAAAD5/wUAAQABAAMAAAD6/wUAAQABAAMAAAD7/wUAAQABAAMAAAD8/wUAAQABAAMAAAD9/wUAAQABAAMAAAD+/wUAAQABAAMAAAA=\")\ntile_set = SubResource(\"TileSet_yf0ba\")\n\n[node name=\"Player\" parent=\"TileMapLayer\" instance=ExtResource(\"1_62w18\")]\nposition = Vector2(-46, -14)\n\n[node name=\"Hp Bar\" type=\"TextureProgressBar\" parent=\"TileMapLayer/Player\"]\noffset_left = -32.0\noffset_top = -35.0\noffset_right = 32.0\noffset_bottom = -3.0\nvalue = 100.0\ntexture_under = ExtResource(\"4_bkhv4\")\ntexture_over = ExtResource(\"5_yf0ba\")\ntexture_progress = ExtResource(\"6_eidgh\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/World/world.tscn b/World/world.tscn
+--- a/World/world.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/World/world.tscn	(date 1749529186085)
+@@ -1,11 +1,10 @@
+-[gd_scene load_steps=10 format=4 uid="uid://1msm3iduvvnh"]
++[gd_scene load_steps=9 format=4 uid="uid://1msm3iduvvnh"]
+ 
+ [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_62w18"]
+ [ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
+ [ext_resource type="Texture2D" uid="uid://w88benjaoca0" path="res://WhiteBlockAssets/Ground tiles (64 x 64).png" id="3_3f78f"]
+-[ext_resource type="Texture2D" uid="uid://dq5wog5mqfyfc" path="res://2D Pixel Dungeon Asset Pack/Overlay Healthbar.png" id="4_bkhv4"]
+-[ext_resource type="Texture2D" uid="uid://itttx4feu6x6" path="res://2D Pixel Dungeon Asset Pack/Overlay.png" id="5_yf0ba"]
+-[ext_resource type="Texture2D" uid="uid://ci8rnspeiy5ts" path="res://2D Pixel Dungeon Asset Pack/Underlay Healthbar.png" id="6_eidgh"]
++[ext_resource type="Texture2D" uid="uid://cfg0scnlsve0d" path="res://Game/UI/Overlay Healthbar.png" id="4_bkhv4"]
++[ext_resource type="Texture2D" uid="uid://dpjbqa85n0oik" path="res://Game/UI/Overlay.png" id="5_yf0ba"]
+ 
+ [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
+ texture = ExtResource("2_j8job")
+@@ -69,4 +68,3 @@
+ value = 100.0
+ texture_under = ExtResource("4_bkhv4")
+ texture_over = ExtResource("5_yf0ba")
+-texture_progress = ExtResource("6_eidgh")
+Index: Model/Items/Resources/vision_potion.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=4 format=3 uid=\"uid://ftciu0woo03j\"]\n\n[ext_resource type=\"Script\" uid=\"uid://dii5sylwock4a\" path=\"res://Model/Items/ItemToPickup.cs\" id=\"1_rxitq\"]\n[ext_resource type=\"Resource\" uid=\"uid://bgqgnkfmvr5kx\" path=\"res://Model/Items/Resources/InventoryItem.tres\" id=\"2_20jk4\"]\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_20jk4\"]\n\n[node name=\"vision_potion\" type=\"Area2D\"]\nlight_mask = 3\nvisibility_layer = 3\nscript = ExtResource(\"1_rxitq\")\nItemData = ExtResource(\"2_20jk4\")\n\n[node name=\"Sprite2D\" type=\"Sprite2D\" parent=\".\"]\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\".\"]\nshape = SubResource(\"CircleShape2D_20jk4\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Items/Resources/vision_potion.tscn b/Model/Items/Resources/vision_potion.tscn
+--- a/Model/Items/Resources/vision_potion.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Model/Items/Resources/vision_potion.tscn	(date 1749523231371)
+@@ -1,7 +1,6 @@
+-[gd_scene load_steps=4 format=3 uid="uid://ftciu0woo03j"]
++[gd_scene load_steps=3 format=3 uid="uid://ftciu0woo03j"]
+ 
+ [ext_resource type="Script" uid="uid://dii5sylwock4a" path="res://Model/Items/ItemToPickup.cs" id="1_rxitq"]
+-[ext_resource type="Resource" uid="uid://bgqgnkfmvr5kx" path="res://Model/Items/Resources/InventoryItem.tres" id="2_20jk4"]
+ 
+ [sub_resource type="CircleShape2D" id="CircleShape2D_20jk4"]
+ 
+@@ -9,7 +8,6 @@
+ light_mask = 3
+ visibility_layer = 3
+ script = ExtResource("1_rxitq")
+-ItemData = ExtResource("2_20jk4")
+ 
+ [node name="Sprite2D" type="Sprite2D" parent="."]
+ 
+Index: Game/main.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=3 format=3 uid=\"uid://c7j7vf8w5q4h4\"]\n\n[ext_resource type=\"PackedScene\" uid=\"uid://c0sxi5dgonucy\" path=\"res://Player/player.tscn\" id=\"1_j5mrt\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://b4g27wvqfh5e1\" path=\"res://UI.tscn\" id=\"2_lvp0b\"]\n\n[node name=\"Main\" type=\"Node2D\"]\n\n[node name=\"Player\" parent=\".\" instance=ExtResource(\"1_j5mrt\")]\nposition = Vector2(574, 332)\n\n[node name=\"UI\" parent=\".\" instance=ExtResource(\"2_lvp0b\")]\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/main.tscn b/Game/main.tscn
+--- a/Game/main.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Game/main.tscn	(date 1749523231331)
+@@ -1,7 +1,7 @@
+ [gd_scene load_steps=3 format=3 uid="uid://c7j7vf8w5q4h4"]
+ 
+-[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="1_j5mrt"]
+-[ext_resource type="PackedScene" uid="uid://b4g27wvqfh5e1" path="res://UI.tscn" id="2_lvp0b"]
++[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_j5mrt"]
++[ext_resource type="PackedScene" uid="uid://b4g27wvqfh5e1" path="res://Game/UI.tscn" id="2_lvp0b"]
+ 
+ [node name="Main" type="Node2D"]
+ 
+Index: Tests/obj/rider.project.model.nuget.info
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>17495192294215604
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Tests/obj/rider.project.model.nuget.info b/Tests/obj/rider.project.model.nuget.info
+--- a/Tests/obj/rider.project.model.nuget.info	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Tests/obj/rider.project.model.nuget.info	(date 1749522442588)
+@@ -1,1 +1,1 @@
+-17495192294215604
+\ No newline at end of file
++17495212835515144
+\ No newline at end of file
+Index: Model/Characters/Monster/MonsterFactory.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Data.SQLite;\n\nnamespace UDA.Model.Characters.Monster;\n\npublic abstract class MonsterFactory\n{\n    private static string _myName;\n    private static int _myHitPoints;\n    private static int _myAttackSpeed;\n    private static double _myHitChance;\n    private static (int, int) _myDamageRange;\n    private static double _myHealChance;\n    private static (int, int) _myHealRange;\n    private static double _myStunThreshold;\n\n    public static Monster CreateGremlin()\n    {\n        var query = \"SELECT * FROM Monster WHERE ID = 1\";\n        ConnectDB(query);\n        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,\n            _myHealRange, _myStunThreshold);\n    }\n\n    public static Monster CreateOgre()\n    {\n        var query = \"SELECT * FROM Monster WHERE ID = 2\";\n        ConnectDB(query);\n        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,\n            _myHealRange, _myStunThreshold);\n    }\n\n    public static Monster CreateSkeleton()\n    {\n        var query = \"SELECT * FROM Monster WHERE ID = 3\";\n        ConnectDB(query);\n        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,\n            _myHealRange, _myStunThreshold);\n    }\n\n    public static Monster CreateRandoMonster()\n    {\n        var rng = RandomSingleton.GetInstance();\n        var ranNum = rng.Next(1, 4);\n\n        var query = $\"SELECT * FROM Monster WHERE ID = {ranNum}\";\n        ConnectDB(query);\n        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,\n            _myHealRange, _myStunThreshold);\n    }\n\n    // TODO: add try catch\n    private static void ConnectDB(string theQuery)\n    {\n        string connectionString = \"Data Source=MonsterDatabase.db\";\n\n        //Is this thread safe to do?\n        using var conn = new SQLiteConnection(connectionString);\n        //Open the connection\n        conn.Open();\n\n        //Execute a command with a command string to the connection\n        using var cmd = new SQLiteCommand(theQuery, conn);\n        //open and read through the specified values\n        using var reader = cmd.ExecuteReader();\n        //While tokes are present do stuff\n        while (reader.Read())\n        {\n            //Initialize values base on rows of selected table \n            _myName = reader.GetString(1);\n            _myHitPoints = reader.GetInt32(2);\n            _myAttackSpeed = reader.GetInt32(3);\n            _myHitChance = reader.GetDouble(4);\n            _myDamageRange = (reader.GetInt32(5), reader.GetInt32(6));\n            _myStunThreshold = reader.GetDouble(7);\n            _myHealChance = reader.GetDouble(8);\n            _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Characters/Monster/MonsterFactory.cs b/Model/Characters/Monster/MonsterFactory.cs
+--- a/Model/Characters/Monster/MonsterFactory.cs	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Model/Characters/Monster/MonsterFactory.cs	(date 1749526497265)
+@@ -75,5 +75,7 @@
+             _myHealChance = reader.GetDouble(8);
+             _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));
+         }
++        reader.Close();
++        conn.Close();
+     }
+ }
+\ No newline at end of file
+Index: Game/Player/player.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=64 format=3 uid=\"uid://c0sxi5dgonucy\"]\n\n[ext_resource type=\"Script\" uid=\"uid://c1706h2tvg3sc\" path=\"res://Game/Player/Player.cs\" id=\"1_onrkg\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://csf461dk3fm20\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Front Idle Animation 2.0.piskel.0.png\" id=\"2_p2hw7\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c4abtsfnyu3cu\" path=\"res://Inventory/inventory_ui.tscn\" id=\"3_btcbx\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://ce22aixrlaj0k\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero South Walking Animation.png\" id=\"3_ch4ko\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://xupr73rr5f6o\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side animation 2.0.png\" id=\"4_vh1aq\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://dcfdhk3845asv\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero North Walking Animation.png\" id=\"5_4ddeg\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://bg210scfkjw84\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side(right) animation 2.0.png\" id=\"5_ch4ko\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c8ymlk3e7xidn\" path=\"res://Game/Player/Sword.tscn\" id=\"8_vh1aq\"]\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_db2hk\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_q0m6d\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_qwver\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_nfw5o\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_wlpas\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_akrrf\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_tqhgd\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_6v7ly\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_n4lia\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_17fuy\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2r01l\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_me1ax\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_uws67\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_e5t7e\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_hjses\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_qsmka\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_yjwnk\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_rrpjo\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_jgbxf\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_xrxgx\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_dar1l\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_bt2hs\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_s14fl\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_pgx7e\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_c4sti\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_fjnfe\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_62ylk\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_isivy\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_vh1aq\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_4ddeg\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2kcyg\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2tcsm\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_juej5\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_h35bn\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_ex47v\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_pr6ru\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_hjsjy\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_kovee\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_euk0e\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_mdprh\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_tt1yj\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_fy1n6\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_uwdg0\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_1xkqr\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"SpriteFrames\" id=\"SpriteFrames_p5o4e\"]\nanimations = [{\n\"frames\": [],\n\"loop\": true,\n\"name\": &\"AttackDown\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_db2hk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_q0m6d\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_qwver\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_nfw5o\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_wlpas\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_akrrf\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_tqhgd\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_6v7ly\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_n4lia\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_17fuy\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2r01l\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_me1ax\")\n}],\n\"loop\": true,\n\"name\": &\"default\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_uws67\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_e5t7e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_hjses\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_qsmka\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_yjwnk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_rrpjo\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_jgbxf\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_xrxgx\")\n}],\n\"loop\": true,\n\"name\": &\"walkDown\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_dar1l\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_bt2hs\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_s14fl\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_pgx7e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_c4sti\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_fjnfe\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_62ylk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_isivy\")\n}],\n\"loop\": true,\n\"name\": &\"walkLeft\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_vh1aq\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_4ddeg\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2kcyg\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2tcsm\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_juej5\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_h35bn\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_ex47v\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_pr6ru\")\n}],\n\"loop\": true,\n\"name\": &\"walkRight\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_hjsjy\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_kovee\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_euk0e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_mdprh\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_tt1yj\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_fy1n6\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_uwdg0\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_1xkqr\")\n}],\n\"loop\": true,\n\"name\": &\"walkUp\",\n\"speed\": 5.0\n}]\n\n[sub_resource type=\"Animation\" id=\"Animation_vh1aq\"]\nresource_name = \"AttackDown\"\nlength = 0.2\nstep = 0.1\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Weapon:rotation\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.2),\n\"transitions\": PackedFloat32Array(1, 1),\n\"update\": 0,\n\"values\": [0.383972, 3.07876]\n}\ntracks/1/type = \"value\"\ntracks/1/imported = false\ntracks/1/enabled = true\ntracks/1/path = NodePath(\"Weapon:position\")\ntracks/1/interp = 1\ntracks/1/loop_wrap = true\ntracks/1/keys = {\n\"times\": PackedFloat32Array(0, 0.0882458, 0.2),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [Vector2(2, 0), Vector2(0, 2), Vector2(2, 2)]\n}\n\n[sub_resource type=\"Animation\" id=\"Animation_q0m6d\"]\nresource_name = \"AttackLeft\"\nlength = 0.2\nstep = 0.1\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Weapon:position\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.0998843, 0.2),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [Vector2(-4, -2), Vector2(-6, -2), Vector2(-5, -2)]\n}\ntracks/1/type = \"value\"\ntracks/1/imported = false\ntracks/1/enabled = true\ntracks/1/path = NodePath(\"Weapon:rotation\")\ntracks/1/interp = 1\ntracks/1/loop_wrap = true\ntracks/1/keys = {\n\"times\": PackedFloat32Array(0, 0.0998843, 0.2),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [-1.89892, -3.14159, -4.49422]\n}\n\n[sub_resource type=\"Animation\" id=\"Animation_qwver\"]\nresource_name = \"AttackRight\"\nlength = 0.2\nstep = 0.1\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Weapon:position\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.0863802, 0.2),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [Vector2(4, -2), Vector2(7, -2), Vector2(6, -3)]\n}\ntracks/1/type = \"value\"\ntracks/1/imported = false\ntracks/1/enabled = true\ntracks/1/path = NodePath(\"Weapon:rotation\")\ntracks/1/interp = 1\ntracks/1/loop_wrap = true\ntracks/1/keys = {\n\"times\": PackedFloat32Array(0, 0.0859145, 0.0863802, 0.2),\n\"transitions\": PackedFloat32Array(1, 1, 1, 1),\n\"update\": 0,\n\"values\": [-1.40674, 0.0, -6.28319, -4.88692]\n}\n\n[sub_resource type=\"Animation\" id=\"Animation_db2hk\"]\nresource_name = \"AttackUp\"\nlength = 0.2\nstep = 0.1\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Weapon:position\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.2),\n\"transitions\": PackedFloat32Array(1, 1),\n\"update\": 0,\n\"values\": [Vector2(2, -5), Vector2(-2, -5)]\n}\ntracks/1/type = \"value\"\ntracks/1/imported = false\ntracks/1/enabled = true\ntracks/1/path = NodePath(\"Weapon:rotation\")\ntracks/1/interp = 1\ntracks/1/loop_wrap = true\ntracks/1/keys = {\n\"times\": PackedFloat32Array(0, 0.2),\n\"transitions\": PackedFloat32Array(1, 1),\n\"update\": 0,\n\"values\": [-0.10821, -3.08051]\n}\n\n[sub_resource type=\"Animation\" id=\"Animation_4ddeg\"]\nlength = 0.001\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Weapon:rotation\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0),\n\"transitions\": PackedFloat32Array(1),\n\"update\": 0,\n\"values\": [0.383972]\n}\ntracks/1/type = \"value\"\ntracks/1/imported = false\ntracks/1/enabled = true\ntracks/1/path = NodePath(\"Weapon:position\")\ntracks/1/interp = 1\ntracks/1/loop_wrap = true\ntracks/1/keys = {\n\"times\": PackedFloat32Array(0),\n\"transitions\": PackedFloat32Array(1),\n\"update\": 0,\n\"values\": [Vector2(0, 0)]\n}\n\n[sub_resource type=\"AnimationLibrary\" id=\"AnimationLibrary_db2hk\"]\n_data = {\n&\"AttackDown\": SubResource(\"Animation_vh1aq\"),\n&\"AttackLeft\": SubResource(\"Animation_q0m6d\"),\n&\"AttackRight\": SubResource(\"Animation_qwver\"),\n&\"AttackUp\": SubResource(\"Animation_db2hk\"),\n&\"RESET\": SubResource(\"Animation_4ddeg\")\n}\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_4ntmi\"]\nradius = 8.88889\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_btcbx\"]\n\n[sub_resource type=\"Gradient\" id=\"Gradient_4ntmi\"]\noffsets = PackedFloat32Array(0, 0.907895)\ncolors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)\n\n[sub_resource type=\"GradientTexture2D\" id=\"GradientTexture2D_btcbx\"]\ngradient = SubResource(\"Gradient_4ntmi\")\nfill = 1\nfill_from = Vector2(0.490741, 0.509259)\nfill_to = Vector2(0.949074, 0.115741)\n\n[node name=\"Player\" type=\"CharacterBody2D\" groups=[\"Player\"]]\nz_index = 1\ncollision_layer = 2\ncollision_mask = 17\nmotion_mode = 1\nscript = ExtResource(\"1_onrkg\")\n\n[node name=\"PlayerAnimation\" type=\"AnimatedSprite2D\" parent=\".\"]\nsprite_frames = SubResource(\"SpriteFrames_p5o4e\")\nframe = 10\nframe_progress = 0.619298\n\n[node name=\"WeaponAnimation\" type=\"AnimationPlayer\" parent=\".\"]\nlibraries = {\n&\"\": SubResource(\"AnimationLibrary_db2hk\")\n}\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\".\"]\ntexture_filter = 1\nscale = Vector2(0.7, 0.7)\nshape = SubResource(\"CircleShape2D_4ntmi\")\n\n[node name=\"Hurtbox\" type=\"Area2D\" parent=\".\" groups=[\"PlayerHurtBox\"]]\ncollision_layer = 2\ncollision_mask = 4\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\"Hurtbox\"]\nscale = Vector2(0.5, 0.5)\nshape = SubResource(\"CircleShape2D_btcbx\")\ndebug_color = Color(0.755133, 0.396518, 0.595367, 0.42)\n\n[node name=\"PointLight2D\" type=\"PointLight2D\" parent=\".\"]\nposition = Vector2(-2.8, 0)\nscale = Vector2(0.671196, 0.663043)\nenergy = 0.7\ntexture = SubResource(\"GradientTexture2D_btcbx\")\ntexture_scale = 4.6\n\n[node name=\"Inventory_UI\" parent=\".\" instance=ExtResource(\"3_btcbx\")]\nvisible = false\noffset_left = -45.0\noffset_top = -79.0\noffset_right = 45.0\noffset_bottom = -13.0\n\n[node name=\"TestingCamera\" type=\"Camera2D\" parent=\".\"]\nzoom = Vector2(2, 2)\nposition_smoothing_enabled = true\n\n[node name=\"Weapon\" type=\"Node2D\" parent=\".\"]\nrotation = 0.383972\n\n[node name=\"Sword\" parent=\"Weapon\" instance=ExtResource(\"8_vh1aq\")]\nposition = Vector2(10, 0)\nrotation = 1.5708\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Player/player.tscn b/Game/Player/player.tscn
+--- a/Game/Player/player.tscn	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Game/Player/player.tscn	(date 1749529185894)
+@@ -520,7 +520,7 @@
+ [node name="Player" type="CharacterBody2D" groups=["Player"]]
+ z_index = 1
+ collision_layer = 2
+-collision_mask = 17
++collision_mask = 16
+ motion_mode = 1
+ script = ExtResource("1_onrkg")
+ 
+@@ -563,6 +563,7 @@
+ offset_bottom = -13.0
+ 
+ [node name="TestingCamera" type="Camera2D" parent="."]
++visible = false
+ zoom = Vector2(2, 2)
+ position_smoothing_enabled = true
+ 
+Index: Game/Player/Player.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing UDA.Game.Enemies;\nusing UDA.Game.Resources;\nusing UDA.Model.Characters;\n\nusing UDA.Model.Characters.Monster;\n\nusing UDA.inventory;\n\n\nnamespace UDA.Game.Player;\n\npublic partial class Player : CharacterBody2D\n{\n    [Export] private Area2D MonsterArea;\n\t[Export] private int _speed = 200;\n\tprivate Vector2 _currentVelocity;\n\tprivate AnimatedSprite2D _animatedSprite2D;\n    private AnimationPlayer _animationPlayer;\n    private Node2D _myWeapon;\n    private Area2D _myWeaponHitBox;\n    private string _myLastDirection = \"Down\";\n    public PlayerClassInfo MyClassInfo;\n\tprivate string _myName;\n\tpublic Inventory Inventory { get; private set; }\n\t\n\t//Fun C# fact, these are called expression bodies\n\tpublic string MyName \n\t{\n\t\tget => _myName;\n\t\tset => _myName = value;\n\t}\n\n\tpublic Hero MyClass;\n    \n\tpublic override void _Ready()\n    {\n\t\tMyClassInfo = ResourceLoader.Load<PlayerClassInfo>(\"res://Game/Resources/PlayerClass.tres\");\n\t\tMyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);\n        \n        //Connecting to the event bus, we connect to the specific signal not the method in the bus\n        EventBus.getInstance().Connect(nameof(EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));\n        \n\t\t_animatedSprite2D = GetNode<AnimatedSprite2D>(\"PlayerAnimation\");\n\t\t_animatedSprite2D.Play(\"default\");\n        _animationPlayer = GetNode<AnimationPlayer>(\"WeaponAnimation\");\n        _myWeapon = GetNode<Node2D>(\"Weapon\");\n        _myWeaponHitBox = GetNode<Area2D>(\"Weapon/Sword\");\n        _myWeapon.Visible = false;\n        //_myWeaponHitBox.SetCollisionMask(0);\n        //_myWeaponHitBox.set\n    }\n\n    public override void _Process(double theDelta)\n    {\n        base._Process(theDelta);\n        ChangeAnimation(_currentVelocity);\n    }\n\n    public override void _PhysicsProcess(double theDelta)\n    {\n        base._PhysicsProcess(theDelta);\n        //Check player input\n        HandleInput();\n        //Update velocity\n        Velocity = _currentVelocity;\n        //Trigger physics process and move the player\n        MoveAndSlide();\n        ChangeAnimation(_currentVelocity);\n        //HandleCollision();\n    }\n\n    private void HandleCollision()\n    {\n        //Currently prints out each execution of a collision.\n        for (var i = 0; i < GetSlideCollisionCount(); i++)\n        {\n            //KinematicCollision2D collision = GetSlideCollision(i);\n            //GD.Print(\"Collided with: \", (collision.GetCollider() as Node).Name);\n            //var collider = GetSlide\n        }\n    }\n\n    private void HandleInput()\n    {\n        _currentVelocity = Input.GetVector(\n            \"moveLeft\", \"moveRight\",\n            \"moveUp\", \"moveDown\");\n        _currentVelocity *= _speed;\n        \n        //Weapon animations\n        //This probably needs to change, but it works for now and we are going to go with that\n        if (Input.IsActionJustPressed(\"Attack\")) Attack();\n    }\n    \n    private async Task Attack()\n    {\n        _myWeapon.Visible = true;\n        _myWeaponHitBox.SetCollisionMask(3);\n        _animationPlayer.Play(\"Attack\" + _myLastDirection);\n        \n        /*\n         * While this does work, it comes with some graphical issues. If an attack animation is triggered again,\n         * the current animation will end and make the weapon visible again.\n         * Ideally, this should be either connected to the animation finished signal, or have a check in place\n         * to prevent the player from re-triggering the attack animation during the current one.\n         */\n        await ToSignal(GetTree().CreateTimer(0.3, false), SceneTreeTimer.SignalName.Timeout);\n        _myWeapon.Visible = false;\n    }\n    \n\n    /// <summary>\n    ///     Should run at every processing step.\n    ///     Checks inputVector and updates current animation to reflect that.\n    ///     E.g. Input vector is -200.X is moving left so we play the left animation.\n    ///     This is called from _Process because running things in the physics process method can cause slowdown and\n    ///     runtime issues.\n    /// </summary>\n    private void ChangeAnimation(Vector2 theCurrentVector2)\n    {\n        //If the vector value is greater than zero we are moving\n        if (!(theCurrentVector2.Length() > 0))\n        {\n            _animatedSprite2D.Play(\"default\");\n            return;\n        }\n\n        //Horizontal movement versus vertical movement\n        if (Math.Abs(theCurrentVector2.X) > Math.Abs(theCurrentVector2.Y))\n            //Horizontal\n            if (theCurrentVector2.X < 0)\n            {\n                _myLastDirection = \"Left\";\n                _animatedSprite2D.Play(\"walk\" + _myLastDirection);\n            }\n            else\n            {\n                _myLastDirection = \"Right\";\n                _animatedSprite2D.Play(\"walk\" + _myLastDirection);\n            }\n            //Vertical\n            else if (theCurrentVector2.Y < 0)\n            {\n                _myLastDirection = \"Up\";\n                _animatedSprite2D.Play(\"walk\" + _myLastDirection);\n            }\n            else\n            {\n                _myLastDirection = \"Down\";\n                _animatedSprite2D.Play(\"walk\" + _myLastDirection);\n            }\n            \n    }\n    \n    \n    //Can add a check to see if what entered was the global class monster\n    private void OnHurtBoxEntered(int theDamageAmount)\n    {\n        //Testing to see that the appropriate damage is being delivered\n        GD.Print(\"Ouch\" + theDamageAmount);\n    }\n\n    private Godot.Collections.Dictionary<string, Variant> Save()\n    {\n        return new Godot.Collections.Dictionary<string, Variant>()\n        {\n            {\"FileName\", SceneFilePath },\n            {\"Parent\", GetParent().GetPath() },\n            {\"PosX\", Position.X },\n            {\"PosY\", Position.Y},\n            {\"AnimatedSprite\", _animatedSprite2D},\n            {\"CurrentVelocity\", _currentVelocity},\n            {\"PlayerName\", MyClassInfo.MyPlayerName},\n            //{\"PlayerHealth\", MyClass.HitPoints}\n        };\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Player/Player.cs b/Game/Player/Player.cs
+--- a/Game/Player/Player.cs	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Game/Player/Player.cs	(date 1749530112387)
+@@ -22,6 +22,7 @@
+     private string _myLastDirection = "Down";
+     public PlayerClassInfo MyClassInfo;
+ 	private string _myName;
++    public Hero MyClass;
+ 	public Inventory Inventory { get; private set; }
+ 	
+ 	//Fun C# fact, these are called expression bodies
+@@ -30,8 +31,6 @@
+ 		get => _myName;
+ 		set => _myName = value;
+ 	}
+-
+-	public Hero MyClass;
+     
+ 	public override void _Ready()
+     {
+@@ -157,6 +156,7 @@
+     //Can add a check to see if what entered was the global class monster
+     private void OnHurtBoxEntered(int theDamageAmount)
+     {
++        int testValue = MyClass.HitPoints;
+         //Testing to see that the appropriate damage is being delivered
+         GD.Print("Ouch" + theDamageAmount);
+     }
+Index: Model/Items/ItemToPickup.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing UDA.Game.Player;\nusing UDA.inventory;\n\nnamespace UDA.Model.Items;\n\npublic partial class ItemToPickup : Area2D\n{\n\t[Export] public InventoryItem ItemData;\n\t// Called when the node enters the scene tree for the first time.\n\tpublic override void _Ready()\n\t{\n\t\tvar spriteImage = GetNode<Sprite2D>(\"Sprite2D\");\n\t\tif (ItemData != null)\n\t\t\tspriteImage.Texture = ItemData.Texture;\n\t}\n\n\t// Called every frame. 'delta' is the elapsed time since the previous frame.\n\tprivate void OnBodyEntered(Node2D theBody)\n\t{\n\t\tif (theBody is Player player && ItemData != null)\n\t\t{\n\t\t\tplayer.Inventory.AddToInventory(ItemData);\n\t\t}\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Items/ItemToPickup.cs b/Model/Items/ItemToPickup.cs
+--- a/Model/Items/ItemToPickup.cs	(revision 3e5e5293acd6f4d0e42cbdd9bca347e461341600)
++++ b/Model/Items/ItemToPickup.cs	(date 1749522465266)
+@@ -4,6 +4,7 @@
+ 
+ namespace UDA.Model.Items;
+ 
++[GlobalClass]
+ public partial class ItemToPickup : Area2D
+ {
+ 	[Export] public InventoryItem ItemData;

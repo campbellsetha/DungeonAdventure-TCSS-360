@@ -1,0 +1,665 @@
+Index: Game/Resources/EventBus.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing System;\n\npublic partial class EventBus : Node\n{\n\tprivate static EventBus Instance;\n\tpublic static EventBus getInstance()\n\t{\n\t\treturn Instance ??= new EventBus();\n\t}\n\t// Called when the node enters the scene tree for the first time.\n\t[Signal]\n\tpublic delegate void DealDamageEventHandler(int theDamage);\n\n\tpublic void DealDamageToPlayer(int theDamage)\n\t{\n\t\tEmitSignalDealDamage(theDamage);\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Resources/EventBus.cs b/Game/Resources/EventBus.cs
+--- a/Game/Resources/EventBus.cs	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Game/Resources/EventBus.cs	(date 1749504248412)
+@@ -16,4 +16,9 @@
+ 	{
+ 		EmitSignalDealDamage(theDamage);
+ 	}
++
++	public void DealDamageToEnemy(int theDamage)
++	{
++		EmitSignalDealDamage(theDamage);
++	}
+ }
+Index: Game/Player/Player.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing UDA.Game.Enemies;\nusing UDA.Game.Resources;\nusing UDA.Model.Characters;\nusing UDA.Model.Characters.Monster;\n\nnamespace UDA.Game.Player;\n\npublic partial class Player : CharacterBody2D\n{\n    [Export] private Area2D MonsterArea;\n\t[Export] private int _speed = 200;\n\tprivate Vector2 _currentVelocity;\n\tprivate AnimatedSprite2D _animatedSprite2D;\n    public PlayerClassInfo MyClassInfo;\n\tpublic Hero MyClass;\n    \n\tpublic override void _Ready()\n    {\n\t\tMyClassInfo = ResourceLoader.Load<PlayerClassInfo>(\"res://Game/Resources/PlayerClass.tres\");\n\t\tMyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);\n        \n        //Connecting to the event bus, we connect to the specific signal not the method in the bus\n        EventBus.getInstance().Connect(nameof(EventBus.DealDamage), new Callable(this, nameof(OnHurtBoxEntered)));\n        \n\t\t_animatedSprite2D = GetNode<AnimatedSprite2D>(\"PlayerAnimation\");\n\t\t_animatedSprite2D.Play(\"default\");\n\t\t//AddToGroup(\"player\");\n\t}\n\n    public override void _Process(double theDelta)\n    {\n        base._Process(theDelta);\n        ChangeAnimation(_currentVelocity);\n    }\n\n    public override void _PhysicsProcess(double theDelta)\n    {\n        base._PhysicsProcess(theDelta);\n        //Check player input\n        HandleInput();\n        //Update velocity\n        Velocity = _currentVelocity;\n        //Trigger physics process and move the player\n        MoveAndSlide();\n        HandleCollision();\n    }\n\n    private void HandleCollision()\n    {\n        //Currently prints out each execution of a collision.\n        for (var i = 0; i < GetSlideCollisionCount(); i++)\n        {\n            //KinematicCollision2D collision = GetSlideCollision(i);\n            //GD.Print(\"Collided with: \", (collision.GetCollider() as Node).Name);\n            //var collider = GetSlide\n        }\n    }\n\n    private void HandleInput()\n    {\n        _currentVelocity = Input.GetVector(\n            \"moveLeft\", \"moveRight\",\n            \"moveUp\", \"moveDown\");\n        _currentVelocity *= _speed;\n    }\n\n    /// <summary>\n    ///     Should run at every processing step.\n    ///     Checks inputVector and updates current animation to reflect that.\n    ///     E.g. Input vector is -200.X is moving left so we play the left animation.\n    ///     This is called from _Process because running things in the physics process method can cause slowdown and\n    ///     runtime issues.\n    /// </summary>\n    private void ChangeAnimation(Vector2 theCurrentVector2)\n    {\n        //If the vector value is greater than zero we are moving\n        if (!(theCurrentVector2.Length() > 0))\n        {\n            _animatedSprite2D.Play(\"default\");\n            return;\n        }\n\n        //Horizontal movement versus vertical movement\n        if (Math.Abs(theCurrentVector2.X) > Math.Abs(theCurrentVector2.Y))\n            //Horizontal,\n            _animatedSprite2D.Play(theCurrentVector2.X < 0 ? \"walkLeft\" : \"walkRight\");\n        else\n            //Vertical\n            _animatedSprite2D.Play(theCurrentVector2.Y < 0 ? \"walkUp\" : \"walkDown\");\n    }\n    \n    //Can add a check to see if what entered was the global class monster\n    private void OnHurtBoxEntered(int theDamageAmount)\n    {\n        //Testing to see that the appropiate damge is being delivered\n        GD.Print(\"Ouch\" + theDamageAmount);\n    }\n\n    private Godot.Collections.Dictionary<string, Variant> Save()\n    {\n        return new Godot.Collections.Dictionary<string, Variant>()\n        {\n            {\"FileName\", SceneFilePath },\n            {\"Parent\", GetParent().GetPath() },\n            {\"PosX\", Position.X },\n            {\"PosY\", Position.Y},\n            {\"AnimatedSprite\", _animatedSprite2D},\n            {\"CurrentVelocity\", _currentVelocity},\n            {\"PlayerName\", MyClassInfo.MyPlayerName},\n            //{\"PlayerHealth\", MyClass.HitPoints}\n        };\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Player/Player.cs b/Game/Player/Player.cs
+--- a/Game/Player/Player.cs	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Game/Player/Player.cs	(date 1749504319423)
+@@ -12,6 +12,10 @@
+ 	[Export] private int _speed = 200;
+ 	private Vector2 _currentVelocity;
+ 	private AnimatedSprite2D _animatedSprite2D;
++    private AnimationPlayer _animationPlayer;
++    private Node2D _myWeapon;
++    private Area2D _myWeaponHitBox;
++    private string _myLastDirection = "Down";
+     public PlayerClassInfo MyClassInfo;
+ 	public Hero MyClass;
+     
+@@ -25,8 +29,13 @@
+         
+ 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
+ 		_animatedSprite2D.Play("default");
+-		//AddToGroup("player");
+-	}
++        _animationPlayer = GetNode<AnimationPlayer>("WeaponAnimation");
++        _myWeapon = GetNode<Node2D>("Weapon");
++        _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
++        _myWeapon.Visible = false;
++        //_myWeaponHitBox.SetCollisionMask(0);
++        //_myWeaponHitBox.set
++    }
+ 
+     public override void _Process(double theDelta)
+     {
+@@ -43,7 +52,8 @@
+         Velocity = _currentVelocity;
+         //Trigger physics process and move the player
+         MoveAndSlide();
+-        HandleCollision();
++        ChangeAnimation(_currentVelocity);
++        //HandleCollision();
+     }
+ 
+     private void HandleCollision()
+@@ -63,7 +73,27 @@
+             "moveLeft", "moveRight",
+             "moveUp", "moveDown");
+         _currentVelocity *= _speed;
++        
++        //Weapon animations
++        if (Input.IsActionJustPressed("Attack")) Attack();
+     }
++    
++    private async Task Attack()
++    {
++        _myWeapon.Visible = true;
++        _myWeaponHitBox.SetCollisionMask(3);
++        _animationPlayer.Play("Attack" + _myLastDirection);
++        
++        /*
++         * While this does work, it comes with some graphical issues. If an attack animation is triggered again,
++         * the current animation will end and make the weapon visible again.
++         * Ideally, this should be either connected to the animation finished signal, or have a check in place
++         * to prevent the player from re-triggering the attack animation during the current one.
++         */
++        await ToSignal(GetTree().CreateTimer(0.3, false), SceneTreeTimer.SignalName.Timeout);
++        _myWeapon.Visible = false;
++    }
++    
+ 
+     /// <summary>
+     ///     Should run at every processing step.
+@@ -83,17 +113,36 @@
+ 
+         //Horizontal movement versus vertical movement
+         if (Math.Abs(theCurrentVector2.X) > Math.Abs(theCurrentVector2.Y))
+-            //Horizontal,
+-            _animatedSprite2D.Play(theCurrentVector2.X < 0 ? "walkLeft" : "walkRight");
+-        else
++            //Horizontal
++            if (theCurrentVector2.X < 0)
++            {
++                _myLastDirection = "Left";
++                _animatedSprite2D.Play("walk" + _myLastDirection);
++            }
++            else
++            {
++                _myLastDirection = "Right";
++                _animatedSprite2D.Play("walk" + _myLastDirection);
++            }
+             //Vertical
+-            _animatedSprite2D.Play(theCurrentVector2.Y < 0 ? "walkUp" : "walkDown");
++            else if (theCurrentVector2.Y < 0)
++            {
++                _myLastDirection = "Up";
++                _animatedSprite2D.Play("walk" + _myLastDirection);
++            }
++            else
++            {
++                _myLastDirection = "Down";
++                _animatedSprite2D.Play("walk" + _myLastDirection);
++            }
++            
+     }
++    
+     
+     //Can add a check to see if what entered was the global class monster
+     private void OnHurtBoxEntered(int theDamageAmount)
+     {
+-        //Testing to see that the appropiate damge is being delivered
++        //Testing to see that the appropriate damage is being delivered
+         GD.Print("Ouch" + theDamageAmount);
+     }
+ 
+Index: Game/GameManager/dungeonBuilder.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=3 format=3 uid=\"uid://bsol51ifob8jy\"]\n\n[ext_resource type=\"Script\" uid=\"uid://5aag1gci500y\" path=\"res://Game/GameManager/DungeonBuilder.cs\" id=\"1_vxoxu\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c0sxi5dgonucy\" path=\"res://Game/Player/player.tscn\" id=\"2_mya23\"]\n\n[node name=\"DungeonBuilder\" type=\"Node2D\"]\nscript = ExtResource(\"1_vxoxu\")\n\n[node name=\"Player\" parent=\".\" instance=ExtResource(\"2_mya23\")]\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/dungeonBuilder.tscn b/Game/GameManager/dungeonBuilder.tscn
+--- a/Game/GameManager/dungeonBuilder.tscn	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Game/GameManager/dungeonBuilder.tscn	(date 1749504100583)
+@@ -1,9 +1,21 @@
+-[gd_scene load_steps=3 format=3 uid="uid://bsol51ifob8jy"]
++[gd_scene load_steps=4 format=3 uid="uid://bsol51ifob8jy"]
+ 
+ [ext_resource type="Script" uid="uid://5aag1gci500y" path="res://Game/GameManager/DungeonBuilder.cs" id="1_vxoxu"]
+ [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="2_mya23"]
++[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="3_06u46"]
+ 
+ [node name="DungeonBuilder" type="Node2D"]
+ script = ExtResource("1_vxoxu")
+ 
++[node name="CanvasModulate" type="CanvasModulate" parent="."]
++clip_children = 2
++color = Color(0, 0, 0, 1)
++
++[node name="TextureRect" type="TextureRect" parent="CanvasModulate"]
++offset_left = -624.0
++offset_top = -576.0
++offset_right = 4797.0
++offset_bottom = 2496.0
++texture = ExtResource("3_06u46")
++
+ [node name="Player" parent="." instance=ExtResource("2_mya23")]
+Index: Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//------------------------------------------------------------------------------\n// <auto-generated>\n//     This code was generated by a tool.\n//\n//     Changes to this file may cause incorrect behavior and will be lost if\n//     the code is regenerated.\n// </auto-generated>\n//------------------------------------------------------------------------------\n\nusing System;\nusing System.Reflection;\n\n[assembly: System.Reflection.AssemblyCompanyAttribute(\"Tests\")]\n[assembly: System.Reflection.AssemblyConfigurationAttribute(\"Debug\")]\n[assembly: System.Reflection.AssemblyFileVersionAttribute(\"1.0.0.0\")]\n[assembly: System.Reflection.AssemblyInformationalVersionAttribute(\"1.0.0+a79510ab839bfe5605027057372ce81760f4269c\")]\n[assembly: System.Reflection.AssemblyProductAttribute(\"Tests\")]\n[assembly: System.Reflection.AssemblyTitleAttribute(\"Tests\")]\n[assembly: System.Reflection.AssemblyVersionAttribute(\"1.0.0.0\")]\n\n// Generated by the MSBuild WriteCodeFragment class.\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs b/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs
+--- a/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs	(date 1749420511556)
+@@ -13,7 +13,7 @@
+ [assembly: System.Reflection.AssemblyCompanyAttribute("Tests")]
+ [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+ [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a79510ab839bfe5605027057372ce81760f4269c")]
++[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6fd575b1516d492c64c27ed26a72f34a7d95f37")]
+ [assembly: System.Reflection.AssemblyProductAttribute("Tests")]
+ [assembly: System.Reflection.AssemblyTitleAttribute("Tests")]
+ [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+Index: Tests/obj/Debug/net9.0/Tests.sourcelink.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"documents\":{\"C:\\\\Users\\\\sword\\\\Documents\\\\DungeonAdventure-TCSS-360\\\\*\":\"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/a79510ab839bfe5605027057372ce81760f4269c/*\"}}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Tests/obj/Debug/net9.0/Tests.sourcelink.json b/Tests/obj/Debug/net9.0/Tests.sourcelink.json
+--- a/Tests/obj/Debug/net9.0/Tests.sourcelink.json	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Tests/obj/Debug/net9.0/Tests.sourcelink.json	(date 1749498457984)
+@@ -1,1 +1,1 @@
+-{"documents":{"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\*":"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/a79510ab839bfe5605027057372ce81760f4269c/*"}}
+\ No newline at end of file
++{"documents":{"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\*":"https://raw.githubusercontent.com/campbellsetha/DungeonAdventure-TCSS-360/a6fd575b1516d492c64c27ed26a72f34a7d95f37/*"}}
+\ No newline at end of file
+Index: Model/Map/Dungeon.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing static UDA.Model.Map.RoomType;\nusing static UDA.Model.Map.Direction;\nusing static UDA.Model.Map.BoundaryType;\n\nnamespace UDA.Model.Map;\n\npublic sealed class Dungeon\n{\n    public static readonly Dungeon MyInstance;\n    private const int Rows = 10;\n    private const int Cols = 10;\n    private static readonly Random MyRand = RandomSingleton.GetInstance();\n    public readonly Room[,] _myMap = new Room[Rows, Cols];\n    private (int, int) _myEntrance;\n    private (int, int) _myExit;\n    private readonly Dictionary<RoomType, (int, int)> _myPillars = new();\n    \n\n    private Dungeon()\n    {\n        FillMap();\n    }\n\n    static Dungeon()\n    {\n        MyInstance = new Dungeon();\n        while (!MyInstance.IsTraversable())\n        {\n            MyInstance = new Dungeon();\n        }\n        \n    }\n\n    private (int, int) GenerateEntranceExitCoordinates()\n    {\n        int row = MyRand.Next(0, Rows);\n        int col;\n        if (row != 0)\n        {\n            col = (MyRand.Next(0, 2) == 0) ? 0 : Cols - 1;\n        } else col = MyRand.Next(0, Cols);\n        return (row, col);\n    }\n\n    private void CreatePillarRooms()\n    {\n        for (int i = 0; i < 4; i++)\n        {\n            int row = MyRand.Next(0, Rows);\n            int col = MyRand.Next(0, Cols);\n            RoomType pillarType = (RoomType) MyRand.Next(3, 7);\n            while (_myMap[row, col] != null || _myPillars.ContainsKey(pillarType))\n            {\n                row = MyRand.Next(0, Rows);\n                col = MyRand.Next(0, Cols);\n                pillarType = (RoomType) MyRand.Next(3, 7);\n            }\n            _myPillars.Add(pillarType, (row, col));\n            _myMap[row, col] = CreateRoom(row, col, pillarType);\n        }\n    }\n\n    private List<Direction> GetValidDirections(in int theX, in int theY)\n    {\n        List<Direction> directions = new List<Direction>();\n        if (theX != 0) directions.Add(North);\n        if (theX != Rows - 1) directions.Add(South);\n        if (theY != 0) directions.Add(West);\n        if (theY != Cols - 1) directions.Add(East);\n        return directions;\n    }\n    \n    private Room CreateRoom(in int theX, in int theY, in RoomType theRoomType = Normal)\n    {\n        Direction? dir = (theX, theY, theRoomType is Entrance or Exit) switch\n                        {\n                            (0, _, true) => North,\n                            (Rows - 1, _, true) => South,\n                            (_, 0, true) => West,\n                            (_, Cols - 1, true) => East,\n                            (_, _, _) => null\n                        };\n        List<Direction> directions = GetValidDirections(theX, theY);\n        int numOfDoors = \n            theRoomType is Entrance or Exit ? MyRand.Next(2, directions.Count + 1) : MyRand.Next(1, directions.Count + 1);\n        Room room;\n        dir ??= directions[MyRand.Next(directions.Count)];\n        directions.Remove(dir.GetValueOrDefault());\n        switch (numOfDoors)\n        {\n            case 1:\n                room = RoomFactory.CreateRoomOneDoor(dir.GetValueOrDefault(), theRoomType);\n                break; \n            case 2:\n                Direction temp = directions[MyRand.Next(directions.Count)];\n                room = RoomFactory.CreateRoomTwoDoors((dir.GetValueOrDefault(), temp), theRoomType);\n                break;\n            case 3:\n                Direction temp1 = directions[MyRand.Next(directions.Count)];\n                directions.Remove(temp1);\n                Direction temp2 = directions[MyRand.Next(directions.Count)];\n                room = RoomFactory.CreateRoomThreeDoors((dir.GetValueOrDefault(), temp1, temp2), theRoomType);\n                break;\n            default:\n                room = RoomFactory.CreateRoomFourDoors(theRoomType);\n                break;\n        }\n        return room;\n    }\n    \n    private void FillMap()\n    {\n        // Generate entrance and exit rooms\n        _myEntrance = GenerateEntranceExitCoordinates();\n        _myExit = GenerateEntranceExitCoordinates();\n        while (_myExit == _myEntrance)\n        {\n            _myExit = GenerateEntranceExitCoordinates();\n        }\n        _myMap[_myEntrance.Item1, _myEntrance.Item2] = \n            CreateRoom(_myEntrance.Item1, _myEntrance.Item2, Entrance);\n        _myMap[_myExit.Item1, _myExit.Item2] = CreateRoom(_myExit.Item1, _myExit.Item2, Exit);\n        \n        // Fill Dungeon with pillar rooms\n        CreatePillarRooms();\n        \n        // Fill the rest of the Dungeon with random rooms\n        for (int i = 0; i < Rows; i++)\n        {\n            for (int j = 0; j < Cols; j++)\n            {\n                _myMap[i, j] ??= CreateRoom(i, j);\n            }\n        }\n        FillMapHelper();\n    }\n\n    private Room OppositeRoom(Direction theDir, int theX, int theY)\n    {\n        //These can throw OOB exceptions\n        return theDir switch\n        {\n            North => _myMap[theX - 1, theY],\n            South => _myMap[theX + 1, theY],\n            West => _myMap[theX, theY - 1],\n            East => _myMap[theX, theY + 1],\n            _ => throw new Exception(\"Unknown direction\")\n        };\n    }\n    \n    private void FillMapHelper()\n    {\n        for (int i = 0; i < Rows - 1; i++)\n        {\n            for (int j = 0; j < Cols - 1; j++)\n            {\n                int numOfDoors = 0;\n                Direction dir = 0;\n                // probably should move this to its own method in the Room class\n                foreach (KeyValuePair<Direction, BoundaryType?> kvp in _myMap[i, j].MyBoundaries)\n                {\n                    if (kvp.Value == Door)\n                    {\n                        numOfDoors++;\n                        dir = kvp.Key;\n                    }\n                }\n\n                if (numOfDoors == 1 && OppositeRoom(dir, i, j).MyBoundaries[OppositeDirection(dir)] !=\n                    _myMap[i, j].MyBoundaries[dir])\n                    OppositeRoom(dir, i, j).MyBoundaries[OppositeDirection(dir)] = _myMap[i, j].MyBoundaries[dir];\n                else\n                {\n                    foreach (Direction key in new[] { South, East })\n                    {\n                        (int x1, int y1) = (i, j);\n                        int x2 = key == South ? i + 1 : i;\n                        int y2 = key == East ? j + 1 : j;\n                        Direction opposite = key == South ? North : West;\n\n                        var b1 = _myMap[x1, y1].MyBoundaries[key];\n                        var b2 = _myMap[x2, y2].MyBoundaries[opposite];\n\n                        if (b1 != b2)\n                        {\n                            switch (MyRand.Next(0, 2))\n                            {\n                                case 0:\n                                    _myMap[x1, y1].MyBoundaries[key] = b2;\n                                    break;\n                                case 1:\n                                    _myMap[x2, y2].MyBoundaries[opposite] = b1;\n                                    break;\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    } \n    \n    public override string ToString()\n    {\n       StringBuilder result = new StringBuilder();\n       for (int i = 0; i < Rows; i++)\n       {\n           StringBuilder row1 = new StringBuilder();\n           StringBuilder row2 = new StringBuilder();\n           StringBuilder row3 = new StringBuilder();\n           for (int j = 0; j < Cols; j++)\n           {\n               string[] arr = _myMap[i, j].GetDetails();\n               row1.Append(arr[0]).Append(\"  \");\n               row2.Append(arr[1]).Append(\"  \");\n               row3.Append(arr[2]).Append(\"  \");\n           }\n           result.Append(row1.ToString()).Append('\\n');\n           result.Append(row2.ToString()).Append('\\n');\n           result.Append(row3.ToString()).Append(\"\\n\\n\");\n           \n       }\n       return result.ToString();\n    }\n    \n    private bool IsReachable((int, int) theCoordinates)\n    {\n        bool result = false;\n        bool[,] visited = new bool[Rows, Cols];\n        Stack<(int, int)> stack = new Stack<(int, int)>();\n        stack.Push(_myEntrance);\n        visited[_myEntrance.Item1, _myEntrance.Item2] = true;\n        while (stack.Count != 0)\n        {\n            (int currentX, int currentY) = stack.Pop();\n\n            if ((currentX, currentY) == theCoordinates) result = true;\n\n            foreach (Direction dir in Enum.GetValues(typeof(Direction)))\n            {\n                int newX = currentX, newY = currentY;\n\n                switch (dir)\n                {\n                    case North:\n                        newX = currentX - 1;\n                        break;\n                    case South:\n                        newX = currentX + 1;\n                        break;\n                    case East:\n                        newY = currentY + 1;\n                        break;\n                    case West:\n                        newY = currentY - 1;\n                        break;\n                }\n\n                if (newX is >= 0 and < Rows && newY is >= 0 and < Cols &&\n                    !visited[newX, newY] &&\n                    _myMap[currentX, currentY].MyBoundaries[dir] == Door &&\n                    _myMap[newX, newY].MyBoundaries[OppositeDirection(dir)] == Door)\n                {\n                    visited[newX, newY] = true;\n                    stack.Push((newX, newY));\n                }\n            }\n        }\n        return result;\n    }\n    \n    private static Direction OppositeDirection(Direction theDir)\n    {\n        return theDir switch\n        {\n            North => South,\n            South => North,\n            East => West,\n            West => East,\n            _ => throw new ArgumentException(\"Invalid direction\"),\n        };\n    }\n    \n    private bool IsTraversable()\n    {\n        return IsReachable(_myExit) \n               && IsReachable(_myPillars[PillarA]) \n               && IsReachable(_myPillars[PillarE]) \n               && IsReachable(_myPillars[PillarI])\n               && IsReachable(_myPillars[PillarP]);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Model/Map/Dungeon.cs b/Model/Map/Dungeon.cs
+--- a/Model/Map/Dungeon.cs	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Model/Map/Dungeon.cs	(date 1749420808787)
+@@ -145,6 +145,7 @@
+         {
+             North => _myMap[theX - 1, theY],
+             South => _myMap[theX + 1, theY],
++            //This can throw an OOB sometimes
+             West => _myMap[theX, theY - 1],
+             East => _myMap[theX, theY + 1],
+             _ => throw new Exception("Unknown direction")
+Index: .idea/.idea.UDA/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"created project for unit testing\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Enemies/Gremlin.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Enemies/Gremlin.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Enemies/MonsterBase.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Enemies/MonsterBase.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Enemies/Ogre.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Enemies/Ogre.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Enemies/Skeleton.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Enemies/Skeleton.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/GameManager/GameManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/GameManager/GameManager.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Player/Player.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Player/Player.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Resources/PlayerClass.tres\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Resources/PlayerClass.tres\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Characters/Hero.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Model/Characters/Hero.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfo.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.AssemblyInfoInputs.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/project.godot\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/project.godot\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"DpaMonitoringSettings\">\n    <option name=\"firstShow\" value=\"false\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$/..\" value=\"newUpdates\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;cblackwe11&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,\n    &quot;accountId&quot;: &quot;f5a1692e-637d-44a9-905b-3b0930087b9c&quot;\n  }\n}</component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/dc/f53cce63/StringName.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/fa/c28f038c/Marshaling.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/415912dcbf24e76247dde1798c725ce64f23be667aecfc1dd5492e67214b6/String.Comparison.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c1c946eaa6d8ddaaea1b63e936ca8ed2791d9316c5b025a41d445891e8a59ecd/DefaultInterpolatedStringHandler.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d57858531a2bcaa41f2315ffea8b27aa4382497/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6169ba44c036a435f3462d6993a9a22ee4b433f1390ed5675268b2097cb71/PackedScene.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Game/Player/Hurtbox.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n  </component>\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"2w6rOqtetrMzIrNeB5yfk9vMHz5\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \".NET Executable.Player.executor\": \"Run\",\n    \".NET Executable.dungeonBuilder.tscn.executor\": \"Run\",\n    \".NET Executable.player_save_test.tscn.executor\": \"Run\",\n    \".NET Static Method.UDA.Sandbox.Main.executor\": \"Run\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"XThreadsFramesViewSplitterKey\": \"0.13227513\",\n    \"git-widget-placeholder\": \"newUpdatesWithMain\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"preferences.sourceCode.C#\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\".NET Executable.player_save_test.tscn\">\n    <configuration name=\"UDA.Sandbox.Main\" type=\"DotNetStaticMethod\" factoryName=\".NET Static Method\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/UDA.csproj\" />\n      <option name=\"PROJECT_TFM\" value=\"net8.0\" />\n      <option name=\"CLASS_NAME\" value=\"UDA.Sandbox\" />\n      <option name=\"METHOD_NAME\" value=\"Main\" />\n      <method v=\"2\">\n        <option name=\"Build\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player GDScript\" type=\"GDSCRIPT_DEBUG_RUN_CONFIGURATION\" factoryName=\"GdScriptRunFactory\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"6006\">\n      <option name=\"address\" value=\"127.0.0.1\" />\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Editor\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot; --editor\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"dungeonBuilder.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://Game\\GameManager\\dungeonBuilder.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"player_save_test.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://SaveTest\\player_save_test.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\".NET Executable.player_save_test.tscn\" />\n        <item itemvalue=\".NET Executable.dungeonBuilder.tscn\" />\n        <item itemvalue=\".NET Static Method.UDA.Sandbox.Main\" />\n        <item itemvalue=\".NET Static Method.UDA.Sandbox.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"\" />\n      <created>1745372837094</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1745372837094</updated>\n      <workItem from=\"1745372838559\" duration=\"3000\" />\n      <workItem from=\"1745372863043\" duration=\"8000\" />\n      <workItem from=\"1745804056877\" duration=\"187000\" />\n      <workItem from=\"1745804270859\" duration=\"847000\" />\n      <workItem from=\"1745805142199\" duration=\"634000\" />\n      <workItem from=\"1745805870553\" duration=\"9000\" />\n      <workItem from=\"1745806003131\" duration=\"763000\" />\n      <workItem from=\"1745806864516\" duration=\"1497000\" />\n      <workItem from=\"1745808408153\" duration=\"266000\" />\n      <workItem from=\"1745808735454\" duration=\"115000\" />\n      <workItem from=\"1745809039639\" duration=\"23000\" />\n      <workItem from=\"1745809105363\" duration=\"108000\" />\n      <workItem from=\"1745809229460\" duration=\"290000\" />\n      <workItem from=\"1745810016105\" duration=\"240000\" />\n      <workItem from=\"1745810304697\" duration=\"574000\" />\n      <workItem from=\"1745810899195\" duration=\"1148000\" />\n      <workItem from=\"1745974963414\" duration=\"253000\" />\n      <workItem from=\"1745975400557\" duration=\"2348000\" />\n      <workItem from=\"1745979709321\" duration=\"827000\" />\n      <workItem from=\"1746054809757\" duration=\"30000\" />\n      <workItem from=\"1746054877197\" duration=\"303000\" />\n      <workItem from=\"1746123845660\" duration=\"418000\" />\n      <workItem from=\"1746308930839\" duration=\"4600000\" />\n      <workItem from=\"1746320311487\" duration=\"5412000\" />\n      <workItem from=\"1746329880269\" duration=\"2278000\" />\n      <workItem from=\"1746334814799\" duration=\"631000\" />\n      <workItem from=\"1746400443489\" duration=\"24070000\" />\n      <workItem from=\"1746670413448\" duration=\"273000\" />\n      <workItem from=\"1746670698469\" duration=\"1427000\" />\n      <workItem from=\"1746688775707\" duration=\"3000\" />\n      <workItem from=\"1746729844044\" duration=\"848000\" />\n      <workItem from=\"1747681223201\" duration=\"11607000\" />\n      <workItem from=\"1748363499846\" duration=\"11237000\" />\n      <workItem from=\"1748988189302\" duration=\"14119000\" />\n      <workItem from=\"1749080184596\" duration=\"751000\" />\n      <workItem from=\"1749319428315\" duration=\"345000\" />\n      <workItem from=\"1749331050221\" duration=\"742000\" />\n      <workItem from=\"1749331825268\" duration=\"9727000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"woohoo Dungeon is being generated properly and it can be navigated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1748845353790</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1748845353790</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749007236659</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749007236659</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"false\" />\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"woohoo Dungeon is being generated properly and it can be navigated\" />\n    <MESSAGE value=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.Collections.Generic.KeyNotFoundException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"KeyNotFoundException\" namespaceName=\"System.Collections.Generic\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"3\" />\n        </breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <pin-to-top-manager>\n      <pinned-members>\n        <PinnedItemInfo parentTag=\"Type#UDA.Model.DungeonCharacter\" memberName=\"HitPoints\" />\n        <PinnedItemInfo parentTag=\"Frame#UDA.Model.Characters.DungeonCharacter.ToString\" memberName=\"this\" />\n      </pinned-members>\n    </pin-to-top-manager>\n    <watches-manager>\n      <configuration name=\"RunExe\">\n        <watch expression=\"this\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.UDA/.idea/workspace.xml b/.idea/.idea.UDA/.idea/workspace.xml
+--- a/.idea/.idea.UDA/.idea/workspace.xml	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/.idea/.idea.UDA/.idea/workspace.xml	(date 1749517326437)
+@@ -4,19 +4,14 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="created project for unit testing">
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
++    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Built an event bus to manage the signals between player/enemy/environment. Connected it, it works. Need to wire it in to the player so they take damage accordingly. There is still a minor bug with the save system where the query player input does not properly display the state of the player. I am hoping shifting the damage into the player script will fix this. I believe the issue was that the reference to the player was a global one and not an instanced one. This should also make creating traps much easier to deal with as we can simply have them emit a signal to hurt the player.">
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Enemies/Gremlin.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Gremlin.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Enemies/Ogre.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Ogre.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Enemies/Skeleton.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/Skeleton.tscn" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/player.tscn" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/Resources/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/EventBus.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
+@@ -29,8 +24,6 @@
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -71,6 +64,7 @@
+     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6169ba44c036a435f3462d6993a9a22ee4b433f1390ed5675268b2097cb71/PackedScene.cs" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
++    <setting file="mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.sourcelink.json" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+   <component name="ProjectColorInfo">{
+@@ -81,27 +75,27 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    ".NET Executable.Player.executor": "Run",
+-    ".NET Executable.dungeonBuilder.tscn.executor": "Run",
+-    ".NET Executable.player_save_test.tscn.executor": "Run",
+-    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "XThreadsFramesViewSplitterKey": "0.13227513",
+-    "git-widget-placeholder": "newUpdatesWithMain",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
++    &quot;.NET Executable.dungeonBuilder.tscn.executor&quot;: &quot;Run&quot;,
++    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Run&quot;,
++    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.13059701&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;newUpdatesWithMain&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager" selected=".NET Executable.player_save_test.tscn">
+     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
+@@ -259,7 +253,9 @@
+       <workItem from="1749080184596" duration="751000" />
+       <workItem from="1749319428315" duration="345000" />
+       <workItem from="1749331050221" duration="742000" />
+-      <workItem from="1749331825268" duration="9727000" />
++      <workItem from="1749331825268" duration="10322000" />
++      <workItem from="1749420514259" duration="1053000" />
++      <workItem from="1749489383105" duration="7573000" />
+     </task>
+     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
+       <option name="closed" value="true" />
+@@ -277,7 +273,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1749007236659</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="Built an event bus to manage the signals between player/enemy/environment. Connected it, it works. Need to wire it in to the player so they take damage accordingly. There is still a minor bug with the save system where the query player input does not properly display the state of the player. I am hoping shifting the damage into the player script will fix this. I believe the issue was that the reference to the player was a global one and not an instanced one. This should also make creating traps much easier to deal with as we can simply have them emit a signal to hurt the player.">
++      <option name="closed" value="true" />
++      <created>1749341981258</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1749341981258</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Built an event bus to manage the signals between player/enemy/environment. Connected it, it works. Need to wire it in to the player so they take damage accordingly. There is still a minor bug with the save system where the query player input does not properly display the state of the player. I am hoping shifting the damage into the player script will fix this. I believe the issue was that the reference to the player was a global one and not an instanced one. This should also make creating traps much easier to deal with as we can simply have them emit a signal to hurt the player.">
++      <option name="closed" value="true" />
++      <created>1749341992699</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1749341992699</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -299,7 +311,8 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="woohoo Dungeon is being generated properly and it can be navigated" />
+     <MESSAGE value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
+-    <option name="LAST_COMMIT_MESSAGE" value="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms." />
++    <MESSAGE value="Built an event bus to manage the signals between player/enemy/environment. Connected it, it works. Need to wire it in to the player so they take damage accordingly. There is still a minor bug with the save system where the query player input does not properly display the state of the player. I am hoping shifting the damage into the player script will fix this. I believe the issue was that the reference to the player was a global one and not an instanced one. This should also make creating traps much easier to deal with as we can simply have them emit a signal to hurt the player." />
++    <option name="LAST_COMMIT_MESSAGE" value="Built an event bus to manage the signals between player/enemy/environment. Connected it, it works. Need to wire it in to the player so they take damage accordingly. There is still a minor bug with the save system where the query player input does not properly display the state of the player. I am hoping shifting the damage into the player script will fix this. I believe the issue was that the reference to the player was a global one and not an instanced one. This should also make creating traps much easier to deal with as we can simply have them emit a signal to hurt the player." />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: Game/GameManager/GameManager.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing Godot.Collections;\nusing UDA.Game.Resources;\nusing FileAccess = Godot.FileAccess;\n\nnamespace UDA.Game.GameManager;\n\npublic partial class GameManager : Node\n{\n    //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change\n    private Player.Player _myPlayerInstance;\n\n    public override void _Process(double theDelta)\n    {\n        //Test to take damage and check health\n        if (Input.IsActionJustPressed(\"space\"))\n        {\n            //var temp = _playerInstance.GetNode<PlayerClass>(\"Player/PlayerClass\");\n            //GD.Print(temp.MY_CLASS.HitPoints);\n        }\n\n        if (Input.IsActionJustPressed(\"save\"))\n        {\n            OnSaveGame();\n            GD.Print(\"GameSaved\");\n        }\n\n        if (Input.IsActionJustPressed(\"load\"))\n        {\n            OnLoadGame();\n            GD.Print(\"GameLoaded\");\n        }\n\n        if (Input.IsActionJustPressed(\"QueryPlayerInfo\")) \n            GD.Print(_myPlayerInstance.MyClass.ToString());\n    }\n\n    public override void _Ready()\n    {\n        //Grab the player node\n        _myPlayerInstance = GetNode<Player.Player>(\"Player\");\n        //Now we have to check if the player already has a class and name, this is important for loading from state\n    }\n\n    public void OnSaveGame()\n    {\n        //Most of this is ripped right of off the docs, and will likely need to be tweaked\n        //@See https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html\n        var saveFile = FileAccess.Open(\"user://saveGame.save\", FileAccess.ModeFlags.Write);\n        \n        var saveNodes = GetTree().GetNodesInGroup(\"Player\");\n        SaveResource();\n\n        //Only needs to load the player node currently.\n        //Will need to save and serialize the map. Can place the string details from each room into a resource that\n        //Holds a 2d array representing the map.\n        foreach (var saveNode in saveNodes)\n        {\n            if (string.IsNullOrEmpty(saveNode.SceneFilePath))\n            {\n                GD.Print($\"persistent node '{saveNode.Name}' is not an instanced scene, skipped\");\n                continue;\n            }\n\n            // Check the node has a save function.\n            if (!saveNode.HasMethod(\"Save\"))\n            {\n                GD.Print($\"persistent node '{saveNode.Name}' is missing a Save() function, skipped\");\n                continue;\n            }\n\n            // Call the node's save function.\n            var nodeData = saveNode.Call(\"Save\");\n\n            // Json provides a static method to serialized JSON string.\n            var jsonString = Json.Stringify(nodeData);\n\n            // Store the save dictionary as a new line in the save file.\n            saveFile.StoreLine(jsonString);\n        }\n        saveFile.Close();\n    }\n\n    //Because some of the objects are children of other persistent objects\n    //They need to be loaded in stages\n    //With top level(Parent) objects being loaded first\n    public void OnLoadGame()\n    {\n        if (!FileAccess.FileExists(\"user://saveGame.save\"))\n            //TODO: Maybe throw up a splash screen for lack of a save file?\n            //In the interem we can just have this do nothing\n            return;\n        LoadResource();\n\n        //Have to revert game state to avoid the cloning of objects\n        //Currently this is done by \n        var nodesToLoad = GetTree().GetNodesInGroup(\"Player\");\n        foreach (var loadingNode in nodesToLoad) loadingNode.QueueFree();\n\n        //Load the file line by line and process the dictionary\n        using (var saveFile = FileAccess.Open(\"user://saveGame.save\", FileAccess.ModeFlags.Read))\n        {\n            while (saveFile.GetPosition() < saveFile.GetLength())\n            {\n                var jsonString = saveFile.GetLine();\n\n                //helper class to interact with json\n                var json = new Json();\n                var parseResult = json.Parse(jsonString);\n\n                // the return of .Ok signals that an error has occured\n                if (parseResult != Error.Ok)\n                    GD.Print(\n                        $\"JSON Parse Error:{json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}\");\n\n                //Get data for JSON object\n                //This pulls the next line in the json file and reads it as a \n                //dictionary provided by Godot's API\n                var nodeData =\n                    new Godot.Collections.Dictionary<string, Variant>((Dictionary)json.Data);\n\n                //Create objects and it to the tree\n                //TODO: create a dictionary for the playerMove script on 2dBody node\n                var path = nodeData[\"FileName\"].ToString();\n\n                var newObjectScene = GD.Load<PackedScene>(nodeData[\"FileName\"].ToString());\n                var newObject = newObjectScene.Instantiate<Node>();\n\n                //This really only works for root level nodes\n                //Note: If node already has a parent, this method will fail. Use RemoveChild(Node) first to remove node from its current parent. For example:\n                //TODO: Figure out how to do this for specific nodes \n                GetNode(nodeData[\"Parent\"].ToString()).AddChild(newObject);\n\n                //This sets the default position for the object\n                //TODO: Determine if this is based on the nodes last position\n                //Or if this needs to be saved and recalled as well\n                //I Believe the position will need to be manually configured.\n                //If a node does not have a position then setting this could break this method\n                //I WILL NEED TO SET ALL OF THESE WHEN LOADING IN AN OBJECT\n                newObject.Set(Node2D.PropertyName.Position,\n                    new Vector2((float)nodeData[\"PosX\"], (float)nodeData[\"PosY\"]));\n\n                //sets the remaining variables\n                //Looks like it checks each value in the nodes json data for specific types, and if they do not exist it \n                //sets them manually\n                //This might need to be set up specifically for each instance.\n                foreach (var (key, value) in nodeData)\n                {\n                    if (key == \"FileName\" || key == \"Parent\" || key == \"PosX\" || key == \"PosY\") continue;\n                    newObject.Set(key, value);\n                }\n            }\n            saveFile.Close();\n        }\n        //Simple work around to setting the players hp.\n        //Had to open up the visibility of the hitpoint setter for this, cant take damage as there is a change to block\n        _myPlayerInstance.MyClass.HitPoints = _myPlayerInstance.MyClassInfo.MyPlayerHp;\n    }\n\n    private void LoadResource()\n    {\n        //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine\n        var fileName = \"res://Game/Resources/PlayerClass.tres\";\n        if (ResourceLoader.Exists(fileName))\n        {\n            ResourceLoader.Load<PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);\n        }\n        else\n            throw new FileNotFoundException(\"The resource could not be found\");\n    }\n\n    private void SaveResource()\n    {\n        var fileName = \"res://Game/Resources/PlayerClass.tres\";\n        //Update the class resource to match the current players hp at save\n        _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.HitPoints;\n        ResourceSaver.Save(_myPlayerInstance.MyClassInfo, fileName);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/GameManager.cs b/Game/GameManager/GameManager.cs
+--- a/Game/GameManager/GameManager.cs	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Game/GameManager/GameManager.cs	(date 1749502468848)
+@@ -12,13 +12,6 @@
+ 
+     public override void _Process(double theDelta)
+     {
+-        //Test to take damage and check health
+-        if (Input.IsActionJustPressed("space"))
+-        {
+-            //var temp = _playerInstance.GetNode<PlayerClass>("Player/PlayerClass");
+-            //GD.Print(temp.MY_CLASS.HitPoints);
+-        }
+-
+         if (Input.IsActionJustPressed("save"))
+         {
+             OnSaveGame();
+Index: Game/Player/player.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=57 format=3 uid=\"uid://c0sxi5dgonucy\"]\n\n[ext_resource type=\"Script\" uid=\"uid://c1706h2tvg3sc\" path=\"res://Game/Player/Player.cs\" id=\"1_onrkg\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://csf461dk3fm20\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Front Idle Animation 2.0.piskel.0.png\" id=\"2_p2hw7\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c4abtsfnyu3cu\" path=\"res://Inventory/inventory_ui.tscn\" id=\"3_btcbx\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://ce22aixrlaj0k\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero South Walking Animation.png\" id=\"3_ch4ko\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://xupr73rr5f6o\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side animation 2.0.png\" id=\"4_vh1aq\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://dcfdhk3845asv\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero North Walking Animation.png\" id=\"5_4ddeg\"]\n[ext_resource type=\"Texture2D\" uid=\"uid://bg210scfkjw84\" path=\"res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side(right) animation 2.0.png\" id=\"5_ch4ko\"]\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_db2hk\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_q0m6d\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_qwver\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_nfw5o\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_wlpas\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_akrrf\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_tqhgd\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_6v7ly\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_n4lia\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_17fuy\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(0, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2r01l\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(32, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_me1ax\"]\natlas = ExtResource(\"2_p2hw7\")\nregion = Rect2(64, 96, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_uws67\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_e5t7e\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_hjses\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_qsmka\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_yjwnk\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_rrpjo\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_jgbxf\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_xrxgx\"]\natlas = ExtResource(\"3_ch4ko\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_dar1l\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_bt2hs\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_s14fl\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_pgx7e\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_c4sti\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_fjnfe\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_62ylk\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_isivy\"]\natlas = ExtResource(\"4_vh1aq\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_vh1aq\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_4ddeg\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2kcyg\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_2tcsm\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_juej5\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_h35bn\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_ex47v\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_pr6ru\"]\natlas = ExtResource(\"5_ch4ko\")\nregion = Rect2(64, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_hjsjy\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_kovee\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_euk0e\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(64, 0, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_mdprh\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_tt1yj\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_fy1n6\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(64, 32, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_uwdg0\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(0, 64, 32, 32)\n\n[sub_resource type=\"AtlasTexture\" id=\"AtlasTexture_1xkqr\"]\natlas = ExtResource(\"5_4ddeg\")\nregion = Rect2(32, 64, 32, 32)\n\n[sub_resource type=\"SpriteFrames\" id=\"SpriteFrames_p5o4e\"]\nanimations = [{\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_db2hk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_q0m6d\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_qwver\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_nfw5o\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_wlpas\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_akrrf\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_tqhgd\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_6v7ly\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_n4lia\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_17fuy\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2r01l\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_me1ax\")\n}],\n\"loop\": true,\n\"name\": &\"default\",\n\"speed\": 4.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_uws67\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_e5t7e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_hjses\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_qsmka\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_yjwnk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_rrpjo\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_jgbxf\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_xrxgx\")\n}],\n\"loop\": true,\n\"name\": &\"walkDown\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_dar1l\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_bt2hs\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_s14fl\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_pgx7e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_c4sti\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_fjnfe\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_62ylk\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_isivy\")\n}],\n\"loop\": true,\n\"name\": &\"walkLeft\",\n\"speed\": 5.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_vh1aq\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_4ddeg\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2kcyg\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_2tcsm\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_juej5\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_h35bn\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_ex47v\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_pr6ru\")\n}],\n\"loop\": true,\n\"name\": &\"walkRight\",\n\"speed\": 4.0\n}, {\n\"frames\": [{\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_hjsjy\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_kovee\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_euk0e\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_mdprh\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_tt1yj\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_fy1n6\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_uwdg0\")\n}, {\n\"duration\": 1.0,\n\"texture\": SubResource(\"AtlasTexture_1xkqr\")\n}],\n\"loop\": true,\n\"name\": &\"walkUp\",\n\"speed\": 5.0\n}]\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_4ntmi\"]\nradius = 8.88889\n\n[sub_resource type=\"CircleShape2D\" id=\"CircleShape2D_btcbx\"]\n\n[sub_resource type=\"Gradient\" id=\"Gradient_4ntmi\"]\noffsets = PackedFloat32Array(0, 0.907895)\ncolors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)\n\n[sub_resource type=\"GradientTexture2D\" id=\"GradientTexture2D_btcbx\"]\ngradient = SubResource(\"Gradient_4ntmi\")\nfill = 1\nfill_from = Vector2(0.490741, 0.509259)\nfill_to = Vector2(0.949074, 0.115741)\n\n[node name=\"Player\" type=\"CharacterBody2D\" groups=[\"Player\"]]\nz_index = 1\ncollision_layer = 2\ncollision_mask = 17\nmotion_mode = 1\nscript = ExtResource(\"1_onrkg\")\n\n[node name=\"PlayerAnimation\" type=\"AnimatedSprite2D\" parent=\".\"]\nsprite_frames = SubResource(\"SpriteFrames_p5o4e\")\nanimation = &\"walkRight\"\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\".\"]\ntexture_filter = 1\nscale = Vector2(0.7, 0.7)\nshape = SubResource(\"CircleShape2D_4ntmi\")\n\n[node name=\"Hurtbox\" type=\"Area2D\" parent=\".\" groups=[\"PlayerHurtBox\"]]\ncollision_layer = 2\ncollision_mask = 4\n\n[node name=\"CollisionShape2D\" type=\"CollisionShape2D\" parent=\"Hurtbox\"]\nscale = Vector2(0.5, 0.5)\nshape = SubResource(\"CircleShape2D_btcbx\")\ndebug_color = Color(0.755133, 0.396518, 0.595367, 0.42)\n\n[node name=\"PointLight2D\" type=\"PointLight2D\" parent=\".\"]\ntexture = SubResource(\"GradientTexture2D_btcbx\")\n\n[node name=\"Inventory_UI\" parent=\".\" instance=ExtResource(\"3_btcbx\")]\nvisible = false\noffset_left = -45.0\noffset_top = -79.0\noffset_right = 45.0\noffset_bottom = -13.0\n\n[node name=\"TestingCamera\" type=\"Camera2D\" parent=\".\"]\nzoom = Vector2(2, 2)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Player/player.tscn b/Game/Player/player.tscn
+--- a/Game/Player/player.tscn	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/Game/Player/player.tscn	(date 1749504375619)
+@@ -1,4 +1,4 @@
+-[gd_scene load_steps=57 format=3 uid="uid://c0sxi5dgonucy"]
++[gd_scene load_steps=64 format=3 uid="uid://c0sxi5dgonucy"]
+ 
+ [ext_resource type="Script" uid="uid://c1706h2tvg3sc" path="res://Game/Player/Player.cs" id="1_onrkg"]
+ [ext_resource type="Texture2D" uid="uid://csf461dk3fm20" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Front Idle Animation 2.0.piskel.0.png" id="2_p2hw7"]
+@@ -7,6 +7,7 @@
+ [ext_resource type="Texture2D" uid="uid://xupr73rr5f6o" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side animation 2.0.png" id="4_vh1aq"]
+ [ext_resource type="Texture2D" uid="uid://dcfdhk3845asv" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero North Walking Animation.png" id="5_4ddeg"]
+ [ext_resource type="Texture2D" uid="uid://bg210scfkjw84" path="res://HeroAssets/KnightOrPaladin/Dungeon Crawler Hero Walking Side(right) animation 2.0.png" id="5_ch4ko"]
++[ext_resource type="PackedScene" uid="uid://c8ymlk3e7xidn" path="res://Game/Player/Sword.tscn" id="8_vh1aq"]
+ 
+ [sub_resource type="AtlasTexture" id="AtlasTexture_db2hk"]
+ atlas = ExtResource("2_p2hw7")
+@@ -186,6 +187,11 @@
+ 
+ [sub_resource type="SpriteFrames" id="SpriteFrames_p5o4e"]
+ animations = [{
++"frames": [],
++"loop": true,
++"name": &"AttackDown",
++"speed": 5.0
++}, {
+ "frames": [{
+ "duration": 1.0,
+ "texture": SubResource("AtlasTexture_db2hk")
+@@ -225,7 +231,7 @@
+ }],
+ "loop": true,
+ "name": &"default",
+-"speed": 4.0
++"speed": 5.0
+ }, {
+ "frames": [{
+ "duration": 1.0,
+@@ -312,7 +318,7 @@
+ }],
+ "loop": true,
+ "name": &"walkRight",
+-"speed": 4.0
++"speed": 5.0
+ }, {
+ "frames": [{
+ "duration": 1.0,
+@@ -344,6 +350,158 @@
+ "speed": 5.0
+ }]
+ 
++[sub_resource type="Animation" id="Animation_vh1aq"]
++resource_name = "AttackDown"
++length = 0.2
++step = 0.1
++tracks/0/type = "value"
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/path = NodePath("Weapon:rotation")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/keys = {
++"times": PackedFloat32Array(0, 0.2),
++"transitions": PackedFloat32Array(1, 1),
++"update": 0,
++"values": [0.383972, 3.07876]
++}
++tracks/1/type = "value"
++tracks/1/imported = false
++tracks/1/enabled = true
++tracks/1/path = NodePath("Weapon:position")
++tracks/1/interp = 1
++tracks/1/loop_wrap = true
++tracks/1/keys = {
++"times": PackedFloat32Array(0, 0.0882458, 0.2),
++"transitions": PackedFloat32Array(1, 1, 1),
++"update": 0,
++"values": [Vector2(2, 0), Vector2(0, 2), Vector2(2, 2)]
++}
++
++[sub_resource type="Animation" id="Animation_db2hk"]
++resource_name = "AttackUp"
++length = 0.2
++step = 0.1
++tracks/0/type = "value"
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/path = NodePath("Weapon:position")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/keys = {
++"times": PackedFloat32Array(0, 0.2),
++"transitions": PackedFloat32Array(1, 1),
++"update": 0,
++"values": [Vector2(2, -5), Vector2(-2, -5)]
++}
++tracks/1/type = "value"
++tracks/1/imported = false
++tracks/1/enabled = true
++tracks/1/path = NodePath("Weapon:rotation")
++tracks/1/interp = 1
++tracks/1/loop_wrap = true
++tracks/1/keys = {
++"times": PackedFloat32Array(0, 0.2),
++"transitions": PackedFloat32Array(1, 1),
++"update": 0,
++"values": [-0.10821, -3.08051]
++}
++
++[sub_resource type="Animation" id="Animation_4ddeg"]
++length = 0.001
++tracks/0/type = "value"
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/path = NodePath("Weapon:rotation")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/keys = {
++"times": PackedFloat32Array(0),
++"transitions": PackedFloat32Array(1),
++"update": 0,
++"values": [0.383972]
++}
++tracks/1/type = "value"
++tracks/1/imported = false
++tracks/1/enabled = true
++tracks/1/path = NodePath("Weapon:position")
++tracks/1/interp = 1
++tracks/1/loop_wrap = true
++tracks/1/keys = {
++"times": PackedFloat32Array(0),
++"transitions": PackedFloat32Array(1),
++"update": 0,
++"values": [Vector2(0, 0)]
++}
++
++[sub_resource type="Animation" id="Animation_q0m6d"]
++resource_name = "AttackLeft"
++length = 0.2
++step = 0.1
++tracks/0/type = "value"
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/path = NodePath("Weapon:position")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/keys = {
++"times": PackedFloat32Array(0, 0.0998843, 0.2),
++"transitions": PackedFloat32Array(1, 1, 1),
++"update": 0,
++"values": [Vector2(-4, -2), Vector2(-6, -2), Vector2(-5, -2)]
++}
++tracks/1/type = "value"
++tracks/1/imported = false
++tracks/1/enabled = true
++tracks/1/path = NodePath("Weapon:rotation")
++tracks/1/interp = 1
++tracks/1/loop_wrap = true
++tracks/1/keys = {
++"times": PackedFloat32Array(0, 0.0998843, 0.2),
++"transitions": PackedFloat32Array(1, 1, 1),
++"update": 0,
++"values": [-1.89892, -3.14159, -4.49422]
++}
++
++[sub_resource type="Animation" id="Animation_qwver"]
++resource_name = "AttackRight"
++length = 0.2
++step = 0.1
++tracks/0/type = "value"
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/path = NodePath("Weapon:position")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/keys = {
++"times": PackedFloat32Array(0, 0.0863802, 0.2),
++"transitions": PackedFloat32Array(1, 1, 1),
++"update": 0,
++"values": [Vector2(4, -2), Vector2(7, -2), Vector2(6, -3)]
++}
++tracks/1/type = "value"
++tracks/1/imported = false
++tracks/1/enabled = true
++tracks/1/path = NodePath("Weapon:rotation")
++tracks/1/interp = 1
++tracks/1/loop_wrap = true
++tracks/1/keys = {
++"times": PackedFloat32Array(0, 0.0859145, 0.0863802, 0.2),
++"transitions": PackedFloat32Array(1, 1, 1, 1),
++"update": 0,
++"values": [-1.40674, 0.0, -6.28319, -4.88692]
++}
++
++[sub_resource type="AnimationLibrary" id="AnimationLibrary_db2hk"]
++_data = {
++&"AttackDown": SubResource("Animation_vh1aq"),
++&"AttackLeft": SubResource("Animation_q0m6d"),
++&"AttackRight": SubResource("Animation_qwver"),
++&"AttackUp": SubResource("Animation_db2hk"),
++&"RESET": SubResource("Animation_4ddeg")
++}
++
+ [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+ radius = 8.88889
+ 
+@@ -368,7 +526,13 @@
+ 
+ [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+ sprite_frames = SubResource("SpriteFrames_p5o4e")
+-animation = &"walkRight"
++frame = 10
++frame_progress = 0.619298
++
++[node name="WeaponAnimation" type="AnimationPlayer" parent="."]
++libraries = {
++&"": SubResource("AnimationLibrary_db2hk")
++}
+ 
+ [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+ texture_filter = 1
+@@ -385,7 +549,11 @@
+ debug_color = Color(0.755133, 0.396518, 0.595367, 0.42)
+ 
+ [node name="PointLight2D" type="PointLight2D" parent="."]
++position = Vector2(-2.8, 0)
++scale = Vector2(0.671196, 0.663043)
++energy = 0.7
+ texture = SubResource("GradientTexture2D_btcbx")
++texture_scale = 4.6
+ 
+ [node name="Inventory_UI" parent="." instance=ExtResource("3_btcbx")]
+ visible = false
+@@ -396,3 +564,13 @@
+ 
+ [node name="TestingCamera" type="Camera2D" parent="."]
+ zoom = Vector2(2, 2)
++position_smoothing_enabled = true
++
++[node name="Weapon" type="Node2D" parent="."]
++rotation = 0.383972
++
++[node name="Sword" parent="Weapon" instance=ExtResource("8_vh1aq")]
++position = Vector2(10, 0)
++rotation = 1.5708
++collision_layer = 0
++collision_mask = 4
+Index: project.godot
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>; Engine configuration file.\n; It's best edited using the editor UI and not directly,\n; since the parameters that go here are not all obvious.\n;\n; Format:\n;   [section] ; section goes between []\n;   param=value ; assign values to parameters\n\nconfig_version=5\n\n[MonoCustomResourceRegistry]\n\nClassPrefix=\"\"\nSearchType=0\nResourceScriptDirectories=Array[String]([\"res://\"])\n\n[application]\n\nconfig/name=\"UDA\"\nrun/main_scene=\"uid://dhknoiyya1vj3\"\nconfig/features=PackedStringArray(\"4.4\", \"C#\", \"Forward Plus\")\nboot_splash/bg_color=Color(0.630264, 0.554366, 0.834131, 1)\nboot_splash/image=\"uid://crwhartamq6ey\"\nconfig/icon=\"res://icon.svg\"\n\n[autoload]\n\nEventBus=\"*res://Game/Resources/EventBus.cs\"\n\n[display]\n\nwindow/stretch/mode=\"viewport\"\n\n[dotnet]\n\nproject/assembly_name=\"UDA\"\n\n[editor_plugins]\n\nenabled=PackedStringArray(\"res://addons/MonoCustomResourceRegistry/plugin.cfg\")\n\n[global_group]\n\nPlayer=\"\"\nMonster=\"\"\n\n[input]\n\nmoveLeft={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194319,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":65,\"key_label\":0,\"unicode\":97,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveRight={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194321,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":68,\"key_label\":0,\"unicode\":100,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveUp={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194320,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":87,\"key_label\":0,\"unicode\":119,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveDown={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194322,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":83,\"key_label\":0,\"unicode\":115,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\ninventoryMenu={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":84,\"key_label\":0,\"unicode\":116,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nsave={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":true,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":83,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nload={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":true,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":76,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nQueryPlayerInfo={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":81,\"key_label\":0,\"unicode\":113,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nspace={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":32,\"key_label\":0,\"unicode\":32,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\n\n[layer_names]\n\n2d_physics/layer_1=\"Walls\"\n2d_physics/layer_2=\"Player\"\n2d_physics/layer_3=\"Enemy\"\n2d_physics/layer_5=\"ItemLayer\"\n\n[rendering]\n\ntextures/canvas_textures/default_texture_filter=0\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project.godot b/project.godot
+--- a/project.godot	(revision a6fd575b1516d492c64c27ed26a72f34a7d95f37)
++++ b/project.godot	(date 1749504098714)
+@@ -90,7 +90,7 @@
+ "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
+ ]
+ }
+-space={
++Attack={
+ "deadzone": 0.2,
+ "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+ ]

@@ -28,7 +28,7 @@ public sealed class Dungeon
     static Dungeon()
     {
         MyInstance = new Dungeon();
-        while (!MyInstance.IsTraversable() && !MyInstance.HasDeadEnd())
+        while (!MyInstance.IsTraversable() && !MyInstance.HasDeadEnds())
         {
             MyInstance = new Dungeon();
         }
@@ -252,17 +252,17 @@ public sealed class Dungeon
         };
     }
 
-    private bool HasDeadEnd()
+    private bool HasDeadEnds()
     { 
-        bool result = false;
+        int numOfDeadEnds = 0;
         for (int i = 0; i < Rows; i++)
         {
             for (int j = 0; j < Cols; j++)
             {
-                if (MyMap[i, j].GetNumberOfDoors() == 1) result = true;
+                if (MyMap[i, j].GetNumberOfDoors() == 1) numOfDeadEnds++;
             }
         }
-        return result;
+        return numOfDeadEnds > 2;
     }
     
     private bool IsTraversable()

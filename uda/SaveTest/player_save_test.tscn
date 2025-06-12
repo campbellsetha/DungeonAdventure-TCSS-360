@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://b1d5accw8h4jf" path="res://Rooms/Entrance.tscn" id="3_t5o5c"]
 [ext_resource type="PackedScene" uid="uid://cqsvyjh3l8o6s" path="res://Game/Enemies/Ogre.tscn" id="5_1ime4"]
 [ext_resource type="PackedScene" uid="uid://b8yb7mvi63nfq" path="res://Game/Enemies/Gremlin.tscn" id="5_o3nu7"]
-[ext_resource type="PackedScene" uid="uid://btbv855kuha5s" path="res://Game/Items/ItemProtos/Trap.tscn" id="6_1ime4"]
-[ext_resource type="PackedScene" uid="uid://c2r36xdcq5vyp" path="res://Game/Resources/ExitPortal.tscn" id="7_mejhn"]
+[ext_resource type="PackedScene" uid="uid://5n711lsstdjr" path="res://Game/Items/ItemProtos/Trap.tscn" id="6_1ime4"]
+[ext_resource type="PackedScene" uid="uid://d37u5u8a8sdsu" path="res://Game/Resources/ExitPortal.tscn" id="7_mejhn"]
 
 [node name="PlayerSaveTest" type="Node2D"]
 script = ExtResource("1_7mt2y")
 
 [node name="Player" parent="." instance=ExtResource("2_t5o5c")]
-position = Vector2(208, 70)
+position = Vector2(208, 104)
 
 [node name="Entrance" parent="." instance=ExtResource("3_t5o5c")]
 

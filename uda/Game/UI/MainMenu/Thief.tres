@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bidfj3v1gypgd"]
+
+[ext_resource type="Texture2D" uid="uid://b7rrhwwajqthe" path="res://HeroAssets/Thief/Thief-Idle.png" id="1_iuuqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gwgg"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8im4s"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_focj6"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dbrw"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8fx4"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4ia0"]
+atlas = ExtResource("1_iuuqx")
+region = Rect2(500, 0, 100, 100)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gwgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8im4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_focj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dbrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8fx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4ia0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]

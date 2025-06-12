@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdif2rdvfuk8m"]
+
+[ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_e8xo4"]
+[ext_resource type="Texture2D" uid="uid://b7rrhwwajqthe" path="res://HeroAssets/Thief/Thief-Idle.png" id="2_jtknc"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_xkgsi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jnm4"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(40, 39, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ir3u"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(140, 39, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywd0h"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(240, 39, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kev8t"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(340, 39, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0esh1"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(440, 39, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otvj5"]
+atlas = ExtResource("2_jtknc")
+region = Rect2(540, 39, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kf4m"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jnm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ir3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywd0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kev8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0esh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otvj5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="CharacterTile" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1077.0
+offset_bottom = -548.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.692958, 0.649339)
+size_flags_horizontal = 6
+size_flags_vertical = 2
+script = ExtResource("1_e8xo4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(9, 11)
+scale = Vector2(2.34141, 2.31367)
+sprite_frames = SubResource("SpriteFrames_7kf4m")
+animation = &"Idle"
+frame_progress = 0.930422
+centered = false
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_xkgsi")
+theme_override_font_sizes/font_size = 16
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 2

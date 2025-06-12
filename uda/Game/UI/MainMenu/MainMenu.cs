@@ -13,7 +13,7 @@ public partial class MainMenu : Control
 
     private void NewGame()
     {
-        GetTree().ChangeSceneToFile("res://World/world.tscn");
+        GetTree().ChangeSceneToFile("res://Game/GameManager/dungeonBuilder.tscn");
     }
 
     private void ExitGame()

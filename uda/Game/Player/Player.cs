@@ -1,19 +1,13 @@
-using System.Drawing;
 using Godot;
 using UDA.Game.Enemies;
 using UDA.Game.GameManager;
 using UDA.Game.Resources;
 using UDA.Model.Characters;
-
-using UDA.Model.Characters.Monster;
-
 using UDA.inventory;
 using UDA.Model;
-using Timer = System.Threading.Timer;
-
+using UDA.Model.Characters.Monster;
 
 namespace UDA.Game.Player;
-
 public partial class Player : CharacterBody2D
 {
     //[Export] private Area2D MonsterArea;
@@ -117,6 +111,12 @@ public partial class Player : CharacterBody2D
         //Weapon animations
         //This probably needs to change, but it works for now and we are going to go with that
         if (Input.IsActionJustPressed("Attack")) await Attack();
+
+        if (Input.IsActionJustPressed("CheatMode"))
+        {
+            CollisionShape2D myBody = GetNode<CollisionShape2D>("CollisionShape2D");
+            myBody.Disabled = !myBody.Disabled;
+        }
     }
     
     private async Task Attack()
@@ -139,10 +139,12 @@ public partial class Player : CharacterBody2D
     {
         if (theMonster.IsInGroup("Monster"))
         {
-            Random rand = RandomSingleton.GetInstance();
-            int damage = rand.Next(MyClass.DamageRange.Min, MyClass.DamageRange.Max);
+            //Random rand = RandomSingleton.GetInstance();
+            //int damage = rand.Next(MyClass.DamageRange.Min, MyClass.DamageRange.Max);
             MonsterBase theMonsterInstance = theMonster.GetParent<MonsterBase>();
-            theMonsterInstance.TakeDamage(damage);
+            Monster monsterClass = theMonsterInstance._myMonsterClass;
+            int attackDamage = MyClass.Attack(monsterClass);
+            theMonsterInstance.TakeDamage(attackDamage);
             //EventBus.getInstance().DealDamageToEnemy(damage);
         }
     }
@@ -242,7 +244,9 @@ public partial class Player : CharacterBody2D
         if (MyClass.HitPoints == 0)
         {
             //Simulates death, still need to create a game over screen
-            QueueFree();
+            //QueueFree();
+            //TODO: ADD THE LOSS SCREEN
+            GetTree().ChangeSceneToFile("res://Game/Resources/GameOverScreen.tscn");
             
         }
     }

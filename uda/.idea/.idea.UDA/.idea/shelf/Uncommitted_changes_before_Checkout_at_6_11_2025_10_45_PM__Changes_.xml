@@ -1,0 +1,22 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]" date="1749707147805" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 6/11/2025 10:45 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/Tests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/Tests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../DungeonAdventure-TCSS-360" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/project.nuget.cache" />
+  </binary>
+</changelist>

@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://mga2wygdffdr"]
+
+[ext_resource type="Texture2D" uid="uid://bq6x1rg58cof3" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/flamethrower/flamethrower_1_1.png" id="1_a4lxb"]
+[ext_resource type="Script" uid="uid://e878yoarimey" path="res://Game/Resources/GameOverScreen.cs" id="1_yexcc"]
+[ext_resource type="Texture2D" uid="uid://270k020sdwqs" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/flamethrower/flamethrower_1_2.png" id="2_yexcc"]
+[ext_resource type="Texture2D" uid="uid://ycifeojigruv" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/flamethrower/flamethrower_1_3.png" id="3_o4ntk"]
+[ext_resource type="Texture2D" uid="uid://b7quoyjn3o0h8" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/flamethrower/flamethrower_1_4.png" id="4_jnp4n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rorfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a4lxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yexcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o4ntk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jnp4n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_o4ntk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(584, 408)]
+}
+
+[sub_resource type="Animation" id="Animation_yexcc"]
+resource_name = "TextScroll"
+length = 65.0
+step = 400.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.200555, 0.300442, 0.400719, 0.500607, 0.600494, 0.699991, 0.800268, 0.900546, 1.00199, 2.00093, 3.00751, 4.00798, 5.00641, 6.0028, 7.00938, 7.99762, 9.00013, 10.0026, 11.0011, 12.0056, 12.9979, 13.9984, 15.0029, 16.0034, 17.0079, 18.0023, 19.0028, 20.0053, 21.0057, 22.0021, 23.0026, 23.9969, 25.0035, 25.9999, 27.0004, 28.007, 29.0054, 30, 31.0023, 32.0027, 33.0011, 34.0037, 35.0021, 36.1022, 37.0187, 38.0549, 39.0711, 40.0076, 41.0348, 41.9912, 43.0274, 44.0037, 45.0199, 45.9963, 47.0922, 48.0088, 48.9851, 50.0611, 51.0773, 52.0736, 53.0101, 54.0861, 55.0425, 55.979, 56.9753, 57.9915, 58.9479, 60, 61.0401, 62.0563, 62.9928),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(584, 408), Vector2(584, 405), Vector2(584, 403), Vector2(584, 400.006), Vector2(584, 397), Vector2(584, 394), Vector2(584, 391), Vector2(584, 388), Vector2(584, 385), Vector2(584, 382), Vector2(584, 376), Vector2(584, 344), Vector2(584, 312), Vector2(584, 280), Vector2(584, 248), Vector2(584, 216), Vector2(584, 184), Vector2(584, 152), Vector2(584, 120), Vector2(584, 88), Vector2(584, 56), Vector2(584, 24), Vector2(584, -8), Vector2(584, -40), Vector2(584, -72), Vector2(584, -104), Vector2(584, -136), Vector2(584, -168), Vector2(584, -200), Vector2(584, -232), Vector2(584, -264), Vector2(584, -296), Vector2(584, -328), Vector2(584, -360), Vector2(584, -392), Vector2(584, -424), Vector2(584, -456), Vector2(584, -488), Vector2(584, -520), Vector2(584, -552), Vector2(584, -584), Vector2(584, -616), Vector2(584, -648), Vector2(584, -680), Vector2(584, -712), Vector2(584, -744), Vector2(584, -776), Vector2(584, -808), Vector2(584, -840), Vector2(584, -872), Vector2(584, -904), Vector2(584, -936), Vector2(584, -968), Vector2(584, -1000), Vector2(584, -1032), Vector2(584, -1064), Vector2(584, -1096), Vector2(584, -1128), Vector2(584, -1160), Vector2(584, -1192), Vector2(584, -1224), Vector2(584, -1256), Vector2(584, -1288), Vector2(584, -1320), Vector2(584, -1352), Vector2(584, -1384), Vector2(584, -1416), Vector2(584, -1448), Vector2(584, -1480), Vector2(584, -1512), Vector2(584, -1544), Vector2(584, -1576), Vector2(584, -1608)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnp4n"]
+_data = {
+&"RESET": SubResource("Animation_o4ntk"),
+&"TextScroll": SubResource("Animation_yexcc")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yexcc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(288, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(848, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(112, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(1040, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(464, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(656, 56)
+scale = Vector2(12, 6)
+sprite_frames = SubResource("SpriteFrames_rorfw")
+frame_progress = 0.762887
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 24
+text = "LET ME LEAVE"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jnp4n")
+}
+speed_scale = 1.5
+
+[node name="Control" type="Control" parent="AnimationPlayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 584.0
+offset_top = 408.0
+offset_right = 599.808
+offset_bottom = 448.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AnimationPlayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.2
+anchor_bottom = -0.2
+offset_left = -440.0
+offset_top = 208.0
+offset_right = 440.0
+offset_bottom = 2224.0
+theme_override_font_sizes/normal_font_size = 34
+text = "Gather close, all who would call themselves brave, for we must speak of one whose courage led them not to glory, but to an untimely end.
+This was a hero of great renown—bold, steadfast, equipped with gleaming armor that, sadly, did little against particularly aggressive slimes. They set forth into the abyss, weapons drawn, resolve unshaken. But the dungeon, cruel and merciless, was not impressed.
+First came the traps—devious mechanisms designed by a dungeon architect who clearly harbored deep resentment toward adventurers. A misstep here, a wayward leap there, and suddenly the hero found themselves navigating what can only be described as a maze of spikes placed with the precision of an artist fueled by spite.
+Then came the monsters—skeletal warriors who, despite their lack of tendons, somehow moved with alarming speed. The hero fought valiantly, sword clashing against rusted iron, only to be interrupted by the unforeseen horror of slipping on an unreasonably large puddle.
+And yet, they pressed on, gasping, injured, but determined. They reached the final chamber—the heart of the dungeon, the lair of its master. It was here that fate delivered its cruelest blow.
+Not in the form of a mighty spell. Not by the claw of a monstrous beast. No, dear listeners—the hero met their end at the hands of an unlocked treasure chest. A chest, carelessly placed, ready to reward their triumph. They dashed forward with eagerness… only to trip, fall headfirst into its open maw, and meet their demise in a truly undignified manner.
+Thus ends the tale of a hero who dared to dream, dared to fight, dared to believe… but did not, alas, dare to watch where they were going. Let us honor their memory not with sorrow, but with solemn understanding—that sometimes, it is not fate nor villainy, but simple, tragic clumsiness that seals our doom.
+Thank you.
+"
+horizontal_alignment = 1
+vertical_alignment = 1

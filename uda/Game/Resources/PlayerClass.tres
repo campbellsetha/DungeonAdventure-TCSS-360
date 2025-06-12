@@ -6,5 +6,5 @@
 script = ExtResource("1_j56wx")
 MyPlayerName = "Still Greeble Jenkins"
 MyPlayerClass = "Warrior"
-MyPlayerHp = 43
+MyPlayerHp = 125
 metadata/_custom_type_script = "uid://2hprjeci0s8a"

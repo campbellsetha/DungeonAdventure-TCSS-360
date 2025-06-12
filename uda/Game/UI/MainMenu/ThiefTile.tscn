@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://iervl6chjb8t"]
+
+[ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_owsaw"]
+[ext_resource type="Texture2D" uid="uid://b7rrhwwajqthe" path="res://HeroAssets/Thief/Thief-Idle.png" id="2_5w5tl"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_ue2ea"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owsaw"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.694118, 0.556863, 0.0941176, 0.172549)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.4, 0.160784, 0.0117647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owsaw"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(40, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w5tl"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(140, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue2ea"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(240, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wvqr"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(340, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nl83"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(440, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xbch"]
+atlas = ExtResource("2_5w5tl")
+region = Rect2(540, 40, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f30o6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owsaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w5tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue2ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wvqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nl83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xbch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ThiefTile" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -7.0
+offset_right = 17.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.258153, 0.223436)
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_owsaw")
+script = ExtResource("1_owsaw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+show_behind_parent = true
+position = Vector2(69.7261, 89.5112)
+scale = Vector2(5.69164, 6.97608)
+sprite_frames = SubResource("SpriteFrames_f30o6")
+frame_progress = 0.66831
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_ue2ea")
+theme_override_font_sizes/font_size = 36
+text = "Thief"
+horizontal_alignment = 1
+vertical_alignment = 2

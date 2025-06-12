@@ -23,7 +23,7 @@ public partial class ExitPortal : Area2D
 		{
 			//TODO: Display the win screen
 			//You can fire an event to the game manager to swap scenes if you want.
-			GD.Print("You won!....yaaaaaay");
+			GetTree().ChangeSceneToFile("res://Game/Resources/GameWinScreen.tscn");
 		}
 	}
 

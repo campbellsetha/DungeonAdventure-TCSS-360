@@ -516,7 +516,7 @@ fill = 1
 fill_from = Vector2(0.490741, 0.509259)
 fill_to = Vector2(0.949074, 0.115741)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Persist", "Player"]]
 z_index = 1
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
@@ -569,10 +569,10 @@ position = Vector2(10, 0)
 rotation = 1.5708
 scale = Vector2(1.69297, 1.71504)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Inventory"]]
 editor_description = "This prevents the health bar from being affected by the lighting system."
 
-[node name="BarLayout" type="Control" parent="CanvasLayer"]
+[node name="BarLayout" type="Control" parent="CanvasLayer" groups=["Inventory"]]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -580,8 +580,9 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 72.0
 grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
-[node name="Hp Bar" parent="CanvasLayer/BarLayout" instance=ExtResource("9_4ddeg")]
+[node name="Hp Bar" parent="CanvasLayer/BarLayout" groups=["Inventory"] instance=ExtResource("9_4ddeg")]
 visibility_layer = 2
 layout_mode = 1
 anchors_preset = -1

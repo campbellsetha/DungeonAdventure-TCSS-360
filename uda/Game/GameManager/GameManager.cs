@@ -43,7 +43,7 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         //Grab the player node
-        _myPlayerInstance = GetNode<Player.Player>("Player");
+        _myPlayerInstance = GetNode<Player.Player>("DungeonBuilder/Player");
         //Now we have to check if the player already has a class and name, this is important for loading from state
 
         ItemFactory.RegisterItem("heal_potion", "HealPotion","res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png");
@@ -60,7 +60,7 @@ public partial class GameManager : Node
         //@See https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
         var saveFile = FileAccess.Open("user://saveGame.save", FileAccess.ModeFlags.Write);
         
-        var saveNodes = GetTree().GetNodesInGroup("Player");
+        var saveNodes = GetTree().GetNodesInGroup("Player") + GetTree().GetNodesInGroup("Inventory");
         SaveResource();
 
         //Only needs to load the player node currently.
@@ -164,18 +164,22 @@ public partial class GameManager : Node
             }
             saveFile.Close();
         }
-        //Simple work around to setting the players hp.
-        //Had to open up the visibility of the hitpoint setter for this, cant take damage as there is a change to block
-        _myPlayerInstance.MyClass.HitPoints = _myPlayerInstance.MyClassInfo.MyPlayerHp;
     }
 
     private void LoadResource()
     {
         //This needs to be changed before being put to prod, should be user:// as res can only be accessed in engine
-        var fileName = "res://Game/Resources/PlayerClass.tres";
-        if (ResourceLoader.Exists(fileName))
+        var ClassFileName = "res://Game/Resources/PlayerClass.tres";
+        var InventoryFileName = "res://Game/Player/player_inventory.tres";
+        if (ResourceLoader.Exists(ClassFileName))
         {
-            ResourceLoader.Load<PlayerClassInfo>(fileName, null, ResourceLoader.CacheMode.Ignore);
+            ResourceLoader.Load<PlayerClassInfo>(ClassFileName, null, ResourceLoader.CacheMode.Ignore);
+        }
+        else
+            throw new FileNotFoundException("The resource could not be found");
+        if (ResourceLoader.Exists(ClassFileName))
+        {
+            ResourceLoader.Load<PlayerClassInfo>(ClassFileName, null, ResourceLoader.CacheMode.Ignore);
         }
         else
             throw new FileNotFoundException("The resource could not be found");

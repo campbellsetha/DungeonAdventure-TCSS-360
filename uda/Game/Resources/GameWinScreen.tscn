@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdclectc2g60t"]
+
+[ext_resource type="Script" uid="uid://c1q5nkd0oucx4" path="res://Game/Resources/GameWinScreen.cs" id="1_d5v2s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ek728"]
+font_size = 43
+outline_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek728"]
+bg_color = Color(0.843492, 0.409185, 0.794191, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5v2s"]
+bg_color = Color(0.548385, 0.540377, 0.967258, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d5v2s")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel"]
+texture_filter = 2
+layout_mode = 0
+offset_left = 88.0
+offset_top = 88.0
+offset_right = 1040.0
+offset_bottom = 368.0
+theme_override_font_sizes/font_size = 45
+text = "You beat the very horrible,
+ very dark, and very short dungeon. 
+You should be proud! 
+"
+label_settings = SubResource("LabelSettings_ek728")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 384.0
+offset_right = 728.0
+offset_bottom = 448.0
+theme_override_colors/font_color = Color(0.0554498, 0.0235288, 0.0783092, 1)
+theme_override_font_sizes/font_size = 52
+theme_override_styles/hover = SubResource("StyleBoxFlat_ek728")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d5v2s")
+text = "GoodBye!"

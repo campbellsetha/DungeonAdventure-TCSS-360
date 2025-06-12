@@ -31,22 +31,32 @@ public abstract partial class DungeonCharacter(
         HitPoints -= theDamage;
     }
 
-    public void Attack(DungeonCharacter theTarget)
+    public int Attack(DungeonCharacter theTarget)
     {
         var rand = RandomSingleton.GetInstance();
-        if (IsDead || !(rand.NextDouble() > 1 - HitChance))
+        int damageDealt = 0;
+        if (HitPoints <= 0 || !(rand.NextDouble() > 1 - HitChance))
         {
-            Console.WriteLine("Character cannot attack!");
-            return;
+            //Console.WriteLine("Character cannot attack!");
+            return 0;
+        }
+        else
+        {
+            //Console.WriteLine("Character can attack!");
+            for (var i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
+            {
+                damageDealt += rand.Next(DamageRange.Min, DamageRange.Max + 1);
+            }
         }
 
-        Console.WriteLine("Character can attack!");
+        return damageDealt;
+       
 
-        for (var i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
-        {
-            var damage = rand.Next(DamageRange.Min, DamageRange.Max + 1);
-            TakeDamage(damage);
-        }
+        // for (var i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
+        // {
+        //     var damage = rand.Next(DamageRange.Min, DamageRange.Max + 1);
+        //     TakeDamage(damage);
+        // }
     }
 
     public override string ToString()

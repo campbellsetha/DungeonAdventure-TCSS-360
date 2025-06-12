@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Pushing all files to see if it will break anything" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="newUpdates" />
+        <entry key="$PROJECT_DIR$/.." value="newUpdatesWithMain" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -76,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "XThreadsFramesViewSplitterKey": "0.11111111",
-    "git-widget-placeholder": "newUpdatesWithMain",
+    "git-widget-placeholder": "FinalGamePushTest",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -246,7 +246,7 @@
       <workItem from="1749335995169" duration="129000" />
       <workItem from="1749672403107" duration="6429000" />
       <workItem from="1749680568593" duration="2564000" />
-      <workItem from="1749683394801" duration="11607000" />
+      <workItem from="1749683394801" duration="12071000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />
@@ -336,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749702075192</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Pushing all files to see if it will break anything">
+      <option name="closed" value="true" />
+      <created>1749702875954</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1749702875954</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,7 +373,8 @@
     <MESSAGE value="You can now attack and kill enemies. It's not fun, but it works." />
     <MESSAGE value="Traps work and generate in the dungeon at the correct position." />
     <MESSAGE value="Games Playable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Games Playable" />
+    <MESSAGE value="Pushing all files to see if it will break anything" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pushing all files to see if it will break anything" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,7 +10,8 @@ public partial class PlayerClassInfo : Resource
     public PlayerClassInfo()
     {
         MyPlayerName = "Greeble Jenkins";
-        MyPlayerClass = "Warrior";
+        // use nameof() to get class names
+        MyPlayerClass = nameof(Model.Characters.Warrior);
     }
 
     public PlayerClassInfo(string thePlayerName, string thePlayerClass)

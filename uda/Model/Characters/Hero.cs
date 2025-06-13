@@ -5,78 +5,54 @@ using static System.Math;
 
 namespace UDA.Model.Characters;
 
-public abstract /*partial*/ class Hero : DungeonCharacter
+public abstract class Hero : DungeonCharacter
 {
-    // Should probably have a countdown timer for how often the special skill can be used 
-
-    /*[Signal]
-    public delegate void HealthChangedEventHandler(int theCurrentHealth, int theMaxHealth);*/
-
-    protected Hero(
-        string theName,
-        int theHitPoints,
-        int theAttackSpeed,
-        double theHitChance,
-        (int, int) theDamageRange,
-        double theBlockChance,
-        string theSkill)
-        : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
-    {
-        BlockChance = theBlockChance;
-        Skill = theSkill;
-    }
-
-    public double BlockChance { get; }
-
-    public string Skill { get; }
-
-	public virtual void PerformSkill(DungeonCharacter theTarget)
+	protected Hero(string theName,
+		int theHitPoints,
+		int theAttackSpeed,
+		double theHitChance,
+		(int, int) theDamageRange,
+		double theBlockChance,
+		string theSkill) : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
 	{
-		
+		if (theBlockChance < 0)
+			throw new ArgumentOutOfRangeException(nameof(theBlockChance),  theBlockChance, "Block chance must be positive");
+		MyBlockChance = theBlockChance;
+		MySkill = theSkill ?? throw new ArgumentNullException(nameof(theSkill), "The skill is null");
 	}
-	public override void TakeDamage(int theDamage)
+
+	private double MyBlockChance { get; }
+
+    protected string MySkill { get; }
+
+    protected virtual int PerformSkill(in DungeonCharacter theTarget)
+    {
+	    if (theTarget == null) throw new ArgumentNullException(nameof(theTarget), "Target is null");
+	    return 0;
+    }
+    
+	public override void TakeDamage(in int theDamage)
 	{
-		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - BlockChance)) HitPoints -= theDamage;
+		base.TakeDamage(theDamage);
+		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - MyBlockChance)) MyHitPoints -= theDamage;
 		{
-			HitPoints -= theDamage;
-			
-			//GetNode<TextureProgressBar>("Hp Bar").Value = (float)HitPoints / MaxHitPoints * 100;
+			MyHitPoints -= theDamage;
 			// Clamp health to avoid it going below 0
-			HitPoints = Max((int)HitPoints, 0);
-
-            // Emit the signal
-            //EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
-
-            /*void EmitSignal(string theHealthChangedName, int theHitPoints, int theMaxHitPoints)
-            {
-                throw new NotImplementedException();
-            }*/
+			MyHitPoints = Max(MyHitPoints, 0);
         }
     }
 
-    public void Heal(int theHealAmount)
+    public void Heal(in int theHealAmount)
     {
-        HitPoints += theHealAmount;
-
+	    if (theHealAmount < 0) 
+		    throw new ArgumentOutOfRangeException(nameof(theHealAmount), theHealAmount, "The heal amount is negative");
+        MyHitPoints += theHealAmount;
         // Clamp health to avoid it exceeding MaxHitPoints
-        HitPoints = Min(HitPoints, MaxHitPoints);
-
-        // Emit the signal
-        // code needs to be moved elsewhere
-        /*EmitSignal(nameof(HealthChanged), HitPoints, MaxHitPoints);
-
-        void EmitSignal(string theHealthChangedName, object theHitPoints, int theMaxHitPoints)
-        {
-            throw new NotImplementedException();
-        }*/
-        
-        
+        MyHitPoints = Min(MyHitPoints, MyMaxHitPoints);
     }
 
-    /*public void Connect(string theHealthchanged, Callable theCallable)
+    public override string ToString()
     {
-        throw new NotImplementedException();
-    }*/
-
-    //TODO: SERIALIZE THIS
+	    return base.ToString() + $"\nBlockChance: {MyBlockChance}\nSkill: {MySkill}";
+    }
 }

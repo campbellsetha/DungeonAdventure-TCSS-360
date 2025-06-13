@@ -4,316 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Attempting to push everything up to git except the exe">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_28_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_28_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_35_PM_[Changes]/Tests.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_35_PM_[Changes]/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_35_PM_[Changes]/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_35_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_35_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/Tests.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_45_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_46_PM_[Changes]/Tests.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_46_PM_[Changes]/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_46_PM_[Changes]/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_46_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_11_2025_10_46_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_49_PM_[Changes]/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_49_PM_[Changes]/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_49_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2025_10_49_PM__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameOverScreen.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameOverScreen.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameOverScreen.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameWinScreen.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameWinScreen.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Resources/GameWinScreen.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/CharacterSelection.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/0.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/background_glacial_mountains.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/background_glacial_mountains.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/game_over_scene.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/EndScenes/win_scene.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterClasses.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterClasses.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/LoadMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/LoadMenu.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/Priest.tres" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/PriestTile.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/Thief.tres" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/ThiefTile.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/Warrior.tres" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/WarriorTile.tscn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button-1.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/character_selection.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/character_selection.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/pause_menu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/pause_menu.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/selection_menu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/MainMenu/selection_menu.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/SelectType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/SelectType.cs.uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/button-1.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/button.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/character_selection.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/UI/pause_menu.png.import" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UDA.console.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UDA.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/EntityFramework.SqlServer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/EntityFramework.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/GodotSharp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.CSharp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.DiaSymReader.Native.amd64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.VisualBasic.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.VisualBasic.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.Win32.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.Win32.Registry.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/Microsoft.Win32.SystemEvents.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/SQLite.Interop.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.AppContext.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Buffers.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.CodeDom.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Collections.Concurrent.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Collections.Immutable.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Collections.NonGeneric.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Collections.Specialized.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Collections.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.Annotations.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.DataAnnotations.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.EventBasedAsync.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.TypeConverter.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ComponentModel.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Configuration.ConfigurationManager.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Configuration.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Console.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.Common.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.DataSetExtensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.SQLite.EF6.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.SQLite.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.SqlClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Data.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.Contracts.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.Debug.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.DiagnosticSource.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.FileVersionInfo.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.Process.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.StackTrace.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.TextWriterTraceListener.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.Tools.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.TraceSource.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Diagnostics.Tracing.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Drawing.Common.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Drawing.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Drawing.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Dynamic.Runtime.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Formats.Asn1.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Formats.Tar.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Globalization.Calendars.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Globalization.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Globalization.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Compression.Brotli.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Compression.FileSystem.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Compression.Native.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Compression.ZipFile.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Compression.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.FileSystem.AccessControl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.FileSystem.DriveInfo.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.FileSystem.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.FileSystem.Watcher.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.FileSystem.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.IsolatedStorage.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.MemoryMappedFiles.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Pipes.AccessControl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.Pipes.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.UnmanagedMemoryStream.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.IO.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Linq.Expressions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Linq.Parallel.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Linq.Queryable.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Linq.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Memory.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Http.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Http.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.HttpListener.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Mail.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.NameResolution.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.NetworkInformation.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Ping.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Quic.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Requests.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Security.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.ServicePoint.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.Sockets.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.WebClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.WebHeaderCollection.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.WebProxy.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.WebSockets.Client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.WebSockets.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Net.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Numerics.Vectors.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Numerics.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ObjectModel.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Private.CoreLib.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Private.DataContractSerialization.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Private.Uri.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Private.Xml.Linq.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Private.Xml.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.DispatchProxy.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Emit.ILGeneration.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Emit.Lightweight.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Emit.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Metadata.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.TypeExtensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Reflection.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Resources.Reader.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Resources.ResourceManager.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Resources.Writer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.CompilerServices.Unsafe.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.CompilerServices.VisualC.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Handles.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.InteropServices.JavaScript.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.InteropServices.RuntimeInformation.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.InteropServices.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Intrinsics.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Loader.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Numerics.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Serialization.Formatters.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Serialization.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Serialization.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Serialization.Xml.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.Serialization.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Runtime.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.AccessControl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Claims.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.Algorithms.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.Cng.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.Csp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.Encoding.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.OpenSsl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.Primitives.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.X509Certificates.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Cryptography.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Permissions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Principal.Windows.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.Principal.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.SecureString.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Security.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ServiceModel.Web.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ServiceProcess.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.Encoding.CodePages.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.Encoding.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.Encoding.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.Encodings.Web.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.Json.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Text.RegularExpressions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Channels.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Overlapped.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Tasks.Dataflow.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Tasks.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Tasks.Parallel.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Tasks.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Thread.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.ThreadPool.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.Timer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Threading.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Transactions.Local.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Transactions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.ValueTuple.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Web.HttpUtility.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Web.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Windows.Extensions.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Windows.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.Linq.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.ReaderWriter.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.Serialization.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.XDocument.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.XPath.XDocument.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.XPath.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.XmlDocument.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.XmlSerializer.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.Xml.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/System.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/WindowsBase.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/clretwrc.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/clrgc.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/clrjit.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/coreclr.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/createdump.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/hostfxr.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/hostpolicy.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/mscordaccore.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/mscordaccore_amd64_amd64_8.0.1525.16413.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/mscordbi.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/mscorlib.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/mscorrc.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/msquic.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/netstandard.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/nunit.framework.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/nunit.framework.legacy.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_UDA_windows_x86_64/sni.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/export_presets.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DungeonAdventure-TCSS-360" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2025_4_20_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2025_4_20_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameManager/game_manager.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/game_manager.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Items/ItemProtos/Trap.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Items/ItemProtos/Trap.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Resources/ExitPortal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/ExitPortal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Resources/ExitPortal.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/ExitPortal.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClassInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SqlDBTest/MonsterDBcreationTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Sandbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Sandbox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,29 +97,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.dungeonBuilder.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
-    &quot;03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.11111111&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FinalGamePushTest&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    ".NET Executable.dungeonBuilder.tscn.executor": "Run",
+    ".NET Executable.player_save_test.tscn.executor": "Debug",
+    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+    "03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor": "Debug",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "XThreadsFramesViewSplitterKey": "0.11111111",
+    "git-widget-placeholder": "FinalGamePushTest",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite",
+      "mysql"
+    ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Executable.dungeonBuilder.tscn">
+}]]></component>
+  <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
+    <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -502,8 +242,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
+        <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Executable.player_save_test.tscn" />
         <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Executable.player_save_test.tscn" />
@@ -558,6 +298,7 @@
       <workItem from="1749680568593" duration="2564000" />
       <workItem from="1749683394801" duration="12071000" />
       <workItem from="1749746685648" duration="7807000" />
+      <workItem from="1749773820404" duration="11090000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />

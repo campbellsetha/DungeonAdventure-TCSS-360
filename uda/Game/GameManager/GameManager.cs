@@ -190,7 +190,7 @@ public partial class GameManager : Node
         var saveFile = "res://Game/Resources/PlayerClass.tres";
         var inventoryFile = "res://Game/Player/player_inventory.tres";
         //Update the class resource to match the current players hp at save
-        _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.HitPoints;
+        _myPlayerInstance.MyClassInfo.MyPlayerHp = _myPlayerInstance.MyClass.MyHitPoints;
         ResourceSaver.Save(_myPlayerInstance.MyClassInfo, saveFile);
         
         //TODO: Test that this works at all

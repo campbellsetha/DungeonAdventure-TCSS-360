@@ -38,8 +38,16 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
     {
 		MyClassInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
-		MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);
-        
+		//MyClass = HeroFactory.CreateHero(MyClassInfo.MyPlayerClass, MyClassInfo.MyPlayerName);
+
+        MyClass = MyClassInfo.MyPlayerClass switch
+        {
+            nameof(Priest) => HeroFactory.CreatePriest(MyClassInfo.MyPlayerName),
+            nameof(Thief) => HeroFactory.CreateThief(MyClassInfo.MyPlayerName),
+            nameof(Warrior) => HeroFactory.CreateWarrior(MyClassInfo.MyPlayerName),
+            _ => throw new Exception($"Unknown player class : {MyClassInfo.MyPlayerName}")
+        };
+
         //Okay, so we need to load the inventory resource within the player scene.
         //This can be saved manually in the game manager resource saver method
         //This should probably be placed in the "user://" path instead, as it will contain instanced player data 
@@ -66,8 +74,8 @@ public partial class Player : CharacterBody2D
         _healthBar = GetNode<TextureProgressBar>("CanvasLayer/BarLayout/Hp Bar");
         //Setting the maximum value of the healthBar to the current classes max hit points
         //This makes updating it only take the current hp of the players class
-        _healthBar.MaxValue = MyClass.MaxHitPoints;
-        _healthBar.Value = MyClass.HitPoints;
+        _healthBar.MaxValue = MyClass.MyMaxHitPoints;
+        _healthBar.Value = MyClass.MyHitPoints;
         _healthBar.Visible = true;
     }
 
@@ -165,7 +173,7 @@ public partial class Player : CharacterBody2D
         //We want to modify the inventory before we attempt to modify the player
         Inventory.UsePotion(theHealthPotion);
         MyClass.Heal(50);
-        _healthBar.Value = MyClass.HitPoints;
+        _healthBar.Value = MyClass.MyHitPoints;
     }
 
     private void UseVisionPotion(InventoryItem theVisionPotion)
@@ -238,10 +246,10 @@ public partial class Player : CharacterBody2D
         
         if (_healthBar != null)
         {
-            _healthBar.Value = MyClass.HitPoints;
+            _healthBar.Value = MyClass.MyHitPoints;
         }
 
-        if (MyClass.HitPoints == 0)
+        if (MyClass.MyHitPoints == 0)
         {
             //Simulates death, still need to create a game over screen
             //QueueFree();

@@ -24,14 +24,17 @@ public class Sandbox
         //Dungeon test = new Dungeon();
         //Console.WriteLine(Dungeon.MyInstance.ToString());
         //Console.WriteLine(test.IsTraversable());
-        Console.WriteLine(Dungeon.MyInstance);
-        //var randomMonster = MonsterFactory.CreateRandoMonster();
-        //Console.WriteLine(randomMonster.ToString());
+        //Console.WriteLine(Dungeon.MyInstance);
+        var randomMonster = MonsterFactory.CreateRandoMonster();
+        Console.WriteLine(randomMonster.ToString());
         //Console.WriteLine("Do ten damage to it" + "\n");
         //randomMonster.TakeDamage(10);
         //Console.WriteLine(randomMonster.HitPoints);
         //DungeonCharacter monst = new Monster("monster", 20, 25, 0.1, (2, 10), 0.1, (0, 10), 0.1);
         //Console.WriteLine(monst);
         //DungeonCharacter hero = new Priest("priest");
+        //Console.WriteLine(nameof(Priest));
+        //var hero = HeroFactory.CreateThief("NAME");
+        //Console.WriteLine(hero);
     }
 }

@@ -1,20 +1,14 @@
-using UDA.Model.Characters;
-
-namespace UDA.Model;
-
-//TODO: Make an attack method for the priest class
-public /*partial*/ class Priest(string theName) : Hero(theName, myHitPoints, MyAttackSpeed, MyHitChance,
-    MyDamageRange, MyBlockChance, MySkill)
+namespace UDA.Model.Characters;
+public class Priest(in string theName, in int theHitPoints, in int theAttackSpeed, in double theHitChance, 
+    in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
+    : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
-    private static int myHitPoints = 75;
-    private static readonly int MyAttackSpeed = 5;
-    private static readonly double MyHitChance = 0.7;
-    private static readonly (int, int) MyDamageRange = (25, 45);
-    private static readonly double MyBlockChance = 0.3;
-    private static readonly string MySkill = "Heal";
-
-    public override void PerformSkill(DungeonCharacter theCharacter)
+    protected override int PerformSkill(in DungeonCharacter theTarget)
     {
-        myHitPoints += 20;
+        const int maxHeal = 20;
+        var hpToSteal = base.PerformSkill(theTarget) + Math.Min(maxHeal, theTarget.MyHitPoints);
+        MyHitPoints = Math.Min(MyHitPoints, MyHitPoints + hpToSteal);
+        Console.WriteLine($"{base.MySkill} is successful!");
+        return hpToSteal;
     }
 }

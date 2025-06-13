@@ -1,67 +1,74 @@
-using Godot;
-
 namespace UDA.Model.Characters;
 
-public abstract partial class DungeonCharacter(
-    string theName,
-    int theHitPoints,
-    int theAttackSpeed,
-    double theHitChance,
-    (int, int) theDamageRange) //: CharacterBody2D
+public abstract class DungeonCharacter
 {
-    /* Setters can be added to these properties as needed. If setters won't be needed, add init keyword
-     to enforce immutability. */
-
-    public string NewName { get; } = theName;
-
-    public int MaxHitPoints { get; } = theHitPoints;
-
-    public int HitPoints { get; set; } = theHitPoints;
-
-    public (int Min, int Max) DamageRange { get; } = theDamageRange;
-
-    public int AttackSpeed { get; } = theAttackSpeed;
-
-    public double HitChance { get; } = theHitChance;
-
-    public bool IsDead => HitPoints == 0;
-
-    public virtual void TakeDamage(int theDamage)
+    protected DungeonCharacter(in string theName,
+        in int theHitPoints,
+        in int theAttackSpeed,
+        in double theHitChance,
+        in (int, int) theDamageRange)
     {
-        HitPoints -= theDamage;
+        if (theHitPoints <= 0) 
+            throw new ArgumentOutOfRangeException(nameof(theHitPoints), theHitPoints,
+                "Hit points must be positive");
+        if (theAttackSpeed <= 0) 
+            throw new ArgumentOutOfRangeException(nameof(theAttackSpeed), theAttackSpeed,
+                "Attack speed must be positive");
+        if (theHitChance <= 0)
+            throw new ArgumentOutOfRangeException(nameof(theHitChance), theHitChance,
+                "Hit chance must be positive");
+        if (theDamageRange.Item1 <= 0 || theDamageRange.Item2 <= 0)
+            throw new ArgumentOutOfRangeException(nameof(theDamageRange), theDamageRange,
+                "Damage range must be positive");
+        MyName = theName ?? throw new ArgumentNullException(nameof(theName), "Name is null");
+        MyMaxHitPoints = theHitPoints;
+        MyHitPoints = theHitPoints;
+        MyDamageRange = theDamageRange;
+        MyAttackSpeed = theAttackSpeed;
+        MyHitChance = theHitChance;
     }
 
-    public int Attack(DungeonCharacter theTarget)
+    private string MyName { get; }
+
+    public int MyMaxHitPoints { get; }
+
+    public int MyHitPoints { get; protected set; }
+
+    public (int Min, int Max) MyDamageRange { get; }
+
+    private int MyAttackSpeed { get; }
+
+    private double MyHitChance { get; }
+
+    public virtual void TakeDamage(in int theDamage)
     {
+        if (theDamage < 0) 
+            throw new ArgumentOutOfRangeException(nameof(theDamage), theDamage, "The damage is negative");
+    }
+
+    public int Attack(in DungeonCharacter theTarget)
+    {
+        if (theTarget == null) throw new ArgumentNullException(nameof(theTarget), "Target is null");
         var rand = RandomSingleton.GetInstance();
-        int damageDealt = 0;
-        if (HitPoints <= 0 || !(rand.NextDouble() > 1 - HitChance))
+        var damageDealt = 0;
+        if (MyHitPoints <= 0 || !(rand.NextDouble() > 1 - MyHitChance))
         {
-            //Console.WriteLine("Character cannot attack!");
-            return 0;
+            Console.WriteLine("Attack unsuccessful!");
         }
         else
         {
-            //Console.WriteLine("Character can attack!");
-            for (var i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
+            Console.WriteLine("Attack successful!");
+            for (var i = -1; i < MyAttackSpeed / theTarget.MyAttackSpeed; i++)
             {
-                damageDealt += rand.Next(DamageRange.Min, DamageRange.Max + 1);
+                damageDealt += rand.Next(MyDamageRange.Min, MyDamageRange.Max + 1);
             }
         }
-
         return damageDealt;
-       
-
-        // for (var i = -1; i < AttackSpeed / theTarget.AttackSpeed; i++)
-        // {
-        //     var damage = rand.Next(DamageRange.Min, DamageRange.Max + 1);
-        //     TakeDamage(damage);
-        // }
     }
 
     public override string ToString()
     {
-        return $"Name:{NewName} MaxHP:{MaxHitPoints} CurrentHP:{HitPoints} " +
-               $"DamageRange:{DamageRange} AttackSpeed:{AttackSpeed} HitChance:{HitChance}";
+        return $"Name: {MyName}\nMaxHP: {MyMaxHitPoints}\nCurrentHP: {MyHitPoints}\n" +
+               $"DamageRange: {MyDamageRange}\nAttackSpeed: {MyAttackSpeed}\nHitChance: {MyHitChance}";
     }
 }

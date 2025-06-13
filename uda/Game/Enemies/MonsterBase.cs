@@ -68,7 +68,7 @@ public partial class MonsterBase : CharacterBody2D
         if (theBody.IsInGroup("Player"))
         {
             Random rand = RandomSingleton.GetInstance();
-            int damage = rand.Next(_myMonsterClass.DamageRange.Min, _myMonsterClass.DamageRange.Max);
+            int damage = rand.Next(_myMonsterClass.MyDamageRange.Min, _myMonsterClass.MyDamageRange.Max);
             
             //Calling the event bus to emit the signal for damage with the damage value passed in
             GameManager.EventBus.getInstance().DealDamageToPlayer(damage);
@@ -79,7 +79,7 @@ public partial class MonsterBase : CharacterBody2D
     public void TakeDamage(int theDamage)
     {
         _myMonsterClass.TakeDamage(theDamage);
-        if (_myMonsterClass.HitPoints <= 0)
+        if (_myMonsterClass.MyHitPoints <= 0)
         {
             //GD.Print("Im hella dead nooooo");
             QueueFree();

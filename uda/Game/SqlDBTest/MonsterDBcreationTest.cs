@@ -27,6 +27,6 @@ public partial class MonsterDBcreationTest : Control
         GD.Print(randomMonster.ToString());
         GD.Print("Do ten damage to it" + "\n");
         randomMonster.TakeDamage(10);
-        GD.Print(randomMonster.HitPoints);
+        GD.Print(randomMonster.MyHitPoints);
     }
 }

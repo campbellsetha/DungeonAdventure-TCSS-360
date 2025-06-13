@@ -15,24 +15,24 @@ public abstract class MonsterFactory
 
     public static Monster CreateGremlin()
     {
-        var query = "SELECT * FROM Monster WHERE ID = 1";
-        ConnectDB(query);
+        const string query = "SELECT * FROM Monster WHERE ID = 1";
+        ConnectDb(query);
         return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
             _myHealRange, _myStunThreshold);
     }
 
     public static Monster CreateOgre()
     {
-        var query = "SELECT * FROM Monster WHERE ID = 2";
-        ConnectDB(query);
+        const string query = "SELECT * FROM Monster WHERE ID = 2";
+        ConnectDb(query);
         return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
             _myHealRange, _myStunThreshold);
     }
 
     public static Monster CreateSkeleton()
     {
-        var query = "SELECT * FROM Monster WHERE ID = 3";
-        ConnectDB(query);
+        const string query = "SELECT * FROM Monster WHERE ID = 3";
+        ConnectDb(query);
         return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
             _myHealRange, _myStunThreshold);
     }
@@ -43,29 +43,26 @@ public abstract class MonsterFactory
         var ranNum = rng.Next(1, 4);
 
         var query = $"SELECT * FROM Monster WHERE ID = {ranNum}";
-        ConnectDB(query);
+        ConnectDb(query);
         return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
-            _myHealRange, _myStunThreshold);
+        _myHealRange, _myStunThreshold);
     }
-
-    // TODO: add try catch
-    private static void ConnectDB(string theQuery)
+    
+    private static void ConnectDb(in string theQuery)
     {
-        string connectionString = "Data Source=MonsterDatabase.db";
-
-        //Is this thread safe to do?
+        
+        const string connectionString = "Data Source=CharacterDatabase.db";
         using var conn = new SQLiteConnection(connectionString);
         //Open the connection
-        conn.Open();
-
-        //Execute a command with a command string to the connection
-        using var cmd = new SQLiteCommand(theQuery, conn);
-        //open and read through the specified values
-        using var reader = cmd.ExecuteReader();
-        //While tokes are present do stuff
-        while (reader.Read())
+        try
         {
+            conn.Open();
+            //Execute a command with a command string to the connection
+            using var cmd = new SQLiteCommand(theQuery, conn);
+            //open and read through the specified values
+            using var reader = cmd.ExecuteReader();
             //Initialize values base on rows of selected table 
+            reader.Read();
             _myName = reader.GetString(1);
             _myHitPoints = reader.GetInt32(2);
             _myAttackSpeed = reader.GetInt32(3);
@@ -74,8 +71,12 @@ public abstract class MonsterFactory
             _myStunThreshold = reader.GetDouble(7);
             _myHealChance = reader.GetDouble(8);
             _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));
+            reader.Close();
+            conn.Close();
         }
-        reader.Close();
-        conn.Close();
+        catch (SQLiteException e)
+        {
+            Console.WriteLine($"Exception message: {e.Message}");
+        }
     }
 }

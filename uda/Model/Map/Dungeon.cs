@@ -1,6 +1,4 @@
 using System.Text;
-using UDA.inventory;
-using UDA.Model.Items;
 using static UDA.Model.Map.RoomType;
 using static UDA.Model.Map.Direction;
 using static UDA.Model.Map.BoundaryType;
@@ -11,8 +9,8 @@ public sealed class Dungeon
 {
     public static readonly Dungeon MyInstance;
     public readonly Room[,] MyMap;
-    private const int Rows = 10;
-    private const int Cols = 10;
+    private const int MyRows = 10;
+    private const int MyCols = 10;
     private static readonly Random MyRand = RandomSingleton.GetInstance();
     private (int, int) _myEntrance;
     private (int, int) _myExit;
@@ -21,7 +19,7 @@ public sealed class Dungeon
 
     private Dungeon()
     {
-        MyMap = new Room[Rows, Cols];
+        MyMap = new Room[MyRows, MyCols];
         FillMap();
     }
 
@@ -35,14 +33,14 @@ public sealed class Dungeon
         
     }
 
-    private (int, int) GenerateEntranceExitCoordinates()
+    private static (int, int) GenerateEntranceExitCoordinates()
     {
-        int row = MyRand.Next(0, Rows);
+        var row = MyRand.Next(0, MyRows);
         int col;
         if (row != 0)
         {
-            col = (MyRand.Next(0, 2) == 0) ? 0 : Cols - 1;
-        } else col = MyRand.Next(0, Cols);
+            col = (MyRand.Next(0, 2) == 0) ? 0 : MyCols - 1;
+        } else col = MyRand.Next(0, MyCols);
         return (row, col);
     }
 
@@ -50,13 +48,13 @@ public sealed class Dungeon
     {
         for (int i = 0; i < 4; i++)
         {
-            int row = MyRand.Next(0, Rows);
-            int col = MyRand.Next(0, Cols);
+            int row = MyRand.Next(0, MyRows);
+            int col = MyRand.Next(0, MyCols);
             RoomType pillarType = (RoomType) MyRand.Next(3, 7);
             while (MyMap[row, col] != null || _myPillars.ContainsKey(pillarType))
             {
-                row = MyRand.Next(0, Rows);
-                col = MyRand.Next(0, Cols);
+                row = MyRand.Next(0, MyRows);
+                col = MyRand.Next(0, MyCols);
                 pillarType = (RoomType) MyRand.Next(3, 7);
             }
             _myPillars.Add(pillarType, (row, col));
@@ -68,9 +66,9 @@ public sealed class Dungeon
     {
         List<Direction> directions = new List<Direction>();
         if (theX != 0) directions.Add(North);
-        if (theX != Rows - 1) directions.Add(South);
+        if (theX != MyRows - 1) directions.Add(South);
         if (theY != 0) directions.Add(West);
-        if (theY != Cols - 1) directions.Add(East);
+        if (theY != MyCols - 1) directions.Add(East);
         return directions;
     }
     
@@ -101,9 +99,6 @@ public sealed class Dungeon
                 room = RoomFactory.CreateRoomFourDoors(theRoomType);
                 break;
         }
-
-        //List<InventoryItem> ItemsToPlaceInRoom = ItemFactory.GetItemsFromRoom(room);
-        
         return room;
     }
     
@@ -124,9 +119,9 @@ public sealed class Dungeon
         CreatePillarRooms();
         
         // Fill the rest of the Dungeon with random rooms
-        for (int i = 0; i < Rows; i++)
+        for (int i = 0; i < MyRows; i++)
         {
-            for (int j = 0; j < Cols; j++)
+            for (int j = 0; j < MyCols; j++)
             {
                 MyMap[i, j] ??= CreateRoom(i, j);
             }
@@ -150,15 +145,15 @@ public sealed class Dungeon
     
     private void FillMapHelper()
     {
-        for (int i = 0; i < Rows; i++)
+        for (int i = 0; i < MyRows; i++)
         {
-            for (int j = 0; j < Cols; j++)
+            for (int j = 0; j < MyCols; j++)
             {
                 Room current = MyMap[i, j];
                 foreach (Direction key in new[] { South, East, West, North })
                 {
                     if ((key == North && i == 0) || (key == West && j == 0) ||
-                        (key == South && i == Rows - 1) || (key == East && j == Cols - 1)) 
+                        (key == South && i == MyRows - 1) || (key == East && j == MyCols - 1)) 
                         continue;
                     Direction opposite = GetOppositeDir(key);
                     Room adjacent = GetAdjRoom(key, i, j);
@@ -174,12 +169,12 @@ public sealed class Dungeon
     public override string ToString()
     {
        StringBuilder result = new StringBuilder();
-       for (int i = 0; i < Rows; i++)
+       for (int i = 0; i < MyRows; i++)
        {
            StringBuilder row1 = new StringBuilder();
            StringBuilder row2 = new StringBuilder();
            StringBuilder row3 = new StringBuilder();
-           for (int j = 0; j < Cols; j++)
+           for (int j = 0; j < MyCols; j++)
            {
                string[] arr = MyMap[i, j].GetDetails();
                row1.Append(arr[0]).Append("  ");
@@ -197,7 +192,7 @@ public sealed class Dungeon
     private bool IsReachable((int, int) theCoordinates)
     {
         bool result = false;
-        bool[,] visited = new bool[Rows, Cols];
+        bool[,] visited = new bool[MyRows, MyCols];
         Stack<(int, int)> stack = new Stack<(int, int)>();
         stack.Push(_myEntrance);
         visited[_myEntrance.Item1, _myEntrance.Item2] = true;
@@ -227,7 +222,7 @@ public sealed class Dungeon
                         break;
                 }
 
-                if (newX is >= 0 and < Rows && newY is >= 0 and < Cols &&
+                if (newX is >= 0 and < MyRows && newY is >= 0 and < MyCols &&
                     !visited[newX, newY] &&
                     MyMap[currentX, currentY].MyBoundaries[dir] == Door &&
                     MyMap[newX, newY].MyBoundaries[GetOppositeDir(dir)] == Door)
@@ -255,9 +250,9 @@ public sealed class Dungeon
     private bool HasDeadEnds()
     { 
         int numOfDeadEnds = 0;
-        for (int i = 0; i < Rows; i++)
+        for (int i = 0; i < MyRows; i++)
         {
-            for (int j = 0; j < Cols; j++)
+            for (int j = 0; j < MyCols; j++)
             {
                 if (MyMap[i, j].GetNumberOfDoors() == 1) numOfDeadEnds++;
             }

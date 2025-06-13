@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="RD-251.23774.471">
-    <data-source name="MonsterDatabase" uuid="48b3ea58-1b89-4835-8ca5-15a4a51a980c">
+  <component name="dataSourceStorageLocal" created-in="RD-251.26094.147">
+    <data-source name="CharacterDatabase.db" uuid="181a94b7-f314-497a-a668-91b2297ba60d">
       <database-info product="SQLite" version="3.45.1" jdbc-version="4.2" driver-name="SQLite JDBC" driver-version="3.45.1.0" dbms="SQLITE" exact-version="3.45.1" exact-driver-version="3.45">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
       <auth-provider>no-auth</auth-provider>
       <schema-mapping>
         <introspection-scope>

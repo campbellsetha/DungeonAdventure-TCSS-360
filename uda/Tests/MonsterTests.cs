@@ -14,6 +14,6 @@ class Tests
     {
         Monster monst = MonsterFactory.CreateGremlin();
         Console.WriteLine(monst);
-        //Assert.Pass();
+        Assert.Pass();
     }
 }

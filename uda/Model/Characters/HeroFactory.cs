@@ -51,12 +51,13 @@ public abstract class HeroFactory
             using var reader = cmd.ExecuteReader();
             //Initialize values base on rows of selected table 
             reader.Read();
-            _myHitPoints = reader.GetInt32(1);
-            _myAttackSpeed = reader.GetInt32(2);
-            _myHitChance = reader.GetDouble(3);
-            _myDamageRange = (reader.GetInt32(4), reader.GetInt32(5));
-            _myBlockChance = reader.GetDouble(6);
-            _mySkill = reader.GetString(7);
+            var count = 1;
+            _myHitPoints = reader.GetInt32(count);
+            _myAttackSpeed = reader.GetInt32(++count);
+            _myHitChance = reader.GetDouble(++count);
+            _myDamageRange = (reader.GetInt32(++count), reader.GetInt32(++count));
+            _myBlockChance = reader.GetDouble(++count);
+            _mySkill = reader.GetString(++count);
             reader.Close();
             conn.Close();
         }

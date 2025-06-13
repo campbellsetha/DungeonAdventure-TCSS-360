@@ -4,7 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Cleaned up code in Model: making parameters &quot;in&quot; which is the closest thing to final in C# (prevents them from being reassigned), added exceptions where necessary, and created a HeroFactory. Updated the Player class to call the new HeroFactory methods appropriately - if thePlayerClass string is &quot;Warrior&quot;, HeroFactory.CreateWarrior() is called, etc." />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
+      <change afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonsterDatabase.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,12 +63,12 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,
-    &quot;accountId&quot;: &quot;f5a1692e-637d-44a9-905b-3b0930087b9c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
+    "accountId": "94b50afa-b842-4b44-9e71-4037b5100ad9"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs" root0="FORCE_HIGHLIGHTING" />
@@ -64,36 +100,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.dungeonBuilder.tscn.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
-    &quot;03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor&quot;: &quot;Debug&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.11111111&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FinalGamePushTest&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Executable.Player.executor": "Run",
+    ".NET Executable.dungeonBuilder.tscn.executor": "Run",
+    ".NET Executable.player_save_test.tscn.executor": "Debug",
+    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+    "03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor": "Debug",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "XThreadsFramesViewSplitterKey": "0.11111111",
+    "git-widget-placeholder": "FinalGamePushTest",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "settings.editor.splitter.proportion": "0.48879838",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
     <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
       <option name="allowRunningInParallel" value="false" />
@@ -266,6 +303,7 @@
       <workItem from="1749683394801" duration="12071000" />
       <workItem from="1749746685648" duration="7807000" />
       <workItem from="1749773820404" duration="11090000" />
+      <workItem from="1749791440392" duration="593000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />

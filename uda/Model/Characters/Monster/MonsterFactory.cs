@@ -63,14 +63,15 @@ public abstract class MonsterFactory
             using var reader = cmd.ExecuteReader();
             //Initialize values base on rows of selected table 
             reader.Read();
-            _myName = reader.GetString(1);
-            _myHitPoints = reader.GetInt32(2);
-            _myAttackSpeed = reader.GetInt32(3);
-            _myHitChance = reader.GetDouble(4);
-            _myDamageRange = (reader.GetInt32(5), reader.GetInt32(6));
-            _myStunThreshold = reader.GetDouble(7);
-            _myHealChance = reader.GetDouble(8);
-            _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));
+            var count = 1;
+            _myName = reader.GetString(count);
+            _myHitPoints = reader.GetInt32(++count);
+            _myAttackSpeed = reader.GetInt32(++count);
+            _myHitChance = reader.GetDouble(++count);
+            _myDamageRange = (reader.GetInt32(++count), reader.GetInt32(++count));
+            _myStunThreshold = reader.GetDouble(++count);
+            _myHealChance = reader.GetDouble(++count);
+            _myHealRange = (reader.GetInt32(++count), reader.GetInt32(++count));
             reader.Close();
             conn.Close();
         }

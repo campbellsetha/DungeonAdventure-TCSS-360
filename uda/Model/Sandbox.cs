@@ -34,7 +34,7 @@ public class Sandbox
         //Console.WriteLine(monst);
         //DungeonCharacter hero = new Priest("priest");
         //Console.WriteLine(nameof(Priest));
-        //var hero = HeroFactory.CreateThief("NAME");
-        //Console.WriteLine(hero);
+        var hero = HeroFactory.CreateThief("NAME");
+        Console.WriteLine(hero);
     }
 }

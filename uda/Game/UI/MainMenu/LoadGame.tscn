@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlwvs8xshcstp"]
+
+[ext_resource type="Texture2D" uid="uid://bleciyk46jwdw" path="res://Game/UI/selection_menu.png" id="1_46o12"]
+[ext_resource type="Script" uid="uid://dgngm1n83fruy" path="res://Game/UI/MainMenu/LoadMenu.cs" id="2_iqvdv"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_m4jf6"]
+[ext_resource type="Texture2D" uid="uid://bni0gxy48e2x" path="res://Game/UI/MainMenu/button-1.png" id="4_46o12"]
+
+[sub_resource type="Theme" id="Theme_amie3"]
+
+[node name="LoadGameMenu" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -248.0
+offset_right = -199.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(13.9577, 12.9737)
+theme = SubResource("Theme_amie3")
+texture = ExtResource("1_46o12")
+expand_mode = 1
+script = ExtResource("2_iqvdv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.90412
+offset_top = -7.93927
+offset_right = 90.096
+offset_bottom = 32.0607
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.110956, 0.0727098)
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="BackB" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m4jf6")
+text = "Back"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/BackB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.0377916, 0.0734883)
+texture = ExtResource("4_46o12")
+
+[node name="LoadB" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m4jf6")
+text = "Load"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LoadB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.0377086, 0.0719938)
+texture = ExtResource("4_46o12")
+
+[node name="SavedGames" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 3.94047
+offset_top = 12.7951
+offset_right = 53.9405
+offset_bottom = 62.7951
+scale = Vector2(0.359618, 0.329283)
+
+[node name="SaveGame1" type="RichTextLabel" parent="SavedGames"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveGame2" type="RichTextLabel" parent="SavedGames"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveGame3" type="RichTextLabel" parent="SavedGames"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/BackB" to="." method="BackToMainMenu"]

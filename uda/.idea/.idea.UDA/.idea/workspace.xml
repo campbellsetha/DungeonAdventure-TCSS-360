@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/libraries/GdSdk_Master.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/dungeonBuilder.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/RoomConverter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/button_icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dungeon_menu_bg_1150x650.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +40,12 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
-    "accountId": "f5a1692e-637d-44a9-905b-3b0930087b9c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,
+    &quot;accountId&quot;: &quot;f5a1692e-637d-44a9-905b-3b0930087b9c&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/42/2387c203/Dictionary`2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
@@ -62,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "XThreadsFramesViewSplitterKey": "0.13227513",
-    "git-widget-placeholder": "#14 on newUpdatesWithMain",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -106,9 +113,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_mono.app/Contents/MacOS/Godot" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -124,9 +131,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_mono.app/Contents/MacOS/Godot" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -208,6 +215,7 @@
       <workItem from="1747681223201" duration="11607000" />
       <workItem from="1748363499846" duration="11237000" />
       <workItem from="1748988189302" duration="14119000" />
+      <workItem from="1749845703160" duration="256000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />

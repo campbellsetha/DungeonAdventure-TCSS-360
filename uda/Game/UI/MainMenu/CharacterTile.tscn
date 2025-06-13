@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdif2rdvfuk8m"]
+
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_xkgsi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 200)
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(-191, -175)
+scale = Vector2(5.19814, 5.70438)
+animation = &"Idle"
+centered = false
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_xkgsi")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

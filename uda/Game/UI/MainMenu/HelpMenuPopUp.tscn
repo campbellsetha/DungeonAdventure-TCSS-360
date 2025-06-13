@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfo8fy8judlo"]
+
+[ext_resource type="Texture2D" uid="uid://bce1ybrkd73oc" path="res://Game/UI/MainMenu/button.png" id="1_w4j1g"]
+[ext_resource type="Script" uid="uid://bghg2j5k73hra" path="res://Game/UI/PopUps/PopUp.cs" id="2_3rdxv"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="2_fccck"]
+[ext_resource type="Texture2D" uid="uid://bni0gxy48e2x" path="res://Game/UI/MainMenu/button-1.png" id="3_3rdxv"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = 302.0
+offset_top = 67.0
+offset_right = 366.0
+offset_bottom = 131.0
+scale = Vector2(6.82964, 7.56351)
+texture = ExtResource("1_w4j1g")
+script = ExtResource("2_3rdxv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 6.29608
+offset_top = 3.8342
+offset_right = 306.296
+offset_bottom = 303.834
+scale = Vector2(0.174778, 0.140419)
+theme_override_fonts/font = ExtResource("2_fccck")
+theme_override_font_sizes/font_size = 35
+text = "You need to make your way through the dungeon and collect the Pillars of OOP and escape before the monsters overwhelm you!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ClosePopup" type="Button" parent="."]
+layout_mode = 0
+offset_left = 21.5238
+offset_top = 48.258
+offset_right = 174.524
+offset_bottom = 123.258
+scale = Vector2(0.118977, 0.115783)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fccck")
+theme_override_font_sizes/font_size = 75
+text = "Back"
+flat = true
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ClosePopup"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 75.0
+texture = ExtResource("3_3rdxv")
+expand_mode = 2
+
+[connection signal="pressed" from="ClosePopup" to="." method="OnBackPressed"]

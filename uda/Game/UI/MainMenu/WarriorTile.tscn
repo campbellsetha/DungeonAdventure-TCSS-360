@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://btov8s6c86txg"]
+
+[ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_u8t8v"]
+[ext_resource type="SpriteFrames" uid="uid://bnysr8lagr8as" path="res://Game/Resources/Warrior.tres" id="1_vmala"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_jnqbs"]
+
+[node name="WarriorTile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_u8t8v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(-216.597, -189.417)
+scale = Vector2(5.33845, 5.97633)
+sprite_frames = ExtResource("1_vmala")
+animation = &"Idle"
+centered = false
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_jnqbs")
+theme_override_font_sizes/font_size = 36
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="OnPressed"]

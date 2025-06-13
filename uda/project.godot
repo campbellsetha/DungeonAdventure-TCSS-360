@@ -17,10 +17,13 @@ ResourceScriptDirectories=Array[String](["res://"])
 [application]
 
 config/name="UDA"
-run/main_scene="uid://dhknoiyya1vj3"
+run/main_scene="uid://bw7pbkr11x73j"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.630264, 0.554366, 0.834131, 1)
+<<<<<<< Updated upstream
 boot_splash/image="uid://x1ohmojyrpy"
+=======
+>>>>>>> Stashed changes
 config/icon="res://icon.svg"
 
 [autoload]
@@ -37,12 +40,16 @@ project/assembly_name="UDA"
 
 [global_group]
 
+<<<<<<< Updated upstream
 Player=""
 Monster=""
 MonsterHitBox=""
 Weapon=""
 Inventory=""
 Persist=""
+=======
+enabled=PackedStringArray()
+>>>>>>> Stashed changes
 
 [input]
 

@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=11 format=3 uid="uid://cdif2rdvfuk8m"]
+=======
+[gd_scene load_steps=11 format=3 uid="uid://cl4lrc3pf1w1j"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_e8xo4"]
 [ext_resource type="Texture2D" uid="uid://b7rrhwwajqthe" path="res://HeroAssets/Thief/Thief-Idle.png" id="2_jtknc"]

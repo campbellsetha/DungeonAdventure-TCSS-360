@@ -1,10 +1,16 @@
 using Godot;
 using UDA.Game.Resources;
+<<<<<<< Updated upstream
+=======
+using System.Collections.Generic;
+//
+>>>>>>> Stashed changes
 
 namespace UDA.Game.UI;
 public partial class CharacterSelection : TextureRect
 {
 
+<<<<<<< Updated upstream
 	private List<CharacterTile> _characterTiles = new();
 
 	private PackedScene _characterTileScene;
@@ -57,11 +63,59 @@ public partial class CharacterSelection : TextureRect
 		theCharacterTile.Select();
 		_selectedTile = theCharacterTile;
 		_selectedClassInfo = theCharacterTile.GetClassInfo();
+=======
+	private List<CharacterTile> _characterTiles;
+
+
+	private CharacterTile _currentSelectedTile;
+	
+	public PlayerClassInfo SelectedClassInfo;
+
+	private PlayerClassInfo _warrior = GD.Load<PlayerClassInfo>("res://CharacterSelection/Warrior.tres");
+	private PlayerClassInfo _thief = GD.Load<PlayerClassInfo>("res://CharacterSelection/Thief.tres");
+	private PlayerClassInfo _priest = GD.Load<PlayerClassInfo>("res://CharacterSelection/Priest.tres");
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		_characterTiles = new List<CharacterTile>()
+		{
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/WarriorTile"),
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/ThiefTile"),
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/PriestTile")
+		};
+
+		foreach (var tile in _characterTiles)
+		{
+			tile.CharacterTileSelected += OnTileSelected;
+		}
+	}
+
+	public void OnTileSelected(CharacterTile theSelectedTile)
+	{
+		foreach (var tile in _characterTiles)
+			tile.SetSelected(tile == theSelectedTile);
+
+		_currentSelectedTile = theSelectedTile;
+		GD.Print($"Selected Tile: {_currentSelectedTile.GetName()}");
+>>>>>>> Stashed changes
 	}
 
 	private void OnStartPressed()
 	{
+<<<<<<< Updated upstream
 		GetTree().ChangeSceneToFile("res://Game/UI/world.tscn");
+=======
+		
+		if (_currentSelectedTile == null)
+			return;
+		
+		//var GameManagerInstance = GetTree().Root.GetNode<GameManager>("");
+		
+		//GameManager.GameManager._selectedClassInfo = _currentSelectedTile.GetClassInfo();
+
+		GetTree().ChangeSceneToFile("res://Game/GameManager/dungeonBuilder.tscn");
+>>>>>>> Stashed changes
 	}
 
 	private void OnBackPressed()

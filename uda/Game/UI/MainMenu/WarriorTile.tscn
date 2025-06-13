@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=12 format=3 uid="uid://btov8s6c86txg"]
 
 [ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_u8t8v"]
@@ -102,6 +103,56 @@ frame_progress = 0.924672
 centered = false
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://d2uiskol8d3yo"]
+
+[ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_u8t8v"]
+[ext_resource type="SpriteFrames" uid="uid://htm1c1eax8m6" path="res://Game/Resources/Warrior.tres" id="2_u8t8v"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_jnqbs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmala"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_u8t8v")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+offset_right = 117.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vmala")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer/VBoxContainer"]
+position = Vector2(-216.597, -189.417)
+scale = Vector2(5.31183, 5.67948)
+sprite_frames = ExtResource("2_u8t8v")
+animation = &"Idle"
+centered = false
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+>>>>>>> Stashed changes
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_jnqbs")
@@ -109,3 +160,17 @@ theme_override_font_sizes/font_size = 36
 text = "Warrior"
 horizontal_alignment = 1
 vertical_alignment = 2
+<<<<<<< Updated upstream
+=======
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(18.8009, 24.9122)
+toggle_mode = true
+action_mode = 0
+flat = true
+
+[connection signal="toggled" from="Button" to="." method="OnCharacterSelected"]
+>>>>>>> Stashed changes

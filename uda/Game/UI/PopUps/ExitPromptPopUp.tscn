@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxxji7ten6wer"]
+
+[ext_resource type="Script" uid="uid://bghg2j5k73hra" path="res://Game/UI/PopUps/PopUp.cs" id="1_8s18m"]
+[ext_resource type="Texture2D" uid="uid://c3ieqfs07fra6" path="res://Game/UI/PopUps/dialoge.png" id="2_q60ug"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_vtfi6"]
+[ext_resource type="Texture2D" uid="uid://b3nj8oh7je834" path="res://Game/UI/button-1.png" id="4_mvxn2"]
+
+[node name="ExitPromptPopUp" type="Node2D"]
+script = ExtResource("1_8s18m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 229.0
+offset_top = 63.0
+offset_right = 1670.0
+offset_bottom = 1020.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.470949, 0.520282)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_q60ug")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 182.61
+offset_top = 215.268
+offset_right = 582.61
+offset_bottom = 615.268
+scale = Vector2(2.66844, 1.33478)
+theme_override_colors/font_color = Color(0.703808, 0.703808, 0.703808, 1)
+theme_override_fonts/font = ExtResource("3_vtfi6")
+theme_override_font_sizes/font_size = 41
+text = "\"An odd aura fills the dungeon. Something's watching you from the Shadows. You need to find the Exit, QUICK!!\""
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ClosePopup" type="Button" parent="TextureRect"]
+layout_mode = 2
+offset_left = 617.901
+offset_top = 691.932
+offset_right = 770.901
+offset_bottom = 766.932
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vtfi6")
+theme_override_font_sizes/font_size = 75
+text = "Run!"
+flat = true
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/ClosePopup"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 75.0
+texture = ExtResource("4_mvxn2")
+expand_mode = 2

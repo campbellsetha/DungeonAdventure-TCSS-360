@@ -115,4 +115,8 @@ position = Vector2(76.6286, 177.333)
 scale = Vector2(1.3817, 1.5523)
 sprite_frames = SubResource("SpriteFrames_msv5v")
 autoplay = "default"
+<<<<<<< Updated upstream
 frame_progress = 0.0879914
+=======
+frame_progress = 0.367904
+>>>>>>> Stashed changes

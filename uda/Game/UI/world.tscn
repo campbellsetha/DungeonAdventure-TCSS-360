@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=12 format=4 uid="uid://ctaemafo8rex0"]
 
 [ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Player/player.tscn" id="1_62w18"]
@@ -7,6 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://mfu6yiksjv4c" path="res://Enemies/Slime.tscn" id="4_3f78f"]
 [ext_resource type="Script" uid="uid://bto6xp87u80ri" path="res://World/PauseMenu.cs" id="6_eidgh"]
 [ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://UI/Retrobyte-4nMol.ttf" id="6_yf0ba"]
+=======
+[gd_scene load_steps=11 format=4 uid="uid://ctaemafo8rex0"]
+
+[ext_resource type="PackedScene" uid="uid://c0sxi5dgonucy" path="res://Game/Player/player.tscn" id="1_62w18"]
+[ext_resource type="Script" uid="uid://4clln7ygc2jr" path="res://Game/GameManager/GameManager.cs" id="1_bkhv4"]
+[ext_resource type="Texture2D" uid="uid://b7fneqow47t6q" path="res://WhiteBlockAssets/WhiteBox.png" id="2_j8job"]
+[ext_resource type="Texture2D" uid="uid://w88benjaoca0" path="res://WhiteBlockAssets/Ground tiles (64 x 64).png" id="3_3f78f"]
+[ext_resource type="Script" uid="uid://bto6xp87u80ri" path="res://World/PauseMenu.cs" id="6_eidgh"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="6_yf0ba"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://c4abtsfnyu3cu" path="res://Inventory/inventory_ui.tscn" id="8_eidgh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8do8"]
@@ -67,6 +78,7 @@ position = Vector2(-46, -11)
 
 [node name="Camera2D" type="Camera2D" parent="TileMapLayer/Player"]
 
+<<<<<<< Updated upstream
 [node name="Slime" parent="TileMapLayer" instance=ExtResource("4_3f78f")]
 position = Vector2(85, -18)
 
@@ -77,6 +89,12 @@ position = Vector2(-69, -39)
 position = Vector2(-98, 18)
 
 [node name="Marker2D2" type="Marker2D" parent="TileMapLayer/Slime2"]
+=======
+[node name="TileMapLayer_Slime#Marker2D1" type="Marker2D" parent="."]
+position = Vector2(-69, -39)
+
+[node name="TileMapLayer_Slime2#Marker2D2" type="Marker2D" parent="."]
+>>>>>>> Stashed changes
 position = Vector2(60, 21)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

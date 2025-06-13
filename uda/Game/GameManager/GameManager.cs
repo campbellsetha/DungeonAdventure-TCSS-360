@@ -3,16 +3,25 @@ using Godot.Collections;
 using UDA.Game.Resources;
 using UDA.Model.Items;
 using FileAccess = Godot.FileAccess;
+<<<<<<< Updated upstream
 using UDA.World;
+=======
+using UDA.Game.Resources;
+>>>>>>> Stashed changes
 
 namespace UDA.Game.GameManager;
 
 public partial class GameManager : Node
 {
     //TODO: attach these save and load scripts to buttons and test if the save function works and what needs to change
+<<<<<<< Updated upstream
     private Player.Player _myPlayerInstance;
 
     private PauseMenu _pauseMenu;
+=======
+    private UDA.Game.Player.Player _myPlayerInstance;
+    public PlayerClassInfo _selectedClassInfo;
+>>>>>>> Stashed changes
 
     public override void _Process(double theDelta)
     {
@@ -200,5 +209,11 @@ public partial class GameManager : Node
     private void OnPauseToggled(bool thePausedState)
     {
         _pauseMenu.Visible = thePausedState;
+    }
+
+    public void SetPlayerInfo(PlayerClassInfo theInfo)
+    {
+        _selectedClassInfo =  theInfo;
+        GD.Print("SetPlayerInfo");
     }
 }

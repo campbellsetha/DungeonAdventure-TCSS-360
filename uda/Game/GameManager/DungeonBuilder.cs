@@ -184,8 +184,13 @@ public partial class DungeonBuilder : Node2D
 		return theRoomScene;
 		
 		//TEST PRINT FOR STRING
+<<<<<<< Updated upstream
 		//GD.Print(modifiedRoom);
 		//GD.Print(theRoomType);
 
+=======
+		GD.Print(modifiedRoom);
+		GD.Print(theRoomType);
+>>>>>>> Stashed changes
 	}
 }

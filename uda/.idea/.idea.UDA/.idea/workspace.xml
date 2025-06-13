@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
       <change afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" afterDir="false" />
@@ -40,6 +41,33 @@
       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+=======
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/SignalTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/SignalGuide/Sprite2d.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/StartMenu(Prototype)/StartMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UI/button_icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Plugin.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/RegisteredTypeAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/RegisteredTypeAttribute.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Settings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/Settings.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/MonoCustomResourceRegistry/plugin.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ofbd839uzfc01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ofbd839uzfc01.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +91,19 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
+<<<<<<< Updated upstream
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
     "accountId": "94b50afa-b842-4b44-9e71-4037b5100ad9"
+=======
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,
+    &quot;accountId&quot;: &quot;f5a1692e-637d-44a9-905b-3b0930087b9c&quot;
+>>>>>>> Stashed changes
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs" root0="FORCE_HIGHLIGHTING" />
@@ -111,9 +146,14 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+<<<<<<< Updated upstream
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "XThreadsFramesViewSplitterKey": "0.11111111",
     "git-widget-placeholder": "FinalGamePushTest",
+=======
+    "XThreadsFramesViewSplitterKey": "0.13227513",
+    "git-widget-placeholder": "main",
+>>>>>>> Stashed changes
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -173,9 +213,9 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_mono.app/Contents/MacOS/Godot" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -191,9 +231,9 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/Godot_mono.app/Contents/MacOS/Godot" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\sword\Documents\DungeonAdventure-TCSS-360\uda" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -295,6 +335,7 @@
       <workItem from="1747681223201" duration="11607000" />
       <workItem from="1748363499846" duration="11237000" />
       <workItem from="1748988189302" duration="14119000" />
+<<<<<<< Updated upstream
       <workItem from="1749080184596" duration="2263000" />
       <workItem from="1749152134776" duration="3055000" />
       <workItem from="1749335995169" duration="129000" />
@@ -304,6 +345,9 @@
       <workItem from="1749746685648" duration="7807000" />
       <workItem from="1749773820404" duration="11090000" />
       <workItem from="1749791440392" duration="593000" />
+=======
+      <workItem from="1749824804949" duration="12487000" />
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />

@@ -1,8 +1,13 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=3 uid="uid://bw7pbkr11x73j"]
+=======
+[gd_scene load_steps=9 format=3 uid="uid://bw7pbkr11x73j"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://Game/UI/MainMenu/MainMenu.cs" id="1_y6s48"]
 [ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_otjfi"]
 [ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_obtq6"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://bleciyk46jwdw" path="res://Game/UI/selection_menu.png" id="4_0j0bp"]
 [ext_resource type="Texture2D" uid="uid://c4td3ab6up88h" path="res://Game/UI/button_icon.png" id="4_ghhtk"]
 [ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://Game/UI/LoadMenu.cs" id="5_w5vcv"]
@@ -12,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://b3nj8oh7je834" path="res://Game/UI/button-1.png" id="12_vuq4p"]
 
 [sub_resource type="Theme" id="Theme_i7cp2"]
+=======
+[ext_resource type="Texture2D" uid="uid://btc8jdhoi1pyv" path="res://Game/UI/MainMenu/button_icon.png" id="4_ghhtk"]
+[ext_resource type="PackedScene" uid="uid://dlwvs8xshcstp" path="res://Game/UI/MainMenu/LoadGame.tscn" id="5_m7moh"]
+[ext_resource type="PackedScene" uid="uid://bo2dpki778rbw" path="res://Game/UI/MainMenu/CharacterSelection.tscn" id="6_tb2ss"]
+[ext_resource type="PackedScene" uid="uid://vfo8fy8judlo" path="res://Game/UI/PopUps/HelpMenuPopUp.tscn" id="7_tb2ss"]
+>>>>>>> Stashed changes
 
 [sub_resource type="LabelSettings" id="LabelSettings_er0wr"]
 font = ExtResource("3_obtq6")
@@ -30,6 +41,12 @@ offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y6s48")
+<<<<<<< Updated upstream
+=======
+_loadMenuPath = NodePath("Control/LoadGameMenu")
+_characterSelectionPath = NodePath("Control/CharacterSelection")
+_helpMenuPath = NodePath("Control/HelpMenuPopUp")
+>>>>>>> Stashed changes
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -41,6 +58,10 @@ texture = ExtResource("2_otjfi")
 stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+<<<<<<< Updated upstream
+=======
+self_modulate = Color(1, 1, 1, 0)
+>>>>>>> Stashed changes
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,8 +87,15 @@ flat = true
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/NewGameB"]
 show_behind_parent = true
 layout_mode = 0
+<<<<<<< Updated upstream
 offset_right = 40.0
 offset_bottom = 40.0
+=======
+offset_left = 0.766248
+offset_top = 0.800833
+offset_right = 1008.77
+offset_bottom = 471.801
+>>>>>>> Stashed changes
 scale = Vector2(0.112437, 0.0514175)
 texture = ExtResource("4_ghhtk")
 
@@ -118,6 +146,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+<<<<<<< Updated upstream
 [node name="LoadGameMenu" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -305,6 +334,32 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.0389954, 0.0354906)
 texture = ExtResource("12_vuq4p")
+=======
+[node name="HelpMenuPopUp" parent="Control" instance=ExtResource("7_tb2ss")]
+visible = false
+layout_mode = 0
+offset_left = 465.0
+offset_top = 243.0
+offset_right = 529.0
+offset_bottom = 307.0
+scale = Vector2(3.62514, 4.04604)
+
+[node name="LoadGameMenu" parent="Control" instance=ExtResource("5_m7moh")]
+visible = false
+layout_mode = 1
+offset_left = 351.0
+offset_top = 82.0
+offset_right = 377.0
+offset_bottom = 120.0
+
+[node name="CharacterSelection" parent="Control" instance=ExtResource("6_tb2ss")]
+visible = false
+layout_mode = 1
+offset_left = 19.0
+offset_top = 66.0
+offset_right = 1460.0
+offset_bottom = 1023.0
+>>>>>>> Stashed changes
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -319,5 +374,10 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/NewGameB" to="." method="NewGame"]
 [connection signal="pressed" from="VBoxContainer/LoadGameB" to="." method="LoadSavedGame"]
+<<<<<<< Updated upstream
 [connection signal="pressed" from="VBoxContainer/ExitB" to="." method="ExitGame"]
 [connection signal="pressed" from="Control/LoadGameMenu/HBoxContainer/BackB" to="." method="BackToMainMenu"]
+=======
+[connection signal="pressed" from="VBoxContainer/HelpB" to="." method="OnHelpPressed"]
+[connection signal="pressed" from="VBoxContainer/ExitB" to="." method="ExitGame"]
+>>>>>>> Stashed changes

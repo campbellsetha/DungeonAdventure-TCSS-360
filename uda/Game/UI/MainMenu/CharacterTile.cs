@@ -4,6 +4,7 @@ using UDA.Game.Resources;
 namespace UDA.Game.UI;
 
 [GlobalClass]
+<<<<<<< Updated upstream
 public partial class CharacterTile : PanelContainer
 {
 	private Label _label;
@@ -111,6 +112,60 @@ public partial class CharacterTile : PanelContainer
 	{
 		_classInfo.MyPlayerClass = _label.Text;
 	}
+=======
+public partial class CharacterTile : Control
+{
+	[Signal]
+	public delegate void CharacterTileSelectedEventHandler(CharacterTile sender);
+
+	private bool _isSelected;
+	
+	private Button _button;
+	
+	[Export]
+	private PlayerClassInfo _classInfo { get; set; }
+
+	private StyleBoxFlat Borderstyle;
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		Borderstyle = new StyleBoxFlat();
+		_isSelected = false;
+		_button = GetNode<Button>("Button");
+		_button.Pressed += OnPressed;
+		UpdateVisuals();
+	}
+
+	private void OnPressed()
+	{
+		EmitSignal(SignalName.CharacterTileSelected, this);
+	}
+
+	public void SetSelected(bool theSelection)
+	{
+		_isSelected = theSelection;
+		UpdateVisuals();
+	}
+
+	public bool IsSelected()
+	{
+		return _isSelected;
+	}
+
+	private void UpdateVisuals()
+	{
+
+		Borderstyle.BorderColor = IsSelected() ? new Color("FCDB07") : Colors.Transparent;
+	}
+
+	public void SetClassInfo(PlayerClassInfo theClassInfo)
+	{
+		_classInfo = theClassInfo;
+		
+	}
+
+>>>>>>> Stashed changes
 
 	public PlayerClassInfo GetClassInfo()
 	{

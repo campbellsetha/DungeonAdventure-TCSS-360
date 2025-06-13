@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crwhartamq6ey"
-path="res://.godot/imported/ofbd839uzfc01.png-1437285215096ec3231712e76d163f8a.ctex"
+uid="uid://cnt0wb2wxebwr"
+path="res://.godot/imported/Warrior-Attack.png-7e93cef73e36688c4dd7ca3f2fd38b8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ofbd839uzfc01.png"
-dest_files=["res://.godot/imported/ofbd839uzfc01.png-1437285215096ec3231712e76d163f8a.ctex"]
+source_file="res://HeroAssets/Warrior/Warrior-Attack.png"
+dest_files=["res://.godot/imported/Warrior-Attack.png-7e93cef73e36688c4dd7ca3f2fd38b8b.ctex"]
 
 [params]
 

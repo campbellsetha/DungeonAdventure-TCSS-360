@@ -63,6 +63,7 @@ public partial class Player : CharacterBody2D
         
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		_animatedSprite2D.Play("default");
+<<<<<<< Updated upstream
         _animationPlayer = GetNode<AnimationPlayer>("WeaponAnimation");
         _myWeapon = GetNode<Node2D>("Weapon");
         _myWeaponHitBox = GetNode<Area2D>("Weapon/Sword");
@@ -78,6 +79,11 @@ public partial class Player : CharacterBody2D
         _healthBar.Value = MyClass.MyHitPoints;
         _healthBar.Visible = true;
     }
+=======
+
+		AddToGroup("player");
+	}
+>>>>>>> Stashed changes
 
     public override void _Process(double theDelta)
     {

@@ -8,6 +8,7 @@
         <PackageReference Include="System.Data.SQLite" Version="1.0.119"/>
     </ItemGroup>
     <ItemGroup>
+        <Content Include="CharacterDatabase.db" />
         <Content Include="Game\main.tscn"/>
         <Content Include="Game\UI.tscn"/>
     </ItemGroup>

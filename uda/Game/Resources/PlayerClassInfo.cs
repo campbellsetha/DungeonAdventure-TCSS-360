@@ -2,16 +2,16 @@ using Godot;
 
 namespace UDA.Game.Resources;
 
-[GlobalClass, Tool]
+[GlobalClass]
+[Tool]
 public partial class PlayerClassInfo : Resource
 {
-    [Export] public string MyPlayerName { get; set; }
-    [Export] public string MyPlayerClass { get; set; }
-
+    //Putting in default values as the constructor for Hero can fail without these
     public PlayerClassInfo()
     {
         MyPlayerName = "Greeble Jenkins";
-        MyPlayerClass = "Warrior";
+        // use nameof() to get class names
+        MyPlayerClass = nameof(Model.Characters.Warrior);
     }
 
     public PlayerClassInfo(string thePlayerName, string thePlayerClass)
@@ -19,4 +19,8 @@ public partial class PlayerClassInfo : Resource
         MyPlayerName = thePlayerName;
         MyPlayerClass = thePlayerClass;
     }
+
+    [Export] public string MyPlayerName { get; set; }
+    [Export] public string MyPlayerClass { get; set; }
+    [Export] public int MyPlayerHp { get; set; }
 }

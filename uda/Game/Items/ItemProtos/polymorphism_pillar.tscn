@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlbs2pylsx3n2"]
+
+[ext_resource type="Script" uid="uid://dii5sylwock4a" path="res://Game/Items/ItemProtos/ItemToPickup.cs" id="1_pxklx"]
+[ext_resource type="Resource" uid="uid://bgqgnkfmvr5kx" path="res://Game/Items/ItemProtos/InventoryItem.tres" id="2_pxklx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yn543"]
+
+[node name="polymorphism_pillar" type="Area2D"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_pxklx")
+ItemData = ExtResource("2_pxklx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yn543")

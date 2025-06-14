@@ -1,57 +1,64 @@
+using System.Collections.ObjectModel;
 using Godot;
 using Godot.Collections;
-using System.Collections.ObjectModel;
-using System.Linq;
+using Array = Godot.Collections.Array;
 
-namespace MonoCustomResourceRegistry
+namespace UDA.addons.MonoCustomResourceRegistry;
+
+public static class Settings
 {
-    public static class Settings
+    public enum ResourceSearchType
     {
-        public enum ResourceSearchType
-        {
-            Recursive = 0,
-            Namespace = 1,
-        }
+        Recursive = 0,
+        Namespace = 1
+    }
 
-        public static string ClassPrefix => GetSettings(nameof(ClassPrefix)).AsString();
-        public static ResourceSearchType SearchType => (ResourceSearchType)GetSettings(nameof(SearchType)).AsInt32();
-        public static ReadOnlyCollection<string> ResourceScriptDirectories
-        {
-            get
-            {
-                Array array = (Array)GetSettings(nameof(ResourceScriptDirectories)) ?? new Array();
-                return new(array.Select(v => v.AsString()).ToList());
-            }
-        }
+    public static string ClassPrefix => GetSettings(nameof(ClassPrefix)).AsString();
+    public static ResourceSearchType SearchType => (ResourceSearchType)GetSettings(nameof(SearchType)).AsInt32();
 
-        public static void Init()
+    public static ReadOnlyCollection<string> ResourceScriptDirectories
+    {
+        get
         {
-            AddSetting(nameof(ClassPrefix), Variant.Type.String, "");
-            AddSetting(nameof(SearchType), Variant.Type.Int, ResourceSearchType.Recursive, PropertyHint.Enum, "Recursive,Namespace");
-            AddSetting(nameof(ResourceScriptDirectories), Variant.Type.Array, new Array<string>(new string[] { "res://" }));
+            var array = (Array)GetSettings(nameof(ResourceScriptDirectories)) ?? new Array();
+            return new ReadOnlyCollection<string>(array.Select(v => v.AsString()).ToList());
         }
+    }
 
-        private static Variant GetSettings(string title)
+    public static void Init()
+    {
+        AddSetting(nameof(ClassPrefix), Variant.Type.String, "");
+        AddSetting(nameof(SearchType), Variant.Type.Int, ResourceSearchType.Recursive, PropertyHint.Enum,
+            "Recursive,Namespace");
+        AddSetting(nameof(ResourceScriptDirectories), Variant.Type.Array, new Array<string>(new[] { "res://" }));
+    }
+
+    private static Variant GetSettings(string title)
+    {
+        // I removed the global alias qualifier here because it was causing error CS8083
+        return ProjectSettings.GetSetting($"{nameof(MonoCustomResourceRegistry)}/{title}");
+    }
+
+    private static void AddSetting<T>(string title, Variant.Type type, T value, PropertyHint hint = PropertyHint.None,
+        string hintString = "")
+    {
+        title = SettingPath(title);
+        if (!ProjectSettings.HasSetting(title))
+            ProjectSettings.SetSetting(title, Variant.From(value));
+        var info = new Dictionary
         {
-            return ProjectSettings.GetSetting($"{nameof(MonoCustomResourceRegistry)}/{title}");
-        }
+            ["name"] = title,
+            ["type"] = Variant.From(type),
+            ["hint"] = Variant.From(hint),
+            ["hint_string"] = hintString
+        };
+        ProjectSettings.AddPropertyInfo(info);
+        GD.Print("Successfully added property: " + title);
+    }
 
-        private static void AddSetting<T>(string title, Variant.Type type, T value, PropertyHint hint = PropertyHint.None, string hintString = "")
-        {
-            title = SettingPath(title);
-            if (!ProjectSettings.HasSetting(title))
-                ProjectSettings.SetSetting(title, Variant.From(value));
-            var info = new Dictionary
-            {
-                ["name"] = title,
-                ["type"] = Variant.From(type),
-                ["hint"] = Variant.From(hint),
-                ["hint_string"] = hintString,
-            };
-            ProjectSettings.AddPropertyInfo(info);
-            GD.Print("Successfully added property: " + title);
-        }
-
-        private static string SettingPath(string title) => $"{nameof(MonoCustomResourceRegistry)}/{title}";
+    private static string SettingPath(string title)
+    {
+        // I removed the global alias qualifier here because it was causing error CS8083
+        return $"{nameof(MonoCustomResourceRegistry)}/{title}";
     }
 }

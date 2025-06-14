@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu4frys6n88d4"]
+
+[ext_resource type="Script" uid="uid://c6n00t585hx3" path="res://Game/UI/EndScenes/GameOverScene.cs" id="1_dyhc8"]
+[ext_resource type="Texture2D" uid="uid://drypsr7k66bu3" path="res://Game/UI/EndScenes/0.png" id="1_m7r16"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="2_dyhc8"]
+[ext_resource type="Texture2D" uid="uid://c2d6b7ihr6s2e" path="res://Game/UI/MainMenu/pause_menu.png" id="3_mmot4"]
+[ext_resource type="Texture2D" uid="uid://c85xqa6ksfjni" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton2/v2/skeleton2_v2_1.png" id="4_pnsxs"]
+[ext_resource type="Texture2D" uid="uid://cn26rdupd1k7f" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton2/v2/skeleton2_v2_2.png" id="5_lgfqo"]
+[ext_resource type="Texture2D" uid="uid://cegmi4lpyw0rg" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton2/v2/skeleton2_v2_3.png" id="6_e6xfn"]
+[ext_resource type="Texture2D" uid="uid://prisouhkoiul" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton2/v2/skeleton2_v2_4.png" id="7_4lxsp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_msv5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pnsxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lgfqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e6xfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4lxsp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GameOverScene" type="Node2D"]
+script = ExtResource("1_dyhc8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.98844, 3)
+texture = ExtResource("1_m7r16")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 113.772
+offset_top = 43.3333
+offset_right = 276.772
+offset_bottom = 92.3333
+theme_override_colors/font_color = Color(0.526793, 1.79287e-06, 2.88785e-07, 1)
+theme_override_colors/font_shadow_color = Color(0.479834, 0.479834, 0.479834, 1)
+theme_override_colors/font_outline_color = Color(0.781407, 0.781407, 0.781407, 1)
+theme_override_fonts/font = ExtResource("2_dyhc8")
+text = "You have perished...
+game over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Redo" type="Button" parent="TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 115.779
+offset_top = 159.333
+offset_right = 174.779
+offset_bottom = 213.333
+scale = Vector2(1.00905, 0.441402)
+theme_override_colors/font_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_fonts/font = ExtResource("2_dyhc8")
+text = "Play 
+Again?"
+flat = true
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Redo"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mmot4")
+
+[node name="Exit" type="Button" parent="TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 226.772
+offset_top = 164.71
+offset_right = 263.772
+offset_bottom = 195.71
+scale = Vector2(1.00905, 0.441402)
+theme_override_colors/font_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_fonts/font = ExtResource("2_dyhc8")
+text = "Exit"
+flat = true
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Exit"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mmot4")
+flip_h = true
+flip_v = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+position = Vector2(76.6286, 177.333)
+scale = Vector2(1.3817, 1.5523)
+sprite_frames = SubResource("SpriteFrames_msv5v")
+autoplay = "default"
+frame_progress = 0.367904

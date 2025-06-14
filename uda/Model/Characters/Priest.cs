@@ -1,20 +1,18 @@
-namespace UDA.Model;
-using Godot;
-//TODO: Make an attack method for the priest class
-public partial class Priest : Characters.Hero
+namespace UDA.Model.Characters;
+public class Priest(in string theName, in int theHitPoints, in int theAttackSpeed, in double theHitChance, 
+    in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
+    : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
-	private static int myHitPoints = 75;
-	private static readonly int MyAttackSpeed = 5;
-	private static readonly double MyHitChance = 0.7;
-	private static readonly (int, int) MyDamageRange = (25, 45);
-	private static readonly double MyBlockChance = 0.3;
-	private static readonly string MySkill = "Heal";
-	
-	public Priest(string theName) : base(theName, myHitPoints,MyAttackSpeed, MyHitChance,
-		MyDamageRange, MyBlockChance, MySkill) { }
-
-	public override void PerformSkill(Characters.DungeonCharacter theCharacter)
-	{
-		myHitPoints += 20;
-	}
+    
+    /// <summary>
+    /// Implements the PerformSkill method.
+    /// </summary>
+    public override int PerformSkill(in DungeonCharacter theTarget)
+    {
+        const int maxHeal = 20;
+        var hpToSteal = base.PerformSkill(theTarget) + Math.Min(maxHeal, theTarget.MyHitPoints);
+        MyHitPoints = Math.Min(MyMaxHitPoints, MyHitPoints + hpToSteal);
+        Console.WriteLine($"{MySkill} stole {hpToSteal} hit point(s) from enemy!");
+        return hpToSteal;
+    }
 }

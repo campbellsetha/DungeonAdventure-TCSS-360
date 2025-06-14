@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ymlk3e7xidn"]
+
+[ext_resource type="Texture2D" uid="uid://bsxrxf20wydgq" path="res://HeroAssets/KnightOrPaladin/SwordSprite.png" id="1_tka86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfnqy"]
+size = Vector2(5, 14)
+
+[node name="Sword" type="Area2D" groups=["Weapon"]]
+collision_layer = 128
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_tka86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -8)
+shape = SubResource("RectangleShape2D_bfnqy")

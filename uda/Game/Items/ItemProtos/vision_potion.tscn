@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ftciu0woo03j"]
+
+[ext_resource type="Script" uid="uid://dii5sylwock4a" path="res://Game/Items/ItemProtos/ItemToPickup.cs" id="1_rxitq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_20jk4"]
+
+[node name="vision_potion" type="Area2D"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_rxitq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_20jk4")

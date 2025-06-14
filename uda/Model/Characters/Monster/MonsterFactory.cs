@@ -1,12 +1,10 @@
 using System.Data.SQLite;
-using Godot;
 
 namespace UDA.Model.Characters.Monster;
 
-
-// Move monster class as private inner class here?
 public abstract class MonsterFactory
 {
+    // The values to be passed to the Monster parameters.
     private static string _myName;
     private static int _myHitPoints;
     private static int _myAttackSpeed;
@@ -15,70 +13,86 @@ public abstract class MonsterFactory
     private static double _myHealChance;
     private static (int, int) _myHealRange;
     private static double _myStunThreshold;
-    
+
+    /// <summary>
+    /// Constructs a Gremlin from the database.
+    /// </summary>
     public static Monster CreateGremlin()
     {
-        string query = "SELECT * FROM Monster WHERE ID = 1";
-        ConnectDB(query);
-        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance, _myHealRange, _myStunThreshold);
+        const string query = "SELECT * FROM Monster WHERE ID = 1";
+        ConnectDb(query);
+        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
+            _myHealRange, _myStunThreshold);
     }
-
+    /// <summary>
+    /// Constructs an Ogre from the database.
+    /// </summary>
     public static Monster CreateOgre()
     {
-        string query = "SELECT * FROM Monster WHERE ID = 2";
-        ConnectDB(query);
-        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance, _myHealRange, _myStunThreshold);
+        const string query = "SELECT * FROM Monster WHERE ID = 2";
+        ConnectDb(query);
+        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
+            _myHealRange, _myStunThreshold);
     }
 
+    /// <summary>
+    /// Constructs a Skeleton from the database.
+    /// </summary>
     public static Monster CreateSkeleton()
     {
-        string query = "SELECT * FROM Monster WHERE ID = 3";
-        ConnectDB(query);
-        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance, _myHealRange, _myStunThreshold);
+        const string query = "SELECT * FROM Monster WHERE ID = 3";
+        ConnectDb(query);
+        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
+            _myHealRange, _myStunThreshold);
     }
 
+    /// <summary>
+    /// Constructs a random monster from the database.
+    /// </summary>
     public static Monster CreateRandoMonster()
     {
-        RandomNumberGenerator rng = new RandomNumberGenerator();
-        int ranNum = rng.RandiRange(1, 3);
-        
-        string query = $"SELECT * FROM Monster WHERE ID = {ranNum}";
-        ConnectDB(query);
-        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance, _myHealRange, _myStunThreshold);
-    }
+        var rng = RandomSingleton.GetInstance();
+        var ranNum = rng.Next(1, 4);
 
-    private static void ConnectDB(string theQuery)
-    {
-        string connectionString = "Data Source=MonsterDatabase.db;";
-            
-        //Is this thread safe to do?
-        using (SQLiteConnection conn = new SQLiteConnection(connectionString))
-        {
-            //Open the connection
-            conn.Open();
-          
-            //Execute a command with a command string to the connection
-            using (SQLiteCommand cmd = new SQLiteCommand(theQuery, conn))
-            {
-                //open and read through the specified values
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
-                {
-                    //While tokes are present do stuff
-                    while (reader.Read())
-                    {
-                        //Initialize values base on rows of selected table 
-                        _myName = reader.GetString(1);
-                        _myHitPoints = reader.GetInt32(2);
-                        _myAttackSpeed = reader.GetInt32(3);
-                        _myHitChance = reader.GetDouble(4);
-                        _myDamageRange = (reader.GetInt32(5), reader.GetInt32(6));
-                        _myStunThreshold = reader.GetDouble(7);
-                        _myHealChance = reader.GetDouble(8);
-                        _myHealRange = (reader.GetInt32(9), reader.GetInt32(10));
-                    }
-                }
-            }
-        }
+        var query = $"SELECT * FROM Monster WHERE ID = {ranNum}";
+        ConnectDb(query);
+        return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
+        _myHealRange, _myStunThreshold);
     }
     
+    /// <summary>
+    /// Connects to the database and reads from it.
+    /// </summary>
+    private static void ConnectDb(in string theQuery)
+    {
+        
+        const string connectionString = "Data Source=CharacterDatabase.db";
+        using var conn = new SQLiteConnection(connectionString);
+        //Open the connection
+        try
+        {
+            conn.Open();
+            //Execute a command with a command string to the connection
+            using var cmd = new SQLiteCommand(theQuery, conn);
+            //open and read through the specified values
+            using var reader = cmd.ExecuteReader();
+            //Initialize values base on rows of selected table 
+            reader.Read();
+            var count = 1;
+            _myName = reader.GetString(count);
+            _myHitPoints = reader.GetInt32(++count);
+            _myAttackSpeed = reader.GetInt32(++count);
+            _myHitChance = reader.GetDouble(++count);
+            _myDamageRange = (reader.GetInt32(++count), reader.GetInt32(++count));
+            _myStunThreshold = reader.GetDouble(++count);
+            _myHealChance = reader.GetDouble(++count);
+            _myHealRange = (reader.GetInt32(++count), reader.GetInt32(++count));
+            reader.Close();
+            conn.Close();
+        }
+        catch (SQLiteException e)
+        {
+            Console.WriteLine($"Exception message: {e.Message}");
+        }
+    }
 }

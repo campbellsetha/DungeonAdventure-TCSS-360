@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_6_13_2025_2_06_PM_[Changes]1" date="1749849206488" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_13_2025_2_06_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 6/13/2025 2:06 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_13_2025_2_06_PM_[Changes]1/Tests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/Debug/net9.0/Tests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_13_2025_2_06_PM_[Changes]1/Tests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="Tests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.UDA/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_13_2025_2_06_PM_[Changes]1/project.nuget.cache" />
+  </binary>
+</changelist>

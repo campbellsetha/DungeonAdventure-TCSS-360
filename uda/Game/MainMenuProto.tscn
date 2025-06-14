@@ -1,0 +1,165 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhknoiyya1vj3"]
+
+[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://Game/UI/MainMenu/MainMenu.cs" id="1_idtbo"]
+[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_7b2vk"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_ubnd0"]
+[ext_resource type="Texture2D" uid="uid://b1abew8udjp86" path="res://Game/UI/MainMenu/selection_menu.png" id="4_5he1w"]
+[ext_resource type="Script" uid="uid://dgngm1n83fruy" path="res://Game/UI/MainMenu/LoadMenu.cs" id="5_0lhne"]
+
+[sub_resource type="Theme" id="Theme_i7cp2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_er0wr"]
+font = ExtResource("3_ubnd0")
+font_size = 100
+font_color = Color(0.875066, 0.808137, 0.762237, 1)
+shadow_size = 31
+shadow_color = Color(0, 0, 0, 0.764706)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_idtbo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 1150.0
+offset_bottom = 652.0
+texture = ExtResource("2_7b2vk")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -73.0
+offset_right = 58.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="NewGameB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "New Game"
+
+[node name="LoadGameB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "Load Game"
+
+[node name="HelpB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "Help"
+
+[node name="ExitB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "Exit"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 387.0
+offset_top = 74.0
+offset_right = 413.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(13.9577, 12.9737)
+theme = SubResource("Theme_i7cp2")
+texture = ExtResource("4_5he1w")
+expand_mode = 1
+script = ExtResource("5_0lhne")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.90412
+offset_top = -7.93927
+offset_right = 90.096
+offset_bottom = 32.0607
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.110956, 0.0727098)
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/TextureRect/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "Back"
+
+[node name="Button2" type="Button" parent="Control/TextureRect/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ubnd0")
+text = "Load"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TextureRect"]
+layout_mode = 1
+offset_left = 3.94047
+offset_top = 12.7951
+offset_right = 53.9405
+offset_bottom = 62.7951
+scale = Vector2(0.359618, 0.329283)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(25, 14)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 81.0
+offset_right = 1079.0
+offset_bottom = 192.0
+text = "Dungeon Adventure"
+label_settings = SubResource("LabelSettings_er0wr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/NewGameB" to="." method="NewGame"]
+[connection signal="pressed" from="VBoxContainer/LoadGameB" to="." method="LoadSavedGame"]
+[connection signal="pressed" from="VBoxContainer/ExitB" to="." method="ExitGame"]
+[connection signal="pressed" from="Control/TextureRect/HBoxContainer/Button" to="." method="BackToMainMenu"]

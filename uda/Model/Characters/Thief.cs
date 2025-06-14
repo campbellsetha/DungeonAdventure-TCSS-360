@@ -1,55 +1,38 @@
-using System;
-using Godot;
+//using Godot;
 
 namespace UDA.Model.Characters;
 
-public partial class Thief : Hero
+public class Thief(in string theName, in int theHitPoints, in int theAttackSpeed, in double theHitChance, 
+    in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
+    : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
-	private static readonly int MyHitPoints = 75;
-	private static readonly int MyAttackSpeed = 6;
-	private static readonly double MyHitChance = 0.8;
-	private static readonly (int, int) MyDamageRange = (20, 40);
-	private static readonly double MyBlockChance = 0.4;
-	private const double SuccessChance = 0.4;
-	private const double FailureChance = 0.2;
-	private static readonly string MySkill = "Surprise Attack";
 
-	private const double SkillCooldown = 10.0; // Cooldown in seconds
-	private double _lastSkillTime = -SkillCooldown;
-
-	public Thief(string theName) 
-		: base(theName, MyHitPoints, MyAttackSpeed, MyHitChance, MyDamageRange, MyBlockChance, MySkill)
-	{ }
-
-	public override void PerformSkill(DungeonCharacter theTarget)
-	{
-		double currentTime = Time.GetTicksMsec() / 1000.0; // Get current time in seconds
-		if (currentTime - _lastSkillTime < SkillCooldown)
-		{
-			GD.Print($"{Skill} is on cooldown!");
-			return; // Skill is still on cooldown
-		}
-
-		_lastSkillTime = currentTime;
-
-		Random rand = RandomSingleton.GetInstance();
-		double roll = rand.NextDouble();
-		if (roll <= SuccessChance)
-		{
-			GD.Print($"{Skill} is successful!");
-			Attack(theTarget);
-			int damage = rand.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
-			theTarget.TakeDamage(damage);
-			theTarget.EmitSignal(nameof(HealthChangedEventHandler), theTarget.HitPoints, theTarget.MaxHitPoints);
-		}
-		else if (roll <= SuccessChance + FailureChance)
-		{
-			GD.Print($"{Skill} failed to deal extra damage!");
-			Attack(theTarget);
-		}
-		else
-		{
-			GD.Print($"{Skill} completely failed!");
-		}
-	}
+    /// <summary>
+    /// Implements the PerformSkill method.
+    /// </summary>
+    public override int PerformSkill(in DungeonCharacter theTarget)
+    {
+        const double successChance = 0.4;
+        const double failureChance = 0.2;
+        var damageDealt = base.PerformSkill(theTarget);
+        var rand = RandomSingleton.GetInstance();
+        var roll = rand.NextDouble();
+        switch (roll)
+        {
+            case <= successChance:
+            {
+                Console.WriteLine($"{MySkill} is successful!");
+                damageDealt += Attack(theTarget) + rand.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
+                break;
+            }
+            case <= successChance + failureChance:
+                Console.WriteLine($"{MySkill} failed to deal extra damage!");
+                damageDealt += Attack(theTarget);
+                break;
+            default:
+                Console.WriteLine($"{MySkill} completely failed!");
+                break;
+        }
+        return damageDealt;
+    }
 }

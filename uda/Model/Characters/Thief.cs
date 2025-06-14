@@ -7,7 +7,7 @@ public class Thief(in string theName, in int theHitPoints, in int theAttackSpeed
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
 
-    protected override int PerformSkill(in DungeonCharacter theTarget)
+    public override int PerformSkill(in DungeonCharacter theTarget)
     {
         const double successChance = 0.4;
         const double failureChance = 0.2;
@@ -18,16 +18,16 @@ public class Thief(in string theName, in int theHitPoints, in int theAttackSpeed
         {
             case <= successChance:
             {
-                Console.WriteLine($"{base.MySkill} is successful!");
+                Console.WriteLine($"{MySkill} is successful!");
                 damageDealt += Attack(theTarget) + rand.Next(MyDamageRange.Item1, MyDamageRange.Item2 + 1);
                 break;
             }
             case <= successChance + failureChance:
-                Console.WriteLine($"{base.MySkill} failed to deal extra damage!");
+                Console.WriteLine($"{MySkill} failed to deal extra damage!");
                 damageDealt += Attack(theTarget);
                 break;
             default:
-                Console.WriteLine($"{base.MySkill} completely failed!");
+                Console.WriteLine($"{MySkill} completely failed!");
                 break;
         }
         return damageDealt;

@@ -4,13 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
-      <change afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Cleaned up code in Model: making parameters &quot;in&quot; which is the closest thing to final in C# (prevents them from being reassigned), added exceptions where necessary, and created a HeroFactory. Updated the Player class to call the new HeroFactory methods appropriately - if thePlayerClass string is &quot;Warrior&quot;, HeroFactory.CreateWarrior() is called, etc.">
+      <change afterPath="$PROJECT_DIR$/Tests/DungeonCharacterTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/DungeonTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RoomTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/CharacterDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonsterDatabase.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/DungeonCharacter.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Hero.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/Monster.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Priest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Priest.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Thief.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Thief.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Warrior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Characters/Warrior.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Dungeon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Dungeon.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/Room.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/Room.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Map/RoomFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Map/RoomFactory.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/RandomSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RandomSingleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Sandbox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Sandbox.cs.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/MonsterTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/MonsterTests.cs.uid" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" afterDir="false" />
@@ -20,7 +45,6 @@
       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" afterDir="false" />
@@ -38,7 +62,6 @@
       <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +75,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="FinalPushTestUpdate" />
+        <entry key="$PROJECT_DIR$/.." value="FinalGamePushTest" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -63,32 +86,18 @@
     &quot;assignee&quot;: &quot;cblackwe11&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
-    "accountId": "94b50afa-b842-4b44-9e71-4037b5100ad9"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360&quot;,
+    &quot;accountId&quot;: &quot;917886bc-b46c-434c-a86d-25c95434dedb&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/28d08c4efeb02236ca78c5831835fe6783b079/InventoryUi_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/333dc9e47988366d5f3bd05f96c0462c646e6520/UDA.Game.Player.Player_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c92637ae2e83da0a63791071c41eae291d594156062866d8621b7ed7245c/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/42a5acdab5881c1662db84d3e2a825c2c78fd7d/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b3ffdaaf61c1682d5945775fc8c137d2047e1/UDA.inventory.InventorySlotUi_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cbbe8418ae67d372dc85fff27eca566e67db3cc/UDA.Game.Player.Player_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d57858531a2bcaa41f2315ffea8b27aa4382497/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Player/Hurtbox.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/bin/Debug/net9.0/Tests.deps.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.sourcelink.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Tests.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.deps.json" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.runtimeconfig.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -105,6 +114,7 @@
     ".NET Executable.Player.executor": "Run",
     ".NET Executable.dungeonBuilder.tscn.executor": "Run",
     ".NET Executable.player_save_test.tscn.executor": "Debug",
+    ".NET Static Method.UDA.Model.Map.SandBox.Main.executor": "Run",
     ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
     "03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor": "Debug",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -113,15 +123,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "XThreadsFramesViewSplitterKey": "0.11111111",
-    "git-widget-placeholder": "FinalGamePushTest",
+    "git-widget-placeholder": "Tests/Model-CleanUp",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "settings.editor.splitter.proportion": "0.48879838",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -131,7 +140,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
+  <component name="RunManager" selected=".NET Static Method.UDA.Model.Map.SandBox.Main">
     <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -140,6 +149,27 @@
         <list />
       </option>
       <method v="2" />
+    </configuration>
+    <configuration name="UDA.Model.Map.SandBox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+      <option name="EXE_PATH" value="C:\Program Files\JetBrains\JetBrains Rider 2025.1.3\lib\ReSharperHost\JetLauncherILc.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/UDA.csproj" />
+      <option name="PROJECT_TFM" value="net8.0" />
+      <option name="CLASS_NAME" value="UDA.Model.Map.SandBox" />
+      <option name="METHOD_NAME" value="Main" />
+      <method v="2">
+        <option name="Build" />
+      </method>
     </configuration>
     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
@@ -246,11 +276,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue=".NET Static Method.UDA.Model.Map.SandBox.Main" />
         <item itemvalue=".NET Static Method.UDA.Sandbox.Main" />
         <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
         <item itemvalue=".NET Executable.player_save_test.tscn" />
         <item itemvalue=".NET Executable.dungeonBuilder.tscn" />
-        <item itemvalue=".NET Executable.player_save_test.tscn" />
       </list>
     </recent_temporary>
   </component>
@@ -303,7 +333,10 @@
       <workItem from="1749683394801" duration="12071000" />
       <workItem from="1749746685648" duration="7807000" />
       <workItem from="1749773820404" duration="11090000" />
-      <workItem from="1749791440392" duration="593000" />
+      <workItem from="1749837888195" duration="131000" />
+      <workItem from="1749838043721" duration="9309000" />
+      <workItem from="1749848982119" duration="4320000" />
+      <workItem from="1749853353552" duration="22256000" />
     </task>
     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
       <option name="closed" value="true" />
@@ -451,19 +484,6 @@
           </properties>
           <option name="timeStamp" value="25" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Tests/MonsterTests.cs</url>
-          <line>13</line>
-          <properties documentPath="$PROJECT_DIR$/Tests/MonsterTests.cs" containingFunctionPresentation="Method 'Test1'">
-            <startOffsets>
-              <option value="217" />
-            </startOffsets>
-            <endOffsets>
-              <option value="218" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

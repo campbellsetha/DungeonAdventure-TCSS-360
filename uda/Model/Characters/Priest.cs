@@ -3,12 +3,12 @@ public class Priest(in string theName, in int theHitPoints, in int theAttackSpee
     in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
-    protected override int PerformSkill(in DungeonCharacter theTarget)
+    public override int PerformSkill(in DungeonCharacter theTarget)
     {
         const int maxHeal = 20;
         var hpToSteal = base.PerformSkill(theTarget) + Math.Min(maxHeal, theTarget.MyHitPoints);
-        MyHitPoints = Math.Min(MyHitPoints, MyHitPoints + hpToSteal);
-        Console.WriteLine($"{base.MySkill} is successful!");
+        MyHitPoints = Math.Min(MyMaxHitPoints, MyHitPoints + hpToSteal);
+        Console.WriteLine($"{MySkill} stole {hpToSteal} hit point(s) from enemy!");
         return hpToSteal;
     }
 }

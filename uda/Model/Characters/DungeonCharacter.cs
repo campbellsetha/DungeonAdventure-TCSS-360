@@ -2,6 +2,8 @@ namespace UDA.Model.Characters;
 
 public abstract class DungeonCharacter
 {
+    protected DungeonCharacter() {}
+    
     protected DungeonCharacter(in string theName,
         in int theHitPoints,
         in int theAttackSpeed,
@@ -9,18 +11,16 @@ public abstract class DungeonCharacter
         in (int, int) theDamageRange)
     {
         if (theHitPoints <= 0) 
-            throw new ArgumentOutOfRangeException(nameof(theHitPoints), theHitPoints,
-                "Hit points must be positive");
+            throw new ArgumentException("Hit points must be positive");
         if (theAttackSpeed <= 0) 
-            throw new ArgumentOutOfRangeException(nameof(theAttackSpeed), theAttackSpeed,
-                "Attack speed must be positive");
+            throw new ArgumentException("Attack speed must be positive");
         if (theHitChance <= 0)
-            throw new ArgumentOutOfRangeException(nameof(theHitChance), theHitChance,
-                "Hit chance must be positive");
+            throw new ArgumentException("Hit chance must be positive");
         if (theDamageRange.Item1 <= 0 || theDamageRange.Item2 <= 0)
-            throw new ArgumentOutOfRangeException(nameof(theDamageRange), theDamageRange,
-                "Damage range must be positive");
-        MyName = theName ?? throw new ArgumentNullException(nameof(theName), "Name is null");
+            throw new ArgumentException("Damage range must be positive");
+        if (string.IsNullOrEmpty(theName))
+            throw new ArgumentException("Name is null or empty");
+        MyName = theName;
         MyMaxHitPoints = theHitPoints;
         MyHitPoints = theHitPoints;
         MyDamageRange = theDamageRange;
@@ -38,7 +38,7 @@ public abstract class DungeonCharacter
 
     private int MyAttackSpeed { get; }
 
-    private double MyHitChance { get; }
+    public double MyHitChance { get; protected set; }
 
     public virtual void TakeDamage(in int theDamage)
     {

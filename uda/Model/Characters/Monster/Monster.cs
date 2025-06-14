@@ -7,8 +7,6 @@ public class Monster : DungeonCharacter
 
     private double MyHealChance { get; }
 
-    private bool MyStunStatus { get; set; }
-
     public Monster(in string theName,
         in int theHitPoints,
         in int theAttackSpeed,
@@ -35,7 +33,7 @@ public class Monster : DungeonCharacter
     private void Heal()
     {
         var rand = RandomSingleton.GetInstance();
-        if (!(rand.NextDouble() > 1 - MyHealChance) || MyStunStatus) return;
+        if (!(rand.NextDouble() > 1 - MyHealChance)) return;
         var healAmount = rand.Next(MyHealRange.Min, MyHealRange.Max + 1);
         if (healAmount + MyHitPoints > MyMaxHitPoints) healAmount = MyMaxHitPoints - MyHitPoints;
         MyHitPoints += healAmount;
@@ -44,9 +42,12 @@ public class Monster : DungeonCharacter
     public override void TakeDamage(in int theDamage)
     {
         base.TakeDamage(theDamage);
-        if (MyHitPoints / (double) theDamage >= _myStunThreshold) MyStunStatus = true;
         MyHitPoints -= theDamage;
-        Heal();
+        // Clamp health to avoid it going below 0
+        MyHitPoints = Math.Max(MyHitPoints, 0);
+        // A monster can keep healing as long as a certain percentage of their health hasn't been lost.
+        if (MyMaxHitPoints - (MyMaxHitPoints * _myStunThreshold) <= MyHitPoints) Heal();
+        else Console.WriteLine("Monster is stunned and cannot heal");
     }
 
     public override string ToString()

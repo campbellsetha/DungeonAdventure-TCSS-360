@@ -3,6 +3,10 @@ public class Priest(in string theName, in int theHitPoints, in int theAttackSpee
     in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
+    
+    /// <summary>
+    /// Implements the PerformSkill method.
+    /// </summary>
     public override int PerformSkill(in DungeonCharacter theTarget)
     {
         const int maxHeal = 20;

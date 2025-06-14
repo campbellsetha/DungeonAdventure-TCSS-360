@@ -4,6 +4,7 @@ namespace UDA.Model.Characters.Monster;
 
 public abstract class MonsterFactory
 {
+    // The values to be passed to the Monster parameters.
     private static string _myName;
     private static int _myHitPoints;
     private static int _myAttackSpeed;
@@ -13,6 +14,9 @@ public abstract class MonsterFactory
     private static (int, int) _myHealRange;
     private static double _myStunThreshold;
 
+    /// <summary>
+    /// Constructs a Gremlin from the database.
+    /// </summary>
     public static Monster CreateGremlin()
     {
         const string query = "SELECT * FROM Monster WHERE ID = 1";
@@ -20,7 +24,9 @@ public abstract class MonsterFactory
         return new Monster(_myName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myHealChance,
             _myHealRange, _myStunThreshold);
     }
-
+    /// <summary>
+    /// Constructs an Ogre from the database.
+    /// </summary>
     public static Monster CreateOgre()
     {
         const string query = "SELECT * FROM Monster WHERE ID = 2";
@@ -29,6 +35,9 @@ public abstract class MonsterFactory
             _myHealRange, _myStunThreshold);
     }
 
+    /// <summary>
+    /// Constructs a Skeleton from the database.
+    /// </summary>
     public static Monster CreateSkeleton()
     {
         const string query = "SELECT * FROM Monster WHERE ID = 3";
@@ -37,6 +46,9 @@ public abstract class MonsterFactory
             _myHealRange, _myStunThreshold);
     }
 
+    /// <summary>
+    /// Constructs a random monster from the database.
+    /// </summary>
     public static Monster CreateRandoMonster()
     {
         var rng = RandomSingleton.GetInstance();
@@ -48,6 +60,9 @@ public abstract class MonsterFactory
         _myHealRange, _myStunThreshold);
     }
     
+    /// <summary>
+    /// Connects to the database and reads from it.
+    /// </summary>
     private static void ConnectDb(in string theQuery)
     {
         

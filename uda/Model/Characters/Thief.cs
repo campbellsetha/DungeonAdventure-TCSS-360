@@ -7,6 +7,9 @@ public class Thief(in string theName, in int theHitPoints, in int theAttackSpeed
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
 
+    /// <summary>
+    /// Implements the PerformSkill method.
+    /// </summary>
     public override int PerformSkill(in DungeonCharacter theTarget)
     {
         const double successChance = 0.4;

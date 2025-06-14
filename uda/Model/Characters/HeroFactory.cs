@@ -15,6 +15,9 @@ public abstract class HeroFactory
     {
     }
 
+    /// <summary>
+    /// Constructs a Priest.
+    /// </summary>
     public static Hero CreatePriest(string theName)
     {
         const string query = "SELECT * FROM Hero WHERE ID = 'Priest'";
@@ -22,6 +25,9 @@ public abstract class HeroFactory
         return new Priest(theName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myBlockChance, _mySkill);
     }
     
+    /// <summary>
+    /// Constructs a Priest.
+    /// </summary>
     public static Hero CreateThief(string theName)
     {
         const string query = "SELECT * FROM Hero WHERE ID = 'Thief'";
@@ -29,6 +35,9 @@ public abstract class HeroFactory
         return new Thief(theName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myBlockChance, _mySkill);
     }
 
+    /// <summary>
+    /// Constructs a Warrior.
+    /// </summary>
     public static Hero CreateWarrior(string theName)
     {
         const string query = "SELECT * FROM Hero WHERE ID = 'Warrior'";
@@ -36,6 +45,9 @@ public abstract class HeroFactory
         return new Warrior(theName, _myHitPoints, _myAttackSpeed, _myHitChance, _myDamageRange, _myBlockChance, _mySkill);
     }
     
+    /// <summary>
+    /// Connects to the database and reads it.
+    /// </summary>
     private static void ConnectDb(in string theQuery)
     {
         
@@ -66,15 +78,4 @@ public abstract class HeroFactory
             Console.WriteLine($"Exception message: {e.Message}");
         }
     }
-
-    /*public static Hero CreateHero(string theClassType, string theName)
-    {
-        return theClassType.ToLower() switch
-        {
-            Warrior => new Warrior(theName),
-            Priest => new Priest(theName),
-            Thief => new Thief(theName),
-            _ => throw new ArgumentException("The class type must be Warrior, Priest, or Thief")
-        };
-    }*/
 }

@@ -1,6 +1,3 @@
-//using Godot;
-
-using Godot;
 using static System.Math;
 
 namespace UDA.Model.Characters;
@@ -15,17 +12,19 @@ public abstract class Hero : DungeonCharacter
 		double theBlockChance,
 		string theSkill) : base(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange)
 	{
-		if (theBlockChance < 0)
-			throw new ArgumentOutOfRangeException(nameof(theBlockChance),  theBlockChance, "Block chance must be positive");
+		if (theBlockChance <= 0)
+			throw new ArgumentException("Block chance must be positive");
 		MyBlockChance = theBlockChance;
-		MySkill = theSkill ?? throw new ArgumentNullException(nameof(theSkill), "The skill is null");
+		if (string.IsNullOrEmpty(theSkill))
+			throw new ArgumentException("Skill is null or empty");
+		MySkill = theSkill;
 	}
 
 	private double MyBlockChance { get; }
 
     protected string MySkill { get; }
 
-    protected virtual int PerformSkill(in DungeonCharacter theTarget)
+    public virtual int PerformSkill(in DungeonCharacter theTarget)
     {
 	    if (theTarget == null) throw new ArgumentNullException(nameof(theTarget), "Target is null");
 	    return 0;
@@ -34,18 +33,21 @@ public abstract class Hero : DungeonCharacter
 	public override void TakeDamage(in int theDamage)
 	{
 		base.TakeDamage(theDamage);
-		if (!(RandomSingleton.GetInstance().NextDouble() > 1 - MyBlockChance)) MyHitPoints -= theDamage;
-		{
-			MyHitPoints -= theDamage;
-			// Clamp health to avoid it going below 0
-			MyHitPoints = Max(MyHitPoints, 0);
-        }
-    }
+		var rand = RandomSingleton.GetInstance().NextDouble();
+		if (rand > 1 - MyBlockChance)
+			return;
+		MyHitPoints -= theDamage;
+		// Clamp health to avoid it going below 0
+		MyHitPoints = Max(MyHitPoints, 0);
+	}
 
     public void Heal(in int theHealAmount)
     {
-	    if (theHealAmount < 0) 
-		    throw new ArgumentOutOfRangeException(nameof(theHealAmount), theHealAmount, "The heal amount is negative");
+	    if (theHealAmount <= 0) 
+		    throw new ArgumentOutOfRangeException(nameof(theHealAmount), theHealAmount, 
+			    "The heal amount must be positive");
+	    if (MyHitPoints == 0)
+		    throw new ArgumentException("Cannot heal a dead character");
         MyHitPoints += theHealAmount;
         // Clamp health to avoid it exceeding MaxHitPoints
         MyHitPoints = Min(MyHitPoints, MyMaxHitPoints);

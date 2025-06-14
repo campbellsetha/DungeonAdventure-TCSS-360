@@ -2108,19 +2108,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sword\\.nuget\\packages\\": {}
+    "C:\\Users\\Christina\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Christina\\RiderProjects\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\sword\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Tests\\obj\\",
+      "projectPath": "C:\\Users\\Christina\\RiderProjects\\DungeonAdventure-TCSS-360\\uda\\Tests\\Tests.csproj",
+      "packagesPath": "C:\\Users\\Christina\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Christina\\RiderProjects\\DungeonAdventure-TCSS-360\\uda\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sword\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Christina\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -2132,8 +2132,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
-              "projectPath": "C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj"
+            "C:\\Users\\Christina\\RiderProjects\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj": {
+              "projectPath": "C:\\Users\\Christina\\RiderProjects\\DungeonAdventure-TCSS-360\\uda\\UDA.csproj"
             }
           }
         }
@@ -2187,7 +2187,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Christina\\.dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

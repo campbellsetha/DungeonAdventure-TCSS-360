@@ -9,4 +9,14 @@ public static class RandomSingleton
     {
         return _instance ??= new Random();
     }
+
+    public static void SetSeed(int theSeed)
+    {
+        _instance = new Random(theSeed);
+    }
+
+    public static void UnsetSeed()
+    {
+        _instance = new Random();
+    }
 }

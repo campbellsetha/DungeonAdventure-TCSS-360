@@ -1,19 +1,22 @@
 using System.Text;
 using static UDA.Model.Map.Direction;
 using static UDA.Model.Map.RoomType;
+using static UDA.Model.Map.BoundaryType;
 
 namespace UDA.Model.Map;
 
 public class Room
 {
+    private const string VerticalDoor = "|";
+    private const string VerticalWall = "*";
+    private const string HorizontalDoor = "*_*";
+    private const string HorizontalWall = "***";
     private const double MyChance = 0.1;
-    //internal Dictionary<Direction, BoundaryType?> MyBoundaries { get => _myBoundaries; }
     public RoomType MyRoomType { get; }
-    public bool ContainsTrap { get; }
-    public bool ContainsHealingPotion { get; }
-    public bool ContainsVisionPotion { get; }
-
-    internal Dictionary<Direction, BoundaryType?> MyBoundaries { get; set; } = new()
+    public bool ContainsTrap { get; protected set; }
+    public bool ContainsHealingPotion { get; protected set; }
+    public bool ContainsVisionPotion { get; protected set; }
+    public Dictionary<Direction, BoundaryType?> MyBoundaries { get; } = new()
     {
         { North, null },
         { South, null },
@@ -23,12 +26,18 @@ public class Room
     
     public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
+        if (!Enum.IsDefined(typeof(RoomType), theRoomType))
+            throw new ArgumentException("Room type not defined");
+        const int maxDoors = 4;
+        if (theDoors.Length > maxDoors)
+            throw new ArgumentException("Rooms can only have four doors");
+        if (theDoors.Any(door => !Enum.IsDefined(typeof(Direction), door)))
+        {
+            throw new ArgumentException("Door not defined");
+        }
         MyRoomType = theRoomType;
-
-        foreach (var dir in theDoors) MyBoundaries[dir] = BoundaryType.Door;
-
-        foreach (var dir in MyBoundaries.Keys) MyBoundaries[dir] ??= BoundaryType.Wall;
-
+        foreach (var dir in theDoors) MyBoundaries[dir] = Door;
+        foreach (var dir in MyBoundaries.Keys) MyBoundaries[dir] ??= Wall;
         if (theRoomType != Entrance && theRoomType != Exit)
         {
             ContainsTrap = RandomSingleton.GetInstance().NextDouble() > 1 - MyChance;
@@ -41,8 +50,6 @@ public class Room
             ContainsHealingPotion = false;
             ContainsVisionPotion = false;
         }
-
-        MyBoundaries = MyBoundaries;
     }
     
     private bool ContainsMultipleItems()
@@ -72,10 +79,10 @@ public class Room
 
     internal int GetNumberOfDoors()
     {
-        int numOfDoors = 0;
-        foreach (KeyValuePair<Direction, BoundaryType?> kvp in MyBoundaries)
+        var numOfDoors = 0;
+        foreach (var kvp in MyBoundaries)
         {
-            if (kvp.Value == BoundaryType.Door)
+            if (kvp.Value == Door)
             {
                 numOfDoors++;
             }
@@ -86,11 +93,13 @@ public class Room
 
     public string[] GetDetails()
     {
-        var result = new string[3];
-        result[0] = MyBoundaries.GetValueOrDefault(North).Equals(BoundaryType.Door) ? "*_*" : "***";
-        result[1] = (MyBoundaries.GetValueOrDefault(West).Equals(BoundaryType.Door) ? "|" : "*") + GetLabel() +
-                    (MyBoundaries.GetValueOrDefault(East).Equals(BoundaryType.Door) ? "|" : "*");
-        result[2] = MyBoundaries.GetValueOrDefault(South).Equals(BoundaryType.Door) ? "*_*" : "***";
+        const int numOfLines = 3;
+        var result = new string[numOfLines];
+        
+        result[0] = MyBoundaries[North] == Door ? HorizontalDoor : HorizontalWall;
+        result[1] = (MyBoundaries[West] == Door ? VerticalDoor : VerticalWall) + GetLabel() +
+                    (MyBoundaries[East] == Door ? VerticalDoor : VerticalWall);
+        result[2] = MyBoundaries[South] == Door ? HorizontalDoor : HorizontalWall;
         return result;
     }
 

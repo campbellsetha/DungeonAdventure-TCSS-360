@@ -4,7 +4,7 @@ public class Warrior(in string theName, in int theHitPoints, in int theAttackSpe
     in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
-    protected override int PerformSkill(in DungeonCharacter theTarget)
+    public override int PerformSkill(in DungeonCharacter theTarget)
     {
         var damageDealt = base.PerformSkill(theTarget);
         var rand = RandomSingleton.GetInstance();
@@ -14,9 +14,10 @@ public class Warrior(in string theName, in int theHitPoints, in int theAttackSpe
             Console.WriteLine($"{MySkill} failed!");
         } else {
             Console.WriteLine($"{MySkill} is successful!");
-            const int minDamage = 75;
-            const int maxDamage = 175;
-            damageDealt = rand.Next(minDamage, maxDamage);
+            var percentages = (0.5, 0.9);
+            var minDamage = theTarget.MyMaxHitPoints * percentages.Item1;
+            var maxDamage = theTarget.MyMaxHitPoints * percentages.Item2;
+            damageDealt = rand.Next((int) minDamage, (int) maxDamage);
         }
         return damageDealt;
     }

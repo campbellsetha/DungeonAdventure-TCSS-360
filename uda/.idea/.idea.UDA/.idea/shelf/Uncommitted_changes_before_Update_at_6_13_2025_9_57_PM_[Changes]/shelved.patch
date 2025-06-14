@@ -1,0 +1,529 @@
+Index: export_presets.cfg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[preset.0]\n\nname=\"DungeonAdventure\"\nplatform=\"Windows Desktop\"\nrunnable=false\nadvanced_options=false\ndedicated_server=false\ncustom_features=\"\"\nexport_filter=\"scenes\"\nexport_files=PackedStringArray(\"res://Game/Enemies/BossMonster.tscn\", \"res://Game/Enemies/Gremlin.tscn\", \"res://Game/Enemies/MonsterBase.tscn\", \"res://Game/Enemies/Ogre.tscn\", \"res://Game/Enemies/Skeleton.tscn\", \"res://Game/GameManager/dungeonBuilder.tscn\", \"res://Game/GameManager/game_manager.tscn\", \"res://Game/Items/ItemProtos/abstraction_pillar.tscn\", \"res://Game/Items/ItemProtos/encapsulation_pillar.tscn\", \"res://Game/Items/ItemProtos/HealthPotion.tscn\", \"res://Game/Items/ItemProtos/heal_potion.tscn\", \"res://Game/Items/ItemProtos/inheritance_pillar.tscn\", \"res://Game/Items/ItemProtos/item_template.tscn\", \"res://Game/Items/ItemProtos/pillar_a.tscn\", \"res://Game/Items/ItemProtos/polymorphism_pillar.tscn\", \"res://Game/Items/ItemProtos/Trap.tscn\", \"res://Game/Items/ItemProtos/TrapCollisionTest.tscn\", \"res://Game/Items/ItemProtos/vision_potion.tscn\", \"res://Game/Player/hp_bar.tscn\", \"res://Game/Player/player.tscn\", \"res://Game/Player/Sword.tscn\", \"res://Game/Resources/ExitPortal.tscn\", \"res://Game/Resources/GameOverScreen.tscn\", \"res://Game/Resources/GameWinScreen.tscn\", \"res://Game/SqlDBTest/dbTest.tscn\", \"res://Game/SqlDBTest/monster_creation_test.tscn\", \"res://Game/SqlDBTest/sqlTest.tscn\", \"res://Game/UI/EndScenes/game_over_scene.tscn\", \"res://Game/UI/EndScenes/win_scene.tscn\", \"res://Game/UI/MainMenu/CharacterSelection.tscn\", \"res://Game/UI/MainMenu/CharacterTile.tscn\", \"res://Game/UI/MainMenu/HelpMenuPopUp.tscn\", \"res://Game/UI/MainMenu/LoadGame.tscn\", \"res://Game/UI/MainMenu/MainMenu.tscn\", \"res://Game/UI/MainMenu/MainOptions.tscn\", \"res://Game/UI/MainMenu/PriestTile.tscn\", \"res://Game/UI/MainMenu/ThiefTile.tscn\", \"res://Game/UI/MainMenu/WarriorTile.tscn\", \"res://Game/UI/PopUps/ExitPromptPopUp.tscn\", \"res://Game/UI/SignalGuide/SignalTest.tscn\", \"res://Game/UI/StartMenu(Prototype)/StartMenu.tscn\", \"res://Game/UI/world.tscn\", \"res://Game/main.tscn\", \"res://Game/MainMenu.tscn\", \"res://Game/MainMenuProto.tscn\", \"res://Inventory/idol_slot_ui.tscn\", \"res://Inventory/inventory_slot_ui.tscn\", \"res://Inventory/inventory_ui.tscn\", \"res://Rooms/Entrance.tscn\", \"res://Rooms/FourDoor.tscn\", \"res://Rooms/NoDoor.tscn\", \"res://Rooms/OneDoorEast.tscn\", \"res://Rooms/OneDoorNorth.tscn\", \"res://Rooms/OneDoorSouth.tscn\", \"res://Rooms/OneDoorWest.tscn\", \"res://Rooms/RoomTemplate.tscn\", \"res://Rooms/room_test.tscn\", \"res://Rooms/ThreeDoorNorthEastWest.tscn\", \"res://Rooms/ThreeDoorNorthSouthEast.tscn\", \"res://Rooms/ThreeDoorNorthSouthWest.tscn\", \"res://Rooms/ThreeDoorSouthEastWest.tscn\", \"res://Rooms/TwoDoorEastWest.tscn\", \"res://Rooms/TwoDoorNorthEast.tscn\", \"res://Rooms/TwoDoorNorthSouth.tscn\", \"res://Rooms/TwoDoorNorthWest.tscn\", \"res://Rooms/TwoDoorSouthEast.tscn\", \"res://Rooms/TwoDoorSouthWest.tscn\", \"res://SaveTest/player_save_test.tscn\", \"res://World/world.tscn\")\ninclude_filter=\"\"\nexclude_filter=\"\"\nexport_path=\"../../../Desktop/UDAEXETEST/UDA.exe\"\npatches=PackedStringArray()\nencryption_include_filters=\"\"\nencryption_exclude_filters=\"\"\nseed=0\nencrypt_pck=false\nencrypt_directory=false\nscript_export_mode=2\n\n[preset.0.options]\n\ncustom_template/debug=\"\"\ncustom_template/release=\"\"\ndebug/export_console_wrapper=0\nbinary_format/embed_pck=true\ntexture_format/s3tc_bptc=true\ntexture_format/etc2_astc=false\nbinary_format/architecture=\"x86_64\"\ncodesign/enable=false\ncodesign/timestamp=true\ncodesign/timestamp_server_url=\"\"\ncodesign/digest_algorithm=1\ncodesign/description=\"\"\ncodesign/custom_options=PackedStringArray()\napplication/modify_resources=true\napplication/icon=\"\"\napplication/console_wrapper_icon=\"\"\napplication/icon_interpolation=4\napplication/file_version=\"\"\napplication/product_version=\"\"\napplication/company_name=\"Team 5\"\napplication/product_name=\"UDA\"\napplication/file_description=\"A dungeon adventure game\"\napplication/copyright=\"\"\napplication/trademarks=\"\"\napplication/export_angle=0\napplication/export_d3d12=0\napplication/d3d12_agility_sdk_multiarch=true\nssh_remote_deploy/enabled=false\nssh_remote_deploy/host=\"user@host_ip\"\nssh_remote_deploy/port=\"22\"\nssh_remote_deploy/extra_args_ssh=\"\"\nssh_remote_deploy/extra_args_scp=\"\"\nssh_remote_deploy/run_script=\"Expand-Archive -LiteralPath '{temp_dir}\\\\{archive_name}' -DestinationPath '{temp_dir}'\n$action = New-ScheduledTaskAction -Execute '{temp_dir}\\\\{exe_name}' -Argument '{cmd_args}'\n$trigger = New-ScheduledTaskTrigger -Once -At 00:00\n$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries\n$task = New-ScheduledTask -Action $action -Trigger $trigger -Settings $settings\nRegister-ScheduledTask godot_remote_debug -InputObject $task -Force:$true\nStart-ScheduledTask -TaskName godot_remote_debug\nwhile (Get-ScheduledTask -TaskName godot_remote_debug | ? State -eq running) { Start-Sleep -Milliseconds 100 }\nUnregister-ScheduledTask -TaskName godot_remote_debug -Confirm:$false -ErrorAction:SilentlyContinue\"\nssh_remote_deploy/cleanup_script=\"Stop-ScheduledTask -TaskName godot_remote_debug -ErrorAction:SilentlyContinue\nUnregister-ScheduledTask -TaskName godot_remote_debug -Confirm:$false -ErrorAction:SilentlyContinue\nRemove-Item -Recurse -Force '{temp_dir}'\"\ndotnet/include_scripts_content=false\ndotnet/include_debug_symbols=false\ndotnet/embed_build_outputs=false\n\n[preset.1]\n\nname=\"DungeonAdventure\"\nplatform=\"Windows Desktop\"\nrunnable=false\nadvanced_options=false\ndedicated_server=false\ncustom_features=\"\"\nexport_filter=\"all_resources\"\ninclude_filter=\"\"\nexclude_filter=\"\"\nexport_path=\"../../../Desktop/UDAEXETEST/UDA.exe\"\npatches=PackedStringArray()\nencryption_include_filters=\"\"\nencryption_exclude_filters=\"\"\nseed=0\nencrypt_pck=false\nencrypt_directory=false\nscript_export_mode=2\n\n[preset.1.options]\n\ncustom_template/debug=\"\"\ncustom_template/release=\"\"\ndebug/export_console_wrapper=0\nbinary_format/embed_pck=true\ntexture_format/s3tc_bptc=true\ntexture_format/etc2_astc=false\nbinary_format/architecture=\"x86_64\"\ncodesign/enable=false\ncodesign/timestamp=true\ncodesign/timestamp_server_url=\"\"\ncodesign/digest_algorithm=1\ncodesign/description=\"\"\ncodesign/custom_options=PackedStringArray()\napplication/modify_resources=true\napplication/icon=\"\"\napplication/console_wrapper_icon=\"\"\napplication/icon_interpolation=4\napplication/file_version=\"\"\napplication/product_version=\"\"\napplication/company_name=\"Team 5\"\napplication/product_name=\"UDA\"\napplication/file_description=\"\"\napplication/copyright=\"\"\napplication/trademarks=\"\"\napplication/export_angle=0\napplication/export_d3d12=0\napplication/d3d12_agility_sdk_multiarch=true\nssh_remote_deploy/enabled=false\nssh_remote_deploy/host=\"user@host_ip\"\nssh_remote_deploy/port=\"22\"\nssh_remote_deploy/extra_args_ssh=\"\"\nssh_remote_deploy/extra_args_scp=\"\"\nssh_remote_deploy/run_script=\"Expand-Archive -LiteralPath '{temp_dir}\\\\{archive_name}' -DestinationPath '{temp_dir}'\n$action = New-ScheduledTaskAction -Execute '{temp_dir}\\\\{exe_name}' -Argument '{cmd_args}'\n$trigger = New-ScheduledTaskTrigger -Once -At 00:00\n$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries\n$task = New-ScheduledTask -Action $action -Trigger $trigger -Settings $settings\nRegister-ScheduledTask godot_remote_debug -InputObject $task -Force:$true\nStart-ScheduledTask -TaskName godot_remote_debug\nwhile (Get-ScheduledTask -TaskName godot_remote_debug | ? State -eq running) { Start-Sleep -Milliseconds 100 }\nUnregister-ScheduledTask -TaskName godot_remote_debug -Confirm:$false -ErrorAction:SilentlyContinue\"\nssh_remote_deploy/cleanup_script=\"Stop-ScheduledTask -TaskName godot_remote_debug -ErrorAction:SilentlyContinue\nUnregister-ScheduledTask -TaskName godot_remote_debug -Confirm:$false -ErrorAction:SilentlyContinue\nRemove-Item -Recurse -Force '{temp_dir}'\"\ndotnet/include_scripts_content=false\ndotnet/include_debug_symbols=false\ndotnet/embed_build_outputs=false\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/export_presets.cfg b/export_presets.cfg
+--- a/export_presets.cfg	(revision aadb914f7b0db88e71017ab2623fd9cef3a90fbd)
++++ b/export_presets.cfg	(date 1749869424644)
+@@ -6,11 +6,10 @@
+ advanced_options=false
+ dedicated_server=false
+ custom_features=""
+-export_filter="scenes"
+-export_files=PackedStringArray("res://Game/Enemies/BossMonster.tscn", "res://Game/Enemies/Gremlin.tscn", "res://Game/Enemies/MonsterBase.tscn", "res://Game/Enemies/Ogre.tscn", "res://Game/Enemies/Skeleton.tscn", "res://Game/GameManager/dungeonBuilder.tscn", "res://Game/GameManager/game_manager.tscn", "res://Game/Items/ItemProtos/abstraction_pillar.tscn", "res://Game/Items/ItemProtos/encapsulation_pillar.tscn", "res://Game/Items/ItemProtos/HealthPotion.tscn", "res://Game/Items/ItemProtos/heal_potion.tscn", "res://Game/Items/ItemProtos/inheritance_pillar.tscn", "res://Game/Items/ItemProtos/item_template.tscn", "res://Game/Items/ItemProtos/pillar_a.tscn", "res://Game/Items/ItemProtos/polymorphism_pillar.tscn", "res://Game/Items/ItemProtos/Trap.tscn", "res://Game/Items/ItemProtos/TrapCollisionTest.tscn", "res://Game/Items/ItemProtos/vision_potion.tscn", "res://Game/Player/hp_bar.tscn", "res://Game/Player/player.tscn", "res://Game/Player/Sword.tscn", "res://Game/Resources/ExitPortal.tscn", "res://Game/Resources/GameOverScreen.tscn", "res://Game/Resources/GameWinScreen.tscn", "res://Game/SqlDBTest/dbTest.tscn", "res://Game/SqlDBTest/monster_creation_test.tscn", "res://Game/SqlDBTest/sqlTest.tscn", "res://Game/UI/EndScenes/game_over_scene.tscn", "res://Game/UI/EndScenes/win_scene.tscn", "res://Game/UI/MainMenu/CharacterSelection.tscn", "res://Game/UI/MainMenu/CharacterTile.tscn", "res://Game/UI/MainMenu/HelpMenuPopUp.tscn", "res://Game/UI/MainMenu/LoadGame.tscn", "res://Game/UI/MainMenu/MainMenu.tscn", "res://Game/UI/MainMenu/MainOptions.tscn", "res://Game/UI/MainMenu/PriestTile.tscn", "res://Game/UI/MainMenu/ThiefTile.tscn", "res://Game/UI/MainMenu/WarriorTile.tscn", "res://Game/UI/PopUps/ExitPromptPopUp.tscn", "res://Game/UI/SignalGuide/SignalTest.tscn", "res://Game/UI/StartMenu(Prototype)/StartMenu.tscn", "res://Game/UI/world.tscn", "res://Game/main.tscn", "res://Game/MainMenu.tscn", "res://Game/MainMenuProto.tscn", "res://Inventory/idol_slot_ui.tscn", "res://Inventory/inventory_slot_ui.tscn", "res://Inventory/inventory_ui.tscn", "res://Rooms/Entrance.tscn", "res://Rooms/FourDoor.tscn", "res://Rooms/NoDoor.tscn", "res://Rooms/OneDoorEast.tscn", "res://Rooms/OneDoorNorth.tscn", "res://Rooms/OneDoorSouth.tscn", "res://Rooms/OneDoorWest.tscn", "res://Rooms/RoomTemplate.tscn", "res://Rooms/room_test.tscn", "res://Rooms/ThreeDoorNorthEastWest.tscn", "res://Rooms/ThreeDoorNorthSouthEast.tscn", "res://Rooms/ThreeDoorNorthSouthWest.tscn", "res://Rooms/ThreeDoorSouthEastWest.tscn", "res://Rooms/TwoDoorEastWest.tscn", "res://Rooms/TwoDoorNorthEast.tscn", "res://Rooms/TwoDoorNorthSouth.tscn", "res://Rooms/TwoDoorNorthWest.tscn", "res://Rooms/TwoDoorSouthEast.tscn", "res://Rooms/TwoDoorSouthWest.tscn", "res://SaveTest/player_save_test.tscn", "res://World/world.tscn")
++export_filter="all_resources"
+ include_filter=""
+ exclude_filter=""
+-export_path="../../../Desktop/UDAEXETEST/UDA.exe"
++export_path="../../../Desktop/UDAEXETEST/DungeonAdventure.exe"
+ patches=PackedStringArray()
+ encryption_include_filters=""
+ encryption_exclude_filters=""
+@@ -24,7 +23,7 @@
+ custom_template/debug=""
+ custom_template/release=""
+ debug/export_console_wrapper=0
+-binary_format/embed_pck=true
++binary_format/embed_pck=false
+ texture_format/s3tc_bptc=true
+ texture_format/etc2_astc=false
+ binary_format/architecture="x86_64"
+@@ -71,7 +70,7 @@
+ 
+ [preset.1]
+ 
+-name="DungeonAdventure"
++name="UDA"
+ platform="Windows Desktop"
+ runnable=false
+ advanced_options=false
+@@ -80,7 +79,7 @@
+ export_filter="all_resources"
+ include_filter=""
+ exclude_filter=""
+-export_path="../../../Desktop/UDAEXETEST/UDA.exe"
++export_path="../../../Desktop/UDAEXETEST/DungeonAdventure.exe"
+ patches=PackedStringArray()
+ encryption_include_filters=""
+ encryption_exclude_filters=""
+@@ -93,8 +92,8 @@
+ 
+ custom_template/debug=""
+ custom_template/release=""
+-debug/export_console_wrapper=0
+-binary_format/embed_pck=true
++debug/export_console_wrapper=1
++binary_format/embed_pck=false
+ texture_format/s3tc_bptc=true
+ texture_format/etc2_astc=false
+ binary_format/architecture="x86_64"
+@@ -104,14 +103,14 @@
+ codesign/digest_algorithm=1
+ codesign/description=""
+ codesign/custom_options=PackedStringArray()
+-application/modify_resources=true
++application/modify_resources=false
+ application/icon=""
+ application/console_wrapper_icon=""
+ application/icon_interpolation=4
+ application/file_version=""
+ application/product_version=""
+-application/company_name="Team 5"
+-application/product_name="UDA"
++application/company_name=""
++application/product_name=""
+ application/file_description=""
+ application/copyright=""
+ application/trademarks=""
+@@ -136,5 +135,262 @@
+ Unregister-ScheduledTask -TaskName godot_remote_debug -Confirm:$false -ErrorAction:SilentlyContinue
+ Remove-Item -Recurse -Force '{temp_dir}'"
+ dotnet/include_scripts_content=false
+-dotnet/include_debug_symbols=false
++dotnet/include_debug_symbols=true
++dotnet/embed_build_outputs=false
++
++[preset.2]
++
++name="macOS"
++platform="macOS"
++runnable=true
++advanced_options=false
++dedicated_server=false
++custom_features=""
++export_filter="all_resources"
++include_filter=""
++exclude_filter=""
++export_path="../../../Desktop/DungeonAdventure_Mac/DungeonAdventure.zip"
++patches=PackedStringArray()
++encryption_include_filters=""
++encryption_exclude_filters=""
++seed=0
++encrypt_pck=false
++encrypt_directory=false
++script_export_mode=2
++
++[preset.2.options]
++
++export/distribution_type=1
++binary_format/architecture="universal"
++custom_template/debug=""
++custom_template/release=""
++debug/export_console_wrapper=0
++application/icon=""
++application/icon_interpolation=4
++application/bundle_identifier="com.game.UDA"
++application/signature=""
++application/app_category="Games"
++application/short_version=""
++application/version=""
++application/copyright=""
++application/copyright_localized={}
++application/min_macos_version_x86_64="10.12"
++application/min_macos_version_arm64="11.00"
++application/export_angle=0
++display/high_res=true
++application/additional_plist_content=""
++xcode/platform_build="14C18"
++xcode/sdk_version="13.1"
++xcode/sdk_build="22C55"
++xcode/sdk_name="macosx13.1"
++xcode/xcode_version="1420"
++xcode/xcode_build="14C18"
++codesign/codesign=1
++codesign/installer_identity=""
++codesign/apple_team_id=""
++codesign/identity=""
++codesign/entitlements/custom_file=""
++codesign/entitlements/allow_jit_code_execution=false
++codesign/entitlements/allow_unsigned_executable_memory=false
++codesign/entitlements/allow_dyld_environment_variables=false
++codesign/entitlements/disable_library_validation=false
++codesign/entitlements/audio_input=false
++codesign/entitlements/camera=false
++codesign/entitlements/location=false
++codesign/entitlements/address_book=false
++codesign/entitlements/calendars=false
++codesign/entitlements/photos_library=false
++codesign/entitlements/apple_events=false
++codesign/entitlements/debugging=false
++codesign/entitlements/app_sandbox/enabled=false
++codesign/entitlements/app_sandbox/network_server=false
++codesign/entitlements/app_sandbox/network_client=false
++codesign/entitlements/app_sandbox/device_usb=false
++codesign/entitlements/app_sandbox/device_bluetooth=false
++codesign/entitlements/app_sandbox/files_downloads=0
++codesign/entitlements/app_sandbox/files_pictures=0
++codesign/entitlements/app_sandbox/files_music=0
++codesign/entitlements/app_sandbox/files_movies=0
++codesign/entitlements/app_sandbox/files_user_selected=0
++codesign/entitlements/app_sandbox/helper_executables=[]
++codesign/entitlements/additional=""
++codesign/custom_options=PackedStringArray()
++notarization/notarization=0
++privacy/microphone_usage_description=""
++privacy/microphone_usage_description_localized={}
++privacy/camera_usage_description=""
++privacy/camera_usage_description_localized={}
++privacy/location_usage_description=""
++privacy/location_usage_description_localized={}
++privacy/address_book_usage_description=""
++privacy/address_book_usage_description_localized={}
++privacy/calendar_usage_description=""
++privacy/calendar_usage_description_localized={}
++privacy/photos_library_usage_description=""
++privacy/photos_library_usage_description_localized={}
++privacy/desktop_folder_usage_description=""
++privacy/desktop_folder_usage_description_localized={}
++privacy/documents_folder_usage_description=""
++privacy/documents_folder_usage_description_localized={}
++privacy/downloads_folder_usage_description=""
++privacy/downloads_folder_usage_description_localized={}
++privacy/network_volumes_usage_description=""
++privacy/network_volumes_usage_description_localized={}
++privacy/removable_volumes_usage_description=""
++privacy/removable_volumes_usage_description_localized={}
++privacy/tracking_enabled=false
++privacy/tracking_domains=PackedStringArray()
++privacy/collected_data/name/collected=false
++privacy/collected_data/name/linked_to_user=false
++privacy/collected_data/name/used_for_tracking=false
++privacy/collected_data/name/collection_purposes=0
++privacy/collected_data/email_address/collected=false
++privacy/collected_data/email_address/linked_to_user=false
++privacy/collected_data/email_address/used_for_tracking=false
++privacy/collected_data/email_address/collection_purposes=0
++privacy/collected_data/phone_number/collected=false
++privacy/collected_data/phone_number/linked_to_user=false
++privacy/collected_data/phone_number/used_for_tracking=false
++privacy/collected_data/phone_number/collection_purposes=0
++privacy/collected_data/physical_address/collected=false
++privacy/collected_data/physical_address/linked_to_user=false
++privacy/collected_data/physical_address/used_for_tracking=false
++privacy/collected_data/physical_address/collection_purposes=0
++privacy/collected_data/other_contact_info/collected=false
++privacy/collected_data/other_contact_info/linked_to_user=false
++privacy/collected_data/other_contact_info/used_for_tracking=false
++privacy/collected_data/other_contact_info/collection_purposes=0
++privacy/collected_data/health/collected=false
++privacy/collected_data/health/linked_to_user=false
++privacy/collected_data/health/used_for_tracking=false
++privacy/collected_data/health/collection_purposes=0
++privacy/collected_data/fitness/collected=false
++privacy/collected_data/fitness/linked_to_user=false
++privacy/collected_data/fitness/used_for_tracking=false
++privacy/collected_data/fitness/collection_purposes=0
++privacy/collected_data/payment_info/collected=false
++privacy/collected_data/payment_info/linked_to_user=false
++privacy/collected_data/payment_info/used_for_tracking=false
++privacy/collected_data/payment_info/collection_purposes=0
++privacy/collected_data/credit_info/collected=false
++privacy/collected_data/credit_info/linked_to_user=false
++privacy/collected_data/credit_info/used_for_tracking=false
++privacy/collected_data/credit_info/collection_purposes=0
++privacy/collected_data/other_financial_info/collected=false
++privacy/collected_data/other_financial_info/linked_to_user=false
++privacy/collected_data/other_financial_info/used_for_tracking=false
++privacy/collected_data/other_financial_info/collection_purposes=0
++privacy/collected_data/precise_location/collected=false
++privacy/collected_data/precise_location/linked_to_user=false
++privacy/collected_data/precise_location/used_for_tracking=false
++privacy/collected_data/precise_location/collection_purposes=0
++privacy/collected_data/coarse_location/collected=false
++privacy/collected_data/coarse_location/linked_to_user=false
++privacy/collected_data/coarse_location/used_for_tracking=false
++privacy/collected_data/coarse_location/collection_purposes=0
++privacy/collected_data/sensitive_info/collected=false
++privacy/collected_data/sensitive_info/linked_to_user=false
++privacy/collected_data/sensitive_info/used_for_tracking=false
++privacy/collected_data/sensitive_info/collection_purposes=0
++privacy/collected_data/contacts/collected=false
++privacy/collected_data/contacts/linked_to_user=false
++privacy/collected_data/contacts/used_for_tracking=false
++privacy/collected_data/contacts/collection_purposes=0
++privacy/collected_data/emails_or_text_messages/collected=false
++privacy/collected_data/emails_or_text_messages/linked_to_user=false
++privacy/collected_data/emails_or_text_messages/used_for_tracking=false
++privacy/collected_data/emails_or_text_messages/collection_purposes=0
++privacy/collected_data/photos_or_videos/collected=false
++privacy/collected_data/photos_or_videos/linked_to_user=false
++privacy/collected_data/photos_or_videos/used_for_tracking=false
++privacy/collected_data/photos_or_videos/collection_purposes=0
++privacy/collected_data/audio_data/collected=false
++privacy/collected_data/audio_data/linked_to_user=false
++privacy/collected_data/audio_data/used_for_tracking=false
++privacy/collected_data/audio_data/collection_purposes=0
++privacy/collected_data/gameplay_content/collected=false
++privacy/collected_data/gameplay_content/linked_to_user=false
++privacy/collected_data/gameplay_content/used_for_tracking=false
++privacy/collected_data/gameplay_content/collection_purposes=0
++privacy/collected_data/customer_support/collected=false
++privacy/collected_data/customer_support/linked_to_user=false
++privacy/collected_data/customer_support/used_for_tracking=false
++privacy/collected_data/customer_support/collection_purposes=0
++privacy/collected_data/other_user_content/collected=false
++privacy/collected_data/other_user_content/linked_to_user=false
++privacy/collected_data/other_user_content/used_for_tracking=false
++privacy/collected_data/other_user_content/collection_purposes=0
++privacy/collected_data/browsing_history/collected=false
++privacy/collected_data/browsing_history/linked_to_user=false
++privacy/collected_data/browsing_history/used_for_tracking=false
++privacy/collected_data/browsing_history/collection_purposes=0
++privacy/collected_data/search_hhistory/collected=false
++privacy/collected_data/search_hhistory/linked_to_user=false
++privacy/collected_data/search_hhistory/used_for_tracking=false
++privacy/collected_data/search_hhistory/collection_purposes=0
++privacy/collected_data/user_id/collected=false
++privacy/collected_data/user_id/linked_to_user=false
++privacy/collected_data/user_id/used_for_tracking=false
++privacy/collected_data/user_id/collection_purposes=0
++privacy/collected_data/device_id/collected=false
++privacy/collected_data/device_id/linked_to_user=false
++privacy/collected_data/device_id/used_for_tracking=false
++privacy/collected_data/device_id/collection_purposes=0
++privacy/collected_data/purchase_history/collected=false
++privacy/collected_data/purchase_history/linked_to_user=false
++privacy/collected_data/purchase_history/used_for_tracking=false
++privacy/collected_data/purchase_history/collection_purposes=0
++privacy/collected_data/product_interaction/collected=false
++privacy/collected_data/product_interaction/linked_to_user=false
++privacy/collected_data/product_interaction/used_for_tracking=false
++privacy/collected_data/product_interaction/collection_purposes=0
++privacy/collected_data/advertising_data/collected=false
++privacy/collected_data/advertising_data/linked_to_user=false
++privacy/collected_data/advertising_data/used_for_tracking=false
++privacy/collected_data/advertising_data/collection_purposes=0
++privacy/collected_data/other_usage_data/collected=false
++privacy/collected_data/other_usage_data/linked_to_user=false
++privacy/collected_data/other_usage_data/used_for_tracking=false
++privacy/collected_data/other_usage_data/collection_purposes=0
++privacy/collected_data/crash_data/collected=false
++privacy/collected_data/crash_data/linked_to_user=false
++privacy/collected_data/crash_data/used_for_tracking=false
++privacy/collected_data/crash_data/collection_purposes=0
++privacy/collected_data/performance_data/collected=false
++privacy/collected_data/performance_data/linked_to_user=false
++privacy/collected_data/performance_data/used_for_tracking=false
++privacy/collected_data/performance_data/collection_purposes=0
++privacy/collected_data/other_diagnostic_data/collected=false
++privacy/collected_data/other_diagnostic_data/linked_to_user=false
++privacy/collected_data/other_diagnostic_data/used_for_tracking=false
++privacy/collected_data/other_diagnostic_data/collection_purposes=0
++privacy/collected_data/environment_scanning/collected=false
++privacy/collected_data/environment_scanning/linked_to_user=false
++privacy/collected_data/environment_scanning/used_for_tracking=false
++privacy/collected_data/environment_scanning/collection_purposes=0
++privacy/collected_data/hands/collected=false
++privacy/collected_data/hands/linked_to_user=false
++privacy/collected_data/hands/used_for_tracking=false
++privacy/collected_data/hands/collection_purposes=0
++privacy/collected_data/head/collected=false
++privacy/collected_data/head/linked_to_user=false
++privacy/collected_data/head/used_for_tracking=false
++privacy/collected_data/head/collection_purposes=0
++privacy/collected_data/other_data_types/collected=false
++privacy/collected_data/other_data_types/linked_to_user=false
++privacy/collected_data/other_data_types/used_for_tracking=false
++privacy/collected_data/other_data_types/collection_purposes=0
++ssh_remote_deploy/enabled=false
++ssh_remote_deploy/host="user@host_ip"
++ssh_remote_deploy/port="22"
++ssh_remote_deploy/extra_args_ssh=""
++ssh_remote_deploy/extra_args_scp=""
++ssh_remote_deploy/run_script="#!/usr/bin/env bash
++unzip -o -q \"{temp_dir}/{archive_name}\" -d \"{temp_dir}\"
++open \"{temp_dir}/{exe_name}.app\" --args {cmd_args}"
++ssh_remote_deploy/cleanup_script="#!/usr/bin/env bash
++kill $(pgrep -x -f \"{temp_dir}/{exe_name}.app/Contents/MacOS/{exe_name} {cmd_args}\")
++rm -rf \"{temp_dir}\""
++dotnet/include_scripts_content=false
++dotnet/include_debug_symbols=true
+ dotnet/embed_build_outputs=false
+Index: .idea/.idea.UDA/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"Games Playable\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/181a94b7-f314-497a-a668-91b2297ba60d.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/181a94b7-f314-497a-a668-91b2297ba60d.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/GameManager/EventBus.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/GameManager/EventBus.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Player/Player.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Player/Player.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Resources/ExitPortal.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Resources/ExitPortal.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/Resources/PlayerClass.tres\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/Resources/PlayerClass.tres\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/EndScenes/game_over_scene.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/EndScenes/game_over_scene.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/EndScenes/win_scene.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/EndScenes/win_scene.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/LoadMenu.cs\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/Priest.tres\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/PriestTile.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/PriestTile.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/Thief.tres\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/ThiefTile.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/ThiefTile.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/Warrior.tres\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/WarriorTile.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/WarriorTile.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/button-1.png.import\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/button-1.png.import\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png.import\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png.import\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/button_icon.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/selection_menu.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Game/UI/world.tscn\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Game/UI/world.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Assets/heal_potion.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Assets/heal_potion.png.import\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/ItemFactory.cs\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/ItemFactory.cs.uid\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/ItemToPickup.cs\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/ItemToPickup.cs.uid\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/InventoryItem.tres\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/abstraction_pillar.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/encapsulation_pillar.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/heal_potion.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/inheritance_pillar.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/polymorphism_pillar.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Items/Resources/vision_potion.tscn\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.assets.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.assets.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.nuget.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.nuget.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.packagespec.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.packagespec.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/rider.project.restore.info\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/rider.project.restore.info\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UDA.csproj\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UDA.csproj\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/export_presets.cfg\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/export_presets.cfg\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/project.godot\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/project.godot\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"DpaMonitoringSettings\">\n    <option name=\"firstShow\" value=\"false\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$/..\" value=\"final_gui\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;cblackwe11&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,\n    &quot;accountId&quot;: &quot;f5a1692e-637d-44a9-905b-3b0930087b9c&quot;\n  }\n}</component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/42/2387c203/Dictionary`2.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/28d08c4efeb02236ca78c5831835fe6783b079/InventoryUi_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/333dc9e47988366d5f3bd05f96c0462c646e6520/UDA.Game.Player.Player_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c92637ae2e83da0a63791071c41eae291d594156062866d8621b7ed7245c/CastHelpers.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/42a5acdab5881c1662db84d3e2a825c2c78fd7d/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b3ffdaaf61c1682d5945775fc8c137d2047e1/UDA.inventory.InventorySlotUi_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cbbe8418ae67d372dc85fff27eca566e67db3cc/UDA.Game.Player.Player_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d57858531a2bcaa41f2315ffea8b27aa4382497/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d9736299af3ef766f5874d71f732ad105b57b8f8/UDA.Game.UI.CharacterTile_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Game/Enemies/Ogre.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Game/Player/Hurtbox.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n  </component>\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"2w6rOqtetrMzIrNeB5yfk9vMHz5\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"autoscrollFromSource\" value=\"true\" />\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \".NET Executable.CharacterSelection.tscn.executor\": \"Run\",\n    \".NET Executable.MainMenu.tscn.executor\": \"Run\",\n    \".NET Executable.Player.executor\": \"Run\",\n    \".NET Executable.dungeonBuilder.tscn.executor\": \"Run\",\n    \".NET Executable.player_save_test.tscn.executor\": \"Debug\",\n    \".NET Static Method.UDA.Sandbox.Main.executor\": \"Run\",\n    \"03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor\": \"Debug\",\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"XThreadsFramesViewSplitterKey\": \"0.07054674\",\n    \"git-widget-placeholder\": \"StableBranch\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"preferences.sourceCode.C#\",\n    \"settings.editor.splitter.proportion\": \"0.48879838\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"DatabaseDriversLRU\": [\n      \"sqlite\",\n      \"mysql\"\n    ]\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\".NET Executable.MainMenu.tscn\">\n    <configuration name=\"UDA.Sandbox.Main\" type=\"DotNetStaticMethod\" factoryName=\".NET Static Method\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/UDA.csproj\" />\n      <option name=\"PROJECT_TFM\" value=\"net8.0\" />\n      <option name=\"CLASS_NAME\" value=\"UDA.Sandbox\" />\n      <option name=\"METHOD_NAME\" value=\"Main\" />\n      <method v=\"2\">\n        <option name=\"Build\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player GDScript\" type=\"GDSCRIPT_DEBUG_RUN_CONFIGURATION\" factoryName=\"GdScriptRunFactory\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"6006\">\n      <option name=\"address\" value=\"127.0.0.1\" />\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"CharacterSelection.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://Game\\UI\\MainMenu\\CharacterSelection.tscn&quot; --verbose\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Editor\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot; --editor\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"MainMenu.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://Game\\UI\\MainMenu\\MainMenu.tscn&quot; --verbose\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"dungeonBuilder.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://Game\\GameManager\\dungeonBuilder.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"player_save_test.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://SaveTest\\player_save_test.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\".NET Executable.Editor\" />\n      <item itemvalue=\".NET Executable.Player\" />\n      <item itemvalue=\".NET Executable.MainMenu.tscn\" />\n      <item itemvalue=\".NET Executable.CharacterSelection.tscn\" />\n      <item itemvalue=\".NET Executable.dungeonBuilder.tscn\" />\n      <item itemvalue=\".NET Executable.player_save_test.tscn\" />\n      <item itemvalue=\".NET Static Method.UDA.Sandbox.Main\" />\n      <item itemvalue=\"GdScript Start and Debug.Player GDScript\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\".NET Executable.MainMenu.tscn\" />\n        <item itemvalue=\".NET Executable.CharacterSelection.tscn\" />\n        <item itemvalue=\".NET Static Method.UDA.Sandbox.Main\" />\n        <item itemvalue=\".NET Executable.player_save_test.tscn\" />\n        <item itemvalue=\".NET Executable.dungeonBuilder.tscn\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"\" />\n      <created>1745372837094</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1745372837094</updated>\n      <workItem from=\"1745372838559\" duration=\"3000\" />\n      <workItem from=\"1745372863043\" duration=\"8000\" />\n      <workItem from=\"1745804056877\" duration=\"187000\" />\n      <workItem from=\"1745804270859\" duration=\"847000\" />\n      <workItem from=\"1745805142199\" duration=\"634000\" />\n      <workItem from=\"1745805870553\" duration=\"9000\" />\n      <workItem from=\"1745806003131\" duration=\"763000\" />\n      <workItem from=\"1745806864516\" duration=\"1497000\" />\n      <workItem from=\"1745808408153\" duration=\"266000\" />\n      <workItem from=\"1745808735454\" duration=\"115000\" />\n      <workItem from=\"1745809039639\" duration=\"23000\" />\n      <workItem from=\"1745809105363\" duration=\"108000\" />\n      <workItem from=\"1745809229460\" duration=\"290000\" />\n      <workItem from=\"1745810016105\" duration=\"240000\" />\n      <workItem from=\"1745810304697\" duration=\"574000\" />\n      <workItem from=\"1745810899195\" duration=\"1148000\" />\n      <workItem from=\"1745974963414\" duration=\"253000\" />\n      <workItem from=\"1745975400557\" duration=\"2348000\" />\n      <workItem from=\"1745979709321\" duration=\"827000\" />\n      <workItem from=\"1746054809757\" duration=\"30000\" />\n      <workItem from=\"1746054877197\" duration=\"303000\" />\n      <workItem from=\"1746123845660\" duration=\"418000\" />\n      <workItem from=\"1746308930839\" duration=\"4600000\" />\n      <workItem from=\"1746320311487\" duration=\"5412000\" />\n      <workItem from=\"1746329880269\" duration=\"2278000\" />\n      <workItem from=\"1746334814799\" duration=\"631000\" />\n      <workItem from=\"1746400443489\" duration=\"24070000\" />\n      <workItem from=\"1746670413448\" duration=\"273000\" />\n      <workItem from=\"1746670698469\" duration=\"1427000\" />\n      <workItem from=\"1746688775707\" duration=\"3000\" />\n      <workItem from=\"1746729844044\" duration=\"848000\" />\n      <workItem from=\"1747681223201\" duration=\"11607000\" />\n      <workItem from=\"1748363499846\" duration=\"11237000\" />\n      <workItem from=\"1748988189302\" duration=\"14119000\" />\n      <workItem from=\"1749080184596\" duration=\"2263000\" />\n      <workItem from=\"1749152134776\" duration=\"3055000\" />\n      <workItem from=\"1749335995169\" duration=\"129000\" />\n      <workItem from=\"1749672403107\" duration=\"6429000\" />\n      <workItem from=\"1749680568593\" duration=\"2564000\" />\n      <workItem from=\"1749683394801\" duration=\"12071000\" />\n      <workItem from=\"1749746685648\" duration=\"7807000\" />\n      <workItem from=\"1749773820404\" duration=\"11090000\" />\n      <workItem from=\"1749791440392\" duration=\"593000\" />\n      <workItem from=\"1749850802159\" duration=\"691000\" />\n      <workItem from=\"1749851934652\" duration=\"11760000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"woohoo Dungeon is being generated properly and it can be navigated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1748845353790</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1748845353790</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749007236659</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749007236659</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749081021305</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749081021306</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"cleared up compiler warnings\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749612824006</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749612824007</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"cleared up compiler warnings\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749613151617</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749613151617</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"hopefully got rid of the duplicate assembly attributes error\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749613966719</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749613966719</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749665339618</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749665339618</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"You can now attack and kill enemies. It's not fun, but it works.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749675964339</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749675964339</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Traps work and generate in the dungeon at the correct position.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749685582590</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749685582590</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Games Playable\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749695312534</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749695312534</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Games Playable\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749702075192</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749702075192</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Pushing all files to see if it will break anything\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749702875954</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749702875954</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"9\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"false\" />\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"woohoo Dungeon is being generated properly and it can be navigated\" />\n    <MESSAGE value=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\" />\n    <MESSAGE value=\"deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references\" />\n    <MESSAGE value=\"hopefully got rid of the duplicate assembly attributes error\" />\n    <MESSAGE value=\"cleared up compiler warnings\" />\n    <MESSAGE value=\"issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too.\" />\n    <MESSAGE value=\"Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works.\" />\n    <MESSAGE value=\"You can now attack and kill enemies. It's not fun, but it works.\" />\n    <MESSAGE value=\"Traps work and generate in the dungeon at the correct position.\" />\n    <MESSAGE value=\"Games Playable\" />\n    <MESSAGE value=\"Pushing all files to see if it will break anything\" />\n    <MESSAGE value=\"this might break stuff. Pushing whole project up to manage merge conflicts. Contains modified attack code that makes use of dungeoncharacter\" />\n    <MESSAGE value=\"Attempting to push everything up to git except the exe\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Attempting to push everything up to git except the exe\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.Collections.Generic.KeyNotFoundException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"KeyNotFoundException\" namespaceName=\"System.Collections.Generic\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"3\" />\n        </breakpoint>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.InvalidCastException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"InvalidCastException\" namespaceName=\"System\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"25\" />\n        </breakpoint>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.NullReferenceException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"NullReferenceException\" namespaceName=\"System\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"32\" />\n        </breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"DotNet Breakpoints\">\n          <url>file://$PROJECT_DIR$/Tests/MonsterTests.cs</url>\n          <line>13</line>\n          <properties documentPath=\"$PROJECT_DIR$/Tests/MonsterTests.cs\" containingFunctionPresentation=\"Method 'Test1'\">\n            <startOffsets>\n              <option value=\"217\" />\n            </startOffsets>\n            <endOffsets>\n              <option value=\"218\" />\n            </endOffsets>\n          </properties>\n          <option name=\"timeStamp\" value=\"4\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"DotNet Breakpoints\">\n          <url>file://$PROJECT_DIR$/Game/GameManager/EventBus.cs</url>\n          <line>17</line>\n          <properties documentPath=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Game\\GameManager\\EventBus.cs\" containingFunctionPresentation=\"Method 'ShutDown'\">\n            <startOffsets>\n              <option value=\"343\" />\n            </startOffsets>\n            <endOffsets>\n              <option value=\"355\" />\n            </endOffsets>\n          </properties>\n          <option name=\"timeStamp\" value=\"63\" />\n        </line-breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"DotNet Breakpoints\">\n          <url>file://$PROJECT_DIR$/Game/GameManager/EventBus.cs</url>\n          <line>12</line>\n          <properties documentPath=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\\Game\\GameManager\\EventBus.cs\" containingFunctionPresentation=\"Method '_Ready'\">\n            <startOffsets>\n              <option value=\"234\" />\n            </startOffsets>\n            <endOffsets>\n              <option value=\"308\" />\n            </endOffsets>\n          </properties>\n          <option name=\"timeStamp\" value=\"64\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <pin-to-top-manager>\n      <pinned-members>\n        <PinnedItemInfo parentTag=\"Type#UDA.Model.DungeonCharacter\" memberName=\"HitPoints\" />\n      </pinned-members>\n    </pin-to-top-manager>\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.UDA/.idea/workspace.xml b/.idea/.idea.UDA/.idea/workspace.xml
+--- a/.idea/.idea.UDA/.idea/workspace.xml	(revision aadb914f7b0db88e71017ab2623fd9cef3a90fbd)
++++ b/.idea/.idea.UDA/.idea/workspace.xml	(date 1749876842126)
+@@ -4,78 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/181a94b7-f314-497a-a668-91b2297ba60d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources/181a94b7-f314-497a-a668-91b2297ba60d.xml" afterDir="false" />
++    <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="This should be in a wholly functional state. Forgot some files">
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/GameManager/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/EventBus.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Player/Player.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/Resources/ExitPortal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/ExitPortal.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/PlayerClass.tres" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/EndScenes/WinScene.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/EndScenes/game_over_scene.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/EndScenes/game_over_scene.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/EndScenes/win_scene.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/EndScenes/win_scene.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/LoadMenu.cs" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterSelection.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/CharacterTile.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/MainMenu.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/Priest.tres" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/PriestTile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/PriestTile.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/Thief.tres" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/ThiefTile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/ThiefTile.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/Warrior.tres" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/WarriorTile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/WarriorTile.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/button-1.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button-1.png.import" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/MainMenu/button_icon.png.import" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/button_icon.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/selection_menu.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Game/UI/world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UI/world.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Assets/heal_potion.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Assets/heal_potion.png.import" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/ItemFactory.cs" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/ItemFactory.cs.uid" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/ItemToPickup.cs" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/ItemToPickup.cs.uid" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/InventoryItem.tres" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/abstraction_pillar.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/encapsulation_pillar.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/heal_potion.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/inheritance_pillar.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/polymorphism_pillar.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/vision_potion.tscn" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.nuget.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/export_presets.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/export_presets.cfg" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+     </list>
+@@ -379,7 +310,7 @@
+       <workItem from="1749773820404" duration="11090000" />
+       <workItem from="1749791440392" duration="593000" />
+       <workItem from="1749850802159" duration="691000" />
+-      <workItem from="1749851934652" duration="11760000" />
++      <workItem from="1749851934652" duration="13216000" />
+     </task>
+     <task id="LOCAL-00001" summary="woohoo Dungeon is being generated properly and it can be navigated">
+       <option name="closed" value="true" />
+@@ -445,21 +376,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1749675964339</updated>
+     </task>
+-    <task id="LOCAL-00009" summary="Traps work and generate in the dungeon at the correct position.">
++    <task id="LOCAL-00009" summary="This should be in a wholly functional state">
+       <option name="closed" value="true" />
+-      <created>1749685582590</created>
++      <created>1749867786723</created>
+       <option name="number" value="00009" />
+       <option name="presentableId" value="LOCAL-00009" />
+       <option name="project" value="LOCAL" />
+-      <updated>1749685582590</updated>
++      <updated>1749867786723</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="Games Playable">
++    <task id="LOCAL-00010" summary="This should be in a wholly functional state. Forgot some files">
+       <option name="closed" value="true" />
+-      <created>1749695312534</created>
++      <created>1749867796904</created>
+       <option name="number" value="00010" />
+       <option name="presentableId" value="LOCAL-00010" />
+       <option name="project" value="LOCAL" />
+-      <updated>1749695312534</updated>
++      <updated>1749867796905</updated>
+     </task>
+     <task id="LOCAL-00011" summary="Games Playable">
+       <option name="closed" value="true" />
+@@ -477,7 +408,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1749702875954</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -510,7 +441,9 @@
+     <MESSAGE value="Pushing all files to see if it will break anything" />
+     <MESSAGE value="this might break stuff. Pushing whole project up to manage merge conflicts. Contains modified attack code that makes use of dungeoncharacter" />
+     <MESSAGE value="Attempting to push everything up to git except the exe" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Attempting to push everything up to git except the exe" />
++    <MESSAGE value="This should be in a wholly functional state" />
++    <MESSAGE value="This should be in a wholly functional state. Forgot some files" />
++    <option name="LAST_COMMIT_MESSAGE" value="This should be in a wholly functional state. Forgot some files" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: project.godot
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>; Engine configuration file.\n; It's best edited using the editor UI and not directly,\n; since the parameters that go here are not all obvious.\n;\n; Format:\n;   [section] ; section goes between []\n;   param=value ; assign values to parameters\n\nconfig_version=5\n\n[MonoCustomResourceRegistry]\n\nClassPrefix=\"\"\nSearchType=0\nResourceScriptDirectories=Array[String]([\"res://\"])\n\n[application]\n\nconfig/name=\"UDA\"\nrun/main_scene=\"uid://gcsmklew66fi\"\nconfig/features=PackedStringArray(\"4.4\", \"C#\", \"Forward Plus\")\nboot_splash/bg_color=Color(0.630264, 0.554366, 0.834131, 1)\nboot_splash/image=\"uid://x1ohmojyrpy\"\nconfig/icon=\"res://icon.svg\"\n\n[autoload]\n\nEventBus=\"*res://Game/GameManager/EventBus.cs\"\n\n[display]\n\nwindow/stretch/mode=\"viewport\"\n\n[dotnet]\n\nproject/assembly_name=\"UDA\"\n\n[editor]\n\nrun/main_run_args=\"--verbose\"\n\n[global_group]\n\nPlayer=\"\"\nMonster=\"\"\nMonsterHitBox=\"\"\nWeapon=\"\"\nInventory=\"\"\nPersist=\"\"\n\n[input]\n\nmoveLeft={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194319,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":65,\"key_label\":0,\"unicode\":97,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveRight={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194321,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":68,\"key_label\":0,\"unicode\":100,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveUp={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194320,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":87,\"key_label\":0,\"unicode\":119,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nmoveDown={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194322,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n, Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":83,\"key_label\":0,\"unicode\":115,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\ninventoryMenu={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":84,\"key_label\":0,\"unicode\":116,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nsave={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":true,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":83,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nload={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":true,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":76,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nQueryPlayerInfo={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":81,\"key_label\":0,\"unicode\":113,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nAttack={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":32,\"key_label\":0,\"unicode\":32,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nPauseGame={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":4194305,\"key_label\":0,\"unicode\":0,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\nMouseClick={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventMouseButton,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"button_mask\":1,\"position\":Vector2(132, 10),\"global_position\":Vector2(141, 58),\"factor\":1.0,\"button_index\":1,\"canceled\":false,\"pressed\":true,\"double_click\":false,\"script\":null)\n]\n}\nCheatMode={\n\"deadzone\": 0.2,\n\"events\": [Object(InputEventKey,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"device\":-1,\"window_id\":0,\"alt_pressed\":false,\"shift_pressed\":false,\"ctrl_pressed\":false,\"meta_pressed\":false,\"pressed\":false,\"keycode\":0,\"physical_keycode\":67,\"key_label\":0,\"unicode\":99,\"location\":0,\"echo\":false,\"script\":null)\n]\n}\n\n[layer_names]\n\n2d_physics/layer_1=\"Walls\"\n2d_physics/layer_2=\"Player\"\n2d_physics/layer_3=\"Enemy\"\n2d_physics/layer_4=\"EnemyHitBox\"\n2d_physics/layer_5=\"ItemLayer\"\n2d_physics/layer_6=\"PlayerHurtBox\"\n2d_physics/layer_8=\"Weapon\"\n\n[rendering]\n\ntextures/canvas_textures/default_texture_filter=0\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project.godot b/project.godot
+--- a/project.godot	(revision aadb914f7b0db88e71017ab2623fd9cef3a90fbd)
++++ b/project.godot	(date 1749869199394)
+@@ -128,3 +128,4 @@
+ [rendering]
+ 
+ textures/canvas_textures/default_texture_filter=0
++textures/vram_compression/import_etc2_astc=true
+Index: Game/Resources/PlayerClass.tres
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_resource type=\"Resource\" script_class=\"PlayerClassInfo\" load_steps=2 format=3 uid=\"uid://bdhce2e34nsgw\"]\n\n[ext_resource type=\"Script\" uid=\"uid://2hprjeci0s8a\" path=\"res://Game/Resources/PlayerClassInfo.cs\" id=\"1_j56wx\"]\n\n[resource]\nscript = ExtResource(\"1_j56wx\")\nMyPlayerName = \"Still Greeble Jenkins\"\nMyPlayerClass = \"Thief\"\nMyPlayerHp = 125\nmetadata/_custom_type_script = \"uid://2hprjeci0s8a\"\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/Resources/PlayerClass.tres b/Game/Resources/PlayerClass.tres
+--- a/Game/Resources/PlayerClass.tres	(revision aadb914f7b0db88e71017ab2623fd9cef3a90fbd)
++++ b/Game/Resources/PlayerClass.tres	(date 1749870029905)
+@@ -1,10 +1,10 @@
+-[gd_resource type="Resource" script_class="PlayerClassInfo" load_steps=2 format=3 uid="uid://bdhce2e34nsgw"]
++[gd_resource type="Resource" script_class="PlayerClassInfo" load_steps=2 format=3 uid="uid://bdp7g3ndggiyc"]
+ 
+ [ext_resource type="Script" uid="uid://2hprjeci0s8a" path="res://Game/Resources/PlayerClassInfo.cs" id="1_j56wx"]
+ 
+ [resource]
+ script = ExtResource("1_j56wx")
+ MyPlayerName = "Still Greeble Jenkins"
+-MyPlayerClass = "Thief"
++MyPlayerClass = "Warrior"
+ MyPlayerHp = 125
+ metadata/_custom_type_script = "uid://2hprjeci0s8a"

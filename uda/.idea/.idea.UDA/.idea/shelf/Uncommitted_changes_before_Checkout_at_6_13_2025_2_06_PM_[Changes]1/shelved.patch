@@ -1,0 +1,364 @@
+Index: Game/GameManager/DungeonBuilder.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\nusing Godot.Collections;\nusing UDA.Game.Resources;\nusing UDA.inventory;\nusing UDA.Model;\nusing UDA.Model.Items;\nusing UDA.Model.Map;\n\nnamespace UDA.Game.GameManager;\n\npublic partial class DungeonBuilder : Node2D\n{\n\tprivate static readonly RoomTypeCollection MyRoomTypes = new ();\n\tprivate static readonly RoomConverter MyRoomConverter = new ();\n\tprivate static readonly Godot.Collections.Dictionary<RoomTypeCollection.RoomType, PackedScene> MyRoomTypeDict = MyRoomTypes.RoomDictionary;\n\tprivate static readonly Godot.Collections.Dictionary<string, RoomTypeCollection.RoomType> MyRoomStringToTypeDict = MyRoomConverter.baseRooms;\n\tprivate static PackedScene TheTrapScene = GD.Load<PackedScene>(\"res://Game/Items/ItemProtos/Trap.tscn\");\n\tprivate static PackedScene TheExitPortal = GD.Load<PackedScene>(\"res://Game/Resources/ExitPortal.tscn\");\n\tprivate static MonsterDictionary _myMonsterDictionary = GD.Load<MonsterDictionary>(\"res://Game/Resources/MonsterDictionary.tres\");\n\t\n\t\n\t// Characters that can appear in the middle\n\tprivate static char[] _pillarCharacters = ['A', 'E', 'P', 'I'];\n\tprivate char MyRoomItem;\n\tprivate char MyEntrance = 'i';\n\tprivate char MyExit = 'O';\n\n\tprivate const char TrapCharacter = 'X';\n\tprivate const int MyRoomCenter = 4;\n\tprivate const int MyRoomSideWidth = 224;\n\tprivate const int MyRoomHeight = 174;\n\tprivate int _myDungeonLength = 10;\n\tprivate int _myDungeonWidth = 10;\n\n\t\n\tpublic override void _Process(double delta)\n\t{\n\t\tif (Input.IsActionJustPressed(\"QueryPlayerInfo\"))\n\t\t{\n\t\t\tGD.Print(GetNode<Player.Player>(\"Player\").GlobalPosition);\n\t\t\t//GD.Print(GetNode<Player.Player>(\"Player\").Inventory.ToString());\n\t\t}\n\t}\n\n\t// Called when the node enters the scene tree for the first time.\n\t// do not want this, only want to run if new game is called which should build the map.\n\tpublic override void _Ready()\n\t{\n\t\t//These have to go in the Highest level container or they do not work\n\t\tItemFactory.RegisterItem(\"heal_potion\", \"HealPotion\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png\");\n\t\tItemFactory.RegisterItem(\"vision_potion\", \"VisionPotion\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_2_1.png\");\n\t\tItemFactory.RegisterItem(\"abstraction_pillar\", \"AbstractionPillar\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_1.png\");\n\t\tItemFactory.RegisterItem(\"encapsulation_pillar\", \"EncapsulationPillar\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png\");\n\t\tItemFactory.RegisterItem(\"inheritance_pillar\", \"InheritancePillar\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png\");\n\t\tItemFactory.RegisterItem(\"polymorphism_pillar\", \"PolymorphismPillar\",\"res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/candlestick_1_1.png\");\n\t\tBuildDungeon();\n\t\t//TODO: Place the map into a constant, then we can just reload the DungeonMap\n\t\tGD.Print(Dungeon.MyInstance.ToString());\n\t}\n\n\t//This would read through the values in the 2d array representing the dungeon\n\t//and instantiate the add the corresponding room in the engine(game)\n\tpublic void BuildDungeon()\n\t{\n\t\tfor (int i = 0; i < _myDungeonLength; i++)\n\t\t{\n\t\t\tfor (int j = 0; j < _myDungeonWidth; j++)\n\t\t\t{\n\t\t\t\tstring currentRoom = string.Join(\"\",Dungeon.MyInstance.MyMap[i, j].GetDetails());\n\t\t\t\tPackedScene sceneToLoad = DetermineRoom(currentRoom);\n\t\t\t\tLoadRoom(sceneToLoad,j,i);\n\t\t\t\t//GD.Print(Dungeon.MyInstance._myMap[i,j].GetDetails());\n\t\t\t\t//GD.Print(\"My builder Output = \" + currentRoom);\n\t\t\t}\n\t\t}\n\t}\n\n\tprivate void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)\n\t{\n\t\tRandom rand = RandomSingleton.GetInstance();\n\t\tVector2 roomsPosition = new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight);\n\t\tVector2 roomsCenter = new Vector2((float)theXCord * MyRoomSideWidth + MyRoomSideWidth/2,(float)theYCord * MyRoomHeight + MyRoomHeight/2);\n\t\t//Had to flip the Y and X coords, it was building the right rooms but grabbing the wrong details\n\t\tvar roomModel = Dungeon.MyInstance.MyMap[theYCord, theXCord];\n\t\tvar instancedRoom = theRoomToLoad.Instantiate();\n\t\tinstancedRoom.Set(Node2D.PropertyName.GlobalPosition,roomsPosition);\n\t\tAddChild(instancedRoom);\n\t\t\n\t\t\n\n\t\tPackedScene bossMonster = _myMonsterDictionary.RoomDictionary[\"Boss\"];\n\t\tif (MyRoomItem == MyEntrance)\n\t\t{\n\t\t\tEventBus.getInstance().SetPosition(roomsCenter);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tif (MyRoomItem == MyExit)\n\t\t\t{\n\t\t\t\tLoadRoomObjects(roomsCenter, TheExitPortal);\n\t\t\t\tLoadRoomObjects(roomsCenter, bossMonster);\n\t\t\t}\n\t\t\telse if (MyRoomItem == TrapCharacter)\n\t\t\t{\n\t\t\t\tLoadRoomObjects(roomsCenter, TheTrapScene);\n\t\t\t}\n\t\t\telse if (_pillarCharacters.Contains(MyRoomItem))\n\t\t\t{\n\t\t\t\t//Bosses get placed into pillar rooms\n\t\t\t\tLoadRoomObjects(roomsCenter, bossMonster);\n\t\t\t}\n\t\t\t//We want to spawn enemies everywhere but the entrance\n\t\t\telse if (rand.Next(2) == 1)\n\t\t\t{\n\t\t\t\t//Randomly selecting from the dictionary of monster scenes.\n\t\t\t\tvar keys = _myMonsterDictionary.RoomDictionary.Keys.ToList();\n\t\t\t\t//Fourth entry is the boss, this prevents it from spawning\n\t\t\t\tint keyPosition = rand.Next(keys.Count);\n\t\t\t\tstring randomKey = keys[keyPosition];\n\t\t\t\twhile (randomKey == \"Boss\")\n\t\t\t\t{\n\t\t\t\t\tkeyPosition = rand.Next(keys.Count);\n\t\t\t\t\trandomKey = keys[keyPosition];\n\t\t\t\t}\n\t\t\t\tPackedScene monster = _myMonsterDictionary.RoomDictionary[randomKey];\n\t\t\t\tLoadRoomObjects(roomsCenter, monster);\n\t\t\t}\n\t\t}\n\n\n\t\tvar itemSpawnRoot = instancedRoom.GetNodeOrNull<Node>(\"ItemSpawnPoints\");\n\t\t\n\t\tif (itemSpawnRoot == null)\n\t\t\treturn;\n\t\t\n\t\tvar spawnMarkers = new Array<Node>(itemSpawnRoot.GetChildren());\n\t\tspawnMarkers.Shuffle();\n\t\t\t\n\t\tvar ListOfRoomItems = ItemFactory.GetItemsFromRoom(roomModel);\n\n\t\tfor (int i = 0; i < ListOfRoomItems.Count && i < spawnMarkers.Count; i++)\n\t\t{\n\t\t\tvar itemData = ListOfRoomItems[i];\n\t\t\tvar spawnPoint = (Marker2D)spawnMarkers[i];\n\t\t\tvar itemScene = GD.Load<PackedScene>(\"res://Model/Items/Resources/\" + itemData.Id.ToLower() + \".tscn\");\n\t\t\tvar itemNodeBase = itemScene.Instantiate();\n\t\t\tvar itemNode = (ItemToPickup)itemNodeBase;\n\t\t\t\n\t\t\titemNode.ItemData = itemData;\n\t\t\titemNode.GlobalPosition = spawnPoint.Position;\n\t\t\tinstancedRoom.AddChild(itemNode);\n\t\t}\n\t\t//AddChild(instancedRoom);\n\t}\n\n\tprivate void LoadRoomObjects(Vector2 theObjectPosition, PackedScene theObjectToPlace)\n\t{\n\t\tPackedScene theSceneToPlace = theObjectToPlace;\n\t\tvar sceneInstance = theSceneToPlace.Instantiate();\n\t\tsceneInstance.Set(Node2D.PropertyName.GlobalPosition, theObjectPosition);\n\t\tAddChild(sceneInstance);\n\t}\n\n\tprivate PackedScene DetermineRoom(string theRoom)\n\t{\n\t\t//TODO: Build A helper method to place objects/enemies/the player at the entrance\n\t\t//This should give us the character that contains what the item is\n\t\tMyRoomItem = theRoom[MyRoomCenter];\n\t\t\n\t\t\n\t\t\n\t\t//Pulling the character from the string to determine the room type\n\t\tstring modifiedRoom = theRoom.Remove(MyRoomCenter,1);\n\t\t//Padding the string with a \"*\" to match the dictionary\n\t\tmodifiedRoom = modifiedRoom.Insert(4, \"*\");\n\n\t\tRoomTypeCollection.RoomType theRoomType = MyRoomStringToTypeDict[modifiedRoom];\n\t\t\n\t\t//Getting the enum for the appropriate type that is mapped to the packed scenes\n\t\t\n\t\t\n\t\t//Getting the packed scene from the dictionary based on the room type\n\t\tPackedScene theRoomScene = MyRoomTypeDict[theRoomType];\n\t\treturn theRoomScene;\n\t\t\n\t\t//TEST PRINT FOR STRING\n\t\t//GD.Print(modifiedRoom);\n\t\t//GD.Print(theRoomType);\n\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Game/GameManager/DungeonBuilder.cs b/Game/GameManager/DungeonBuilder.cs
+--- a/Game/GameManager/DungeonBuilder.cs	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ b/Game/GameManager/DungeonBuilder.cs	(date 1749843312636)
+@@ -75,7 +75,7 @@
+ 		}
+ 	}
+ 
+-	private void LoadRoom(PackedScene theRoomToLoad, int theXCord, int theYCord)
++	private void LoadRoom(PackedScene theRoomToLoad, in int theXCord, in int theYCord)
+ 	{
+ 		Random rand = RandomSingleton.GetInstance();
+ 		Vector2 roomsPosition = new Vector2((float)theXCord * MyRoomSideWidth, (float)theYCord * MyRoomHeight);
+@@ -142,7 +142,7 @@
+ 		{
+ 			var itemData = ListOfRoomItems[i];
+ 			var spawnPoint = (Marker2D)spawnMarkers[i];
+-			var itemScene = GD.Load<PackedScene>("res://Model/Items/Resources/" + itemData.Id.ToLower() + ".tscn");
++			var itemScene = GD.Load<PackedScene>("res://Game/Items/ItemProtos/" + itemData.Id.ToLower() + ".tscn");
+ 			var itemNodeBase = itemScene.Instantiate();
+ 			var itemNode = (ItemToPickup)itemNodeBase;
+ 			
+@@ -161,7 +161,7 @@
+ 		AddChild(sceneInstance);
+ 	}
+ 
+-	private PackedScene DetermineRoom(string theRoom)
++	private PackedScene DetermineRoom(in string theRoom)
+ 	{
+ 		//TODO: Build A helper method to place objects/enemies/the player at the entrance
+ 		//This should give us the character that contains what the item is
+Index: Model/Items/ItemToPickup.cs
+===================================================================
+diff --git a/Model/Items/ItemToPickup.cs b/Model/Items/ItemToPickup.cs
+deleted file mode 100644
+--- a/Model/Items/ItemToPickup.cs	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ /dev/null	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
+@@ -1,30 +0,0 @@
+-using Godot;
+-using UDA.Game.GameManager;
+-using UDA.inventory;
+-
+-namespace UDA.Model.Items;
+-
+-[GlobalClass]
+-public partial class ItemToPickup : Area2D
+-{
+-	[Export] public InventoryItem ItemData;
+-	// Called when the node enters the scene tree for the first time.
+-	public override void _Ready()
+-	{
+-		Connect(Area2D.SignalName.AreaEntered, new Callable(this, MethodName.OnBodyEntered));
+-		var spriteImage = GetNode<Sprite2D>("Sprite2D");
+-		if (ItemData != null)
+-			spriteImage.Texture = ItemData.Texture;
+-	}
+-
+-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+-	private void OnBodyEntered(Area2D theBody)
+-	{
+-		//GD.Print("Found an item");
+-		if (!theBody.IsInGroup("Monster") && ItemData != null)
+-		{
+-			EventBus.getInstance().AddItemToInventory(ItemData);
+-			QueueFree();
+-		}
+-	}
+-}
+Index: Model/Items/ItemFactory.cs
+===================================================================
+diff --git a/Model/Items/ItemFactory.cs b/Model/Items/ItemFactory.cs
+deleted file mode 100644
+--- a/Model/Items/ItemFactory.cs	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ /dev/null	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
+@@ -1,70 +0,0 @@
+-using Godot;
+-using System;
+-using System.Collections.Generic;
+-using UDA.inventory;
+-using UDA.Model.Map;
+-
+-namespace UDA.Model.Items;
+-public class ItemFactory
+-{
+-    private static Dictionary<string, InventoryItem> _itemTemplates = new();
+-
+-    public static void RegisterItem(string theId, string theName, string theTexturePath)
+-    {
+-        var texture = GD.Load<Texture2D>(theTexturePath);
+-        var item = new InventoryItem();
+-        item.Initialize(theId, theName, texture);
+-        _itemTemplates[theId] = item;
+-    }
+-
+-    public static InventoryItem CreateNewItem(string theId)
+-    {
+-        if (!_itemTemplates.ContainsKey(theId)) return null;
+-        var template = _itemTemplates[theId];
+-        var item = new InventoryItem();
+-        item.Initialize(template.Id, template.Name, template.Texture);
+-        return item;
+-    }
+-
+-    public static List<InventoryItem> GetItemsFromRoom(UDA.Model.Map.Room theRoom)
+-    {
+-        var items = new List<InventoryItem>();
+-
+-        if (theRoom.ContainsHealingPotion)
+-        {
+-            var item = CreateNewItem("heal_potion");
+-            if (item != null) items.Add(item);
+-        }
+-        
+-        if (theRoom.ContainsVisionPotion)
+-        {
+-            var item = CreateNewItem("vision_potion");
+-            if (item != null) items.Add(item);
+-        }
+-
+-        if (theRoom.MyRoomType.ToString().Contains("Pillar"))
+-        {
+-            InventoryItem item;
+-            switch (theRoom.MyRoomType)
+-            {
+-                case(RoomType.PillarA):
+-                    item = CreateNewItem("abstraction_pillar");
+-                    if (item != null) items.Add(item);
+-                    break;
+-                case(RoomType.PillarE):
+-                    item = CreateNewItem("encapsulation_pillar");
+-                    if (item != null) items.Add(item);
+-                    break;
+-                case(RoomType.PillarI):
+-                    item = CreateNewItem("inheritance_pillar");
+-                    if (item != null) items.Add(item);
+-                    break;
+-                case(RoomType.PillarP):
+-                    item = CreateNewItem("polymorphism_pillar");
+-                    if (item != null) items.Add(item);
+-                    break;
+-            }
+-        }
+-        return items;
+-    }
+-}
+Index: SaveTest/player_save_test.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=8 format=3 uid=\"uid://bf133xh8ak6r6\"]\n\n[ext_resource type=\"Script\" uid=\"uid://4clln7ygc2jr\" path=\"res://Game/GameManager/GameManager.cs\" id=\"1_7mt2y\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://c0sxi5dgonucy\" path=\"res://Game/Player/player.tscn\" id=\"2_t5o5c\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://b1d5accw8h4jf\" path=\"res://Rooms/Entrance.tscn\" id=\"3_t5o5c\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://cqsvyjh3l8o6s\" path=\"res://Game/Enemies/Ogre.tscn\" id=\"5_1ime4\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://b8yb7mvi63nfq\" path=\"res://Game/Enemies/Gremlin.tscn\" id=\"5_o3nu7\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://5n711lsstdjr\" path=\"res://Game/Items/ItemProtos/Trap.tscn\" id=\"6_1ime4\"]\n[ext_resource type=\"PackedScene\" uid=\"uid://d37u5u8a8sdsu\" path=\"res://Game/Resources/ExitPortal.tscn\" id=\"7_mejhn\"]\n\n[node name=\"PlayerSaveTest\" type=\"Node2D\"]\nscript = ExtResource(\"1_7mt2y\")\n\n[node name=\"Player\" parent=\".\" instance=ExtResource(\"2_t5o5c\")]\nposition = Vector2(208, 104)\n\n[node name=\"Entrance\" parent=\".\" instance=ExtResource(\"3_t5o5c\")]\n\n[node name=\"MonsterBase\" parent=\".\" instance=ExtResource(\"5_o3nu7\")]\nposition = Vector2(88, 80)\n\n[node name=\"MonsterBase2\" parent=\".\" instance=ExtResource(\"5_1ime4\")]\nposition = Vector2(344, 64)\n\n[node name=\"Node2D\" parent=\".\" instance=ExtResource(\"6_1ime4\")]\nposition = Vector2(160, 296)\n\n[node name=\"ExitPortal\" parent=\".\" instance=ExtResource(\"7_mejhn\")]\nposition = Vector2(224, 176)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SaveTest/player_save_test.tscn b/SaveTest/player_save_test.tscn
+--- a/SaveTest/player_save_test.tscn	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ b/SaveTest/player_save_test.tscn	(date 1749843315767)
+@@ -5,8 +5,8 @@
+ [ext_resource type="PackedScene" uid="uid://b1d5accw8h4jf" path="res://Rooms/Entrance.tscn" id="3_t5o5c"]
+ [ext_resource type="PackedScene" uid="uid://cqsvyjh3l8o6s" path="res://Game/Enemies/Ogre.tscn" id="5_1ime4"]
+ [ext_resource type="PackedScene" uid="uid://b8yb7mvi63nfq" path="res://Game/Enemies/Gremlin.tscn" id="5_o3nu7"]
+-[ext_resource type="PackedScene" uid="uid://5n711lsstdjr" path="res://Game/Items/ItemProtos/Trap.tscn" id="6_1ime4"]
+-[ext_resource type="PackedScene" uid="uid://d37u5u8a8sdsu" path="res://Game/Resources/ExitPortal.tscn" id="7_mejhn"]
++[ext_resource type="PackedScene" uid="uid://btbv855kuha5s" path="res://Game/Items/ItemProtos/Trap.tscn" id="6_1ime4"]
++[ext_resource type="PackedScene" uid="uid://c2r36xdcq5vyp" path="res://Game/Resources/ExitPortal.tscn" id="7_mejhn"]
+ 
+ [node name="PlayerSaveTest" type="Node2D"]
+ script = ExtResource("1_7mt2y")
+Index: .idea/.idea.UDA/.idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"dataSourceStorageLocal\" created-in=\"RD-251.26094.147\">\n    <data-source name=\"CharacterDatabase.db\" uuid=\"181a94b7-f314-497a-a668-91b2297ba60d\">\n      <database-info product=\"SQLite\" version=\"3.45.1\" jdbc-version=\"4.2\" driver-name=\"SQLite JDBC\" driver-version=\"3.45.1.0\" dbms=\"SQLITE\" exact-version=\"3.45.1\" exact-driver-version=\"3.45\">\n        <identifier-quote-string>&quot;</identifier-quote-string>\n      </database-info>\n      <case-sensitivity plain-identifiers=\"mixed\" quoted-identifiers=\"mixed\" />\n      <secret-storage>master_key</secret-storage>\n      <auth-provider>no-auth</auth-provider>\n      <schema-mapping>\n        <introspection-scope>\n          <node kind=\"schema\" qname=\"@\" />\n        </introspection-scope>\n      </schema-mapping>\n    </data-source>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.UDA/.idea/dataSources.local.xml b/.idea/.idea.UDA/.idea/dataSources.local.xml
+--- a/.idea/.idea.UDA/.idea/dataSources.local.xml	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ b/.idea/.idea.UDA/.idea/dataSources.local.xml	(date 1749842841061)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="RD-251.26094.147">
++  <component name="dataSourceStorageLocal" created-in="RD-251.23774.471">
+     <data-source name="CharacterDatabase.db" uuid="181a94b7-f314-497a-a668-91b2297ba60d">
+       <database-info product="SQLite" version="3.45.1" jdbc-version="4.2" driver-name="SQLite JDBC" driver-version="3.45.1.0" dbms="SQLITE" exact-version="3.45.1" exact-driver-version="3.45">
+         <identifier-quote-string>&quot;</identifier-quote-string>
+Index: .idea/.idea.UDA/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"Games Playable\">\n      <change afterPath=\"$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Characters/HeroFactory.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Model/Characters/HeroFactory.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/MonsterDatabase.db\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.assets.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.assets.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.nuget.cache\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.nuget.cache\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/project.packagespec.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/project.packagespec.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Tests/obj/rider.project.restore.info\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Tests/obj/rider.project.restore.info\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UDA.csproj\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UDA.csproj\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UDA.sln.DotSettings.user\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"DpaMonitoringSettings\">\n    <option name=\"firstShow\" value=\"false\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$/..\" value=\"FinalPushTestUpdate\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;cblackwe11&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\n  \"selectedUrlAndAccountId\": {\n    \"url\": \"https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git\",\n    \"accountId\": \"94b50afa-b842-4b44-9e71-4037b5100ad9\"\n  }\n}]]></component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/28d08c4efeb02236ca78c5831835fe6783b079/InventoryUi_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/333dc9e47988366d5f3bd05f96c0462c646e6520/UDA.Game.Player.Player_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c92637ae2e83da0a63791071c41eae291d594156062866d8621b7ed7245c/CastHelpers.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/42a5acdab5881c1662db84d3e2a825c2c78fd7d/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b3ffdaaf61c1682d5945775fc8c137d2047e1/UDA.inventory.InventorySlotUi_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7102cd0ffb8973777e61b1942c3fffac7e14016a511d055c3adf73ff91748/ThrowHelper.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cbbe8418ae67d372dc85fff27eca566e67db3cc/UDA.Game.Player.Player_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d57858531a2bcaa41f2315ffea8b27aa4382497/UDA.Game.Enemies.MonsterBase_ScriptMethods.generated.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/df73a4db74df89d59655c5fb6326406f47fbfa9af1fa81518fe0a07c49d34133/Node.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/.godot/mono/temp/obj/Debug/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Game/Player/Hurtbox.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/bin/Debug/net9.0/Tests.deps.json\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Debug/net9.0/Tests.sourcelink.json\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"mock://C:/Users/sword/Documents/DungeonAdventure-TCSS-360/uda/Tests/obj/Tests.csproj.nuget.dgspec.json\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.deps.json\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/data_UDA_windows_x86_64/UDA.runtimeconfig.json\" root0=\"SKIP_HIGHLIGHTING\" />\n  </component>\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"2w6rOqtetrMzIrNeB5yfk9vMHz5\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"autoscrollFromSource\" value=\"true\" />\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \".NET Executable.Player.executor\": \"Run\",\n    \".NET Executable.dungeonBuilder.tscn.executor\": \"Run\",\n    \".NET Executable.player_save_test.tscn.executor\": \"Debug\",\n    \".NET Static Method.UDA.Sandbox.Main.executor\": \"Run\",\n    \"03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor\": \"Debug\",\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"XThreadsFramesViewSplitterKey\": \"0.11111111\",\n    \"git-widget-placeholder\": \"FinalGamePushTest\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"preferences.sourceCode.C#\",\n    \"settings.editor.splitter.proportion\": \"0.48879838\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"DatabaseDriversLRU\": [\n      \"sqlite\",\n      \"mysql\"\n    ]\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\".NET Static Method.UDA.Sandbox.Main\">\n    <configuration name=\"Attach to Player\" type=\"ConnectRemote\" factoryName=\"Mono Remote\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"23685\" address=\"localhost\">\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"UDA.Sandbox.Main\" type=\"DotNetStaticMethod\" factoryName=\".NET Static Method\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/UDA.csproj\" />\n      <option name=\"PROJECT_TFM\" value=\"net8.0\" />\n      <option name=\"CLASS_NAME\" value=\"UDA.Sandbox\" />\n      <option name=\"METHOD_NAME\" value=\"Main\" />\n      <method v=\"2\">\n        <option name=\"Build\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player GDScript\" type=\"GDSCRIPT_DEBUG_RUN_CONFIGURATION\" factoryName=\"GdScriptRunFactory\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"6006\">\n      <option name=\"address\" value=\"127.0.0.1\" />\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Editor\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot; --editor\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;./&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"dungeonBuilder.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://Game\\GameManager\\dungeonBuilder.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"player_save_test.tscn\" type=\"RunExe\" factoryName=\".NET Executable\" temporary=\"true\">\n      <option name=\"EXE_PATH\" value=\"$USER_HOME$/Desktop/Godot_v4.4.1-stable_mono_win64/Godot_v4.4.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\sword\\Documents\\DungeonAdventure-TCSS-360\\uda&quot; &quot;res://SaveTest\\player_save_test.tscn&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"ENV_FILE_PATHS\" value=\"\" />\n      <option name=\"REDIRECT_INPUT_PATH\" value=\"\" />\n      <option name=\"PTY_MODE\" value=\"Auto\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"AUTO_ATTACH_CHILDREN\" value=\"0\" />\n      <option name=\"MIXED_MODE_DEBUG\" value=\"0\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\".NET Static Method.UDA.Sandbox.Main\" />\n        <item itemvalue=\".NET Executable.dungeonBuilder.tscn\" />\n        <item itemvalue=\".NET Executable.player_save_test.tscn\" />\n        <item itemvalue=\".NET Executable.dungeonBuilder.tscn\" />\n        <item itemvalue=\".NET Executable.player_save_test.tscn\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"f521a29e-1365-4055-b7ed-40aec3144ab5\" name=\"Changes\" comment=\"\" />\n      <created>1745372837094</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1745372837094</updated>\n      <workItem from=\"1745372838559\" duration=\"3000\" />\n      <workItem from=\"1745372863043\" duration=\"8000\" />\n      <workItem from=\"1745804056877\" duration=\"187000\" />\n      <workItem from=\"1745804270859\" duration=\"847000\" />\n      <workItem from=\"1745805142199\" duration=\"634000\" />\n      <workItem from=\"1745805870553\" duration=\"9000\" />\n      <workItem from=\"1745806003131\" duration=\"763000\" />\n      <workItem from=\"1745806864516\" duration=\"1497000\" />\n      <workItem from=\"1745808408153\" duration=\"266000\" />\n      <workItem from=\"1745808735454\" duration=\"115000\" />\n      <workItem from=\"1745809039639\" duration=\"23000\" />\n      <workItem from=\"1745809105363\" duration=\"108000\" />\n      <workItem from=\"1745809229460\" duration=\"290000\" />\n      <workItem from=\"1745810016105\" duration=\"240000\" />\n      <workItem from=\"1745810304697\" duration=\"574000\" />\n      <workItem from=\"1745810899195\" duration=\"1148000\" />\n      <workItem from=\"1745974963414\" duration=\"253000\" />\n      <workItem from=\"1745975400557\" duration=\"2348000\" />\n      <workItem from=\"1745979709321\" duration=\"827000\" />\n      <workItem from=\"1746054809757\" duration=\"30000\" />\n      <workItem from=\"1746054877197\" duration=\"303000\" />\n      <workItem from=\"1746123845660\" duration=\"418000\" />\n      <workItem from=\"1746308930839\" duration=\"4600000\" />\n      <workItem from=\"1746320311487\" duration=\"5412000\" />\n      <workItem from=\"1746329880269\" duration=\"2278000\" />\n      <workItem from=\"1746334814799\" duration=\"631000\" />\n      <workItem from=\"1746400443489\" duration=\"24070000\" />\n      <workItem from=\"1746670413448\" duration=\"273000\" />\n      <workItem from=\"1746670698469\" duration=\"1427000\" />\n      <workItem from=\"1746688775707\" duration=\"3000\" />\n      <workItem from=\"1746729844044\" duration=\"848000\" />\n      <workItem from=\"1747681223201\" duration=\"11607000\" />\n      <workItem from=\"1748363499846\" duration=\"11237000\" />\n      <workItem from=\"1748988189302\" duration=\"14119000\" />\n      <workItem from=\"1749080184596\" duration=\"2263000\" />\n      <workItem from=\"1749152134776\" duration=\"3055000\" />\n      <workItem from=\"1749335995169\" duration=\"129000\" />\n      <workItem from=\"1749672403107\" duration=\"6429000\" />\n      <workItem from=\"1749680568593\" duration=\"2564000\" />\n      <workItem from=\"1749683394801\" duration=\"12071000\" />\n      <workItem from=\"1749746685648\" duration=\"7807000\" />\n      <workItem from=\"1749773820404\" duration=\"11090000\" />\n      <workItem from=\"1749791440392\" duration=\"593000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"woohoo Dungeon is being generated properly and it can be navigated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1748845353790</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1748845353790</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749007236659</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749007236659</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749081021305</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749081021306</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"cleared up compiler warnings\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749612824006</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749612824007</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"cleared up compiler warnings\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749613151617</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749613151617</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"hopefully got rid of the duplicate assembly attributes error\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749613966719</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749613966719</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749665339618</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749665339618</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"You can now attack and kill enemies. It's not fun, but it works.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749675964339</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749675964339</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Traps work and generate in the dungeon at the correct position.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749685582590</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749685582590</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Games Playable\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749695312534</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749695312534</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Games Playable\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749702075192</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749702075192</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Pushing all files to see if it will break anything\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1749702875954</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1749702875954</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"9\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"false\" />\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"woohoo Dungeon is being generated properly and it can be navigated\" />\n    <MESSAGE value=\"Dungeon builder now works and properly generates a full dungeon of rooms from the &#10;details of the map in the dungeon class. I had to expose the map to access it's details. Updated the config files to include the missing input maps. Built a resource dictionary from strings of room details to RoomTypeCollection.Types(These are different than the ones in the model, confusing I know) that can be passed into another dictionary for scenes of rooms.\" />\n    <MESSAGE value=\"deleted the assemblyinfo.cs in the tests project to get rid of compiler error related to duplicate assembly references\" />\n    <MESSAGE value=\"hopefully got rid of the duplicate assembly attributes error\" />\n    <MESSAGE value=\"cleared up compiler warnings\" />\n    <MESSAGE value=\"issue related to the GetAdjRoom method throwing OOBE should be fixed. cleaned up some of the code in this class too.\" />\n    <MESSAGE value=\"Dungeon builder has the items and inventory fully functional. You can see the effect of vision potion when clicking on it. Health potion also works.\" />\n    <MESSAGE value=\"You can now attack and kill enemies. It's not fun, but it works.\" />\n    <MESSAGE value=\"Traps work and generate in the dungeon at the correct position.\" />\n    <MESSAGE value=\"Games Playable\" />\n    <MESSAGE value=\"Pushing all files to see if it will break anything\" />\n    <MESSAGE value=\"this might break stuff. Pushing whole project up to manage merge conflicts. Contains modified attack code that makes use of dungeoncharacter\" />\n    <MESSAGE value=\"Attempting to push everything up to git except the exe\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Attempting to push everything up to git except the exe\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.Collections.Generic.KeyNotFoundException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"KeyNotFoundException\" namespaceName=\"System.Collections.Generic\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"3\" />\n        </breakpoint>\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\n          <properties exception=\"System.InvalidCastException\" breakIfHandledByUserCode=\"true\" breakIfHandledByOtherCode=\"false\" isInternal=\"false\" displayValue=\"InvalidCastException\" namespaceName=\"System\">\n            <option name=\"internal\" value=\"false\" />\n          </properties>\n          <option name=\"timeStamp\" value=\"25\" />\n        </breakpoint>\n        <line-breakpoint enabled=\"true\" type=\"DotNet Breakpoints\">\n          <url>file://$PROJECT_DIR$/Tests/MonsterTests.cs</url>\n          <line>13</line>\n          <properties documentPath=\"$PROJECT_DIR$/Tests/MonsterTests.cs\" containingFunctionPresentation=\"Method 'Test1'\">\n            <startOffsets>\n              <option value=\"217\" />\n            </startOffsets>\n            <endOffsets>\n              <option value=\"218\" />\n            </endOffsets>\n          </properties>\n          <option name=\"timeStamp\" value=\"4\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <pin-to-top-manager>\n      <pinned-members>\n        <PinnedItemInfo parentTag=\"Type#UDA.Model.DungeonCharacter\" memberName=\"HitPoints\" />\n      </pinned-members>\n    </pin-to-top-manager>\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.UDA/.idea/workspace.xml b/.idea/.idea.UDA/.idea/workspace.xml
+--- a/.idea/.idea.UDA/.idea/workspace.xml	(revision 77549cb33ae13492aec78d33c6a55b322f0e5e15)
++++ b/.idea/.idea.UDA/.idea/workspace.xml	(date 1749848788968)
+@@ -5,32 +5,30 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="f521a29e-1365-4055-b7ed-40aec3144ab5" name="Changes" comment="Games Playable">
+-      <change afterPath="$PROJECT_DIR$/.godot/mono/temp/bin/Debug/CharacterDatabase.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/sqldialects.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UDA/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/HeroFactory.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Characters/Monster/MonsterFactory.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/MonsterDatabase.db" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Enemies/MonsterBase.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameManager/DungeonBuilder.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Game/Resources/ExitPortal.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Resources/ExitPortal.tscn" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Assets/heal_potion.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Assets/heal_potion.png.import" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/ItemFactory.cs" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/ItemFactory.cs.uid" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/ItemToPickup.cs" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/ItemToPickup.cs.uid" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/InventoryItem.tres" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/abstraction_pillar.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/encapsulation_pillar.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/heal_potion.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/inheritance_pillar.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/polymorphism_pillar.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Model/Items/Resources/vision_potion.tscn" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/SaveTest/player_save_test.tscn" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Tests" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/CoverletSourceRootsMapping_Tests" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.deps.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.pdb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/Tests.runtimeconfig.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/bin/Debug/net9.0/UDA.pdb" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.GlobalUsings.g.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.assets.cache" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.AssemblyReference.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.CoreCompileInputs.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.csproj.FileListAbsolute.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.genruntimeconfig.cache" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.pdb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/Tests.sourcelink.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/ref/Tests.dll" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Debug/net9.0/refint/Tests.dll" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.dgspec.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/Tests.csproj.nuget.g.props" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.assets.json" afterDir="false" />
+@@ -38,8 +36,6 @@
+       <change beforePath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/project.packagespec.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.model.nuget.info" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/obj/rider.project.restore.info" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UDA.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.csproj" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UDA.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/UDA.sln.DotSettings.user" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -52,7 +48,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$/.." value="FinalPushTestUpdate" />
++        <entry key="$PROJECT_DIR$/.." value="FinalGamePushTest" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+@@ -63,12 +59,12 @@
+     &quot;assignee&quot;: &quot;cblackwe11&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git",
+-    "accountId": "94b50afa-b842-4b44-9e71-4037b5100ad9"
+-  }
+-}]]></component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/campbellsetha/DungeonAdventure-TCSS-360.git&quot;,
++    &quot;accountId&quot;: &quot;94b50afa-b842-4b44-9e71-4037b5100ad9&quot;
++  }
++}</component>
+   <component name="HighlightingSettingsPerFile">
+     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/76/687d6f39/CSharpInstanceBridge.cs" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4cff0a608e114644b749bd11413a95c6583e00/f7/f743e483/VariantUtils.cs" root0="FORCE_HIGHLIGHTING" />
+@@ -100,47 +96,38 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    ".NET Executable.Player.executor": "Run",
+-    ".NET Executable.dungeonBuilder.tscn.executor": "Run",
+-    ".NET Executable.player_save_test.tscn.executor": "Debug",
+-    ".NET Static Method.UDA.Sandbox.Main.executor": "Run",
+-    "03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor": "Debug",
+-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "XThreadsFramesViewSplitterKey": "0.11111111",
+-    "git-widget-placeholder": "FinalGamePushTest",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+-    "settings.editor.splitter.proportion": "0.48879838",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;.NET Executable.Player.executor&quot;: &quot;Run&quot;,
++    &quot;.NET Executable.dungeonBuilder.tscn.executor&quot;: &quot;Run&quot;,
++    &quot;.NET Executable.player_save_test.tscn.executor&quot;: &quot;Debug&quot;,
++    &quot;.NET Static Method.UDA.Sandbox.Main.executor&quot;: &quot;Run&quot;,
++    &quot;03645dfc-7e75-4c55-a3f2-7946e5cba4ed.executor&quot;: &quot;Debug&quot;,
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.11111111&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;StableBranch&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
++    &quot;settings.editor.splitter.proportion&quot;: &quot;0.48879838&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "sqlite",
+-      "mysql"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;sqlite&quot;,
++      &quot;mysql&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager" selected=".NET Static Method.UDA.Sandbox.Main">
+-    <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
+-      <option name="allowRunningInParallel" value="false" />
+-      <option name="listenPortForConnections" value="false" />
+-      <option name="projectPathOnTarget" />
+-      <option name="selectedOptions">
+-        <list />
+-      </option>
+-      <method v="2" />
+-    </configuration>
+     <configuration name="UDA.Sandbox.Main" type="DotNetStaticMethod" factoryName=".NET Static Method" temporary="true">
+       <option name="EXE_PATH" value="$APPLICATION_HOME_DIR$/lib/ReSharperHost/JetLauncherILc.exe" />
+       <option name="PROGRAM_PARAMETERS" value="" />

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu4frys6n88d4"]
+[gd_scene load_steps=10 format=3 uid="uid://cu4frys6n88d4"]
 
+[ext_resource type="Script" uid="uid://c6n00t585hx3" path="res://Game/UI/EndScenes/GameOverScene.cs" id="1_dyhc8"]
 [ext_resource type="Texture2D" uid="uid://drypsr7k66bu3" path="res://Game/UI/EndScenes/0.png" id="1_m7r16"]
 [ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="2_dyhc8"]
 [ext_resource type="Texture2D" uid="uid://c2d6b7ihr6s2e" path="res://Game/UI/MainMenu/pause_menu.png" id="3_mmot4"]
@@ -29,6 +30,7 @@ animations = [{
 }]
 
 [node name="GameOverScene" type="Node2D"]
+script = ExtResource("1_dyhc8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -51,7 +53,9 @@ game over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="TextureRect"]
+[node name="Redo" type="Button" parent="TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = 115.779
 offset_top = 159.333
 offset_right = 174.779
@@ -64,7 +68,7 @@ Again?"
 flat = true
 icon_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/Button"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Redo"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 8
@@ -80,7 +84,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mmot4")
 
-[node name="Button2" type="Button" parent="TextureRect"]
+[node name="Exit" type="Button" parent="TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = 226.772
 offset_top = 164.71
 offset_right = 263.772
@@ -92,7 +98,7 @@ text = "Exit"
 flat = true
 icon_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/Button2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Exit"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 8
@@ -115,4 +121,4 @@ position = Vector2(76.6286, 177.333)
 scale = Vector2(1.3817, 1.5523)
 sprite_frames = SubResource("SpriteFrames_msv5v")
 autoplay = "default"
-frame_progress = 0.0879914
+frame_progress = 0.367904

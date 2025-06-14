@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuh0q3ynlqj4o"]
+
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="1_pgvgn"]
+[ext_resource type="Texture2D" uid="uid://c4td3ab6up88h" path="res://Game/UI/button_icon.png" id="2_t8a3r"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 445.0
+offset_top = 165.0
+offset_right = 561.0
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.30506, 1.45808)
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="NewGameB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pgvgn")
+text = "New Game"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/NewGameB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.112437, 0.0514175)
+texture = ExtResource("2_t8a3r")
+
+[node name="LoadGameB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pgvgn")
+text = "Load Game"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/LoadGameB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.112437, 0.0514175)
+texture = ExtResource("2_t8a3r")
+
+[node name="HelpB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pgvgn")
+text = "Help"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HelpB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.112437, 0.0514175)
+texture = ExtResource("2_t8a3r")
+
+[node name="ExitB" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pgvgn")
+text = "Exit"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitB"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.112437, 0.0514175)
+texture = ExtResource("2_t8a3r")

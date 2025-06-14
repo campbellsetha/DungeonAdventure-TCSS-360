@@ -1,67 +1,56 @@
 using Godot;
 using UDA.Game.Resources;
+using System.Collections.Generic;
+using UDA.Game.GameManager;
 
 namespace UDA.Game.UI;
-public partial class CharacterSelection : TextureRect
+public partial class CharacterSelection : Control
 {
 
 	private List<CharacterTile> _characterTiles = new();
-
-	private PackedScene _characterTileScene;
 	private CharacterTile _selectedTile;
-	private PlayerClassInfo _selectedClassInfo;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_characterTileScene = GD.Load<PackedScene>("res://Game/UI/MainMenu/CharacterTile.tscn");
-		AddCharacterClasses();
-	}
-
-	private void AddCharacterClasses()
-	{
-		var characters = new[]
+		_characterTiles = new List<CharacterTile>()
 		{
-			new { Name = "Priest", Frame = GD.Load<SpriteFrames>("res://Game/UI/MainMenu/Priest.tres") },
-			new { Name = "Warrior", Frame = GD.Load<SpriteFrames>("res://Game/UI/MainMenu/Warrior.tres") },
-			new { Name = "Thief", Frame = GD.Load<SpriteFrames>("res://Game/UI/MainMenu/Thief.tres") }
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/Warrior"),
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/Thief"),
+			GetNode<CharacterTile>("VBoxContainer/PanelContainer/Priest"),
 		};
 		
-		HBoxContainer tileContainer = GetNode<HBoxContainer>("PanelContainer");
+		//GD.Print(_characterTiles.Count);
+		EventBus.getInstance().Connect(nameof(EventBus.TileSelected), new Callable(this, nameof(OnTileSelected)));
+	}
+	
+	private void OnTileSelected(CharacterTile theCharacterTile)
+	{
+		GD.Print(theCharacterTile.Name);
+		foreach (var tile in _characterTiles)
+			tile.SetSelected(tile == theCharacterTile);
 		
-		foreach (var character in characters)
-		{
-			var characterInstance = _characterTileScene.Instantiate<CharacterTile>();
-			tileContainer.AddChild(characterInstance);
-			
-			characterInstance.SetLabel(character.Name);
-			characterInstance.SetSpriteFrames(character.Frame);
-
-			_characterTiles.Add(characterInstance);
-
-			characterInstance.GuiInput += input =>
-			{
-				if (input is InputEventMouseButton mouseEvent &&
-					mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
-				{
-					OnTitleSelected(characterInstance);
-				}
-			};
-		}
+		_selectedTile = theCharacterTile;
+		//GD.Print($"Selected Tile: {_selectedTile.GetName()}");
 	}
 
-	private void OnTitleSelected(CharacterTile theCharacterTile)
+	public PlayerClassInfo GetSelectedClass()
 	{
-		foreach (var tile in _characterTiles)
-			tile.Deselect();
-
-		theCharacterTile.Select();
-		_selectedTile = theCharacterTile;
-		_selectedClassInfo = theCharacterTile.GetClassInfo();
+		//GD.Print($"Selected Class: {_selectedTile.GetClassInfo().MyPlayerClass}");
+		return _selectedTile?.GetClassInfo();
 	}
 
 	private void OnStartPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Game/UI/world.tscn");
+		if (_selectedTile.GetClassInfo() == null)
+			return;
+		
+		var saveFile = "res://Game/Resources/PlayerClass.tres";
+		//I think we have to load resources at runtime to modify them
+		PlayerClassInfo classInfo = ResourceLoader.Load<PlayerClassInfo>("res://Game/Resources/PlayerClass.tres");
+		classInfo.MyPlayerClass = _selectedTile.Name;
+		ResourceSaver.Save(classInfo, saveFile);
+		//We saved the updated class info, which is just the name of the class
+		GetTree().ChangeSceneToFile("res://Game/GameManager/dungeonBuilder.tscn");
 	}
 
 	private void OnBackPressed()

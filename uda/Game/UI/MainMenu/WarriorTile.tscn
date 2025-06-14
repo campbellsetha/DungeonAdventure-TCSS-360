@@ -1,104 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://btov8s6c86txg"]
+[gd_scene load_steps=4 format=3 uid="uid://btov8s6c86txg"]
 
 [ext_resource type="Script" uid="uid://bwkxevksvd60" path="res://Game/UI/MainMenu/CharacterTile.cs" id="1_u8t8v"]
-[ext_resource type="Texture2D" uid="uid://d1u8r51bd0oj7" path="res://HeroAssets/Warrior/Warrior-Idle.png" id="2_u8t8v"]
+[ext_resource type="SpriteFrames" uid="uid://bck0sq7iggiwf" path="res://Game/Resources/Warrior.tres" id="1_vmala"]
 [ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_jnqbs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8t8v"]
-content_margin_left = 6.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 6.0
-bg_color = Color(0.694118, 0.556863, 0.0941176, 0.172549)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.398399, 0.159822, 0.0101027, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c30e0"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jnqbs"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfxm2"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(200, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v2e07"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ojw77"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(400, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hi8gr"]
-atlas = ExtResource("2_u8t8v")
-region = Rect2(500, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7kf4m"]
-resource_local_to_scene = true
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c30e0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jnqbs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfxm2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v2e07")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ojw77")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hi8gr")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
-[node name="WarriorTile" type="PanelContainer"]
-custom_minimum_size = Vector2(150, 200)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -100.0
-offset_right = 75.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.577109, 0.480422)
-size_flags_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_u8t8v")
+[node name="WarriorTile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
 script = ExtResource("1_u8t8v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
 alignment = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
 position = Vector2(-216.597, -189.417)
 scale = Vector2(5.33845, 5.97633)
-sprite_frames = SubResource("SpriteFrames_7kf4m")
+sprite_frames = ExtResource("1_vmala")
 animation = &"Idle"
-frame_progress = 0.924672
 centered = false
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -109,3 +32,12 @@ theme_override_font_sizes/font_size = 36
 text = "Warrior"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="OnPressed"]

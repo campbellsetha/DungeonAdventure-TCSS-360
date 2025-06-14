@@ -1,4 +1,5 @@
 using Godot;
+using UDA.Game.UI;
 using UDA.inventory;
 
 namespace UDA.Game.GameManager;
@@ -6,11 +7,21 @@ namespace UDA.Game.GameManager;
 public partial class EventBus : Node
 {
 	private static EventBus Instance;
+	public override void _Ready()
+	{
+		//GetTree().AutoAcceptQuit = true;
+		Connect(Node.SignalName.TreeExited, new Callable(this, nameof(ShutDown)));
+	}
+
+	private void ShutDown()
+	{
+		QueueFree();
+	}
+
 	public static EventBus getInstance()
 	{
 		return Instance ??= new EventBus();
 	}
-	// Called when the node enters the scene tree for the first time.
 	[Signal]
 	public delegate void DealDamageEventHandler(int theDamage);
 
@@ -37,6 +48,14 @@ public partial class EventBus : Node
 
 	[Signal]
 	public delegate void PillarsCollectedEventHandler();
+	
+	[Signal]
+	public delegate void TileSelectedEventHandler(CharacterTile theSender);
+
+	public void TileClicked(CharacterTile theCharacterTile)
+	{
+		EmitSignalTileSelected(theCharacterTile);
+	}
 
 	//Keeping this as a separate signal to prevent issues with asynchronous signalling
 	public void HoldingAllPillers()

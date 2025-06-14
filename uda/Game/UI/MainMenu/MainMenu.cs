@@ -4,20 +4,30 @@ namespace UDA.Game.UI.MainMenu;
 
 public partial class MainMenu : Control
 {
-    private TextureRect _loadPopup;
+
+    [Export] private NodePath _loadMenuPath;
+    [Export] private NodePath _characterSelectionPath;
+    [Export] private NodePath _helpMenuPath;
+    
+    private LoadMenu _loadPopup;
+    private CharacterSelection _characterSelectionPopup;
+    private PopUp _helpMenuPopup;
 
     public override void _Ready()
     {
-        _loadPopup = GetNode<TextureRect>("Control/TextureRect");
+        _loadPopup = GetNode<LoadMenu>(_loadMenuPath);
+        _characterSelectionPopup = GetNode<CharacterSelection>(_characterSelectionPath);
+        _helpMenuPopup = GetNode<PopUp>(_helpMenuPath);
     }
 
     private void NewGame()
     {
-        GetTree().ChangeSceneToFile("res://Game/GameManager/dungeonBuilder.tscn");
+        _characterSelectionPopup.Visible = true;
     }
 
     private void ExitGame()
     {
+        Free();
         GetTree().Quit();
     }
 
@@ -29,5 +39,10 @@ public partial class MainMenu : Control
     private void BackToMainMenu()
     {
         _loadPopup.Visible = false;
+    }
+
+    private void OnHelpPressed()
+    {
+        _helpMenuPopup.Visible = true;
     }
 }

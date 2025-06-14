@@ -21,9 +21,7 @@ public partial class ExitPortal : Area2D
 	{
 		if (theBody.IsInGroup("Player") && PillarsCollected)
 		{
-			//TODO: Display the win screen
-			//You can fire an event to the game manager to swap scenes if you want.
-			GetTree().ChangeSceneToFile("res://Game/Resources/GameWinScreen.tscn");
+			GetTree().ChangeSceneToFile("res://Game/UI/EndScenes/win_scene.tscn");
 		}
 	}
 

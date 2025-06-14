@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bck0sq7iggiwf"]
+
+[ext_resource type="Texture2D" uid="uid://d1u8r51bd0oj7" path="res://HeroAssets/Warrior/Warrior-Idle.png" id="1_428rj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhyhl"]
+atlas = ExtResource("1_428rj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trt5u"]
+atlas = ExtResource("1_428rj")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxb20"]
+atlas = ExtResource("1_428rj")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm3of"]
+atlas = ExtResource("1_428rj")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dqwo"]
+atlas = ExtResource("1_428rj")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe0ua"]
+atlas = ExtResource("1_428rj")
+region = Rect2(500, 0, 100, 100)
+
+[resource]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhyhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trt5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxb20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm3of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dqwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe0ua")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]

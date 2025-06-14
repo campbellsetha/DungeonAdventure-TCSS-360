@@ -54,8 +54,8 @@ public partial class Player : CharacterBody2D
         Inventory = GD.Load<Inventory>("res://Game/Player/player_inventory.tres");
         
         //Connecting to the event bus, we connect to the specific signal not the method in the bus
-        EventBus.getInstance().Connect(nameof(GameManager.EventBus.DealDamage), new Callable(this, nameof(OnDamageTaken)));
-        EventBus.getInstance().Connect(nameof(GameManager.EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
+        EventBus.getInstance().Connect(nameof(EventBus.DealDamage), new Callable(this, nameof(OnDamageTaken)));
+        EventBus.getInstance().Connect(nameof(EventBus.AddItem), new Callable(this, nameof(ItemAdded)));
         EventBus.getInstance().Connect(nameof(EventBus.UseHealthPotion), new Callable(this, nameof(UseHealthPotion)));
         EventBus.getInstance().Connect(nameof(EventBus.UseVisionPotion), new Callable(this, nameof(UseVisionPotion)));
         EventBus.getInstance().Connect(nameof(EventBus.SetPlayerPosition), new Callable(this, nameof(SetStartingPosition)));
@@ -251,11 +251,9 @@ public partial class Player : CharacterBody2D
 
         if (MyClass.MyHitPoints == 0)
         {
-            //Simulates death, still need to create a game over screen
-            //QueueFree();
-            //TODO: ADD THE LOSS SCREEN
-            GetTree().ChangeSceneToFile("res://Game/Resources/GameOverScreen.tscn");
-            
+            //GetTree().ChangeSceneToFile("res://Game/Resources/GameOverScreen.tscn");
+            GetTree().ChangeSceneToFile("res://Game/UI/EndScenes/game_over_scene.tscn");
+
         }
     }
 

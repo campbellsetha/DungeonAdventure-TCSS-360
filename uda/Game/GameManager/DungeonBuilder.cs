@@ -142,7 +142,7 @@ public partial class DungeonBuilder : Node2D
 		{
 			var itemData = ListOfRoomItems[i];
 			var spawnPoint = (Marker2D)spawnMarkers[i];
-			var itemScene = GD.Load<PackedScene>("res://Model/Items/Resources/" + itemData.Id.ToLower() + ".tscn");
+			var itemScene = GD.Load<PackedScene>("res://Game/Items/ItemProtos/" + itemData.Id.ToLower() + ".tscn");
 			var itemNodeBase = itemScene.Instantiate();
 			var itemNode = (ItemToPickup)itemNodeBase;
 			

@@ -1,20 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw7pbkr11x73j"]
+[gd_scene load_steps=9 format=3 uid="uid://gcsmklew66fi"]
 
-[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://Game/UI/MainMenu/MainMenu.cs" id="1_y6s48"]
-[ext_resource type="Texture2D" uid="uid://x1ohmojyrpy" path="res://dungeon_menu_bg_1150x650.png" id="2_otjfi"]
-[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_obtq6"]
-[ext_resource type="Texture2D" uid="uid://bleciyk46jwdw" path="res://Game/UI/selection_menu.png" id="4_0j0bp"]
-[ext_resource type="Texture2D" uid="uid://c4td3ab6up88h" path="res://Game/UI/button_icon.png" id="4_ghhtk"]
-[ext_resource type="Script" uid="uid://bvjse7erxf7jm" path="res://Game/UI/LoadMenu.cs" id="5_w5vcv"]
-[ext_resource type="Texture2D" uid="uid://dn10fsl632ola" path="res://Game/UI/character_selection.png" id="7_xtum4"]
-[ext_resource type="PackedScene" uid="uid://cdif2rdvfuk8m" path="res://Game/UI/MainMenu/CharacterTile.tscn" id="8_87w25"]
-[ext_resource type="Script" uid="uid://bff26siw24x23" path="res://Game/UI/CharacterSelection.cs" id="8_c1g6g"]
-[ext_resource type="Texture2D" uid="uid://b3nj8oh7je834" path="res://Game/UI/button-1.png" id="12_vuq4p"]
-
-[sub_resource type="Theme" id="Theme_i7cp2"]
+[ext_resource type="Script" uid="uid://b3ytxyo6mngy1" path="res://Game/UI/MainMenu/MainMenu.cs" id="1_tb2ss"]
+[ext_resource type="Texture2D" uid="uid://bk0ry4eucyw2c" path="res://Game/UI/MainMenu/dungeon_menu_bg_1150x650.png" id="2_6o1gp"]
+[ext_resource type="FontFile" uid="uid://iopk1pjhp2vr" path="res://Game/UI/Retrobyte-4nMol.ttf" id="3_6q0j1"]
+[ext_resource type="Texture2D" uid="uid://kmyklvup3cwi" path="res://Game/UI/MainMenu/button_icon.png" id="4_rtukw"]
+[ext_resource type="PackedScene" uid="uid://dlwvs8xshcstp" path="res://Game/UI/MainMenu/LoadGame.tscn" id="5_exg37"]
+[ext_resource type="PackedScene" uid="uid://vfo8fy8judlo" path="res://Game/UI/MainMenu/HelpMenuPopUp.tscn" id="6_kqokc"]
+[ext_resource type="PackedScene" uid="uid://bo2dpki778rbw" path="res://Game/UI/MainMenu/CharacterSelection.tscn" id="7_lg3rp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_er0wr"]
-font = ExtResource("3_obtq6")
+font = ExtResource("3_6q0j1")
 font_size = 100
 font_color = Color(0.875066, 0.808137, 0.762237, 1)
 shadow_size = 31
@@ -29,7 +24,10 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_y6s48")
+script = ExtResource("1_tb2ss")
+_loadMenuPath = NodePath("Control/LoadGameMenu2")
+_characterSelectionPath = NodePath("Control/CharacterSelection")
+_helpMenuPath = NodePath("Control/HelpMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -37,7 +35,7 @@ offset_left = -1.0
 offset_top = 2.0
 offset_right = 1150.0
 offset_bottom = 652.0
-texture = ExtResource("2_otjfi")
+texture = ExtResource("2_6o1gp")
 stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -59,7 +57,7 @@ alignment = 1
 
 [node name="NewGameB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
+theme_override_fonts/font = ExtResource("3_6q0j1")
 text = "New Game"
 flat = true
 
@@ -69,11 +67,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.112437, 0.0514175)
-texture = ExtResource("4_ghhtk")
+texture = ExtResource("4_rtukw")
 
 [node name="LoadGameB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
+theme_override_fonts/font = ExtResource("3_6q0j1")
 text = "Load Game"
 flat = true
 
@@ -83,11 +81,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.112437, 0.0514175)
-texture = ExtResource("4_ghhtk")
+texture = ExtResource("4_rtukw")
 
 [node name="HelpB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
+theme_override_fonts/font = ExtResource("3_6q0j1")
 text = "Help"
 flat = true
 
@@ -97,11 +95,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.112437, 0.0514175)
-texture = ExtResource("4_ghhtk")
+texture = ExtResource("4_rtukw")
 
 [node name="ExitB" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
+theme_override_fonts/font = ExtResource("3_6q0j1")
 text = "Exit"
 flat = true
 
@@ -111,200 +109,37 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.112437, 0.0514175)
-texture = ExtResource("4_ghhtk")
+texture = ExtResource("4_rtukw")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LoadGameMenu" type="TextureRect" parent="Control"]
+[node name="LoadGameMenu2" parent="Control" instance=ExtResource("5_exg37")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 387.0
-offset_top = 74.0
-offset_right = 413.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(13.9577, 12.9737)
-theme = SubResource("Theme_i7cp2")
-texture = ExtResource("4_0j0bp")
-expand_mode = 1
-script = ExtResource("5_w5vcv")
+offset_left = 372.0
+offset_top = 103.0
+offset_right = 398.0
+offset_bottom = 141.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/LoadGameMenu"]
+[node name="HelpMenu" parent="Control" instance=ExtResource("6_kqokc")]
+visible = false
+layout_mode = 0
+offset_left = 451.0
+offset_top = 209.0
+offset_right = 515.0
+offset_bottom = 273.0
+scale = Vector2(4.24662, 5.16972)
+
+[node name="CharacterSelection" parent="Control" instance=ExtResource("7_lg3rp")]
+visible = false
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4.90412
-offset_top = -7.93927
-offset_right = 90.096
-offset_bottom = 32.0607
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.110956, 0.0727098)
-theme_override_constants/separation = 19
-alignment = 1
-
-[node name="BackB" type="Button" parent="Control/LoadGameMenu/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
-text = "Back"
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="Control/LoadGameMenu/HBoxContainer/BackB"]
-show_behind_parent = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.0377916, 0.0734883)
-texture = ExtResource("4_ghhtk")
-
-[node name="LoadB" type="Button" parent="Control/LoadGameMenu/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_obtq6")
-text = "Load"
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="Control/LoadGameMenu/HBoxContainer/LoadB"]
-show_behind_parent = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.0377086, 0.0719938)
-texture = ExtResource("4_ghhtk")
-
-[node name="SavedGames" type="VBoxContainer" parent="Control/LoadGameMenu"]
-layout_mode = 1
-offset_left = 3.94047
-offset_top = 12.7951
-offset_right = 53.9405
-offset_bottom = 62.7951
-scale = Vector2(0.359618, 0.329283)
-
-[node name="SaveGame1" type="RichTextLabel" parent="Control/LoadGameMenu/SavedGames"]
-custom_minimum_size = Vector2(25, 14)
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SaveGame2" type="RichTextLabel" parent="Control/LoadGameMenu/SavedGames"]
-custom_minimum_size = Vector2(25, 14)
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SaveGame3" type="RichTextLabel" parent="Control/LoadGameMenu/SavedGames"]
-custom_minimum_size = Vector2(25, 14)
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CharacterSelection" type="TextureRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 21.0
-offset_top = 59.0
-offset_right = 1462.0
-offset_bottom = 1016.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.745991, 0.557735)
-texture = ExtResource("7_xtum4")
-script = ExtResource("8_c1g6g")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CharacterSelection"]
-layout_mode = 0
-offset_left = 158.179
-offset_top = 172.125
-offset_right = 198.179
-offset_bottom = 212.125
-scale = Vector2(7.39301, 8.14139)
-
-[node name="Label" type="Label" parent="Control/CharacterSelection/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_obtq6")
-text = "Choose Your Character"
-
-[node name="PanelContainer" type="HBoxContainer" parent="Control/CharacterSelection/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="CharacterTile" parent="Control/CharacterSelection/VBoxContainer/PanelContainer" instance=ExtResource("8_87w25")]
-layout_mode = 2
-
-[node name="CharacterTile2" parent="Control/CharacterSelection/VBoxContainer/PanelContainer" instance=ExtResource("8_87w25")]
-layout_mode = 2
-
-[node name="CharacterTile3" parent="Control/CharacterSelection/VBoxContainer/PanelContainer" instance=ExtResource("8_87w25")]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/CharacterSelection/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="Control" type="Control" parent="Control/CharacterSelection/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="StartGame" type="Button" parent="Control/CharacterSelection/VBoxContainer/HBoxContainer2/Control"]
-layout_mode = 2
-offset_left = -51.2471
-offset_top = 5.56288
-offset_right = -12.2471
-offset_bottom = 27.5629
-scale = Vector2(0.869545, 0.704568)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/icon_max_width = 9
-theme_override_fonts/font = ExtResource("3_obtq6")
-text = "Start"
-flat = true
-icon_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Control/CharacterSelection/VBoxContainer/HBoxContainer2/Control/StartGame"]
-show_behind_parent = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.0394092, 0.0348103)
-texture = ExtResource("12_vuq4p")
-
-[node name="MainMenu" type="Button" parent="Control/CharacterSelection/VBoxContainer/HBoxContainer2/Control"]
-layout_mode = 2
-offset_left = 7.7529
-offset_top = 5.56288
-offset_right = 46.7529
-offset_bottom = 27.5629
-scale = Vector2(0.869545, 0.704568)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/icon_max_width = 9
-theme_override_fonts/font = ExtResource("3_obtq6")
-text = "Back"
-flat = true
-icon_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Control/CharacterSelection/VBoxContainer/HBoxContainer2/Control/MainMenu"]
-show_behind_parent = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.0389954, 0.0354906)
-texture = ExtResource("12_vuq4p")
+offset_left = 13.0
+offset_top = 61.0
+offset_right = 1454.0
+offset_bottom = 1018.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -319,5 +154,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/NewGameB" to="." method="NewGame"]
 [connection signal="pressed" from="VBoxContainer/LoadGameB" to="." method="LoadSavedGame"]
+[connection signal="pressed" from="VBoxContainer/HelpB" to="." method="OnHelpPressed"]
 [connection signal="pressed" from="VBoxContainer/ExitB" to="." method="ExitGame"]
-[connection signal="pressed" from="Control/LoadGameMenu/HBoxContainer/BackB" to="." method="BackToMainMenu"]

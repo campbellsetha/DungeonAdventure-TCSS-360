@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="PlayerClassInfo" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="PlayerClassInfo" load_steps=2 format=3 uid="uid://bdhce2e34nsgw"]
 
-[ext_resource type="Script" path="res://Game/Resources/PlayerClassInfo.cs" id="1_j56wx"]
+[ext_resource type="Script" uid="uid://2hprjeci0s8a" path="res://Game/Resources/PlayerClassInfo.cs" id="1_j56wx"]
 
 [resource]
 script = ExtResource("1_j56wx")
 MyPlayerName = "Still Greeble Jenkins"
-MyPlayerClass = "Warrior"
+MyPlayerClass = "Thief"
 MyPlayerHp = 125
 metadata/_custom_type_script = "uid://2hprjeci0s8a"

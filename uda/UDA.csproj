@@ -11,6 +11,5 @@
         <Content Include=".godot\mono\temp\bin\Debug\CharacterDatabase.db" />
         <Content Include="CharacterDatabase.db" />
         <Content Include="Game\main.tscn"/>
-        <Content Include="Game\UI.tscn"/>
     </ItemGroup>
 </Project>

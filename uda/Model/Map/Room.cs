@@ -24,6 +24,9 @@ public class Room
         { East, null }
     };
     
+    /// <summary>
+    /// Constructor for this class
+    /// </summary>
     public Room(in RoomType theRoomType = Normal, params Direction[] theDoors)
     {
         if (!Enum.IsDefined(typeof(RoomType), theRoomType))
@@ -91,6 +94,9 @@ public class Room
         return numOfDoors;
     }
 
+    /// <summary>
+    /// Returns an array of strings representing the room
+    /// </summary>
     public string[] GetDetails()
     {
         const int numOfLines = 3;
@@ -103,6 +109,9 @@ public class Room
         return result;
     }
 
+    /// <summary>
+    /// String representation of the class
+    /// </summary>
     public override string ToString()
     {
         var result = new StringBuilder();

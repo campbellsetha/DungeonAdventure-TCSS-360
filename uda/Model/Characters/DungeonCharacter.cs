@@ -2,8 +2,16 @@ namespace UDA.Model.Characters;
 
 public abstract class DungeonCharacter
 {
-    protected DungeonCharacter() {}
-    
+    /// <summary>
+    /// Constructor for this class.
+    /// </summary>
+    /// <param name="theName">Character's name</param>
+    /// <param name="theHitPoints">The max number of hit points this character has</param>
+    /// <param name="theAttackSpeed">How fast the character can attack</param>
+    /// <param name="theHitChance">How likely it is the character lands an attack</param>
+    /// <param name="theDamageRange">The amount of damage the character can deal</param>
+    /// <exception cref="ArgumentException">Thrown when one of the numeric values is less than or equal to 0,
+    /// or when the character's name is null or empty.</exception>
     protected DungeonCharacter(in string theName,
         in int theHitPoints,
         in int theAttackSpeed,
@@ -38,14 +46,24 @@ public abstract class DungeonCharacter
 
     private int MyAttackSpeed { get; }
 
-    public double MyHitChance { get; protected set; }
+    private double MyHitChance { get; }
 
+    /// <summary>
+    /// Provides definition but not implementation of how damage is to be taken. Child classes override this class.
+    /// </summary>
+    /// <param name="theDamage">The amount of damage the character is dealt</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when theDamage is less than 0.</exception>
     public virtual void TakeDamage(in int theDamage)
     {
         if (theDamage < 0) 
             throw new ArgumentOutOfRangeException(nameof(theDamage), theDamage, "The damage is negative");
     }
 
+    /// <summary>
+    /// Method that controls the character's attack behavior.
+    /// </summary>
+    /// <param name="theTarget">The character to be attacked</param>
+    /// <exception cref="ArgumentNullException">Thrown when the target is null.</exception>
     public int Attack(in DungeonCharacter theTarget)
     {
         if (theTarget == null) throw new ArgumentNullException(nameof(theTarget), "Target is null");
@@ -66,6 +84,9 @@ public abstract class DungeonCharacter
         return damageDealt;
     }
 
+    /// <summary>
+    /// Returns a string representation of this class.
+    /// </summary>
     public override string ToString()
     {
         return $"Name: {MyName}\nMaxHP: {MyMaxHitPoints}\nCurrentHP: {MyHitPoints}\n" +

@@ -5,6 +5,9 @@ using static UDA.Model.Map.BoundaryType;
 
 namespace UDA.Model.Map;
 
+/// <summary>
+/// Implementation of a Dungeon map. 
+/// </summary>
 public sealed class Dungeon
 {
     public static readonly Dungeon MyInstance;
@@ -33,6 +36,7 @@ public sealed class Dungeon
         
     }
 
+    // Generates positions for the entrance and exit
     private static (int, int) GenerateEntranceExitCoordinates()
     {
         var row = MyRand.Next(0, MyRows);
@@ -44,6 +48,7 @@ public sealed class Dungeon
         return (row, col);
     }
 
+    // Generates positions for the pillars
     private void CreatePillarRooms()
     {
         for (var i = 0; i < 4; i++)
@@ -62,6 +67,7 @@ public sealed class Dungeon
         }
     }
 
+    // Helper method for CreateRoom
     private static List<Direction> GetValidDirections(in int theX, in int theY)
     {
         var directions = new List<Direction>();
@@ -72,6 +78,7 @@ public sealed class Dungeon
         return directions;
     }
     
+    // Creates Random rooms to populate dungeon
     private static Room CreateRoom(in int theX, in int theY, in RoomType theRoomType = Normal)
     {
         var directions = GetValidDirections(theX, theY);
@@ -101,6 +108,7 @@ public sealed class Dungeon
         return room;
     }
     
+    // Fills the map with generated rooms
     private void FillMap()
     {
         // Generate entrance and exit rooms
@@ -128,6 +136,7 @@ public sealed class Dungeon
         FillMapHelper();
     }
     
+    // Used to get room across from the current one
     private Room GetAdjRoom(Direction theDir, int theX, int theY)
     {
         return theDir switch
@@ -140,6 +149,7 @@ public sealed class Dungeon
         };
     }
     
+    // Makes sure there aren't rooms with no doors or doors that lead to walls
     private void FillMapHelper()
     {
         for (var i = 0; i < MyRows; i++)
@@ -163,6 +173,9 @@ public sealed class Dungeon
         }
     }
     
+    /// <summary>
+    /// String representation of the Dungeon
+    /// </summary>
     public override string ToString()
     {
        var result = new StringBuilder();
@@ -186,6 +199,7 @@ public sealed class Dungeon
        return result.ToString();
     }
     
+    // Checks that important items can be reached
     private bool IsReachable((int, int) theCoordinates)
     {
         var result = false;
@@ -230,6 +244,7 @@ public sealed class Dungeon
         return result;
     }
     
+    // Returns the opposite direction of the current one
     private Direction GetOppositeDir(Direction theDir)
     {
         return theDir switch
@@ -242,6 +257,7 @@ public sealed class Dungeon
         };
     }
 
+    // Returns whether the Dungeon has dead ends
     private bool HasDeadEnds()
     { 
         var numOfDeadEnds = 0;
@@ -255,6 +271,7 @@ public sealed class Dungeon
         return numOfDeadEnds > 2;
     }
     
+    // Checks that all important items can be accessed from starting room
     private bool IsTraversable()
     {
         return IsReachable(_myExit) 

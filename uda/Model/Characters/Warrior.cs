@@ -4,6 +4,9 @@ public class Warrior(in string theName, in int theHitPoints, in int theAttackSpe
     in (int, int) theDamageRange, in double theBlockChance, in string theSkill) 
     : Hero(theName, theHitPoints, theAttackSpeed, theHitChance, theDamageRange, theBlockChance, theSkill)
 {
+    /// <summary>
+    /// Implements the PerformSkill method.
+    /// </summary>
     public override int PerformSkill(in DungeonCharacter theTarget)
     {
         var damageDealt = base.PerformSkill(theTarget);

@@ -6,7 +6,7 @@
 
 ## 🏫 Project Info
 
-- **School:** University of Washington
+- **School:** University of Washington - Tacoma
 - **Course:** TCSS-360 – Software Development and Quality Assurance
 - **Instructor:** Tom Capaul
 - **Term:** Spring 2025
